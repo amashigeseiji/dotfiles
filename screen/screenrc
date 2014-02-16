@@ -1,0 +1,12 @@
+defutf8 on
+defencoding utf8
+encoding utf-8 utf-8
+
+startup_message off
+
+escape ^Tt
+
+caption always "%-w%10L>%{=b bw}%n %t%{-}%+w%-0="
+hardstatus alwayslastline "%H%=%Y/%m/%d %02c"
+shell $HOME/local/bin/zsh
+shelltitle "$ |shell"

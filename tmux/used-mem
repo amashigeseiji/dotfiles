@@ -1,0 +1,44 @@
+#!/bin/zsh
+# メモリ使用率(%)/メモリ不使用量を求める
+# p/f を引数にする
+calculate_used_mem() {
+  if [ ${#} -eq 0 ];then return 1;fi;
+  # page size of 4096 bytes
+  VM_STAT=$(vm_stat)
+  PAGES_FREE=$(echo "$VM_STAT" | awk '/Pages free/ {print $3}' | tr -d '.')
+  PAGES_ACTIVE=$(echo "$VM_STAT" | awk '/Pages active/ {print $3}' | tr -d '.')
+  PAGES_INACTIVE=$(echo "$VM_STAT" | awk '/Pages inactive/ {print $3}' | tr -d '.')
+  PAGES_SPECULATIVE=$(echo "$VM_STAT" | awk '/Pages speculative/ {print $3}' | tr -d '.')
+  PAGES_WIRED=$(echo "$VM_STAT" | awk '/Pages wired down/ {print $4}' | tr -d '.')
+  # 空きメモリ
+  #FREE_MEM=$(($PAGES_FREE + $PAGES_SPECULATIVE))
+  FREE_MEM=$PAGES_FREE
+  # 使用中メモリ
+  USED_MEM=$(($PAGES_ACTIVE + $PAGES_INACTIVE + $PAGES_WIRED))
+  # 合計
+  TOTAL_MEM=$(($FREE_MEM + $USED_MEM))
+
+  function convert () {
+    local num=$(expr \( $1  \* 4096 \) / 1000000)
+    if [ $num -lt 1000 ];then
+      echo ${num}'MB'
+    else
+      echo $(echo ${num} | sed -e 's/\([0-9]\)\(.*\)/\1.\2/' -e 's/[0-9]\{1\}$//')'GB'
+    fi
+  }
+
+  if [ $1 = 'use-percent' ];then
+    # 使用中メモリ(%)
+    USED_MEM_PERCENT=$(echo "$(($USED_MEM * 1000 / $TOTAL_MEM))" | sed -e 's/\(.*\)\([0-9]\)/\1.\2/' -e 's/^\./0./')
+    echo "${USED_MEM_PERCENT}"
+  elif [ $1 = 'free' ];then
+    echo $(convert $FREE_MEM)
+  elif [ $1 = 'inactive' ];then
+    echo $(convert $PAGES_INACTIVE)
+  fi
+
+  return 0
+}
+
+calculate_used_mem $1
+exit $?
