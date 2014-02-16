@@ -1,0 +1,29 @@
+#zsh aliases
+alias ls='ls -GF'
+alias ll='ls -alFhA'
+alias la='ls -A'
+alias l='ls -CF'
+alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+alias rm="rmtrash"
+alias fshow="defaults write com.apple.finder AppleShowAllFiles true && killall Finder"
+alias fhide="defaults write com.apple.finder AppleShowAllFiles false && killall Finder"
+alias ag="ag -S"
+
+alias f="vim ."
+# apps
+alias o="open"
+alias oa="open -a"
+alias F="oa Finder"
+#alias ff="oa firefox"
+alias kickstart="/System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart"
+alias vnc="oa /System/Library/CoreServices/Screen\ Sharing.app"
+alias iphone="oa /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app"
+alias ActivityMonitor='open -a /Applications/Utilities/Activity\ Monitor.app'
+alias Eclipse='open -a /Applications/eclipse/Eclipse.app'
+alias photoshop="open -a /Applications/Adobe\ Photoshop\ CS5/Adobe\ Photoshop\ CS5.app"
+alias aster='open /Applications/astah\ community/astah\ community.app'
+alias op='openpne'
+alias now='date "+%m/%d %H:%M"'
+alias wiki='vim -c VimwikiIndex'
+#alias javac='javac -J-Dfile.encoding=UTF-8'
+#alias java='java -Dfile.encoding=UTF-8'

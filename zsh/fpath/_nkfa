@@ -1,0 +1,16 @@
+#compdef nkfa
+
+#compadd `nkfa`
+if (( CURRENT == 2 ));then
+_arguments -s -S \
+  "-w[UTF-8]"\
+  "-j[jis(ISO-2022-JP)]"\
+  "-s[shift-jis]"\
+  "-e[euc-jp]"\
+  "-Lu[LF(unix)]"\
+  "-Lw[CRLF(dos)]"\
+  "-Lm[CR(mac)]"\
+  && return 0
+elif (( CURRENT == 3 ));then
+  _files -W $PWD && return 0
+fi

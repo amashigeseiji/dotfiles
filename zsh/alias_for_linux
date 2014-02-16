@@ -1,0 +1,6 @@
+#aliases for linux
+alias ls='ls -F --color'
+alias ll='ls -alFh --color'
+alias la='ls -A --color'
+alias l='ls -CF --color'
+alias shutdown="sudo shutdown -h 0"
