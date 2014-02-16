@@ -4,10 +4,12 @@ if [ ! -e ~/.tmux.conf ];then
   ln -s $path/tmux.conf ~/.tmux.conf
   echo 'linked ~/.tmux.conf'
 fi
-if [ ! -e ~/bin/loadaverage ];then
-  ln -s $path/loadaverage ~/bin/
+if [ ! -d ~/.tmux ];then
+  mkdir ~/.tmux
+  echo 'mkdir ~/.tmux'
 fi
-if [ ! -e ~/bin/used-mem ];then
-  ln -s $path/used-mem ~/bin/
+if [ ! -d ~/.tmux/bin ];then
+  ln -s $path/bin ~/.tmux/
+  echo 'linked ~/.tmux/bin'
 fi
 echo 'finished tmux install'

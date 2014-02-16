@@ -1,0 +1,13 @@
+#!/bin/sh
+PATH_BACK=$PATH
+PATH=$HOME/.tmux/bin:$PATH
+
+function right() {
+  local cpu='#[bg=magenta,fg=white] [cpu]#[fg=default]#[fg=yellow,bold] '$(loadaverage)' #[default]'
+  local mem='#[bg=blue,fg=white] [Mem]#[fg=default] #[fg=magenta,bold]inactive:'$(used-mem inactive)'#[fg=default] #[fg=red]free:'$(used-mem free)' #[default]'
+  local date='#[bg=white,fg=blue] '$(date +"%y/%m/%d(%a) %H:%M")' #[default]'
+  echo "${cpu}${mem}${date}"
+}
+right
+
+PATH=$PATH_BACK
