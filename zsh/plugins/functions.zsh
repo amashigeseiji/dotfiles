@@ -57,6 +57,8 @@ function memfree() {
   killall Finder
   echo 'kill Dock'
   killall Dock
+  echo 'du'
+  du -sx / >& /dev/null & sleep 15 && kill $!
   echo 'purge'
   sudo purge
 }
