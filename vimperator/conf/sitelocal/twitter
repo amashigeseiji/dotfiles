@@ -1,0 +1,4 @@
+" twitter
+lazy fmap -u='twitter\.com' -events=keydown,keypress,keyup,vkeydown,vkeypress,vkeyup <S-/> ?
+lazy fmaps -u='twitter\.com' -events=vkeydown . n m r gh gl gp gf gm ? gh gr j k <CR> <space>
+lazy fmap -u='twitter\.com' -events=keydown,keypress,keyup,vkeydown,vkeypress,vkeyup <C-k> <RETURN>

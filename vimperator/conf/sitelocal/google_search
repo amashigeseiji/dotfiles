@@ -1,0 +1,6 @@
+"google-search
+lazy fmap -u='www\.google\.(co\.jp|com)' -modes=i -events=keydown,keypress,keyup,vkeydown,vkeypress,vkeyup <TAB> <down>
+lazy fmap -u='www\.google\.(co\.jp|com)' -modes=i -events=keydown,keypress,keyup,vkeydown,vkeypress,vkeyup <S-TAB> <up>
+nnoremap -u='www.google\.(co\.jp|com)' i gi<down>
+inoremap -u='www.google\.(co\.jp|com)' <S-h> <up>
+inoremap -u='www.google\.(co\.jp|com)' <S-l> <down>

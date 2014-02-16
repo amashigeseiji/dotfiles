@@ -1,0 +1,188 @@
+" vim: set ft=vim foldmethod=marker:
+" Vimperator Color Scheme
+
+"highlight{{{
+"hint{{{
+hi Hint         font-family: Hiragino; font-size: 11px; font-weight: Bold; color: #ffff00; border-width: 0px; border-style: outset; padding: 2px; opacity: 0.80; width: auto; border-radius: 3px; background: -moz-linear-gradient(top, #aaaaff, #7a7aff);
+
+hi HintElem     background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.7), rgba(245, 255, 80, 0.7)); color: #555555;
+hi HintActive   background: -moz-linear-gradient(top, #fff, #ff9a00); color: #1111ff;
+hi HintImage    opacity: 0.5;
+"}}}
+"statusline{{{
+hi StatusLine   color: #f4f4f4; background: #98998D; font-weight: normal; font-size: 12px;
+
+hi Normal       color: #f4f4f4; background: #98998D; font-size: 12px; font-family: Ricty;
+hi InfoMsg      color: #f4f4f4; background: #98998D; font-size: 12px; font-family: Ricty;
+hi ModeMsg      color: #a00000; background: #cccccc; font-size: 14px; font-family: Ricty; font-weight: Bold;
+hi MoreMsg      color: #f4f4f4; background: #98998D; font-family: Ricty;
+hi LineNr       color: #218386; background: #98998D; font-size: 12px; font-family: Ricty;
+hi Question     color: #FFAF03; background: #98998D; font-size: 12px; font-family: Ricty;
+hi WarningMsg   color: #218386; background: #98998D; font-size: 12px; font-family: Ricty;
+hi NonText      background: #98998D;
+hi Null         color: #15C4C8;
+hi Tag          color: #15C4C8;
+
+"hi CompTitle    color: #000; font-color:#fff; background: #abc; font-weight: normal;
+hi CompItem color: #ffffff; background: #98998D; font-family: Ricty; font-weight: normal; font-size: 13px; font-weight: normal;
+hi CompItem[selected] color: #b0fadf; background: #666; font-family: Ricty; font-weight: Bold;
+hi CompDesc color: #50f498;
+"hi GradientRight background-color: #000;
+
+hi Title        color: #fff;
+"hi Indicator    color: #15C4C8;
+hi String       color: #218386;
+hi Number       color: #218386;
+hi Object       color: #218386;
+hi Function     color: #15C4C8;
+hi URL          color: #ABD31B;
+
+hi TabNumber    color: white; font-weight: bold; font-size: 11px; font-family: Ricty;
+"}}}
+"}}}
+
+"style{{{
+"statusbar{{{
+style -name statusbar chrome://* <<EOM
+#status-bar statusbarpanel {
+  padding: 0 1px !important;
+}
+statusbarpanel > * {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#liberator-commandline{
+  font-size: 9pt !important;
+  line-hight: 9px !important;
+  margin: 1px !important;
+  padding: 1px !important;
+}
+EOM
+"}}}
+"}}}
+
+"UserCSS{{{
+"google-seach{{{
+style -n google www.google.co.jp <<EOM
+@namespace url(http://www.w3.org/1999/xhtml);
+@-moz-document url-prefix("https://www.google.co.jp/search"),domain("www.google.com"){
+/*body*/
+body{ background-color:#edf0f2 !important;}
+#rcnt a:link{color:#3262dc !important;}
+#main a:visited{color:#660099 !important;}
+/*header*/
+#hdtbSum{background-color:#effafa !important;}
+#appbar{background-color:#effafa !important;}
+#gbx3{background-color:#484858 !important;}
+#gbx3 a:link{color:#a2f2fc !important;}
+#tads{display:none !important}
+/*footer*/
+#bottomads{display:none !important}
+/*sidebar*/
+#mbEnd{display:none !important}
+}
+
+EOM
+"}}}
+"gmail{{{
+style -n gmail mail.google.com <<EOM
+
+@namespace url(http://www.w3.org/1999/xhtml);
+@-moz-document domain(mail.google.com) {
+
+.u5{width:0px}
+.Bt{width:800px}
+span #:af{display:none}
+
+.Zs{display:none}
+.aEA{display:none}
+body { font-family: Meirio !important; }
+body { font-size: 100% !important; }
+
+}
+EOM
+"}}}
+"google drive{{{
+style -n gdrive drive.google.com <<EOM
+@namespace url(http://www.w3.org/1999/xhtml);
+@-moz-document domain(drive.google.com) {
+
+}
+EOM
+"}}}
+
+"facebook{{{
+style -n facebook facebook.com <<EOM
+@namespace url(http://www.w3.org/1999/xhtml);
+@-moz-document domain("facebook.com"){
+#pagelet_side_ads{display:none !important;}
+#u_ps_0_2_1{display:none !important;}
+#u_ps_jsonp_13_2_1{display:none !important;}
+#u_1a_1{display:none !important;}
+#u_jsonp_15_13{display:none !important;}
+.ego_column{display:none !important;}
+}
+EOM
+"}}}
+"redmine{{{
+style -n redmine pfdn.tdev.local,gyoen.pne.jp,redmine.openpne.jp<<EOM
+@namespace url(http://www.w3.org/1999/xhtml);
+@-moz-document domain("pfdn.tdev.local"),domain("gyoen.pne.jp"),domain("openpne.jp")
+{
+  #content td.parent
+  {
+    white-space: nowrap !important;
+    max-width: 100px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size:10px !important;
+  }
+  #content td.category
+  {
+    white-space: nowrap !important;
+    max-width: 70px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size:10px !important;
+  }
+  #sidebar
+  {
+    width:15% !important;
+  }
+  #content
+  {
+    width:80% !important;
+  }
+  td.cf_1
+  {
+    max-width: 50px !important;
+  }
+  td.updated_on
+  {
+    font-size:10px !important;
+  }
+  td.due_date
+  {
+    font-size:10px !important;
+  }
+  td.cf_5
+  {
+    width:40px !important;
+    margin:0px !important;
+    padding:0px !important;
+  }
+  td.author
+  {
+    width:40px !important;
+    margin:0px !important;
+    padding:0px !important;
+  }
+  pre {
+    overflow: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+}
+EOM
+"}}}
+"}}}

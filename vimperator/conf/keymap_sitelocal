@@ -1,0 +1,6 @@
+source ~/.vimperator/conf/sitelocal/gmail
+source ~/.vimperator/conf/sitelocal/google_document
+source ~/.vimperator/conf/sitelocal/google_search
+source ~/.vimperator/conf/sitelocal/google_drive
+source ~/.vimperator/conf/sitelocal/twitter
+source ~/.vimperator/conf/sitelocal/google_spreadsheet
