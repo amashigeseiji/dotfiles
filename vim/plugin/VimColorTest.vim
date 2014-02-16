@@ -1,6 +1,7 @@
 function! VimColorTest(outfile, fgend)
   if !filereadable(a:outfile)
-    let result = []
+    let resultf = []
+    let resultb = []
     for fg in range(a:fgend)
       "foeground
       let kw = printf('%-7s', printf('c_%d', fg))
@@ -11,10 +12,11 @@ function! VimColorTest(outfile, fgend)
       let hibackground = printf('  hi %s ctermbg=%d', bw, fg)
       let sb = printf('syn keyword %s %s', bw, bw)
 
-      call add(result, printf('%-32s | %s', hiforeground, sf))
-      call add(result, printf('%-32s | %s', hibackground, sb))
+      call add(resultf, printf('%-32s | %s', hiforeground, sf))
+      call add(resultb, printf('%-32s | %s', hibackground, sb))
     endfor
-    call writefile(result, a:outfile)
+    call writefile(resultf, a:outfile)
+    call writefile(readfile(a:outfile)+resultb, a:outfile)
   endif
 
   execute 'split'
@@ -24,4 +26,4 @@ function! VimColorTest(outfile, fgend)
   source %
 endfunction
 " Increase numbers in next line to see more colors.
-command! VimColorTest call VimColorTest('/Users/amashige/.vim/color-define', 255)
+command! VimColorTest call VimColorTest('/tmp/vim-color-define', 255)
