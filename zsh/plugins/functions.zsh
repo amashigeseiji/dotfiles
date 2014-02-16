@@ -59,5 +59,7 @@ function memfree() {
   killall Dock
   echo 'purge'
   sudo purge
+  echo 'du'
+  du -sx / >& /dev/null & sleep 15 && kill $!
 }
 dict () { open dict://$1 }
