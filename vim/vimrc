@@ -106,7 +106,6 @@ set cmdheight=2    " コマンドラインの高さ
 " statusline
 set laststatus=2  " 常にステータス行を表示
 set statusline=path:%F%m%r%h%w%=%L[enc:%{&fileencoding}][ff:%{&ff}]
-"autocmd FileType vimfiler setlocal statusline=vimfiler#get_status_line()
 " tabline
 set showtabline=2
 
@@ -237,8 +236,6 @@ inoremap ?? ?php  ?<Left><Left>
 "inoremap <C-k> <CR>
 "snipet
 "imap <C-k> <Plug>(neocomplcache_snippets_expand)
-"InsertTabWrapper
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 "}}}
 "commandline-mode{{{
 cnoremap <C-A> <HOME>
@@ -309,7 +306,7 @@ function! g:ref_source_webdict_sites.alc.filter(output)
   "let output=substitute(output,'…','...','g')
   let output=substitute(output, '（','(','g')
   let output=substitute(output, '）',')','g')
-  return join(split(output, "\n")[38:], "\n")
+  return join(split(output, "\n")[36:], "\n")
 endfunction
 function! g:ref_source_webdict_sites.wiki.filter(output)
   return join(split(a:output, "\n")[8 :], "\n")
@@ -514,6 +511,7 @@ function! InsertTabWrapper()
       return "\<c-x>\<c-o>"
   endif
 endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 "}}}
 " 行のURLを開く{{{
 function! HandleURI()
@@ -525,19 +523,11 @@ function! HandleURI()
     echo "No URI found in line."
   endif
 endfunction
-
 map <Leader>w :call HandleURI()<CR>
+"}}}
 command! Utf :set fenc=utf8<CR>
 au FileType xml :silent 1,$!xmllint --format --recover - 2>/dev/null
-"}}}
-autocmd BufRead ~/.openpne/lib/* setl ft=sh
-autocmd BufRead ~/.openpne/completion/* setl ft=zsh
-autocmd BufRead ~/.openpne/installed/*.css setl binary noeol
-autocmd BufRead ~/.vimperator/conf/* setl ft=vimperator
-autocmd FileType help noremap <buffer><silent> q :bd<CR>
-command! Bd let kwbd_bn= bufnr("%")|enew|exe "bdel ".kwbd_bn|unlet kwbd_bn
-"}}}
-"js {{{
+" js の折りたたみ{{{
 function! JavaScriptFold()
     setl foldmethod=syntax
     setl foldlevelstart=1
@@ -550,6 +540,13 @@ function! JavaScriptFold()
 endfunction
 au FileType javascript call JavaScriptFold()
 au FileType javascript setl fen
+"}}}
+autocmd BufRead ~/.openpne/lib/* setl ft=sh
+autocmd BufRead ~/.openpne/completion/* setl ft=zsh
+autocmd BufRead ~/.openpne/installed/*.css setl binary noeol
+autocmd BufRead ~/.vimperator/conf/* setl ft=vimperator
+autocmd FileType help noremap <buffer><silent> q :bd<CR>
+command! Bd let kwbd_bn= bufnr("%")|enew|exe "bdel ".kwbd_bn|unlet kwbd_bn
 "}}}
 
 " ローカル辞書をひく

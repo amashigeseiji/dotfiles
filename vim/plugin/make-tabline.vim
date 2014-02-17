@@ -28,12 +28,11 @@ function! s:tabpage_label(tabpagenr)
   " カレントバッファ
   let curbufnr = bufnrs[tabpagewinnr(a:tabpagenr) - 1]  " tabpagewinnr() は 1 origin
   let fname = fnamemodify(bufname(curbufnr), ':t')
+  " vimfilerの場合はカレントディレクトリ名を表示
   if bufname(curbufnr) =~ 'vimfiler'
     let fname = '%#TabLineVimFiler#' . vimfiler#get_status_string()
   endif
   let fname = fname is '' ? '[No Name]' : fname "バッファが空ならNo title
-  " vimfilerの場合はカレントディレクトリ名を表示
-  "let fname = &filetype is 'vimfiler' ? vimfiler#get_status_string() : fname
   let fname = ' '.fname.' '
 
   " カレントタブページかどうかでハイライトを切り替える
