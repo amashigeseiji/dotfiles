@@ -6,6 +6,8 @@ if [ ! -d ~/.zsh ];then
 fi
 if [ ! -e ~/.zshrc ];then
   touch ~/.zshrc
+  echo 'targetPlugins=("prompt")' >> ~/.zshrc
+  echo 'prompt_color="yellow"'
   echo 'source ~/.zsh/zshrc-mac' >> ~/.zshrc
   echo 'created ~/.zshrc'
 fi
