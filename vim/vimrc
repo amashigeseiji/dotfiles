@@ -558,3 +558,6 @@ if OSTYPE == "Darwin\n"
   "command! -nargs=+ Dict :call DictSearch(<args>)
   nnoremap ,d :Dict<space>
 endif
+if filereadable(expand('~/.vim/vimrc.local'))
+  source ~/.vim/vimrc.local
+endif
