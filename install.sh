@@ -68,9 +68,27 @@ tmux_install() {
 }
 
 screen_install() {
-  local path=$path/screen
   linkto $path 'screenrc' '.'
   echo 'finished screen install'
+}
+
+vimperator_install() {
+  linkto $1 'vimperatorrc' '.'
+  if [ ! -d ~/.vimperator ];then
+    mkdir ~/.vimperator
+    echo 'mkdir ~/.vimperator'
+  fi
+  if [ ! -d ~/.vimperator/plugin ];then
+    mkdir ~/.vimperator/plugin
+    echo 'mkdir ~/.vimperator/plugin'
+  fi
+  if [ ! -d ~/.vimperator/vimperator-plugins ];then
+    git clone git@github.com:vimpr/vimperator-plugins.git ~/.vimperator/
+    echo 'clone vimperator-plugins'
+  fi
+  linkto $1 'colors' '.vimperator/'
+  linkto $1 'conf' '.vimperator/'
+  echo 'finished vimperator install'
 }
 
 for i in ${args[@]};
