@@ -46,11 +46,24 @@ vim_install() {
 }
 
 zsh_install() {
+  if [ -L ~/.zsh ];then
+    ln -snf $1 ~/${prefix}${filename}
+    echo 'linked ~/'${prefix}${filename}
+  else
+    if [ -e ~/${prefix}${filename} ];then
+      mv ~/${prefix}${filename} ~/${prefix}${filename}.bak
+      echo 'moved ~/'${prefix}${filename}.bak
+    fi
+    ln -s $1 ~/${prefix}${filename}
+    echo 'linked ~/'${prefix}${filename}
+  fi
   linkto $1 'zsh' '.'
   if [ ! -e ~/.zshrc ];then
     touch ~/.zshrc
     echo 'targetPlugins=("prompt")' >> ~/.zshrc
     echo 'prompt_color="yellow"' >> ~/.zshrc
+    echo 'prompt_name="%m"' >> ~/.zshrc
+    echo 'prompt_git_use=1' >> ~/.zshrc
     echo 'source ~/.zsh/zshrc-mac' >> ~/.zshrc
     echo 'created ~/.zshrc'
   fi
