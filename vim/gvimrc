@@ -1,5 +1,5 @@
 "set guifont=12
-set guifont=Osaka-mono:h16
+set guifont=Ricty:h18
 "" スクロールバー非表示
 "set guioptions-=r
 "set guioptions-=l
@@ -9,10 +9,10 @@ set guifont=Osaka-mono:h16
 set guioptions=c
 "set guioptions-=e
 "set guioptions=i
-colorscheme molokai
+colorscheme desert
 
 set title
-set transparency=7
+"set transparency=7
 " 常にタブを表示
 set showtabline=2
 set lines=150 columns=330

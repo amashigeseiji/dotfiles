@@ -9,6 +9,7 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 " bundle
+Bundle 'vundle'
 Bundle 'Align'
 Bundle 'taglist.vim'
 Bundle 'sudo.vim'
@@ -87,11 +88,14 @@ set smartindent
 set autoindent
 set showmatch        " 括弧入力時に対応する括弧を表示 (noshowmatch:表示しない)
 
+"viminfo // see :help 23.1
+"set viminfo='1000,f1,<500,s100
+"set viminfo+=n~/tmp/viminfo
 "set backspace=2    " バックスペースでインデントや改行を削除できるようにする
 "set showmode
 set wildmenu        " コマンドライン補完するときに強化されたものを使う(参照 :help wildmenu)
 set wildmode=list:full,full " コマンドライン補完をシェルっぽくする
-set formatoptions+=mM   " テキスト挿入中の自動折り返しを日本語に対応させる
+"set formatoptions+=mM   " テキスト挿入中の自動折り返しを日本語に対応させる
 "自動折り返し切りたいのだが...
 "set textwidth=0
 "set formatoptions=q
@@ -201,9 +205,6 @@ nnoremap cs :Csvhl<space>
 nnoremap <silent> ,y :<C-u>Unite history/yank<CR>
 "zencoding
 nnoremap zen :Zen<space>
-" vimshell
-nnoremap <silent> vs :VimShell<CR>
-nnoremap <silent> vp :VimShellPop<CR>
 "snipet
 noremap es :<C-u>NeoComplCacheEditSnippets<CR>
 "firefox
@@ -406,13 +407,14 @@ function! g:ref_source_webdict_sites.alc.filter(output)
   let output=substitute(output, '｛','{','g')
   let output=substitute(output, '｝','}','g')
   let output=substitute(output, '{\([^\x01-\x7E]\)*}', '', 'g')
-  let output=substitute(output, '{\([^\x01-\x7E]\)*$', '', 'g')
   let output=substitute(output, '\([^\x01-\x7E]\)*}', '', 'g')
+  let output=substitute(output, '{\([^\x01-\x7E]\)*\n', '\n', 'g')
   let output=substitute(output, '◆', ' *', 'g')
   let output=substitute(output, '⇒', '=>', 'g')
   "let output=substitute(output,'…','...','g')
   let output=substitute(output, '（','(','g')
   let output=substitute(output, '）',')','g')
+
   return join(split(output, "\n")[36:], "\n")
 endfunction
 function! g:ref_source_webdict_sites.wiki.filter(output)
@@ -454,6 +456,11 @@ noremap <C-U>y :Unite -buffer-name=register register<CR>
 nnoremap f :Unite outline<CR>
 nnoremap <C-u>f :Unite function<CR>
 endif
+"}}}
+" vimshell{{{
+nnoremap <silent> vs :VimShell<CR>
+nnoremap <silent> vp :VimShellPop<CR>
+autocmd FileType vimshell setlocal nonumber
 "}}}
 "neocomplcache{{{
 if v:version > 700
