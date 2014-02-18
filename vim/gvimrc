@@ -1,5 +1,5 @@
 "set guifont=12
-set guifont=Ricty:h18
+set guifont=Ricty:h16
 "" スクロールバー非表示
 "set guioptions-=r
 "set guioptions-=l
