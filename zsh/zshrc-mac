@@ -20,6 +20,7 @@ if [ -e $HOME/.rbenv ]; then
   eval "$(phpenv init -)"
 fi
 export ZSH_HOME=$HOME/.zsh
+export TERM="xterm-256color"
 
 # for MacOS
 case "${OSTYPE}" in
