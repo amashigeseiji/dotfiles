@@ -4,6 +4,10 @@
     <appname>MacVim</appname>
     <equal>org.vim.MacVim</equal>
   </appdef>
+  <appdef>
+    <appname>ALFRED</appname>
+    <equal>com.runningwithcrayons.Alfred-2</equal>
+  </appdef>
   <list>
     <item>
       <name>VIM Helper</name>
