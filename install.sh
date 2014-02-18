@@ -39,7 +39,7 @@ vim_install() {
   linkto $1 'colors' '.vim/'
   linkto $1 'plugin' '.vim/'
   if [ ! -d ~/.vim/bundle/vundle ];then
-    git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
     echo 'clone bundle ~/.vim/bundle/vundle'
   fi
   echo 'finished vim install'
