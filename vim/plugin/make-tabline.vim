@@ -1,3 +1,4 @@
+if v:version > 703
 " http://d.hatena.ne.jp/thinca/20111204/1322932585
 function! MakeTabLine()
   let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
@@ -61,3 +62,4 @@ hi TabLineInfo          term=reverse ctermfg=green ctermbg=8 guifg=black guibg=l
 hi TabLineGap           ctermbg=248
 hi TabLineVimFiler      ctermfg=red
 "}}}
+endif
