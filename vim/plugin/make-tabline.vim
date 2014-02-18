@@ -1,4 +1,4 @@
-if v:version > 703
+if v:version > 702
 " http://d.hatena.ne.jp/thinca/20111204/1322932585
 function! MakeTabLine()
   let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')

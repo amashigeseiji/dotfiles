@@ -134,10 +134,10 @@ set tags=./tags,../../tags
 noh
 "}}}
 " colorscheme{{{
-if OSTYPE == "Darwin\n"
+if v:version > 702
 "if filereadable("~/.vim/colors/mycolor.vim")
   colorscheme mycolor
-elseif OSTYPE == "Linux\n"
+else
   colorscheme elflord
 endif
 "}}}
