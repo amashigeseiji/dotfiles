@@ -47,17 +47,16 @@ vim_install() {
 
 zsh_install() {
   if [ -L ~/.zsh ];then
-    ln -snf $1 ~/${prefix}${filename}
-    echo 'linked ~/'${prefix}${filename}
+    ln -snf $1 ~/.zsh
+    echo 'linked ~/.zsh'
   else
-    if [ -e ~/${prefix}${filename} ];then
-      mv ~/${prefix}${filename} ~/${prefix}${filename}.bak
-      echo 'moved ~/'${prefix}${filename}.bak
+    if [ -e ~/.zsh ];then
+      mv ~/.zsh ~/.zsh.bak
+      echo 'moved ~/.zsh.bak'
     fi
-    ln -s $1 ~/${prefix}${filename}
-    echo 'linked ~/'${prefix}${filename}
+    ln -s $1 ~/.zsh
+    echo 'linked ~/.zsh'
   fi
-  linkto $1 'zsh' '.'
   if [ ! -e ~/.zshrc ];then
     touch ~/.zshrc
     echo 'targetPlugins=("prompt")' >> ~/.zshrc
