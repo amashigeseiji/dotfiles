@@ -145,7 +145,7 @@
     <item>
       <name>Command_L to Command_L(for Finder)</name>
       <appendix>(+ When you type Command_L only, toggle Vi Mode)</appendix>
-      <only>FINDER</only>
+      <only>FINDER,PREVIEW</only>
       <identifier>remap.vimode_toggle_commandL_finder</identifier>
       <autogen>__KeyOverlaidModifier__ KeyCode::COMMAND_L, KeyCode::COMMAND_L, KeyCode::VK_CONFIG_TOGGLE_notsave_complete_vimode</autogen>
     </item>
