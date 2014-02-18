@@ -134,8 +134,7 @@ set tags=./tags,../../tags
 noh
 "}}}
 " colorscheme{{{
-if v:version > 702
-"if filereadable("~/.vim/colors/mycolor.vim")
+if filereadable(expand("~/.vim/colors/mycolor.vim"))
   colorscheme mycolor
 else
   colorscheme elflord
