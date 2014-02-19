@@ -414,6 +414,7 @@ function! g:ref_source_webdict_sites.alc.filter(output)
   "let output=substitute(output,'…','...','g')
   let output=substitute(output, '（','(','g')
   let output=substitute(output, '）',')','g')
+  "let output=substitute(output, '\s\+\d\+\.', "\1 ", 'g')
 
   return join(split(output, "\n")[36:], "\n")
 endfunction

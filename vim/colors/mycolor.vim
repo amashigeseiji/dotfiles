@@ -5,7 +5,7 @@
 
 hi clear
 
-"set background=dark
+set background=dark
 if version > 580
     " no guarantees for version 5.8 and below, but this makes it stop
     " complaining
@@ -16,93 +16,44 @@ if version > 580
 endif
 let g:colors_name="mycolor"
 
-
 "gui{{{
-hi Boolean         guifg=#AE81FF
-hi Character       guifg=#E6DB74
-hi Number          guifg=#AE81FF
-hi String          guifg=#E6DB74
-hi Conditional     guifg=#F92672               gui=bold
-hi Constant        guifg=#AE81FF               gui=bold
-hi Cursor          guifg=#000000 guibg=#F8F8F0
-hi Debug           guifg=#BCA3A3               gui=bold
-hi Define          guifg=#66D9EF
-hi Delimiter       guifg=#8F8F8F
-hi DiffAdd                       guibg=#13354A
-hi DiffChange      guifg=#89807D guibg=#4C4745
-hi DiffDelete      guifg=#960050 guibg=#1E0010
-hi DiffText                      guibg=#4C4745 gui=italic,bold
+if has('gui_running')
+  " highlight groups
+  hi Cursor	guibg=khaki guifg=slategrey
 
-hi Directory       guifg=#A6E22E               gui=bold
-hi Error           guifg=#960050 guibg=#1E0010
-hi ErrorMsg        guifg=#F92672 guibg=#232526 gui=bold
-hi Exception       guifg=#A6E22E               gui=bold
-hi Float           guifg=#AE81FF
-hi FoldColumn      guifg=#465457 guibg=#000000
-hi Folded          guifg=#465457 guibg=#000000
-hi Function        guifg=#A6E22E
-hi Identifier      guifg=#FD971F
-hi Ignore          guifg=#808080 guibg=bg
-hi IncSearch       guifg=#C4BE89 guibg=#000000
+  hi VertSplit	guibg=#c2bfa5 guifg=grey50 gui=none
+  hi Folded	guibg=#292929 guifg=#6666aa gui=bold
+  hi FoldColumn	guibg=grey30 guifg=tan
+  hi IncSearch	guifg=slategrey guibg=khaki
+  hi ModeMsg	guifg=goldenrod
+  hi MoreMsg	guifg=SeaGreen
+  hi Question	guifg=springgreen
+  hi Search	guibg=peru guifg=wheat
+  hi StatusLine	guibg=#c2bfa5 guifg=black gui=none
+  hi StatusLineNC	guibg=#928f75 guifg=grey42 gui=none
+  hi Title	guifg=indianred
+  hi Visual	gui=none guifg=khaki guibg=olivedrab
+  "hi VisualNOS
+  hi WarningMsg	guifg=salmon
+  "hi WildMenu
+  "hi Menu
+  "hi Tooltip
 
-hi Keyword         guifg=#F92672               gui=bold
-hi Label           guifg=#E6DB74               gui=none
-hi Macro           guifg=#C4BE89               gui=italic
-hi SpecialKey      guifg=#66D9EF               gui=italic
-
-hi MatchParen      guifg=#000000 guibg=#FD971F gui=bold
-hi ModeMsg         guifg=#E6DB74
-hi MoreMsg         guifg=#E6DB74
-hi Operator        guifg=#F92672
-
-" complete menu{{{
-hi Pmenu           guifg=#66D9EF guibg=#000000
-hi PmenuSel                      guibg=#808080
-hi PmenuSbar                     guibg=#080808
-hi PmenuThumb      guifg=#66D9EF
-
-hi PreCondit       guifg=#A6E22E               gui=bold
-hi PreProc         guifg=#A6E22E
-hi Question        guifg=#66D9EF
-hi Repeat          guifg=#F92672               gui=bold
-hi Search          guifg=#FFFFFF guibg=#455354
-"}}}
-" marks column{{{
-hi SignColumn      guifg=#A6E22E guibg=#232526
-hi SpecialChar     guifg=#F92672               gui=bold
-hi SpecialComment  guifg=#465457               gui=bold
-hi Special         guifg=#66D9EF guibg=bg      gui=italic
-hi SpecialKey      guifg=#888A85               gui=italic
-if has("spell")
-    hi SpellBad    guisp=#FF0000 gui=undercurl
-    hi SpellCap    guisp=#7070F0 gui=undercurl
-    hi SpellLocal  guisp=#70F0F0 gui=undercurl
-    hi SpellRare   guisp=#FFFFFF gui=undercurl
+  " syntax highlighting groups
+  hi Constant	guifg=#ffa0a0
+  hi Identifier	guifg=palegreen
+  hi Statement	guifg=khaki
+  hi PreProc	guifg=indianred
+  hi Type		guifg=darkkhaki
+  hi Special	guifg=navajowhite
+  "hi Underlined
+  hi Ignore	guifg=grey40
+  "hi Error
+  hi Todo		guifg=orangered guibg=yellow2
 endif
-hi Statement       guifg=#F92672               gui=bold
-hi StatusLine      guifg=#455354 guibg=fg
-hi StatusLineNC    guifg=#808080 guibg=#080808
-hi StorageClass    guifg=#FD971F               gui=italic
-hi Structure       guifg=#66D9EF
-hi Tag             guifg=#F92672               gui=italic
-hi Title           guifg=#ef5939
-hi Todo            guifg=#FFFFFF guibg=bg      gui=bold
-"}}}
-
-hi Typedef         guifg=#66D9EF
-hi Type            guifg=#66D9EF               gui=none
-hi Underlined      guifg=#808080               gui=underline
-
-hi VertSplit       guifg=#808080 guibg=#080808 gui=bold
-hi VisualNOS                     guibg=#403D3D
-hi Visual                        guibg=#403D3D
-hi WarningMsg      guifg=#FFFFFF guibg=#333333 gui=bold
-hi WildMenu        guifg=#66D9EF guibg=#000000
 "}}}
 
 "cui{{{
-" Support for 256-color terminal
-"
 if &t_Co > 255
    hi Boolean         ctermfg=135
    hi Character       ctermfg=144
@@ -135,7 +86,6 @@ if &t_Co > 255
    hi Keyword         ctermfg=161               cterm=bold
    hi Label           ctermfg=229               cterm=none
    hi Macro           ctermfg=193
-   hi SpecialKey      ctermfg=81
 
    hi MatchParen      ctermfg=16  ctermbg=208 cterm=bold
    hi ModeMsg         ctermfg=229
@@ -160,7 +110,6 @@ if &t_Co > 255
    hi SpecialChar     ctermfg=161               cterm=bold
    hi SpecialComment  ctermfg=245               cterm=bold
    hi Special         ctermfg=81  ctermbg=232
-   hi SpecialKey      ctermfg=245
 
    hi Statement       ctermfg=161               cterm=bold
    hi StatusLine      ctermfg=023 ctermbg=251
@@ -180,37 +129,31 @@ if &t_Co > 255
    hi Visual                      ctermbg=238
    hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
    hi WildMenu        ctermfg=81  ctermbg=16
-
-   hi Normal          ctermfg=252 ctermbg=233
-   hi Comment         ctermfg=59
-   hi CursorLine                  ctermbg=234   cterm=none
-   hi CursorColumn                cterm=none
-   hi LineNr          ctermfg=250 ctermbg=234
-   hi NonText         ctermfg=250 ctermbg=234
    "}}}
 end
 "}}}
 
-hi CursorLine       cterm=underline ctermfg=NONE ctermbg=NONE
-"hi CursorLine      term=reverse cterm=reverse
-"hi clear CursorLine
-"hi CursorLine gui=underline
+" 通常の表示
+hi Normal               ctermfg=252 ctermbg=233 guifg=White guibg=grey18
+" 行番号
+hi LineNr               ctermfg=250 ctermbg=234 guifg=#777777
+" コメント
+hi Comment              ctermfg=59 guifg=#666666
+" special keys
+hi SpecialKey           term=underline ctermfg=darkgray ctermbg=black guifg=grey30 guibg=grey20
+hi IdeographicSpace     term=underline ctermbg=DarkGreen guibg=DarkGreen
+hi NonText              ctermfg=darkGray ctermbg=234 guifg=#777777 guibg=grey20
 "tab{{{
 " 選択されているタブ
-hi TabLineSel           ctermfg=187 ctermbg=16 cterm=bold,underline
-hi TabLineSelPageInfo   ctermfg=208 ctermbg=16
+hi TabLineSel           ctermfg=187 ctermbg=16 cterm=bold,underline guifg=#88cc88 guibg=#403333 gui=bold,underline
+hi TabLineSelPageInfo   ctermfg=208 ctermbg=16 guifg=#ffbb55 gui=bold
 " その他のタブ
-hi TabLine              term=reverse cterm=reverse ctermfg=238 ctermbg=236 gui=underline guifg=Black guibg=gray
-hi TabLinePageInfo      term=reverse cterm=reverse ctermfg=238 ctermbg=236 gui=underline guifg=Black guibg=gray
+hi TabLine              term=reverse cterm=reverse ctermfg=238 ctermbg=236 gui=none guifg=#444444 guibg=#666666
+hi TabLinePageInfo      term=reverse cterm=reverse ctermfg=238 ctermbg=236 gui=none guifg=#444444 guibg=#666666
 " 空いているところ
-hi TabLineFill          term=reverse cterm=reverse ctermfg=059 ctermbg=041 gui=reverse,bold guifg=LightGray guibg=black
+hi TabLineFill          term=reverse cterm=reverse ctermfg=059 ctermbg=041 gui=reverse guifg=LightGray
 " info
-hi TabLineInfo          term=reverse ctermfg=white ctermbg=black guifg=black guibg=lightblue
+hi TabLineInfo          term=reverse ctermfg=white ctermbg=black guifg=#009933 guibg=lightgray gui=bold
 " 隙間
-hi TabLineGap           ctermbg=248
+hi TabLineGap           ctermbg=248 guibg=grey30
 "}}}
-
-" special keys
-hi SpecialKey term=underline ctermfg=darkgray ctermbg=black guifg=darkgray
-hi IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
-hi NonText ctermfg=darkGray
