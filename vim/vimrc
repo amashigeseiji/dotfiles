@@ -404,17 +404,12 @@ let g:ref_source_webdict_sites.default = 'alc'
 " 出力に対するフィルタ。最初の数行を削除
 function! g:ref_source_webdict_sites.alc.filter(output)
   let output=a:output
-  let output=substitute(output, '｛','{','g')
-  let output=substitute(output, '｝','}','g')
-  let output=substitute(output, '{\([^\x01-\x7E]\)*}', '', 'g')
-  let output=substitute(output, '\([^\x01-\x7E]\)*}', '', 'g')
-  let output=substitute(output, '{\([^\x01-\x7E]\)*\n', '\n', 'g')
-  let output=substitute(output, '◆', ' *', 'g')
+  let output=substitute(output, '｛\([^｝]\)*｝', '', 'g')
+  let output=substitute(output, '◆', ' * ', 'g')
   let output=substitute(output, '⇒', '=>', 'g')
-  "let output=substitute(output,'…','...','g')
   let output=substitute(output, '（','(','g')
   let output=substitute(output, '）',')','g')
-  "let output=substitute(output, '\s\+\d\+\.', "\1 ", 'g')
+  let output=substitute(output, '•', '==', 'g')
 
   return join(split(output, "\n")[36:], "\n")
 endfunction

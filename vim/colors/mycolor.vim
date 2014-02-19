@@ -143,6 +143,7 @@ hi Comment              ctermfg=59 guifg=#666666
 hi SpecialKey           term=underline ctermfg=darkgray ctermbg=black guifg=grey30 guibg=grey20
 hi IdeographicSpace     term=underline ctermbg=DarkGreen guibg=DarkGreen
 hi NonText              ctermfg=darkGray ctermbg=234 guifg=#777777 guibg=grey20
+hi Tag                  ctermfg=216  guifg=#f2ddb0
 "tab{{{
 " 選択されているタブ
 hi TabLineSel           ctermfg=187 ctermbg=16 cterm=bold,underline guifg=#88cc88 guibg=#403333 gui=bold,underline
