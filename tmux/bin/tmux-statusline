@@ -3,9 +3,12 @@ PATH_BACK=$PATH
 PATH=$HOME/.tmux/bin:$PATH
 
 function right() {
-  local battery='#[bg=yellow,fg=black] [battery]#[fg=black,bold] '$(battery_capacity)' #[default]'
-  local cpu='#[bg=magenta,fg=white] [cpu]#[fg=default]#[fg=yellow,bold] '$(loadaverage)' #[default]'
-  local mem='#[bg=blue,fg=white] [Mem]#[fg=default] #[fg=magenta,bold]inactive:'$(used-mem inactive)'#[fg=default] #[fg=red]free:'$(used-mem free)' #[default]'
+  local battery=''
+  if [ $(battery_capacity) ];then
+    local battery='#[bg=yellow,fg=black] [battery]#[fg=black,bold] '$(battery_capacity)' #[default]'
+  fi
+  local cpu='#[bg=magenta,fg=white] [cpu] #[fg=yellow]'$(loadaverage)' #[default]'
+  local mem='#[bg=blue,fg=white] [Mem] #[fg=magenta,bold]inactive:'$(used-mem inactive)' #[fg=red]free:'$(used-mem free)' #[default]'
   local date='#[bg=white,fg=blue] '$(date +"%y/%m/%d(%a) %H:%M")' #[default]'
   echo "${battery}${cpu}${mem}${date}"
 }

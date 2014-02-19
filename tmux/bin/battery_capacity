@@ -1,4 +1,7 @@
 #!/bin/sh
 max=$(ioreg -l | grep 'MaxCapacity' | awk '{print $5}')
 current=$(ioreg -l | grep 'CurrentCapacity' | awk '{print $5}')
+if [ ! $max -o ! $current ];then
+  exit 1;
+fi
 echo $(expr $current \* 100 / $max)%

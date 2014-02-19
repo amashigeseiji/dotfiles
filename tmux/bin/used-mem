@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 # メモリ使用率(%)/メモリ不使用量を求める
 # p/f を引数にする
 calculate_used_mem() {
