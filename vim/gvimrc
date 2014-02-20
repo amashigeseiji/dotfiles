@@ -21,5 +21,5 @@ set fuoptions=maxvert,maxhorz
 au GUIEnter * set fullscreen
 map ,m :set guioptions=m<CR>
 map ,n :set guioptions-=m<CR>
-noremap! (J\(B \
-noremap! \ (J\(B
+inoremap! (J\(B \
+cnoremap! (J\(B \

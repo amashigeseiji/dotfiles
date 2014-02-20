@@ -399,6 +399,7 @@ let g:ref_source_webdict_sites = {
 " 一度開いたページをキャッシュ
 let g:ref_source_webdict_use_cache = 1
 let g:ref_cache_dir = '/tmp/vimref'
+let g:ref_use_vimproc = 1
 " デフォルトサイト
 let g:ref_source_webdict_sites.default = 'alc'
 " 出力に対するフィルタ。最初の数行を削除
@@ -407,11 +408,12 @@ function! g:ref_source_webdict_sites.alc.filter(output)
   let output=substitute(output, '｛\([^｝]\)*｝', '', 'g')
   let output=substitute(output, '◆', ' * ', 'g')
   let output=substitute(output, '⇒', '=>', 'g')
+  let output=substitute(output, '\([^\x01-\x7E^》^】^）^。]\)\n\s\+\([^\x01-\x7E^《^【^（^・^•]\)', '\1\2', 'g')
   let output=substitute(output, '（','(','g')
   let output=substitute(output, '）',')','g')
-  let output=substitute(output, '•', '==', 'g')
+  let output=substitute(output, '•\([a-zA-Z ]*\)', '==\1 ==', 'g')
 
-  return join(split(output, "\n")[36:], "\n")
+  return join(split(output, "\n")[30:], "\n")
 endfunction
 function! g:ref_source_webdict_sites.wiki.filter(output)
   return join(split(a:output, "\n")[8 :], "\n")
