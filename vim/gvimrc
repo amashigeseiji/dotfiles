@@ -1,10 +1,10 @@
 "set guifont=12
 set guifont=Ricty:h16
-"" $B%9%/%m!<%k%P!<HsI=<((B
+"" スクロールバー非表示
 "set guioptions-=r
 "set guioptions-=l
 "set guioptions-=b
-"" $B%D!<%k%P!<HsI=<((B
+"" ツールバー非表示
 "set guioptions-=T
 set guioptions=c
 "set guioptions-=e
@@ -13,7 +13,7 @@ colorscheme mycolor
 set guicursor=a:blinkon0
 set title
 "set transparency=7
-" $B>o$K%?%V$rI=<((B
+" 常にタブを表示
 set showtabline=2
 set lines=150 columns=330
 
@@ -21,5 +21,6 @@ set fuoptions=maxvert,maxhorz
 au GUIEnter * set fullscreen
 map ,m :set guioptions=m<CR>
 map ,n :set guioptions-=m<CR>
-inoremap! (J\(B \
-cnoremap! (J\(B \
+"inoremap! ¥ \
+"cnoremap! ¥ \
+"inoremap <D-¥> \

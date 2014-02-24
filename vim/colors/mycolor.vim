@@ -5,7 +5,7 @@
 
 hi clear
 
-set background=dark
+"set background=dark
 if version > 580
     " no guarantees for version 5.8 and below, but this makes it stop
     " complaining
@@ -111,7 +111,7 @@ if &t_Co > 255
    hi SpecialComment  ctermfg=245               cterm=bold
    hi Special         ctermfg=81  ctermbg=232
 
-   hi Statement       ctermfg=161               cterm=bold
+   hi Statement       ctermfg=001               cterm=bold
    hi StatusLine      ctermfg=023 ctermbg=251
    hi StatusLineNC    ctermfg=240 ctermbg=235
    hi StorageClass    ctermfg=208
@@ -134,7 +134,7 @@ end
 "}}}
 
 " 通常の表示
-hi Normal               ctermfg=252 ctermbg=233 guifg=White guibg=grey18
+hi Normal               ctermfg=252 ctermbg=234 guifg=White guibg=grey18
 " 行番号
 hi LineNr               ctermfg=250 ctermbg=234 guifg=#777777
 " コメント

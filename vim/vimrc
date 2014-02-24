@@ -31,7 +31,7 @@ Bundle 'yuratomo/w3m.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'fuenor/qfixhowm'
 Bundle 'soh335/vim-symfony'
-Bundle 'mattn/gist-vim'
+"Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'h1mesuke/unite-outline'
 Bundle 'tpope/vim-surround'
@@ -45,12 +45,13 @@ Bundle 'superbrothers/vim-vimperator'
 Bundle 'TwitVim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'kakkyz81/evervim'
+Bundle 'https://github.com/modsound/macdict-vim.git'
+
 syntax on
 filetype plugin indent on
 "}}}
 "基本設定{{{
 let OSTYPE = system('uname')
-
 if OSTYPE == "Darwin\n"
   let $PATH = $PATH.':/usr/local/bin/'
   if exists('+macmeta')
@@ -405,13 +406,18 @@ let g:ref_source_webdict_sites.default = 'alc'
 " 出力に対するフィルタ。最初の数行を削除
 function! g:ref_source_webdict_sites.alc.filter(output)
   let output=a:output
+  "よみがなを削除
   let output=substitute(output, '｛\([^｝]\)*｝', '', 'g')
   let output=substitute(output, '◆', ' * ', 'g')
   let output=substitute(output, '⇒', '=>', 'g')
+  ""》】）。"以外のマルチバイト文字で終わって"《【（・•"以外のマルチバイト文字で始まる文の改行コードを削除
   let output=substitute(output, '\([^\x01-\x7E^》^】^）^。]\)\n\s\+\([^\x01-\x7E^《^【^（^・^•]\)', '\1\2', 'g')
   let output=substitute(output, '（','(','g')
   let output=substitute(output, '）',')','g')
-  let output=substitute(output, '•\([a-zA-Z ]*\)', '==\1 ==', 'g')
+  " リストになっているタイトル文字列を==で囲む
+  let output=substitute(output, '•\(\s[a-zA-Z]\+[a-zA-Z -,.]*\)', '\n==\1 ==', 'g')
+  let output=substitute(output, '・\([a-zA-Z ]\+\)\n\s*\([a-zA-Z ]\+\.\)', '\1 \2', 'g')
+  let output=substitute(output, '\(\.\)\(\s:\)', '\1\n        \2', 'g')
 
   return join(split(output, "\n")[30:], "\n")
 endfunction
@@ -549,12 +555,20 @@ if getcwd() != $HOME
 endif
 "}}}
 " w3m {{{
-autocmd FileType w3m setlocal nonumber
-autocmd FileType w3m nnoremap <buffer> q :bdelete<CR>
+autocmd! FileType w3m setlocal nonumber
+autocmd! FileType w3m nnoremap <buffer> q :bdelete<CR>
 "}}}
+" macdict{{{
+autocmd! FileType macdict nnoremap <buffer> q :bd<CR>
+" }}}
 "}}}
 
 " ローカル設定の読み込み
 if filereadable(expand('~/.vim/vimrc.local'))
   source ~/.vim/vimrc.local
+endif
+if has('gui_running')
+  nnoremap ¥ \
+  inoremap ¥ \
+  cnoremap ¥ \
 endif
