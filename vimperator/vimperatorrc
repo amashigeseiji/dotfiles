@@ -94,6 +94,7 @@ nnoremap R :source ~/.vimperatorrc<CR>
 
 nnoremap <C-r> :res<CR>
 nnoremap s :open g<space>
+nnoremap ,s :open scholar<space>
 
 "選択文字列を<C-g>でGoogle検索
 nnoremap <silent> <C-g> ccvy<Esc><Esc>P
