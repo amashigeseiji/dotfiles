@@ -15,6 +15,7 @@ if v:version > 702
     let sep = '%#TabLineGap#' . ' '  " タブ間の区切り
     let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
     let info = '%#TabLineInfo#' . '[pwd:'. fnamemodify(getcwd(), ":~") . ']'
+    let info = info.' '.strftime("%y").'/'.strftime("%m").'/'.strftime("%d").' '.strftime("%H:%M")
 
     return tabpages . '%=' . info  " タブリストを左に、情報を右に表示
   endfunction

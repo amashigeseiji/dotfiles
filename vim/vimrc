@@ -5,11 +5,11 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
 " bundle
-Bundle 'vundle'
+Bundle 'gmarik/Vundle.vim'
 Bundle 'Align'
 Bundle 'taglist.vim'
 Bundle 'sudo.vim'
@@ -25,27 +25,20 @@ endif
 
 Bundle 'thinca/vim-quickrun'
 Bundle 'thinca/vim-ref'
-Bundle 'mattn/zencoding-vim'
-Bundle 'yuratomo/gmail.vim'
+Bundle 'mattn/emmet-vim'
 Bundle 'yuratomo/w3m.vim'
 Bundle 'scrooloose/syntastic'
-Bundle 'fuenor/qfixhowm'
 Bundle 'soh335/vim-symfony'
 "Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'h1mesuke/unite-outline'
 Bundle 'tpope/vim-surround'
-Bundle 'fuenor/JpFormat.vim'
 Bundle 'nise-nabe/unite-openpne'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Simple-Javascript-Indenter'
 Bundle 'project.tar.gz'
 Bundle 'rking/ag.vim'
 Bundle 'superbrothers/vim-vimperator'
-Bundle 'TwitVim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'kakkyz81/evervim'
-Bundle 'https://github.com/modsound/macdict-vim.git'
 
 syntax on
 filetype plugin indent on
@@ -99,7 +92,7 @@ set wildmode=list:full,full " コマンドライン補完をシェルっぽく�
 "set formatoptions+=mM   " テキスト挿入中の自動折り返しを日本語に対応させる
 "自動折り返し切りたいのだが...
 "set textwidth=0
-"set formatoptions=q
+set formatoptions=q
 set number
 set list        " タブや改行を表示 (list:表示)
 set listchars=tab:>-,extends:<,trail:-,eol:$ " どの文字でタブや改行を表示するかを設定
@@ -134,7 +127,7 @@ set modeline
 
 "ctags
 "set tags+=tags
-set tags=./tags,../../tags
+set tags+=./tags,../../tags
 "ファイル読み込み時にhighlightしない
 noh
 "}}}
@@ -204,8 +197,6 @@ nnoremap zE <nop>
 nnoremap cs :Csvhl<space>
 "unite
 nnoremap <silent> ,y :<C-u>Unite history/yank<CR>
-"zencoding
-nnoremap zen :Zen<space>
 "snipet
 noremap es :<C-u>NeoComplCacheEditSnippets<CR>
 "firefox
@@ -387,6 +378,7 @@ let g:Align_xstrlen=3
 " vim-Ref{{{
 " phpmanual
 let g:ref_phpmanual_path = $HOME.'/.vim/man/php-chunked-xhtml'
+autocmd FileType ref-phpmanual nnoremap <buffer><silent> q :bd<CR>
 "let g:ref_phpmanual_cmd = 'w3m -dump %s'
 "" php補完ファイル置き場
 ""autocmd FileType php :set dictionary=~/.vim/dict/php_func.dict
@@ -437,9 +429,8 @@ let Tlist_Use_Right_Window = 1
 let Tlist_Exit_OnlyWindow = 1
 "}}}
 " zen-codung{{{
-command! Html :Zen html:xs<CR>
-let g:user_zen_expandabbr_key = '<C-@>'
-let g:user_zen_leader_key = '<c-i>'
+let g:user_emmet_expandabbr_key = '<C-@>'
+let g:user_emmet_leader_key = '<C-i>'
 "}}}
 " unite.vim{{{
 "データはramに保存
@@ -522,20 +513,11 @@ let QFixHowm_MenuPreview = 1
 " snippet{{{
 smap <C-k> <Plug>(neocomplcache_snippets_expand)
 "}}}
-" jpformat{{{
-" txtファイルで「連結マーカー+改行」が有ったら自動整形を有効にする
-au BufRead *.blog  silent! call JpSetAutoFormat()
-au BufRead *.blog  silent! set nonumber
-"}}}
 " javascript{{{
 " この設定入れるとshiftwidthを1にしてインデントしてくれる
 let g:SimpleJsIndenter_BriefMode = 2
 " この設定入れるとswitchのインデントがいくらかマシに
 let g:SimpleJsIndenter_CaseIndentLevel = -1
-"}}}
-"evervim {{{
-let g:evervim_devtoken='S=s31:U=3752fb:E=14b75f97fff:C=1441e485403:P=1cd:A=en-devtoken:V=2:H=a6a6196c17f993bd24f084a72990dd88'
-autocmd BufRead ~/.evervim/* set nonumber
 "}}}
 " vimwiki {{{
 let g:vimwiki_folding="syntax"
@@ -558,9 +540,6 @@ endif
 autocmd! FileType w3m setlocal nonumber
 autocmd! FileType w3m nnoremap <buffer> q :bdelete<CR>
 "}}}
-" macdict{{{
-autocmd! FileType macdict nnoremap <buffer> q :bd<CR>
-" }}}
 "}}}
 
 " ローカル設定の読み込み
