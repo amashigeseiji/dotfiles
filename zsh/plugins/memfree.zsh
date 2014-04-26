@@ -1,5 +1,5 @@
 function memfree() {
-  local IconService=`ps aux | grep com.apple.IconServicesAgent | grep -v grep | awk '{print $2}'`
+  local IconService=`ps aux | grep com.apple.IconServicesAgent | grep -v grep | grep amashige | awk '{print $2}'`
   if [ -n $IconService ];then
     echo 'kill IconServiceAgent'
     kill -9 ${IconService}
