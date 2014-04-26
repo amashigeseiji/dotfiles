@@ -8,17 +8,10 @@ export LANG=ja_JP.UTF-8
 export EDITOR=vim
 export SVN_EDITOR=vi;
 export LC_ALL=ja_JP.UTF-8;
-export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8;
 #export PAGER=w3m
 #export LANG=C
 # PATH
 export PATH=$PATH:$HOME/bin
-# php
-if [ -e $HOME/.rbenv ]; then
-  export PATH="$PATH:$HOME/.rbenv/bin:$HOME/.phpenv/bin"
-  eval "$(rbenv init -)"
-  eval "$(phpenv init -)"
-fi
 export ZSH_HOME=$HOME/.zsh
 export TERM="xterm-256color"
 
@@ -27,10 +20,6 @@ case "${OSTYPE}" in
   darwin*)
   export PATH=/usr/local/sbin:$PATH # for Homebrew
   export PATH=/usr/local/bin:$PATH  # for Homebrew
-  export PATH=~/Documents/dev/pear/bin:$PATH  # for Pear
-  #nvm
-#  export NVM_DIR=$HOME/.nvm
-  #source $HOME/.nvm/nvm.sh  # This loads NVM
   ;;
 esac
 #}}}
