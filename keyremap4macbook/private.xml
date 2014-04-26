@@ -8,177 +8,203 @@
     <appname>ALFRED</appname>
     <equal>com.runningwithcrayons.Alfred-2</equal>
   </appdef>
-  <list>
-    <item>
-      <name>VIM Helper</name>
-      <identifier>private.vim_helper</identifier>
-      <only>VI,TERMINAL,MacVim</only>
-      <autogen>--KeyOverlaidModifier-- KeyCode::CONTROL_L, KeyCode::CONTROL_L, KeyCode::ESCAPE, KeyCode::JIS_EISUU</autogen>
-      <autogen>--KeyToKey-- KeyCode::J, VK_CONTROL, KeyCode::J, VK_CONTROL, KeyCode::JIS_EISUU</autogen>
-      <autogen>--KeyOverlaidModifier-- KeyCode::ESCAPE, KeyCode::JIS_EISUU, KeyCode::ESCAPE</autogen>
-    </item>
-  </list>
-  <list>
-    <item>
-      <name>Swap JIS_Colon and Semicolon</name>
-      <identifier>private.swap_jis_colon_and_semicolon</identifier>
-      <autogen>--KeyToKey-- KeyCode::SEMICOLON, ModifierFlag::NONE, KeyCode::JIS_COLON</autogen>
-      <autogen>--KeyToKey-- KeyCode::JIS_COLON, ModifierFlag::NONE, KeyCode::SEMICOLON</autogen>
-    </item>
-  </list>
-  <list>
-    <item>
-      <name>Eisuu+hjkl to Left/Down/Up/Right</name>
-      <identifier>option.vimode_eisuu_hjkl</identifier>
-      <autogen>--KeyOverlaidModifier-- KeyCode::JIS_EISUU, KeyCode::VK_MODIFIER_EXTRA1, KeyCode::JIS_EISUU</autogen>
-      <autogen>--KeyToKey-- KeyCode::H, ModifierFlag::EXTRA1, KeyCode::CURSOR_LEFT</autogen>
-      <autogen>--KeyToKey-- KeyCode::J, ModifierFlag::EXTRA1, KeyCode::CURSOR_DOWN</autogen>
-      <autogen>--KeyToKey-- KeyCode::K, ModifierFlag::EXTRA1, KeyCode::CURSOR_UP</autogen>
-      <autogen>--KeyToKey-- KeyCode::L, ModifierFlag::EXTRA1, KeyCode::CURSOR_RIGHT</autogen>
-      <autogen>--KeyToKey-- KeyCode::O, ModifierFlag::EXTRA1, KeyCode::DELETE</autogen>
-      <autogen>--KeyToKey-- KeyCode::D, ModifierFlag::EXTRA1, KeyCode::D, ModifierFlag::CONTROL_L</autogen>
-      <autogen>--KeyToKey-- KeyCode::F, ModifierFlag::EXTRA1, KeyCode::VK_JIS_TOGGLE_EISUU_KANA</autogen>
-      <autogen>--KeyToKey-- KeyCode::E, ModifierFlag::EXTRA1, KeyCode::JIS_EISUU</autogen>
-      <autogen>--KeyToKey-- KeyCode::N, ModifierFlag::EXTRA1, KeyCode::MINUS, ModifierFlag::SHIFT_L, KeyCode::DOT, ModifierFlag::SHIFT_L</autogen>
-    </item>
-  </list>
+
   <item>
-    <name>Ctrl to ESC</name>
+    <name>original</name>
+    <list>
+      <item>
+        <name>VIM Helper</name>
+        <identifier>private.vim_helper</identifier>
+        <only>VI,TERMINAL,MacVim</only>
+        <autogen>--KeyOverlaidModifier-- KeyCode::CONTROL_L, KeyCode::CONTROL_L, KeyCode::ESCAPE, KeyCode::JIS_EISUU</autogen>
+        <autogen>--KeyToKey-- KeyCode::J, VK_CONTROL, KeyCode::J, VK_CONTROL, KeyCode::JIS_EISUU</autogen>
+        <autogen>--KeyOverlaidModifier-- KeyCode::ESCAPE, KeyCode::JIS_EISUU, KeyCode::ESCAPE</autogen>
+      </item>
+    </list>
+
+    <list>
+      <item>
+        <name>Swap JIS_Colon and Semicolon</name>
+        <identifier>private.swap_jis_colon_and_semicolon</identifier>
+        <autogen>--KeyToKey-- KeyCode::SEMICOLON, ModifierFlag::NONE, KeyCode::JIS_COLON</autogen>
+        <autogen>--KeyToKey-- KeyCode::JIS_COLON, ModifierFlag::NONE, KeyCode::SEMICOLON</autogen>
+      </item>
+    </list>
+
+    <list>
+      <item>
+        <name>Eisuu+hjkl to Left/Down/Up/Right</name>
+        <identifier>option.vimode_eisuu_hjkl</identifier>
+        <autogen>--KeyOverlaidModifier-- KeyCode::JIS_EISUU, KeyCode::VK_MODIFIER_EXTRA1, KeyCode::JIS_EISUU</autogen>
+        <autogen>--KeyToKey-- KeyCode::H, ModifierFlag::EXTRA1, KeyCode::CURSOR_LEFT</autogen>
+        <autogen>--KeyToKey-- KeyCode::J, ModifierFlag::EXTRA1, KeyCode::CURSOR_DOWN</autogen>
+        <autogen>--KeyToKey-- KeyCode::K, ModifierFlag::EXTRA1, KeyCode::CURSOR_UP</autogen>
+        <autogen>--KeyToKey-- KeyCode::L, ModifierFlag::EXTRA1, KeyCode::CURSOR_RIGHT</autogen>
+        <autogen>--KeyToKey-- KeyCode::O, ModifierFlag::EXTRA1, KeyCode::DELETE</autogen>
+        <autogen>--KeyToKey-- KeyCode::D, ModifierFlag::EXTRA1, KeyCode::D, ModifierFlag::CONTROL_L</autogen>
+        <autogen>--KeyToKey-- KeyCode::F, ModifierFlag::EXTRA1, KeyCode::VK_JIS_TOGGLE_EISUU_KANA</autogen>
+        <autogen>--KeyToKey-- KeyCode::E, ModifierFlag::EXTRA1, KeyCode::JIS_EISUU</autogen>
+        <autogen>--KeyToKey-- KeyCode::N, ModifierFlag::EXTRA1, KeyCode::MINUS, ModifierFlag::SHIFT_L, KeyCode::DOT, ModifierFlag::SHIFT_L</autogen>
+      </item>
+    </list>
+
+    <list>
+      <item>
+        <name>word Ctrl+H to Delete</name>
+        <item>
+          <name>Word</name>
+          <only>WORD</only>
+          <identifier>word.ctrlh.to.delete</identifier>
+          <autogen>--KeyToKey-- KeyCode::H, ModifierFlag::CONTROL_L, KeyCode::DELETE</autogen>
+        </item>
+        <item>
+          <name>Excel</name>
+          <only>EXCEL</only>
+          <identifier>excel.ctrlh.to.delete</identifier>
+          <autogen>--KeyToKey-- KeyCode::H, ModifierFlag::CONTROL_L, KeyCode::DELETE</autogen>
+        </item>
+      </item>
+    </list>
+
     <item>
-      <name>Firefox</name>
-      <only>FIREFOX</only>
-      <identifier>vimperator_ctrl_to_escape</identifier>
-      <autogen>--KeyOverlaidModifier-- KeyCode::CONTROL_L, KeyCode::CONTROL_L, KeyCode::ESCAPE</autogen>
+      <name>Ctrl to ESC</name>
+      <item>
+        <name>Firefox</name>
+        <only>FIREFOX</only>
+        <identifier>vimperator_ctrl_to_escape</identifier>
+        <autogen>--KeyOverlaidModifier-- KeyCode::CONTROL_L, KeyCode::CONTROL_L, KeyCode::ESCAPE</autogen>
+      </item>
+      <item>
+        <name>Chromium</name>
+        <only>GOOGLE_CHROME</only>
+        <identifier>chromium_ctrl_to_escape</identifier>
+        <autogen>--KeyOverlaidModifier-- KeyCode::CONTROL_L, KeyCode::CONTROL_L, KeyCode::ESCAPE</autogen>
+      </item>
+      <item>
+        <name>Alfred</name>
+        <only>ALFRED</only>
+        <identifier>alfred_ctrl_to_escape</identifier>
+        <autogen>--KeyOverlaidModifier-- KeyCode::CONTROL_L, KeyCode::CONTROL_L, KeyCode::ESCAPE, KeyCode::JIS_EISUU</autogen>
+        <autogen>--KeyToKey-- KeyCode::K, VK_CONTROL, KeyCode::K, VK_CONTROL, KeyCode::RETURN</autogen>
+      </item>
+      <item>
+        <name>Microsoft</name>
+        <only>POWERPOINT,EXCEL</only>
+        <identifier>excel_ctrl_to_escape</identifier>
+        <autogen>--KeyOverlaidModifier-- KeyCode::CONTROL_L, KeyCode::CONTROL_L, KeyCode::ESCAPE</autogen>
+      </item>
     </item>
+
     <item>
-      <name>Chromium</name>
-      <only>GOOGLE_CHROME</only>
-      <identifier>chromium_ctrl_to_escape</identifier>
-      <autogen>--KeyOverlaidModifier-- KeyCode::CONTROL_L, KeyCode::CONTROL_L, KeyCode::ESCAPE</autogen>
-    </item>
-    <item>
-      <name>Alfred</name>
-      <only>ALFRED</only>
-      <identifier>alfred_ctrl_to_escape</identifier>
-      <autogen>--KeyOverlaidModifier-- KeyCode::CONTROL_L, KeyCode::CONTROL_L, KeyCode::ESCAPE, KeyCode::JIS_EISUU</autogen>
-      <autogen>--KeyToKey-- KeyCode::K, VK_CONTROL, KeyCode::K, VK_CONTROL, KeyCode::RETURN</autogen>
-    </item>
-    <item>
-      <name>Microsoft</name>
-      <only>POWERPOINT,EXCEL</only>
-      <identifier>excel_ctrl_to_escape</identifier>
-      <autogen>--KeyOverlaidModifier-- KeyCode::CONTROL_L, KeyCode::CONTROL_L, KeyCode::ESCAPE</autogen>
-    </item>
-  </item>
-  <item>
-    <name>Vi Mode Custum</name>
-    <item>
-      <identifier vk_config="true">notsave.complete_vimode_custum</identifier>
-      <not>TERMINAL</not>
-      <not>FIREFOX</not>
-      <not>PASSWORD</not>
-      <not>MacVim</not>
-      <block>
-        <!-- key mapping -->
-        <config_not>option.complete_vimode_dvorak</config_not>
-        <!-- HJKL -->
-        <autogen>__KeyToKey__ KeyCode::H, KeyCode::CURSOR_LEFT</autogen>
-        <autogen>__KeyToKey__ KeyCode::J, KeyCode::CURSOR_DOWN</autogen>
-        <autogen>__KeyToKey__ KeyCode::K, KeyCode::CURSOR_UP</autogen>
-        <autogen>__KeyToKey__ KeyCode::L, KeyCode::CURSOR_RIGHT</autogen>
-        <!-- 0, Shift+4 -->
-        <autogen>__KeyToKey__ KeyCode::KEY_0, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L</autogen>
-        <autogen>__KeyToKey__ KeyCode::KEY_4, VK_SHIFT, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L</autogen>
-        <!-- C-f, C-b -->
-        <autogen>__KeyToKey__ KeyCode::F, VK_CONTROL, KeyCode::PAGEDOWN</autogen>
-        <autogen>__KeyToKey__ KeyCode::B, VK_CONTROL, KeyCode::PAGEUP</autogen>
-        <!-- B, E -->
-        <autogen>__KeyToKey__ KeyCode::B, KeyCode::CURSOR_LEFT, ModifierFlag::OPTION_L</autogen>
-        <autogen>__KeyToKey__ KeyCode::E, KeyCode::CURSOR_RIGHT, ModifierFlag::OPTION_L</autogen>
-        <!-- W -->
-        <autogen>__KeyToKey__ KeyCode::W, KeyCode::CURSOR_RIGHT, ModifierFlag::OPTION_L, KeyCode::CURSOR_RIGHT, ModifierFlag::OPTION_L, KeyCode::CURSOR_LEFT, ModifierFlag::OPTION_L</autogen>
-        <!-- G, Shift+G -->
-        <autogen>__KeyToKey__ KeyCode::G, VK_SHIFT, KeyCode::END</autogen>
-        <autogen>__KeyToKey__ KeyCode::G, KeyCode::HOME</autogen>
-        <!-- SLASH, N -->
-        <autogen>__KeyToKey__ KeyCode::SLASH, KeyCode::F, ModifierFlag::COMMAND_L, KeyCode::VK_CONFIG_FORCE_OFF_notsave_complete_vimode</autogen>
-        <autogen>__KeyToKey__ KeyCode::N, KeyCode::G, ModifierFlag::COMMAND_L</autogen>
-        <!-- X -->
-        <autogen>__KeyToKey__ KeyCode::X, VK_SHIFT | ModifierFlag::NONE, KeyCode::DELETE</autogen>
-        <autogen>__KeyToKey__ KeyCode::X, ModifierFlag::NONE, KeyCode::FORWARD_DELETE</autogen>
-        <!-- F, I -->
-        <autogen>__KeyToKey__ KeyCode::F, KeyCode::FN</autogen>
-        <autogen>__KeyToKey__ KeyCode::I, KeyCode::VK_CONFIG_TOGGLE_notsave_complete_vimode</autogen>
-      </block>
-      <block>
-        <config_only>option.complete_vimode_dvorak</config_only>
-        <!-- HJKL -->
-        <autogen>__KeyToKey__ KeyCode::J, KeyCode::CURSOR_LEFT</autogen>
-        <autogen>__KeyToKey__ KeyCode::C, KeyCode::CURSOR_DOWN</autogen>
-        <autogen>__KeyToKey__ KeyCode::V, KeyCode::CURSOR_UP</autogen>
-        <autogen>__KeyToKey__ KeyCode::P, KeyCode::CURSOR_RIGHT</autogen>
-        <!-- 0, Shift+4 -->
-        <autogen>__KeyToKey__ KeyCode::KEY_0, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L</autogen>
-        <autogen>__KeyToKey__ KeyCode::KEY_4, VK_SHIFT, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L</autogen>
-        <!-- C-f, C-b -->
-        <autogen>__KeyToKey__ KeyCode::Y, VK_CONTROL, KeyCode::PAGEDOWN</autogen>
-        <autogen>__KeyToKey__ KeyCode::N, VK_CONTROL, KeyCode::PAGEUP</autogen>
-        <!-- B, E -->
-        <autogen>__KeyToKey__ KeyCode::N, KeyCode::CURSOR_LEFT, ModifierFlag::OPTION_L</autogen>
-        <autogen>__KeyToKey__ KeyCode::D, KeyCode::CURSOR_RIGHT, ModifierFlag::OPTION_L</autogen>
-        <!-- W -->
-        <autogen>__KeyToKey__ KeyCode::COMMA, KeyCode::CURSOR_RIGHT, ModifierFlag::OPTION_L, KeyCode::CURSOR_RIGHT, ModifierFlag::OPTION_L, KeyCode::CURSOR_LEFT, ModifierFlag::OPTION_L</autogen>
-        <!-- G, Shift+G -->
-        <autogen>__KeyToKey__ KeyCode::U, VK_SHIFT, KeyCode::END</autogen>
-        <autogen>__KeyToKey__ KeyCode::U, KeyCode::HOME</autogen>
-        <!-- SLASH, N -->
-        <autogen>__KeyToKey__ KeyCode::BRACKET_LEFT, KeyCode::Y, ModifierFlag::COMMAND_L, KeyCode::VK_CONFIG_FORCE_OFF_notsave_complete_vimode</autogen>
-        <autogen>__KeyToKey__ KeyCode::L, KeyCode::U, ModifierFlag::COMMAND_L</autogen>
-        <!-- X -->
-        <autogen>__KeyToKey__ KeyCode::B, VK_SHIFT | ModifierFlag::NONE, KeyCode::DELETE</autogen>
-        <autogen>__KeyToKey__ KeyCode::B, ModifierFlag::NONE, KeyCode::FORWARD_DELETE</autogen>
-        <!-- F, I -->
-        <autogen>__KeyToKey__ KeyCode::Y, KeyCode::FN</autogen>
-        <autogen>__KeyToKey__ KeyCode::G, KeyCode::VK_CONFIG_TOGGLE_notsave_complete_vimode</autogen>
-        <!-- end -->
-      </block>
-    </item>
-    <item>
-      <name>Command_L to Command_L(for Finder)</name>
-      <appendix>(+ When you type Command_L only, toggle Vi Mode)</appendix>
-      <only>FINDER,PREVIEW</only>
-      <identifier>remap.vimode_toggle_commandL_finder</identifier>
-      <autogen>__KeyOverlaidModifier__ KeyCode::COMMAND_L, KeyCode::COMMAND_L, KeyCode::VK_CONFIG_TOGGLE_notsave_complete_vimode</autogen>
-    </item>
-    <item>
-      <name>Command_L to Command_L(for all application)</name>
-      <appendix>(+ When you type Command_L only, toggle Vi Mode)</appendix>
-      <not>TERMINAL</not>
-      <not>FIREFOX</not>
-      <not>MacVim</not>
-      <identifier>remap.vimode_toggle_commandL_custum</identifier>
-      <autogen>__KeyOverlaidModifier__ KeyCode::COMMAND_L, KeyCode::COMMAND_L, KeyCode::VK_CONFIG_TOGGLE_notsave_complete_vimode</autogen>
-    </item>
-    <item>
-      <name>Escape to turn on Vi Mode</name>
-      <appendix>(except in Vim)</appendix>
-      <not>TERMINAL</not>
-      <not>FIREFOX</not>
-      <not>MacVim</not>
-      <identifier>remap.vimode_turnon_escape_custum</identifier>
-      <not>VI</not>
-      <config_not>notsave.complete_vimode</config_not>
-      <autogen>__KeyToKey__ KeyCode::ESCAPE, KeyCode::VK_CONFIG_FORCE_ON_notsave_complete_vimode</autogen>
-    </item>
-    <item>
-      <name>Escape to turn off Vi Mode</name>
-      <appendix>(+ turn off Modifier Lock)</appendix>
-      <not>TERMINAL</not>
-      <not>FIREFOX</not>
-      <not>MacVim</not>
-      <identifier>option.vimode_turnoff_escape_custum</identifier>
-      <config_only>notsave.complete_vimode</config_only>
-      <autogen>__KeyToKey__ KeyCode::ESCAPE, KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_complete_vimode</autogen>
+      <name>Vi Mode Custum</name>
+      <item>
+        <identifier vk_config="true">notsave.complete_vimode_custum</identifier>
+        <not>TERMINAL</not>
+        <not>FIREFOX</not>
+        <not>PASSWORD</not>
+        <not>MacVim</not>
+        <block>
+          <!-- key mapping -->
+          <config_not>option.complete_vimode_dvorak</config_not>
+          <!-- HJKL -->
+          <autogen>__KeyToKey__ KeyCode::H, KeyCode::CURSOR_LEFT</autogen>
+          <autogen>__KeyToKey__ KeyCode::J, KeyCode::CURSOR_DOWN</autogen>
+          <autogen>__KeyToKey__ KeyCode::K, KeyCode::CURSOR_UP</autogen>
+          <autogen>__KeyToKey__ KeyCode::L, KeyCode::CURSOR_RIGHT</autogen>
+          <!-- 0, Shift+4 -->
+          <autogen>__KeyToKey__ KeyCode::KEY_0, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L</autogen>
+          <autogen>__KeyToKey__ KeyCode::KEY_4, VK_SHIFT, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L</autogen>
+          <!-- C-f, C-b -->
+          <autogen>__KeyToKey__ KeyCode::F, VK_CONTROL, KeyCode::PAGEDOWN</autogen>
+          <autogen>__KeyToKey__ KeyCode::B, VK_CONTROL, KeyCode::PAGEUP</autogen>
+          <!-- B, E -->
+          <autogen>__KeyToKey__ KeyCode::B, KeyCode::CURSOR_LEFT, ModifierFlag::OPTION_L</autogen>
+          <autogen>__KeyToKey__ KeyCode::E, KeyCode::CURSOR_RIGHT, ModifierFlag::OPTION_L</autogen>
+          <!-- W -->
+          <autogen>__KeyToKey__ KeyCode::W, KeyCode::CURSOR_RIGHT, ModifierFlag::OPTION_L, KeyCode::CURSOR_RIGHT, ModifierFlag::OPTION_L, KeyCode::CURSOR_LEFT, ModifierFlag::OPTION_L</autogen>
+          <!-- G, Shift+G -->
+          <autogen>__KeyToKey__ KeyCode::G, VK_SHIFT, KeyCode::END</autogen>
+          <autogen>__KeyToKey__ KeyCode::G, KeyCode::HOME</autogen>
+          <!-- SLASH, N -->
+          <autogen>__KeyToKey__ KeyCode::SLASH, KeyCode::F, ModifierFlag::COMMAND_L, KeyCode::VK_CONFIG_FORCE_OFF_notsave_complete_vimode</autogen>
+          <autogen>__KeyToKey__ KeyCode::N, KeyCode::G, ModifierFlag::COMMAND_L</autogen>
+          <!-- X -->
+          <autogen>__KeyToKey__ KeyCode::X, VK_SHIFT | ModifierFlag::NONE, KeyCode::DELETE</autogen>
+          <autogen>__KeyToKey__ KeyCode::X, ModifierFlag::NONE, KeyCode::FORWARD_DELETE</autogen>
+          <!-- F, I -->
+          <autogen>__KeyToKey__ KeyCode::F, KeyCode::FN</autogen>
+          <autogen>__KeyToKey__ KeyCode::I, KeyCode::VK_CONFIG_TOGGLE_notsave_complete_vimode</autogen>
+        </block>
+        <block>
+          <config_only>option.complete_vimode_dvorak</config_only>
+          <!-- HJKL -->
+          <autogen>__KeyToKey__ KeyCode::J, KeyCode::CURSOR_LEFT</autogen>
+          <autogen>__KeyToKey__ KeyCode::C, KeyCode::CURSOR_DOWN</autogen>
+          <autogen>__KeyToKey__ KeyCode::V, KeyCode::CURSOR_UP</autogen>
+          <autogen>__KeyToKey__ KeyCode::P, KeyCode::CURSOR_RIGHT</autogen>
+          <!-- 0, Shift+4 -->
+          <autogen>__KeyToKey__ KeyCode::KEY_0, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L</autogen>
+          <autogen>__KeyToKey__ KeyCode::KEY_4, VK_SHIFT, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L</autogen>
+          <!-- C-f, C-b -->
+          <autogen>__KeyToKey__ KeyCode::Y, VK_CONTROL, KeyCode::PAGEDOWN</autogen>
+          <autogen>__KeyToKey__ KeyCode::N, VK_CONTROL, KeyCode::PAGEUP</autogen>
+          <!-- B, E -->
+          <autogen>__KeyToKey__ KeyCode::N, KeyCode::CURSOR_LEFT, ModifierFlag::OPTION_L</autogen>
+          <autogen>__KeyToKey__ KeyCode::D, KeyCode::CURSOR_RIGHT, ModifierFlag::OPTION_L</autogen>
+          <!-- W -->
+          <autogen>__KeyToKey__ KeyCode::COMMA, KeyCode::CURSOR_RIGHT, ModifierFlag::OPTION_L, KeyCode::CURSOR_RIGHT, ModifierFlag::OPTION_L, KeyCode::CURSOR_LEFT, ModifierFlag::OPTION_L</autogen>
+          <!-- G, Shift+G -->
+          <autogen>__KeyToKey__ KeyCode::U, VK_SHIFT, KeyCode::END</autogen>
+          <autogen>__KeyToKey__ KeyCode::U, KeyCode::HOME</autogen>
+          <!-- SLASH, N -->
+          <autogen>__KeyToKey__ KeyCode::BRACKET_LEFT, KeyCode::Y, ModifierFlag::COMMAND_L, KeyCode::VK_CONFIG_FORCE_OFF_notsave_complete_vimode</autogen>
+          <autogen>__KeyToKey__ KeyCode::L, KeyCode::U, ModifierFlag::COMMAND_L</autogen>
+          <!-- X -->
+          <autogen>__KeyToKey__ KeyCode::B, VK_SHIFT | ModifierFlag::NONE, KeyCode::DELETE</autogen>
+          <autogen>__KeyToKey__ KeyCode::B, ModifierFlag::NONE, KeyCode::FORWARD_DELETE</autogen>
+          <!-- F, I -->
+          <autogen>__KeyToKey__ KeyCode::Y, KeyCode::FN</autogen>
+          <autogen>__KeyToKey__ KeyCode::G, KeyCode::VK_CONFIG_TOGGLE_notsave_complete_vimode</autogen>
+          <!-- end -->
+        </block>
+      </item>
+      <item>
+        <name>Command_L to Command_L(for Finder)</name>
+        <appendix>(+ When you type Command_L only, toggle Vi Mode)</appendix>
+        <only>FINDER,PREVIEW</only>
+        <identifier>remap.vimode_toggle_commandL_finder</identifier>
+        <autogen>__KeyOverlaidModifier__ KeyCode::COMMAND_L, KeyCode::COMMAND_L, KeyCode::VK_CONFIG_TOGGLE_notsave_complete_vimode</autogen>
+      </item>
+      <item>
+        <name>Command_L to Command_L(for all application)</name>
+        <appendix>(+ When you type Command_L only, toggle Vi Mode)</appendix>
+        <not>TERMINAL</not>
+        <not>FIREFOX</not>
+        <not>MacVim</not>
+        <identifier>remap.vimode_toggle_commandL_custum</identifier>
+        <autogen>__KeyOverlaidModifier__ KeyCode::COMMAND_L, KeyCode::COMMAND_L, KeyCode::VK_CONFIG_TOGGLE_notsave_complete_vimode</autogen>
+      </item>
+      <item>
+        <name>Escape to turn on Vi Mode</name>
+        <appendix>(except in Vim)</appendix>
+        <not>TERMINAL</not>
+        <not>FIREFOX</not>
+        <not>MacVim</not>
+        <identifier>remap.vimode_turnon_escape_custum</identifier>
+        <not>VI</not>
+        <config_not>notsave.complete_vimode</config_not>
+        <autogen>__KeyToKey__ KeyCode::ESCAPE, KeyCode::VK_CONFIG_FORCE_ON_notsave_complete_vimode</autogen>
+      </item>
+      <item>
+        <name>Escape to turn off Vi Mode</name>
+        <appendix>(+ turn off Modifier Lock)</appendix>
+        <not>TERMINAL</not>
+        <not>FIREFOX</not>
+        <not>MacVim</not>
+        <identifier>option.vimode_turnoff_escape_custum</identifier>
+        <config_only>notsave.complete_vimode</config_only>
+        <autogen>__KeyToKey__ KeyCode::ESCAPE, KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_complete_vimode</autogen>
+      </item>
     </item>
   </item>
 </root>
