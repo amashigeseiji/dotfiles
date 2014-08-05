@@ -36,9 +36,12 @@ Bundle 'tpope/vim-surround'
 Bundle 'nise-nabe/unite-openpne'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Simple-Javascript-Indenter'
+"Bundle 'jelera/vim-javascript-syntax'
 Bundle 'project.tar.gz'
 Bundle 'rking/ag.vim'
 Bundle 'superbrothers/vim-vimperator'
+Bundle 'hallettj/jslint.vim'
+"Bundle 'comeonly/php.vim-html-enhanced'
 
 syntax on
 filetype plugin indent on
@@ -125,6 +128,8 @@ set foldopen=hor,search,insert,jump,tag
 "set foldclose=all
 set modeline
 
+"undo file
+set noundofile
 "ctags
 "set tags+=tags
 set tags+=./tags,../../tags
@@ -152,15 +157,20 @@ nnoremap <S-h> 0
 nnoremap <S-l> $
 nnoremap <C-g> gT
 nnoremap <C-c> gt
-" 行末へ移動
+" 行頭/行末へ移動
+nnoremap <C-a> 0
 nnoremap <C-e> <S-$>
 " Ctrl+Nで次のバッファを表示
 nnoremap <C-N>   :bnext<CR>
 " Ctrl+Pで前のバッファを表示
 nnoremap <C-P>   :bprevious<CR>
 nnoremap <C-j> <C-]>
+nnoremap g<C-j> g<C-]>
 " tmuxのプレフィックスとかぶるので
 nnoremap <C-f> <nop>
+" 数値を増やす
+nnoremap <S-a> <C-a>
+nnoremap <S-x> <C-x>
 
 nnoremap <space>w :w<CR>
 nnoremap <space>q :q<CR>
@@ -223,6 +233,8 @@ inoremap "" ""<Left>
 inoremap '' ''<Left>
 inoremap `` ``<Left>
 inoremap ?? ?php  ?<Left><Left>
+inoremap <C-l> ->
+inoremap <M-l> =>
 
 "inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 "inoremap <C-k> <CR>
@@ -319,8 +331,12 @@ function! HandleURI()
 endfunction
 map <Leader>f :call HandleURI()<CR>
 "}}}
-" js の折りたたみ{{{
-function! JavaScriptFold()
+" javascript{{{
+" この設定入れるとshiftwidthを1にしてインデントしてくれる
+"let g:SimpleJsIndenter_BriefMode = 2
+"" この設定入れるとswitchのインデントがいくらかマシに
+"let g:SimpleJsIndenter_CaseIndentLevel = -1
+function! JavaScriptFold()  " {{{
     setl foldmethod=syntax
     setl foldlevelstart=1
     syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
@@ -329,9 +345,13 @@ function! JavaScriptFold()
         return substitute(getline(v:foldstart), '{.*', '{...}', '')
     endfunction
     setl foldtext=FoldText()
-endfunction
+endfunction  "}}}
 au FileType javascript call JavaScriptFold()
 au FileType javascript setl fen
+autocmd FileType javascript setl autoindent
+autocmd FileType javascript setl smartindent
+autocmd FileType javascript setl tabstop=4 expandtab shiftwidth=4 softtabstop=4
+let g:syntastic_javascript_checkers=['gjslint']
 "}}}
 autocmd FileType help noremap <buffer><silent> q :bd<CR>
 command! Utf :set fenc=utf8<CR>
@@ -513,12 +533,6 @@ let QFixHowm_MenuPreview = 1
 " snippet{{{
 smap <C-k> <Plug>(neocomplcache_snippets_expand)
 "}}}
-" javascript{{{
-" この設定入れるとshiftwidthを1にしてインデントしてくれる
-let g:SimpleJsIndenter_BriefMode = 2
-" この設定入れるとswitchのインデントがいくらかマシに
-let g:SimpleJsIndenter_CaseIndentLevel = -1
-"}}}
 " vimwiki {{{
 let g:vimwiki_folding="syntax"
 let g:vimwiki_hl_cb_checked=1
@@ -537,8 +551,10 @@ if getcwd() != $HOME
 endif
 "}}}
 " w3m {{{
-autocmd! FileType w3m setlocal nonumber
-autocmd! FileType w3m nnoremap <buffer> q :bdelete<CR>
+if executable('w3m')
+  autocmd! FileType w3m setlocal nonumber
+  autocmd! FileType w3m nnoremap <buffer> q :bdelete<CR>
+endif
 "}}}
 "}}}
 
