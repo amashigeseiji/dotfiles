@@ -58,7 +58,7 @@ setopt complete_in_word      # 語の途中でもカーソル位置で補完
 #setopt auto_cd            # ディレクトリ名だけで cd
 setopt auto_pushd          # 移動したディレクトリを記録
 setopt pushd_ignore_dups
-setopt correct             #スペルミスを表示
+#setopt correct             #スペルミスを表示
 setopt prompt_subst   ## PROMPT内で変数展開・コマンド置換・算術演算を実行する
 setopt re_match_pcre
 autoload zed               #zsh_editor
