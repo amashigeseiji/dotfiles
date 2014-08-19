@@ -66,10 +66,11 @@ nnoremap <M-h> gT
 nnoremap i gi
 nnoremap p yo<M-v>
 nnoremap P yt<M-v>
-nnoremap v cv
+nnoremap v ccv
 nnoremap gh :tabm -1<CR>
 nnoremap gl :tabm +1<CR>
 
+nnoremap / /\
 " tab移動
 nnoremap <C-1> :buffer! 1<cr>
 nnoremap <C-2> :buffer! 2<cr>
