@@ -36,7 +36,13 @@ HISTSIZE=10000
 SAVEHIST=10000
 #}}}
 #補完{{{
+# ------------------------------------------------------------------------
+# zsh-completions
+# ------------------------------------------------------------------------
 fpath+=($ZSH_HOME'/fpath')
+if [ -d ${HOME}/.zsh/zsh-completions/src ] ; then
+   fpath=(${HOME}/.zsh/zsh-completions/src $fpath)
+fi
 autoload -U compinit && compinit -u
 #}}}
 #}}}
@@ -112,5 +118,6 @@ bindkey '^N' history-beginning-search-forward
 bindkey '^K' accept-line
 bindkey '^J' kill-whole-line
 # }}}
+
 
 source ${ZSH_HOME}/plugin_loader && loadPlugins $targetPlugins
