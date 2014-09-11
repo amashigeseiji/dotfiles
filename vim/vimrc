@@ -40,8 +40,12 @@ Bundle 'Simple-Javascript-Indenter'
 Bundle 'project.tar.gz'
 Bundle 'rking/ag.vim'
 Bundle 'superbrothers/vim-vimperator'
-Bundle 'hallettj/jslint.vim'
+"Bundle 'hallettj/jslint.vim'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-rails'
 "Bundle 'comeonly/php.vim-html-enhanced'
+Bundle 'soramugi/auto-ctags.vim'
+Bundle 'slim-template/vim-slim'
 
 syntax on
 filetype plugin indent on
@@ -158,7 +162,7 @@ nnoremap <S-l> $
 nnoremap <C-g> gT
 nnoremap <C-c> gt
 " 行頭/行末へ移動
-nnoremap <C-a> 0
+"nnoremap <C-a> 0
 nnoremap <C-e> <S-$>
 " Ctrl+Nで次のバッファを表示
 nnoremap <C-N>   :bnext<CR>
@@ -175,7 +179,7 @@ nnoremap <S-x> <C-x>
 nnoremap <space>w :w<CR>
 nnoremap <space>q :q<CR>
 " タブを開く
-nnoremap t :tabe<space>
+"nnoremap t :tabe<space>
 " vimrcを編集・読み込み
 nnoremap .. :tabe ~/.vimrc<CR>
 nnoremap ,, :source ~/.vimrc<CR>
@@ -232,7 +236,7 @@ inoremap <> <><Left>
 inoremap "" ""<Left>
 inoremap '' ''<Left>
 inoremap `` ``<Left>
-inoremap ?? ?php  ?<Left><Left>
+inoremap /* /*  */<Left><Left><Left>
 inoremap <C-l> ->
 inoremap <M-l> =>
 
@@ -288,6 +292,7 @@ nmap ,l :call PHPLint()<CR>
 autocmd BufReadPost,BufNewFile *.php nnoremap <buffer> HH :set ft=html<CR>
 autocmd BufReadPost,BufNewFile *.php nnoremap <buffer> PH :set ft=php<CR>
 autocmd BufReadPost,BufNewFile *.php inoremap <buffer> $thi $this->
+autocmd BufReadPost,BufNewFile *.php inoremap <buffer>?? ?php  ?<Left><Left>
 autocmd BufRead,BufNewFile *.php.sample setfiletype php
 "}}}
 " html/xml{{{
@@ -303,6 +308,13 @@ source $VIMRUNTIME/macros/matchit.vim
 " xmlファイル自動整形(要xmllint)
 au FileType xml :silent 1,$!xmllint --format --recover - 2>/dev/null
 "}}}
+" ruby {{{
+autocmd BufReadPost,BufNewFile *.erb inoremap <buffer>%% <%  %><Left><Left><Left>
+autocmd BufReadPost,BufNewFile *.erb inoremap <buffer>%= <%=  %><Left><Left><Left>
+autocmd BufReadPost,BufNewFile *.rb  inoremap <buffer>{} {  }<Left><Left>
+autocmd BufReadPost,BufNewFile *.slim set filetype=slim
+"}}}
+
 " tabWrapper{{{
 function! InsertTabWrapper()
   if pumvisible()
@@ -351,8 +363,9 @@ au FileType javascript setl fen
 autocmd FileType javascript setl autoindent
 autocmd FileType javascript setl smartindent
 autocmd FileType javascript setl tabstop=4 expandtab shiftwidth=4 softtabstop=4
-let g:syntastic_javascript_checkers=['gjslint']
+"let g:syntastic_javascript_checkers=['gjslint']
 "}}}
+let g:auto_ctags_bin_path = '/usr/local/bin/ctags'
 autocmd FileType help noremap <buffer><silent> q :bd<CR>
 command! Utf :set fenc=utf8<CR>
 autocmd BufRead ~/.vimperator/conf/* setl ft=vimperator
