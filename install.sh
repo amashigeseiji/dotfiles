@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 path=`echo $(cd $(dirname $0);pwd)`
 args=($(printf '%s\n' $@ | egrep -v '^-.*'))
 dirs=($(find $path -name '.install' | awk -F/ '{print $(NF-1)}'))
@@ -40,8 +40,8 @@ vim_install() {
   linkto $1 'plugin' '.vim/'
   linkto $1 'syntax' '.vim/'
   if [ ! -d ~/.vim/bundle/Vundle.git ];then
-    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.git
-    echo 'clone bundle ~/.vim/bundle/Vundle.git'
+    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    echo 'clone bundle ~/.vim/bundle/Vundle.vim'
   fi
   echo 'finished vim install'
 }
