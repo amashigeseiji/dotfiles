@@ -81,7 +81,7 @@ tmux_install() {
 }
 
 screen_install() {
-  linkto $path 'screenrc' '.'
+  linkto $1 'screenrc' '.'
   echo 'finished screen install'
 }
 
