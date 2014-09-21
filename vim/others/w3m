@@ -1,0 +1,4 @@
+if executable('w3m')
+  autocmd! FileType w3m setlocal nonumber
+  autocmd! FileType w3m nnoremap <buffer> q :bdelete<CR>
+endif

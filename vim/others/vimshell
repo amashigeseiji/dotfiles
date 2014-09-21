@@ -1,0 +1,3 @@
+nnoremap <silent> vs :VimShell<CR>
+nnoremap <silent> vp :VimShellPop<CR>
+autocmd FileType vimshell setlocal nonumber

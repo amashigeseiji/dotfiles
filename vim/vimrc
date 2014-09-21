@@ -46,6 +46,7 @@ Bundle 'tpope/vim-rails'
 "Bundle 'comeonly/php.vim-html-enhanced'
 Bundle 'soramugi/auto-ctags.vim'
 Bundle 'slim-template/vim-slim'
+Bundle 'Shougo/neomru.vim'
 
 syntax on
 filetype plugin indent on
@@ -313,6 +314,11 @@ autocmd BufReadPost,BufNewFile *.erb inoremap <buffer>%% <%  %><Left><Left><Left
 autocmd BufReadPost,BufNewFile *.erb inoremap <buffer>%= <%=  %><Left><Left><Left>
 autocmd BufReadPost,BufNewFile *.rb  inoremap <buffer>{} {  }<Left><Left>
 autocmd BufReadPost,BufNewFile *.slim set filetype=slim
+
+au FileType ruby setl foldmethod=syntax
+"au FileType ruby setl foldlevel=1
+"au FileType ruby setl foldnestmax=2
+"au FileType ruby setl foldtext=RubyMethodFold(v:lnum)
 "}}}
 
 " tabWrapper{{{
@@ -381,194 +387,20 @@ endif
 "}}}
 "}}}
 "----- plugin setting -----
+runtime! $HOME/.vim/others/*
 "plugins{{{
-"VimFiler{{{
-nnoremap <silent>F :VimFiler -buffer-name=explorer -simple -split  -winwidth=25 -toggle -no-quit -auto-cd<CR>
-autocmd FileType vimfiler nmap s <Plug>(vimfiler_toggle_mark_current_line)
-autocmd FileType vimfiler setlocal nonumber
-if OSTYPE == "Darwin\n"
-  let g:vimfiler_safe_mode_by_default = 0
-  let g:vimfiler_as_default_explorer = 1
-  let g:vimfiler_min_filename_width = 10
-  "let g:vimfiler_edit_action = 'tabopen'
-  "キャッシュはramに保存
-  let g:vimfiler_data_directory = '/tmp/.vimfiler'
-  "autocmd FileType vimfiler :map O <Plug>(vimfiler_double_click) 
-"}}}
-"netrw(FileExplorer){{{
-elseif OSTYPE == "Linux\n"
-  let g:netrw_preview   = 1  " ファイルのプレビューを垂直分割で開く
-  let g:netrw_liststyle = 3  " netrwは常にtree view
-  let g:netrw_altv = 1  " 'v'でファイルを開くときは右側に開く
-  let g:netrw_alto = 1 " 'o'でファイルを開くときは下側に開く
-  let g:netrw_browsex_viewer = 'xdg-open' " xでファイルを開く
-  let g:netrw_winsize = 80
-endif
-"}}}
-"Align{{{
-let g:Align_xstrlen=3
-"}}}
-" vim-Ref{{{
-" phpmanual
-let g:ref_phpmanual_path = $HOME.'/.vim/man/php-chunked-xhtml'
-autocmd FileType ref-phpmanual nnoremap <buffer><silent> q :bd<CR>
-"let g:ref_phpmanual_cmd = 'w3m -dump %s'
-"" php補完ファイル置き場
-""autocmd FileType php :set dictionary=~/.vim/dict/php_func.dict
-nnoremap ,p :Ref<space>phpmanual<space>
-" webdictサイトの設定
-let g:ref_source_webdict_sites = {
-\   'wiki': { 'url': 'http://ja.wikipedia.org/wiki/%s' },
-\   'alc': { 'url': 'http://eow.alc.co.jp/%s' },
-\   'oxford': { 'url': 'http://www.oxforddictionaries.com/definition/english/%s' },
-\ }
-" 一度開いたページをキャッシュ
-let g:ref_source_webdict_use_cache = 1
-let g:ref_cache_dir = '/tmp/vimref'
-let g:ref_use_vimproc = 1
-" デフォルトサイト
-let g:ref_source_webdict_sites.default = 'alc'
-" 出力に対するフィルタ。最初の数行を削除
-function! g:ref_source_webdict_sites.alc.filter(output)
-  let output=a:output
-  "よみがなを削除
-  let output=substitute(output, '｛\([^｝]\)*｝', '', 'g')
-  let output=substitute(output, '◆', ' * ', 'g')
-  let output=substitute(output, '⇒', '=>', 'g')
-  ""》】）。"以外のマルチバイト文字で終わって"《【（・•"以外のマルチバイト文字で始まる文の改行コードを削除
-  let output=substitute(output, '\([^\x01-\x7E^》^】^）^。]\)\n\s\+\([^\x01-\x7E^《^【^（^・^•]\)', '\1\2', 'g')
-  let output=substitute(output, '（','(','g')
-  let output=substitute(output, '）',')','g')
-  " リストになっているタイトル文字列を==で囲む
-  let output=substitute(output, '•\(\s[a-zA-Z]\+[a-zA-Z -,.]*\)', '\n==\1 ==', 'g')
-  let output=substitute(output, '・\([a-zA-Z ]\+\)\n\s*\([a-zA-Z ]\+\.\)', '\1 \2', 'g')
-  let output=substitute(output, '\(\.\)\(\s:\)', '\1\n        \2', 'g')
-
-  return join(split(output, "\n")[30:], "\n")
-endfunction
-function! g:ref_source_webdict_sites.wiki.filter(output)
-  return join(split(a:output, "\n")[8 :], "\n")
-endfunction
-function! g:ref_source_webdict_sites.oxford.filter(output)
-  return join(split(a:output, "\n")[208 :], "\n")
-endfunction
-nnoremap ,e :Ref webdict alc<space>
-nnoremap ,o :Ref webdict oxford<space>
-autocmd FileType ref-webdict nnoremap <buffer><silent> q :bd<CR>
-"}}}
-" taglist{{{
-let Tlist_Show_One_File = 1
-let Tlist_Use_Right_Window = 1
-let Tlist_Exit_OnlyWindow = 1
-"}}}
-" zen-codung{{{
-let g:user_emmet_expandabbr_key = '<C-@>'
-let g:user_emmet_leader_key = '<C-i>'
-"}}}
-" unite.vim{{{
-"データはramに保存
-if v:version > 700
-let g:unite_data_directory = '/tmp/.unite'
-let g:unite_source_history_yank_enable =1  "history/yankの有効化
-" 入力モードで開始する
-let g:unite_enable_start_insert=1
-" バッファ一覧
-noremap <C-U><C-B> :Unite buffer<CR>
-" ファイル一覧
-noremap <C-U>f :UniteWithBufferDir -buffer-name=files file<CR>
-" 最近使ったファイルの一覧
-noremap <C-U><C-R> :Unite file_mru<CR>
-" レジスタ一覧
-noremap <C-U>y :Unite -buffer-name=register register<CR>
-" function
-nnoremap f :Unite outline<CR>
-nnoremap <C-u>f :Unite function<CR>
-endif
-"}}}
-" vimshell{{{
-nnoremap <silent> vs :VimShell<CR>
-nnoremap <silent> vp :VimShellPop<CR>
-autocmd FileType vimshell setlocal nonumber
-"}}}
-"neocomplcache{{{
-if v:version > 700
-  let g:neocomplcache_enable_at_startup = 1           " 起動時に有効化
-  let g:NeoComplCache_SmartCase = 1                   " Use smartcase.
-  let g:NeoComplCache_EnableCamelCaseCompletion = 1   " Use camel case completion.
-  let g:NeoComplCache_EnableUnderbarCompletion = 1    " Use underbar completion.
-  let g:NeoComplCache_MinSyntaxLength = 3             " Set minimum syntax keyword length.
-  let g:NeoComplCache_ManualCompletionStartLength = 0 " Set manual completion length.
-  let g:neocomplcache_temporary_dir = '/tmp/.neocon'  "RamDiskをキャッシュディレクトリに設定
-  "補完するためのキーワードパターンを指定
-  if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
-  endif
-  let g:neocomplcache_keyword_patterns['default'] = '\h\w*' "日本語を補完候補として取得しないようにする
-  let g:NeoComplCache_CachingPercentInStatusline = 1 " Print caching percent in statusline.
-
-  "シンタックス補完を無効に
-  let g:neocomplcache_plugin_disable = {
-    \ 'syntax_complete' : 1,
-    \ }
-
-  "ファイルタイプの関連付け
-  if !exists('g:neocomplcache_same_filetype_lists')
-    let g:neocomplcache_same_filetype_lists = {}
-  endif
-  "let g:neocomplcache_same_filetype_lists['ctp'] = 'php'
-  "let g:neocomplcache_same_filetype_lists['twig'] = 'html'
-
-  "ディクショナリ補完
-  "ファイルタイプごとの辞書ファイルの場所
-  "let g:neocomplcache_dictionary_filetype_lists = {
-  "  \ 'default' : '',
-  "  \ 'php' : $HOME . '/.vim/dict/php_func.dict',
-  "  \ 'vimshell' : $HOME . '/.vimshell/command-history',
-  "  \ }
-endif
-"}}}
-" QFixMemo{{{
-" デフォルトの保存先
-let qfixmemo_dir = '~/.vim/qfix'
-" メモのエンコーディング
-let qfixmemo_fileencoding = 'utf-8'
-" メモの改行コード
-let qfixmemo_fileformat = 'unix'
-" メモのファイルタイプは自動判別
-let qfixmemo_filetype = ''
-" 新規メモ用のテンプレート
-let qfixmemo_template = [
-  \'%TITLE%  %TAG%',
-  \""
-\]
-let QFixHowm_MenuPreview = 1
-"}}}
-" snippet{{{
-smap <C-k> <Plug>(neocomplcache_snippets_expand)
-"}}}
-" vimwiki {{{
-let g:vimwiki_folding="syntax"
-let g:vimwiki_hl_cb_checked=1
-let g:vimwiki_list=[{'path':'~/.vim/vimwiki/'}]
-nmap <C-h> <Plug>VimwikiGoBackLink
-nmap <CR> <Plug>VimwikiFollowLink
-"}}}
-" vimproject{{{
-let g:proj_flags = "imstc"
-nmap P <plug>ToggleProject
-if getcwd() != $HOME
-  if filereadable(getcwd(). '/.vimproject')
-   "au BufReadPost * Project .vimproject
-   "au BufNewFile * Project .vimproject
-  endif
-endif
-"}}}
-" w3m {{{
-if executable('w3m')
-  autocmd! FileType w3m setlocal nonumber
-  autocmd! FileType w3m nnoremap <buffer> q :bdelete<CR>
-endif
-"}}}
+source $HOME/.vim/others/vimfiler
+source $HOME/.vim/others/align
+source $HOME/.vim/others/vim-ref
+source $HOME/.vim/others/taglist
+source $HOME/.vim/others/zen-coding
+source $HOME/.vim/others/unite
+source $HOME/.vim/others/vimshell
+source $HOME/.vim/others/neocomplcache
+source $HOME/.vim/others/snipet
+source $HOME/.vim/others/vimwiki
+source $HOME/.vim/others/vimproject
+source $HOME/.vim/others/w3m
 "}}}
 
 " ローカル設定の読み込み

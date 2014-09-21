@@ -1,0 +1,2 @@
+let g:user_emmet_expandabbr_key = '<C-@>'
+let g:user_emmet_leader_key = '<C-i>'
