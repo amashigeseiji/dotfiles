@@ -575,8 +575,3 @@ endif
 if filereadable(expand('~/.vim/vimrc.local'))
   source ~/.vim/vimrc.local
 endif
-if has('gui_running')
-  nnoremap ¥ \
-  inoremap ¥ \
-  cnoremap ¥ \
-endif
