@@ -136,7 +136,7 @@ set modeline
 set noundofile
 "ctags
 "set tags+=tags
-set tags+=./tags,../../tags
+set tags=tags;
 "ファイル読み込み時にhighlightしない
 noh
 "}}}
