@@ -65,7 +65,11 @@ zsh_install() {
     echo 'prompt_color="yellow"' >> ~/.zshrc
     echo 'prompt_name="%m"' >> ~/.zshrc
     echo 'prompt_git_use=1' >> ~/.zshrc
-    echo 'source ~/.zsh/zshrc-mac' >> ~/.zshrc
+    if [`uname` = 'Darwin'];then
+      echo 'source ~/.zsh/zshrc-mac' >> ~/.zshrc
+    elif [ `uname` = 'Linux' ];then
+      echo 'source ~/.zsh/zshrc-linux' >> ~/.zshrc
+    fi
     echo 'created ~/.zshrc'
   fi
   echo 'finished zsh install'
