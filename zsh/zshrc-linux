@@ -6,10 +6,8 @@
 # 環境変数{{{
 export LANG=en_US.UTF-8
 export EDITOR=vim
-export SVN_EDITOR=vi;
-export LC_ALL=en_US.UTF-8;
-#export PAGER=w3m
-#export LANG=C
+export SVN_EDITOR=vi
+export LC_ALL=en_US.UTF-8
 # PATH
 export PATH=$PATH:$HOME/bin
 export ZSH_HOME=$HOME/.zsh
@@ -20,7 +18,6 @@ export LS_COLORS="no=00:fi=00:di=01;36:ln=01;34:ow=01;33"
 export LSCOLORS=gxfxcxdxbxegedabagacad
 export ZLS_COLORS=LS_COLORS
 autoload colors && colors
-#eval `dircolors`
 #}}}
 #history{{{
 HISTFILE=$HOME/.zsh-history
@@ -64,7 +61,6 @@ autoload zed               #zsh_editor
 #補完関連のstyle{{{
 zstyle ':completion:*:default' menu select=1     # カーソル選択を有効に
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-#zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' #大文字・小文字を区別しないで補完
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z} r:|[-_.]=**'  #大文字・小文字を区別しないで補完
 #みためとか
 zstyle ':completion:*' verbose yes
@@ -77,24 +73,6 @@ zstyle ':completion:*' group-name ''
 setopt complete_aliases
 #aliases
 source $ZSH_HOME/alias_for_linux
-#}}}
-#common aliases{{{
-#alias dir='dir --color=auto'
-#alias vdir='vdir --color=auto'
-alias grep='grep -i --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-alias less='less -XRF'
-alias who='who -Hu'
-alias vi="vim"
-alias p="popd"
-alias :q="exit"
-alias q="exit"
-alias ta="tmux a"
-# svn
-alias sup="svn up"
-alias sci="svn ci"
-#}}}
 #}}}
 # KeyBind{{{
 bindkey -e

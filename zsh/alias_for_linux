@@ -3,4 +3,19 @@ alias ls='ls -F --color'
 alias ll='ls -alFh --color'
 alias la='ls -A --color'
 alias l='ls -CF --color'
-alias shutdown="sudo shutdown -h 0"
+alias shutdown="shutdown -h 0"
+
+#common aliases
+alias grep='grep -i --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias less='less -XRF'
+alias who='who -Hu'
+alias vi="vim"
+alias p="popd"
+alias :q="exit"
+alias q="exit"
+alias ta="tmux a"
+# svn
+alias sup="svn up"
+alias sci="svn ci"
