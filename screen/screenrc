@@ -6,6 +6,8 @@ startup_message off
 
 escape ^Tt
 
+altscreen on
+
 caption always "%-w%10L>%{=b bw}%n %t%{-}%+w%-0="
 hardstatus alwayslastline "%H%=%Y/%m/%d %02c"
 shelltitle "$ |shell"
