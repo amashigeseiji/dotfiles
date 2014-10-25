@@ -271,52 +271,6 @@ autocmd BufReadPost *
     \   exe "normal! g`\"" |
     \ endif
 "}}}
-" csvh{{{
-function! CSVH(x)
-    execute 'match Keyword /^\([^,]*,\)\{'.a:x.'}\zs[^,]*/'
-    execute 'normal ^'.a:x
-endfunction
-command! -nargs=1 Csvhl :call CSVH(<args>)
-
-autocmd BufNewFile,BufRead *.csv set nowrap
-"}}}
-"php関連{{{
-let php_folding = 1
-let php_htmlInStrings = 1
-"let php_sql_query = 1
-"let php_noShortTags = 1  "autoindentされなくなるので却下
-" PHP Lint
-function! PHPLint()
-  let result = system( &ft . ' -l ' . bufname(""))
-  echo result
-endfunction
-nmap ,l :call PHPLint()<CR>
-" ファイルタイプの変更()
-autocmd BufReadPost,BufNewFile *.php nnoremap <buffer> HH :set ft=html<CR>
-autocmd BufReadPost,BufNewFile *.php nnoremap <buffer> PH :set ft=php<CR>
-autocmd BufReadPost,BufNewFile *.php inoremap <buffer> $thi $this->
-autocmd BufReadPost,BufNewFile *.php inoremap <buffer>?? ?php  ?<Left><Left>
-autocmd BufRead,BufNewFile *.php.sample setfiletype php
-"}}}
-" html/xml{{{
-" 閉じタグの補完
-augroup MyXML
-  autocmd!
-  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
-  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
-"  autocmd Filetype php inoremap <buffer> </ </<C-x><C-o>
-augroup END
-" タグ対応箇所に%で飛ぶ
-source $VIMRUNTIME/macros/matchit.vim
-" xmlファイル自動整形(要xmllint)
-au FileType xml :silent 1,$!xmllint --format --recover - 2>/dev/null
-"}}}
-" ruby {{{
-"au FileType ruby setl foldlevel=1
-"au FileType ruby setl foldnestmax=2
-"au FileType ruby setl foldtext=RubyMethodFold(v:lnum)
-"}}}
-
 " tabWrapper{{{
 function! InsertTabWrapper()
   if pumvisible()
@@ -345,28 +299,6 @@ function! HandleURI()
 endfunction
 map <Leader>f :call HandleURI()<CR>
 "}}}
-" javascript{{{
-" この設定入れるとshiftwidthを1にしてインデントしてくれる
-"let g:SimpleJsIndenter_BriefMode = 2
-"" この設定入れるとswitchのインデントがいくらかマシに
-"let g:SimpleJsIndenter_CaseIndentLevel = -1
-function! JavaScriptFold()  " {{{
-    setl foldmethod=syntax
-    setl foldlevelstart=1
-    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
-
-    function! FoldText()
-        return substitute(getline(v:foldstart), '{.*', '{...}', '')
-    endfunction
-    setl foldtext=FoldText()
-endfunction  "}}}
-au FileType javascript call JavaScriptFold()
-au FileType javascript setl fen
-autocmd FileType javascript setl autoindent
-autocmd FileType javascript setl smartindent
-autocmd FileType javascript setl tabstop=4 expandtab shiftwidth=4 softtabstop=4
-"let g:syntastic_javascript_checkers=['gjslint']
-"}}}
 let g:auto_ctags_bin_path = '/usr/local/bin/ctags'
 autocmd FileType help noremap <buffer><silent> q :bd<CR>
 command! Utf :set fenc=utf8<CR>
@@ -382,8 +314,10 @@ if OSTYPE == "Darwin\n"
 endif
 "}}}
 "}}}
-"----- plugin setting -----
-"plugins{{{
+"----- other setting -----
+"others{{{
+"runtime! $HOME/.vim/others/*
+
 source $HOME/.vim/others/vimfiler
 source $HOME/.vim/others/align
 source $HOME/.vim/others/vim-ref
@@ -397,6 +331,10 @@ source $HOME/.vim/others/vimwiki
 source $HOME/.vim/others/vimproject
 source $HOME/.vim/others/w3m
 source $HOME/.vim/others/ruby
+source $HOME/.vim/others/phpread
+source $HOME/.vim/others/jsread
+source $HOME/.vim/others/csv
+source $HOME/.vim/others/xml
 
 au BufRead ~/.vim/others/* setl ft=vim
 "}}}

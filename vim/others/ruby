@@ -2,7 +2,9 @@ aug RubyRead
   au!
   au FileType ruby nnoremap <buffer>,rc :Rcontroller<CR>
   au FileType ruby nnoremap <buffer>,rm :Rmodel<CR>
+  au FileType ruby nnoremap <buffer>,rv :Rview<CR>
   au FileType ruby inoremap <buffer>{} {  }<Left><Left>
+  au FileType ruby inoremap <buffer>// //<Left>
   au FileType ruby setl foldmethod=syntax
 aug END
 
