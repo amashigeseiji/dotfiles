@@ -47,6 +47,8 @@ Bundle 'tpope/vim-rails'
 Bundle 'soramugi/auto-ctags.vim'
 Bundle 'slim-template/vim-slim'
 Bundle 'Shougo/neomru.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
 
 syntax on
 filetype plugin indent on
@@ -310,12 +312,6 @@ source $VIMRUNTIME/macros/matchit.vim
 au FileType xml :silent 1,$!xmllint --format --recover - 2>/dev/null
 "}}}
 " ruby {{{
-autocmd BufReadPost,BufNewFile *.erb inoremap <buffer>%% <%  %><Left><Left><Left>
-autocmd BufReadPost,BufNewFile *.erb inoremap <buffer>%= <%=  %><Left><Left><Left>
-autocmd BufReadPost,BufNewFile *.rb  inoremap <buffer>{} {  }<Left><Left>
-autocmd BufReadPost,BufNewFile *.slim set filetype=slim
-
-au FileType ruby setl foldmethod=syntax
 "au FileType ruby setl foldlevel=1
 "au FileType ruby setl foldnestmax=2
 "au FileType ruby setl foldtext=RubyMethodFold(v:lnum)
@@ -387,6 +383,7 @@ endif
 "}}}
 "}}}
 "----- plugin setting -----
+set runtimepath+=$HOME/.vim/others/
 runtime! $HOME/.vim/others/*
 "plugins{{{
 source $HOME/.vim/others/vimfiler
@@ -401,6 +398,9 @@ source $HOME/.vim/others/snipet
 source $HOME/.vim/others/vimwiki
 source $HOME/.vim/others/vimproject
 source $HOME/.vim/others/w3m
+source $HOME/.vim/others/ruby
+
+au BufRead ~/.vim/others/* setl ft=vim
 "}}}
 
 " ローカル設定の読み込み
