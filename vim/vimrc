@@ -383,8 +383,6 @@ endif
 "}}}
 "}}}
 "----- plugin setting -----
-set runtimepath+=$HOME/.vim/others/
-runtime! $HOME/.vim/others/*
 "plugins{{{
 source $HOME/.vim/others/vimfiler
 source $HOME/.vim/others/align
