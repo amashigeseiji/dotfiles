@@ -140,8 +140,7 @@ set modeline
 "undo file
 set noundofile
 "ctags
-"set tags+=tags
-set tags=tags;
+set tags=+tags;
 "ファイル読み込み時にhighlightしない
 noh
 "}}}
@@ -339,7 +338,9 @@ source $HOME/.vim/others/phpread
 source $HOME/.vim/others/jsread
 source $HOME/.vim/others/csv
 source $HOME/.vim/others/xml
-source $HOME/.vim/others/simplenote
+if filereadable($HOME/.vim/others/simplenote)
+  source $HOME/.vim/others/simplenote
+endif
 
 au BufRead ~/.vim/others/* setl ft=vim
 "}}}
