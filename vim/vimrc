@@ -49,6 +49,8 @@ Bundle 'slim-template/vim-slim'
 Bundle 'Shougo/neomru.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'mrtazz/simplenote.vim'
 
 syntax on
 filetype plugin indent on
@@ -303,6 +305,8 @@ let g:auto_ctags_bin_path = '/usr/local/bin/ctags'
 autocmd FileType help noremap <buffer><silent> q :bd<CR>
 command! Utf :set fenc=utf8<CR>
 autocmd BufRead ~/.vimperator/conf/* setl ft=vimperator
+" for scss
+autocmd BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldmarker={,}
 " ローカル辞書をひく(for mac){{{
 if OSTYPE == "Darwin\n"
   function! DictSearch(...)
@@ -335,6 +339,7 @@ source $HOME/.vim/others/phpread
 source $HOME/.vim/others/jsread
 source $HOME/.vim/others/csv
 source $HOME/.vim/others/xml
+source $HOME/.vim/others/simplenote
 
 au BufRead ~/.vim/others/* setl ft=vim
 "}}}
