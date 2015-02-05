@@ -51,8 +51,8 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'mrtazz/simplenote.vim'
-Bundle 'mattn/excelview-vim'
 Bundle 'embear/vim-localvimrc'
+Bundle 'vim-jp/vital.vim'
 
 syntax on
 filetype plugin indent on
@@ -340,9 +340,11 @@ source $HOME/.vim/others/phpread
 source $HOME/.vim/others/jsread
 source $HOME/.vim/others/csv
 source $HOME/.vim/others/xml
-source $HOME/.vim/others/localvim
-if filereadable(expand("$HOME/.vim/others/simplenote"))
-  source $HOME/.vim/others/simplenote
+source $HOME/.vim/others/localvimrc
+if glob("$HOME/.vim/others/simplenote")
+  if filereadable(expand("$HOME/.vim/others/simplenote"))
+    source $HOME/.vim/others/simplenote
+  endif
 endif
 
 au BufRead ~/.vim/others/* setl ft=vim
