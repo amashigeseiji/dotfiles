@@ -51,6 +51,8 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'mrtazz/simplenote.vim'
+Bundle 'mattn/excelview-vim'
+Bundle 'embear/vim-localvimrc'
 
 syntax on
 filetype plugin indent on
@@ -140,7 +142,7 @@ set modeline
 "undo file
 set noundofile
 "ctags
-set tags=+tags;
+set tags=+./tags;
 "ファイル読み込み時にhighlightしない
 noh
 "}}}
@@ -338,7 +340,8 @@ source $HOME/.vim/others/phpread
 source $HOME/.vim/others/jsread
 source $HOME/.vim/others/csv
 source $HOME/.vim/others/xml
-if filereadable($HOME/.vim/others/simplenote)
+source $HOME/.vim/others/localvim
+if filereadable(expand("$HOME/.vim/others/simplenote"))
   source $HOME/.vim/others/simplenote
 endif
 

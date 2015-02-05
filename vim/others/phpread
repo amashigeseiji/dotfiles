@@ -11,10 +11,10 @@ endfunction
 " ファイルタイプの変更()
 aug PHPRead
   autocmd!
-  autocmd BufReadPost,BufNewFile *.php nnoremap <buffer>,l :call PHPLint()<CR>
-  autocmd BufReadPost,BufNewFile *.php nnoremap <buffer> HH :set ft=html<CR>
-  autocmd BufReadPost,BufNewFile *.php nnoremap <buffer> PH :set ft=php<CR>
-  autocmd BufReadPost,BufNewFile *.php inoremap <buffer> $thi $this->
-  autocmd BufReadPost,BufNewFile *.php inoremap <buffer>?? ?php  ?<Left><Left>
+  autocmd Filetype php nnoremap <buffer>,l :call PHPLint()<CR>
+  autocmd Filetype php nnoremap <buffer> HH :set ft=html<CR>
+  autocmd Filetype php nnoremap <buffer> PH :set ft=php<CR>
+  autocmd Filetype php inoremap <buffer> $thi $this->
+  autocmd Filetype php inoremap <buffer>?? ?php  ?<Left><Left>
 aug END
 autocmd BufRead,BufNewFile *.php.sample setl filetype=php
