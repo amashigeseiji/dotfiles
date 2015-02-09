@@ -221,5 +221,4 @@ command! jsh js (function a(){commandline.input("js> ", function(inp){if(inp=="q
 
 " source files
 source ~/.vimperator/user.js
-source ~/.vimperator/conf/kr.conf
 "}}}
