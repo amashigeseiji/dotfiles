@@ -1,15 +1,18 @@
 #!/bin/zsh
 
-if [ -z ${CAKE_COMMAND_PATH} ];then
-  CAKE_COMMAND_PATH='app/Console/cake'
-fi
-
-alias cake=${CAKE_COMMAND_PATH}
+function cake () {
+  if [ -e 'Vendor/bin/cake' ];then
+    Vendor/bin/cake $@
+  elif [ -e 'app/Console/cake' ];then
+    app/Console/cake $@
+  else
+    return 1
+  fi
+}
 
 _cake() {
-  if [ -e ${CAKE_COMMAND_PATH} ];then
-    __get_values () { echo $(exec ${CAKE_COMMAND_PATH} completion commands) }
-    __get_subcommand_values () { echo $(exec ${CAKE_COMMAND_PATH} completion subcommands ${1}) }
+    __get_values () { echo $(exec cake completion commands) }
+    __get_subcommand_values () { echo $(exec cake completion subcommands ${1}) }
 
     _arguments : \
       "1:commands:(($(__get_values)))" \
@@ -17,7 +20,6 @@ _cake() {
       && return 0
 
     unfunction __get_values __get_subcommand_values
-  fi
 }
 
 compdef _cake cake
