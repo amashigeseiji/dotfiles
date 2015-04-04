@@ -3,7 +3,6 @@
 """""""""""""""""""""""""""""""""""""""""""
 " base options{{{
 " for firefox20 over(e4x)
-set expandtemplate
 "set! javascript.options.xml.chrome=true
 set defsearch=g
 set suggestengines=g
