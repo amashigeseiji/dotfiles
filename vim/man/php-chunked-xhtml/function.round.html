@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>浮動小数点数を丸める</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.rand.html">rand</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sin.html">sin</a></div>
+ <div class="up"><a href="ref.math.html">Math 関数</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.round" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">round</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">round</span> &mdash; <span class="dc-title">浮動小数点数を丸める</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.round-description">
+  <h3 class="title">説明</h3>
+   <div class="methodsynopsis dc-description">
+    <span class="type">float</span> <span class="methodname"><strong>round</strong></span>
+     ( <span class="methodparam"><span class="type">float</span> <code class="parameter">$val</code></span>
+    [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$precision</code><span class="initializer"> = 0</span></span>
+    [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$mode</code><span class="initializer"> = PHP_ROUND_HALF_UP</span></span>
+   ]] )</div>
+
+  <p class="para rdfs-comment">
+   <code class="parameter">val</code> を、指定した
+   <code class="parameter">precision</code>(小数点以下の桁数)に丸めた値を
+   返します。<code class="parameter">precision</code> を負またはゼロ(デフォルト)
+   とすることも可能です。
+  </p>
+  
+  <p class="para">
+   <blockquote class="note"><p><strong class="note">注意</strong>: 
+    <span class="simpara">
+     PHP は、デフォルトでは <em>&quot;12,300.2&quot;</em> のような
+     文字列を正しく処理しません。<a href="language.types.string.html#language.types.string.conversion" class="link">文字列からの変換
+     </a>を参照ください。
+    </span>
+   </p></blockquote>
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.round-parameters">
+  <h3 class="title">パラメータ</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">val</code></dt>
+
+     <dd>
+
+      <p class="para">
+       丸める値。
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">precision</code></dt>
+
+     <dd>
+
+      <p class="para">
+       オプションで指定する、丸める桁数。
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">mode</code></dt>
+
+     <dd>
+
+      <p class="para">
+       次の定数のいずれかを使って、丸めのモードを指定します。
+       <table class="doctable informaltable">
+        
+         <thead>
+          <tr>
+           <th>定数</th>
+           <th>説明</th>
+          </tr>
+
+         </thead>
+
+         <tbody class="tbody">
+          <tr>
+           <td><strong><code>PHP_ROUND_HALF_UP</code></strong></td>
+           <td>
+            <code class="parameter">val</code> が小数点第 <code class="parameter">precision</code> 位の値になるように、
+            ゼロから離れる方向に丸めます。1.5 は 2 に、そして -1.5 は -2 になります。
+           </td>
+          </tr>
+
+          <tr>
+           <td><strong><code>PHP_ROUND_HALF_DOWN</code></strong></td>
+           <td>
+            <code class="parameter">val</code> が小数点第 <code class="parameter">precision</code> 位の値になるように、
+            ゼロに近づく方向に丸めます。1.5 は 1 に、そして -1.5 は -1 になります。
+           </td>
+          </tr>
+
+          <tr>
+           <td><strong><code>PHP_ROUND_HALF_EVEN</code></strong></td>
+           <td>
+            <code class="parameter">val</code> が小数点第 <code class="parameter">precision</code> 位の値になるように、
+            次の偶数に丸めます。
+           </td>
+          </tr>
+
+          <tr>
+           <td><strong><code>PHP_ROUND_HALF_ODD</code></strong></td>
+           <td>
+            <code class="parameter">val</code> が小数点第 <code class="parameter">precision</code> 位の値になるように、
+            次の奇数に丸めます。
+           </td>
+          </tr>
+
+         </tbody>
+        
+       </table>
+
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.round-returnvalues">
+  <h3 class="title">返り値</h3>
+  <p class="para">
+   丸めた値を返します。
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.round-examples">
+  <h3 class="title">例</h3>
+  <p class="para">
+   <div class="example" id="example-3882">
+    <p><strong>例1 <span class="function"><strong>round()</strong></span> の例</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">3.4</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;3<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">3.5</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;4<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">3.6</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;4<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">3.6</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;4<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">1.95583</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">);&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;1.96<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">1241757</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">3</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;1242000<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">5.045</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;5.05<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">5.055</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;5.06<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-3883">
+    <p><strong>例2 <code class="parameter">mode</code> の例</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">9.5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_UP</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;10<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">9.5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_DOWN</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;9<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">9.5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_EVEN</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;10<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">9.5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_ODD</span><span style="color: #007700">);&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;9<br /><br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">8.5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_UP</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;9<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">8.5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_DOWN</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;8<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">8.5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_EVEN</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;8<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">8.5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_ODD</span><span style="color: #007700">);&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;9<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example" id="example-3884">
+    <p><strong>例3 <code class="parameter">mode</code> と <code class="parameter">precision</code> の例</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;PHP_ROUND_HALF_UP&nbsp;を使って小数第一位で丸める&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">1.55</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_UP</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;&nbsp;1.6<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">1.54</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_UP</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;&nbsp;1.5<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(-</span><span style="color: #0000BB">1.55</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_UP</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;-1.6<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(-</span><span style="color: #0000BB">1.54</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_UP</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;-1.5<br /><br />/*&nbsp;PHP_ROUND_HALF_DOWN&nbsp;を使って小数第一位で丸める&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">1.55</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_DOWN</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;&nbsp;1.5<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">1.54</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_DOWN</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;&nbsp;1.5<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(-</span><span style="color: #0000BB">1.55</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_DOWN</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;-1.5<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(-</span><span style="color: #0000BB">1.54</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_DOWN</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;-1.5<br /><br />/*&nbsp;PHP_ROUND_HALF_EVEN&nbsp;を使って小数第一位で丸める&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">1.55</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_EVEN</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;&nbsp;1.6<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">1.54</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_EVEN</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;&nbsp;1.5<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(-</span><span style="color: #0000BB">1.55</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_EVEN</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;-1.6<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(-</span><span style="color: #0000BB">1.54</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_EVEN</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;-1.5<br /><br />/*&nbsp;PHP_ROUND_HALF_ODD&nbsp;を使って小数第一位で丸める&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">1.55</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_ODD</span><span style="color: #007700">);&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;&nbsp;1.5<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">1.54</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_ODD</span><span style="color: #007700">);&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;&nbsp;1.5<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(-</span><span style="color: #0000BB">1.55</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_ODD</span><span style="color: #007700">);&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;-1.5<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(-</span><span style="color: #0000BB">1.54</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_ROUND_HALF_ODD</span><span style="color: #007700">);&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;-1.5<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 changelog" id="refsect1-function.round-changelog">
+  <h3 class="title">変更履歴</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>バージョン</th>
+       <th>説明</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>5.3.0</td>
+       <td>
+        <code class="parameter">mode</code> パラメータが追加されました。
+       </td>
+      </tr>
+
+      <tr>
+       <td>5.2.7</td>
+       <td>
+        <span class="function"><strong>round()</strong></span> の内部での挙動が変更され、
+        C99 標準に準拠するようになりました。
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.round-seealso">
+  <h3 class="title">参考</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.ceil.html" class="function" rel="rdfs-seeAlso">ceil()</a> - 端数の切り上げ</span></li>
+    <li class="member"><span class="function"><a href="function.floor.html" class="function" rel="rdfs-seeAlso">floor()</a> - 端数の切り捨て</span></li>
+    <li class="member"><span class="function"><a href="function.number-format.html" class="function" rel="rdfs-seeAlso">number_format()</a> - 数字を千位毎にグループ化してフォーマットする</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.rand.html">rand</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sin.html">sin</a></div>
+ <div class="up"><a href="ref.math.html">Math 関数</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

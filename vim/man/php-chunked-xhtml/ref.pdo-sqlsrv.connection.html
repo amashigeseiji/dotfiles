@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>MS SQL Server および SQL Azure データベースに接続する</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.pdo-sqlsrv.html">MS SQL Server (PDO)</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="ref.pdo-oci.html">Oracle (PDO)</a></div>
+ <div class="up"><a href="ref.pdo-sqlsrv.html">MS SQL Server (PDO)</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="ref.pdo-sqlsrv.connection" class="refentry">
+   <div class="refnamediv">
+    <h1 class="refname">PDO_SQLSRV DSN</h1>
+    <p class="verinfo">(バージョン情報なし。おそらく SVN 版にしか存在しないでしょう)</p><p class="refpurpose"><span class="refname">PDO_SQLSRV DSN</span> &mdash; <span class="dc-title">MS SQL Server および SQL Azure データベースに接続する</span></p>
+
+   </div>
+
+   <div class="refsect1 description" id="refsect1-ref.pdo-sqlsrv.connection-description">
+    <h3 class="title">説明</h3>
+    <p class="para">
+     PDO_SQLSRV データソース名 (DSN) は以下の要素で構成されます。
+     <dl>
+
+      
+       <dt>
+DSN 接頭辞</dt>
+
+       <dd>
+
+        <p class="para">
+        DSN 接頭辞は <strong class="userinput"><code>sqlsrv:</code></strong> です。
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+<em>APP</em></dt>
+
+       <dd>
+
+        <p class="para">
+         トレースに使うアプリケーション名を指定します。
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+<em>ConnectionPooling</em></dt>
+
+       <dd>
+
+        <p class="para">
+         接続をコネクションプールから確保する
+         (1 あるいは <strong><code>TRUE</code></strong>) のかしない (0 あるいは <strong><code>FALSE</code></strong>) のかを指定します。
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+<em>Database</em></dt>
+
+       <dd>
+
+        <p class="para">
+         データベースの名前を指定します。
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+<em>Encrypt</em></dt>
+
+       <dd>
+
+        <p class="para">
+         SQL Server との通信を暗号化する
+         (1 あるいは <strong><code>TRUE</code></strong>) のかしない (0 あるいは <strong><code>FALSE</code></strong>) のかを指定します。
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+<em>Failover_Partner</em></dt>
+
+       <dd>
+
+        <p class="para">
+         サーバーと、データベースのインスタンスのミラー (有効になっていて、かつ使える場合)
+         を指定して、プライマリーサーバーが使えないときに利用します。
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+<em>LoginTimeout</em></dt>
+
+       <dd>
+
+        <p class="para">
+         接続の試行のタイムアウト秒数を指定します。
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+<em>MultipleActiveResultSets</em></dt>
+
+       <dd>
+
+        <p class="para">
+         マルチアクティブ結果セット (MARS) のサポートを無効にするか、明示的に有効にします。
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+<em>QuotedId</em></dt>
+
+       <dd>
+
+        <p class="para">
+         SQL-92 の規則に従った識別子のクォートを使う (1 あるいは <strong><code>TRUE</code></strong>)
+         か、レガシーな Transact-SQL のルールを使う (0 あるいは <strong><code>FALSE</code></strong>) かを指定します。
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+<em>Server</em></dt>
+
+       <dd>
+
+        <p class="para">
+         データベースサーバーの名前を指定します。
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+<em>TraceFile</em></dt>
+
+       <dd>
+
+        <p class="para">
+         データのトレースに使うファイルのパスを指定します。
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+<em>TraceOn</em></dt>
+
+       <dd>
+
+        <p class="para">
+         確立した接続用の ODBC のトレースを有効にする (1 あるいは <strong><code>TRUE</code></strong>)
+         か無効にする (0 あるいは <strong><code>FALSE</code></strong>) かを指定します。
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+<em>TransactionIsolation</em></dt>
+
+       <dd>
+
+        <p class="para">
+         トランザクション隔離レベルを指定します。このオプションに指定できる値は
+         PDO::SQLSRV_TXN_READ_UNCOMMITTED、PDO::SQLSRV_TXN_READ_COMMITTED、
+         PDO::SQLSRV_TXN_REPEATABLE_READ、PDO::SQLSRV_TXN_SNAPSHOT および
+         PDO::SQLSRV_TXN_SERIALIZABLE のいずれかです。
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+<em>TrustServerCertificate</em></dt>
+
+       <dd>
+
+        <p class="para">
+         自己署名のサーバー証明書をクライアントに信頼させる (1 あるいは <strong><code>TRUE</code></strong>) か
+         させない (0 あるいは <strong><code>FALSE</code></strong>) かを指定します。
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+<em>WSID</em></dt>
+
+       <dd>
+
+        <p class="para">
+         トレース用のコンピューター名を指定します。
+        </p>
+       </dd>
+
+      
+     </dl>
+
+    </p>
+   </div>
+
+
+   <div class="refsect1 examples" id="refsect1-ref.pdo-sqlsrv.connection-examples">
+    <h3 class="title">例</h3>
+    <p class="para">
+     <div class="example" id="example-1032">
+      <p><strong>例1 PDO_SQLSRV DSN の例</strong></p>
+      <div class="example-contents"><p>
+       以下の例は、MS SQL Server データベースに接続する方法を示します。
+       <div class="example-contents">
+<div class="cdata"><pre>
+$c = new PDO(&quot;sqlsrv:Server=localhost;Database=testdb&quot;, &quot;UserName&quot;, &quot;Password&quot;);
+</pre></div>
+       </div>
+
+       </p></div>
+       <div class="example-contents"><p>
+       以下の例は、ポートを指定して MS SQL Server データベースに接続する方法を示します。
+       <div class="example-contents">
+<div class="cdata"><pre>
+$c = new PDO(&quot;sqlsrv:Server=localhost,1521;Database=testdb&quot;, &quot;UserName&quot;, &quot;Password&quot;);
+</pre></div>
+       </div>
+
+      </p></div>
+      <div class="example-contents"><p>
+       以下の例は、サーバー ID 12345abcde の SQL Azure データベースに接続する方法を示します。
+       SQL Azure に PDO で接続するときは、ユーザー名が UserName@12345abcde (UserName@ServerId)
+       となることに注意しましょう。
+       <div class="example-contents">
+<div class="cdata"><pre>
+$c = new PDO(&quot;sqlsrv:Server=12345abcde.database.windows.net;Database=testdb&quot;, &quot;UserName@12345abcde&quot;, &quot;Password&quot;);
+</pre></div>
+       </div>
+
+      </p></div>
+     </div>
+    </p>
+   </div>
+
+  </div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.pdo-sqlsrv.html">MS SQL Server (PDO)</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="ref.pdo-oci.html">Oracle (PDO)</a></div>
+ <div class="up"><a href="ref.pdo-sqlsrv.html">MS SQL Server (PDO)</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>The MongoDB\Driver\WriteConcern class</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="mongodb-driver-writebulk.update.html">MongoDB\Driver\BulkWrite::update</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="mongodb-driver-writeconcern.construct.html">MongoDB\Driver\WriteConcern::__construct</a></div>
+ <div class="up"><a href="book.mongodb.html">MongoDB\Driver</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="class.mongodb-driver-writeconcern" class="reference">
+
+ <h1 class="title">The MongoDB\Driver\WriteConcern class</h1>
+ 
+
+ <div class="partintro"><p class="verinfo">(mongodb &gt;=0.2.0)</p>
+
+
+  <div class="section" id="mongodb-driver-writeconcern.intro">
+   <h2 class="title">導入</h2>
+   <p class="para">
+    <strong class="classname">MongoDB\Driver\WriteConcern</strong> controls the
+    acknowledgment of a write operation, specifies the level of write
+    guarantee for Replica Sets.
+   </p>
+  </div>
+
+
+  <div class="section" id="mongodb-driver-writeconcern.synopsis">
+   <h2 class="title">クラス概要</h2>
+
+
+   <div class="classsynopsis">
+    <div class="ooclass"></div>
+
+
+    <div class="classsynopsisinfo">
+     <span class="modifier">final</span>
+     <span class="ooclass">
+      <strong class="classname">MongoDB\Driver\WriteConcern</strong>
+     </span>
+     {</div>
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Constants */</div>
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">string</span>
+      <var class="fieldsynopsis_varname"><a href="class.mongodb-driver-writeconcern.html#mongodb-driver-writeconcern.constants.majority"><var class="varname">MAJORITY</var></a></var>
+     <span class="initializer"> = majority</span>
+    ;</div>
+
+    
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* メソッド */</div>
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="methodname"><a href="mongodb-driver-writeconcern.construct.html" class="methodname">__construct</a></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$wstring</code></span>
+   [, <span class="methodparam"><span class="type">integer</span> <code class="parameter">$wtimeout</code></span>
+   [, <span class="methodparam"><span class="type">boolean</span> <code class="parameter">$journal</code></span>
+   [, <span class="methodparam"><span class="type">boolean</span> <code class="parameter">$fsync</code></span>
+  ]]] )</div>
+
+   }</div>
+
+
+  </div>
+  
+
+  <div class="section" id="mongodb-driver-writeconcern.constants">
+   <h2 class="title">定義済み定数</h2>
+   <dl>
+
+
+    
+     <dt id="mongodb-driver-writeconcern.constants.majority"><strong><code>MongoDB\Driver\WriteConcern::MAJORITY</code></strong></dt>
+
+     <dd>
+
+      <p class="para">
+       Majority of all the members in the set; arbiters, non-voting members,
+       passive members, hidden members and delayed members are all included in
+       the definition of majority write concern.
+      </p>
+     </dd>
+
+    
+
+   </dl>
+
+  </div>
+
+
+
+ </div>
+
+ 
+
+
+
+
+
+
+
+
+<h2>目次</h2><ul class="chunklist chunklist_reference"><li><a href="mongodb-driver-writeconcern.construct.html">MongoDB\Driver\WriteConcern::__construct</a> — Construct immutable WriteConcern</li></ul>
+</div>
+<hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="mongodb-driver-writebulk.update.html">MongoDB\Driver\BulkWrite::update</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="mongodb-driver-writeconcern.construct.html">MongoDB\Driver\WriteConcern::__construct</a></div>
+ <div class="up"><a href="book.mongodb.html">MongoDB\Driver</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

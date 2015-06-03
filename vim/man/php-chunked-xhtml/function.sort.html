@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>配列をソートする</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sizeof.html">sizeof</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.uasort.html">uasort</a></div>
+ <div class="up"><a href="ref.array.html">配列 関数</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sort" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sort</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">sort</span> &mdash; <span class="dc-title">配列をソートする</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.sort-description">
+  <h3 class="title">説明</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>sort</strong></span>
+    ( <span class="methodparam"><span class="type">array</span> <code class="parameter reference">&$array</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$sort_flags</code><span class="initializer"> = SORT_REGULAR</span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   この関数は配列をソートします。この関数が正常に終了すると、
+   各要素が小さい順に並び変わった状態になります。
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.sort-parameters">
+  <h3 class="title">パラメータ</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">array</code></dt>
+
+     <dd>
+
+      <p class="para">
+       入力の配列。
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">sort_flags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       オプションの 2 番目のパラメータ <code class="parameter">sort_flags</code>
+       は、以下の値によりソートの動作を修正するために使用することが可能です。
+      </p>
+      <p class="para">
+       ソート型のフラグ:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara"><strong><code>SORT_REGULAR</code></strong> - 通常通りに項目を比較
+         (型は変更しません)</span>
+        </li>
+        <li class="listitem">
+         <span class="simpara"><strong><code>SORT_NUMERIC</code></strong> - 数値的に項目を比較</span>
+        </li>
+        <li class="listitem">
+         <span class="simpara"><strong><code>SORT_STRING</code></strong> - 文字列として項目を比較</span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <strong><code>SORT_LOCALE_STRING</code></strong> - は、現在のロケールに基づいて比較します。
+          比較に使うロケールは、<span class="function"><a href="function.setlocale.html" class="function">setlocale()</a></span> で変更できます。
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <strong><code>SORT_NATURAL</code></strong> - 要素の比較を文字列として行い、
+          <span class="function"><a href="function.natsort.html" class="function">natsort()</a></span> と同様の「自然順」で比較します。
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <strong><code>SORT_FLAG_CASE</code></strong> -
+          <strong><code>SORT_STRING</code></strong> や
+          <strong><code>SORT_NATURAL</code></strong> と (ビット OR で) 組み合わせて使い、
+          文字列のソートで大文字小文字を区別しないようにします。
+         </span>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.sort-returnvalues">
+  <h3 class="title">返り値</h3>
+  <p class="para">
+   成功した場合に <strong><code>TRUE</code></strong> を、失敗した場合に <strong><code>FALSE</code></strong> を返します。
+  </p>
+ </div>
+
+ <div class="refsect1 changelog" id="refsect1-function.sort-changelog">
+  <h3 class="title">変更履歴</h3>
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>バージョン</th>
+      <th>説明</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>5.4.0</td>
+      <td>
+       <code class="parameter">sort_flags</code> に
+       <strong><code>SORT_NATURAL</code></strong> と
+       <strong><code>SORT_FLAG_CASE</code></strong> が使えるようになりました。
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.0.2</td>
+      <td>
+       <strong><code>SORT_LOCALE_STRING</code></strong> が追加されました。
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.sort-examples">
+  <h3 class="title">例</h3>
+  <p class="para">
+   <div class="example" id="example-5491">
+    <p><strong>例1 <span class="function"><strong>sort()</strong></span> の例</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$fruits&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"lemon"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"orange"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"banana"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"apple"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">sort</span><span style="color: #007700">(</span><span style="color: #0000BB">$fruits</span><span style="color: #007700">);<br />foreach&nbsp;(</span><span style="color: #0000BB">$fruits&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$key&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"fruits["&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$key&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"]&nbsp;=&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>上の例の出力は以下となります。</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+fruits[0] = apple
+fruits[1] = banana
+fruits[2] = lemon
+fruits[3] = orange
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   fruits はアルファベットの昇順にソートされました。
+  </p>
+  <p class="para">
+   <div class="example" id="example-5492">
+    <p><strong>例2 <span class="function"><strong>sort()</strong></span> で、大文字小文字を区別せずに自然順での並べ替えを行う例</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$fruits&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"Orange1"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"orange2"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Orange3"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"orange20"<br /></span><span style="color: #007700">);<br /></span><span style="color: #0000BB">sort</span><span style="color: #007700">(</span><span style="color: #0000BB">$fruits</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SORT_NATURAL&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">SORT_FLAG_CASE</span><span style="color: #007700">);<br />foreach&nbsp;(</span><span style="color: #0000BB">$fruits&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$key&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"fruits["&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$key&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"]&nbsp;=&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>上の例の出力は以下となります。</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+fruits[0] = Orange1
+fruits[1] = orange2
+fruits[2] = Orange3
+fruits[3] = orange20
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   fruits が <span class="function"><a href="function.natcasesort.html" class="function">natcasesort()</a></span> と同じようにソートされました。
+  </p>
+ </div>
+
+ <div class="refsect1 notes" id="refsect1-function.sort-notes">
+  <h3 class="title">注意</h3>
+  <blockquote class="note"><p><strong class="note">注意</strong>: <span class="simpara">この関数は、
+<code class="parameter">array</code> パラメータの要素に対して新しいキーを割り当てます。
+その際、単純にキーを並べ替える代わりに、
+すでに割り当てられている既存のキーを削除してしまいます。</span></p></blockquote>
+  <blockquote class="note"><p><strong class="note">注意</strong>: 
+   <span class="simpara">
+    PHP の大半のソート関数と同様、<span class="function"><strong>sort()</strong></span> は
+    <a href="http://en.wikipedia.org/wiki/Quicksort" class="link external">&raquo;&nbsp;Quicksort</a>
+    でそれを実装しています。
+    ピボットは、既にソート済みの部分に対して時間的に最適なところを選択します。
+    しかしこれはあくまでも内部の実装の話なので、これに依存したコードを書いてはいけません。
+   </span>
+  </p></blockquote>
+  <div class="warning"><strong class="warning">警告</strong>
+   <p class="simpara">
+    複数の型が混在する配列をソートする場合には、注意してください。
+    <span class="function"><strong>sort()</strong></span> が予測不可能な結果を出力することがあります。
+   </p>
+  </div>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-function.sort-seealso">
+  <h3 class="title">参考</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.asort.html" class="function" rel="rdfs-seeAlso">asort()</a> - 連想キーと要素との関係を維持しつつ配列をソートする</span></li>
+    <li class="member"><a href="array.sorting.html" class="link">配列ソート関数の比較</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sizeof.html">sizeof</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.uasort.html">uasort</a></div>
+ <div class="up"><a href="ref.array.html">配列 関数</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

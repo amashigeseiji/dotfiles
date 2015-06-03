@@ -1,0 +1,299 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>The MongoDB\Driver\Server class</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="mongodb-driver-cursorid.tostring.html">MongoDB\Driver\CursorId::__toString</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="mongodb-driver-server.construct.html">MongoDB\Driver\Server::__construct</a></div>
+ <div class="up"><a href="book.mongodb.html">MongoDB\Driver</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="class.mongodb-driver-server" class="reference">
+
+ <h1 class="title">The MongoDB\Driver\Server class</h1>
+ 
+
+ <div class="partintro"><p class="verinfo">(mongodb &gt;=0.2.0)</p>
+
+
+  <div class="section" id="mongodb-driver-server.intro">
+   <h2 class="title">導入</h2>
+   <p class="para">
+
+   </p>
+  </div>
+
+
+  <div class="section" id="mongodb-driver-server.synopsis">
+   <h2 class="title">クラス概要</h2>
+
+
+   <div class="classsynopsis">
+    <div class="ooclass"></div>
+
+
+    <div class="classsynopsisinfo">
+     <span class="modifier">final</span>
+     <span class="ooclass">
+      <strong class="classname">MongoDB\Driver\Server</strong>
+     </span>
+     {</div>
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Constants */</div>
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">integer</span>
+      <var class="fieldsynopsis_varname"><a href="class.mongodb-driver-server.html#mongodb-driver-server.constants.type-mongos"><var class="varname">TYPE_MONGOS</var></a></var>
+     <span class="initializer"> = 1</span>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">integer</span>
+      <var class="fieldsynopsis_varname"><a href="class.mongodb-driver-server.html#mongodb-driver-server.constants.type-standalone"><var class="varname">TYPE_STANDALONE</var></a></var>
+     <span class="initializer"> = 2</span>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">integer</span>
+      <var class="fieldsynopsis_varname"><a href="class.mongodb-driver-server.html#mongodb-driver-server.constants.type-arbiter"><var class="varname">TYPE_ARBITER</var></a></var>
+     <span class="initializer"> = 3</span>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">integer</span>
+      <var class="fieldsynopsis_varname"><a href="class.mongodb-driver-server.html#mongodb-driver-server.constants.type-secondary"><var class="varname">TYPE_SECONDARY</var></a></var>
+     <span class="initializer"> = 4</span>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">integer</span>
+      <var class="fieldsynopsis_varname"><a href="class.mongodb-driver-server.html#mongodb-driver-server.constants.type-primary"><var class="varname">TYPE_PRIMARY</var></a></var>
+     <span class="initializer"> = 5</span>
+    ;</div>
+
+    
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* メソッド */</div>
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="methodname"><a href="mongodb-driver-server.construct.html" class="methodname">__construct</a></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$host</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$port</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$options</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$driverOptions</code></span>
+  ]] )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">ReturnType</span> <span class="methodname"><a href="mongodb-driver-server.executebulkwrite.html" class="methodname">executeBulkWrite</a></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$namespace</code></span>
+   , <span class="methodparam"><span class="type"><span class="type BulkWrite">BulkWrite</span></span> <code class="parameter">$zwrite</code></span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">ReturnType</span> <span class="methodname"><a href="mongodb-driver-server.executecommand.html" class="methodname">executeCommand</a></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$db</code></span>
+   , <span class="methodparam"><span class="type"><span class="type Command">Command</span></span> <code class="parameter">$command</code></span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">ReturnType</span> <span class="methodname"><a href="mongodb-driver-server.executequery.html" class="methodname">executeQuery</a></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$namespace</code></span>
+   , <span class="methodparam"><span class="type"><span class="type Query">Query</span></span> <code class="parameter">$zquery</code></span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">ReturnType</span> <span class="methodname"><a href="mongodb-driver-server.gethost.html" class="methodname">getHost</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">ReturnType</span> <span class="methodname"><a href="mongodb-driver-server.getinfo.html" class="methodname">getInfo</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">ReturnType</span> <span class="methodname"><a href="mongodb-driver-server.getlatency.html" class="methodname">getLatency</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">ReturnType</span> <span class="methodname"><a href="mongodb-driver-server.getport.html" class="methodname">getPort</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">ReturnType</span> <span class="methodname"><a href="mongodb-driver-server.getstate.html" class="methodname">getState</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">ReturnType</span> <span class="methodname"><a href="mongodb-driver-server.gettype.html" class="methodname">getType</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">ReturnType</span> <span class="methodname"><a href="mongodb-driver-server.isdelayed.html" class="methodname">isDelayed</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type">ReturnType</span> <span class="methodname"><a href="mongodb-driver-server.ispassive.html" class="methodname">isPassive</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+   }</div>
+
+
+  </div>
+  
+
+  <div class="section" id="mongodb-driver-server.constants">
+   <h2 class="title">定義済み定数</h2>
+   <dl>
+
+
+    
+     <dt id="mongodb-driver-server.constants.type-mongos"><strong><code>MongoDB\Driver\Server::TYPE_MONGOS</code></strong></dt>
+
+     <dd>
+
+      <p class="para"/>
+     </dd>
+
+    
+
+    
+     <dt id="mongodb-driver-server.constants.type-standalone"><strong><code>MongoDB\Driver\Server::TYPE_STANDALONE</code></strong></dt>
+
+     <dd>
+
+      <p class="para"/>
+     </dd>
+
+    
+
+    
+     <dt id="mongodb-driver-server.constants.type-arbiter"><strong><code>MongoDB\Driver\Server::TYPE_ARBITER</code></strong></dt>
+
+     <dd>
+
+      <p class="para"/>
+     </dd>
+
+    
+
+    
+     <dt id="mongodb-driver-server.constants.type-secondary"><strong><code>MongoDB\Driver\Server::TYPE_SECONDARY</code></strong></dt>
+
+     <dd>
+
+      <p class="para"/>
+     </dd>
+
+    
+
+    
+     <dt id="mongodb-driver-server.constants.type-primary"><strong><code>MongoDB\Driver\Server::TYPE_PRIMARY</code></strong></dt>
+
+     <dd>
+
+      <p class="para"/>
+     </dd>
+
+    
+
+   </dl>
+
+  </div>
+
+
+
+ </div>
+
+ 
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+<h2>目次</h2><ul class="chunklist chunklist_reference"><li><a href="mongodb-driver-server.construct.html">MongoDB\Driver\Server::__construct</a> — Description</li><li><a href="mongodb-driver-server.executebulkwrite.html">MongoDB\Driver\Server::executeBulkWrite</a> — Description</li><li><a href="mongodb-driver-server.executecommand.html">MongoDB\Driver\Server::executeCommand</a> — Description</li><li><a href="mongodb-driver-server.executequery.html">MongoDB\Driver\Server::executeQuery</a> — Description</li><li><a href="mongodb-driver-server.gethost.html">MongoDB\Driver\Server::getHost</a> — Description</li><li><a href="mongodb-driver-server.getinfo.html">MongoDB\Driver\Server::getInfo</a> — Description</li><li><a href="mongodb-driver-server.getlatency.html">MongoDB\Driver\Server::getLatency</a> — Description</li><li><a href="mongodb-driver-server.getport.html">MongoDB\Driver\Server::getPort</a> — Description</li><li><a href="mongodb-driver-server.getstate.html">MongoDB\Driver\Server::getState</a> — Description</li><li><a href="mongodb-driver-server.gettype.html">MongoDB\Driver\Server::getType</a> — Description</li><li><a href="mongodb-driver-server.isdelayed.html">MongoDB\Driver\Server::isDelayed</a> — Description</li><li><a href="mongodb-driver-server.ispassive.html">MongoDB\Driver\Server::isPassive</a> — Description</li></ul>
+</div>
+<hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="mongodb-driver-cursorid.tostring.html">MongoDB\Driver\CursorId::__toString</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="mongodb-driver-server.construct.html">MongoDB\Driver\Server::__construct</a></div>
+ <div class="up"><a href="book.mongodb.html">MongoDB\Driver</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

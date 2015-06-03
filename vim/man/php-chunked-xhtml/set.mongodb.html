@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>New MongoDB driver (beta)</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="changelog.mongo.html">変更履歴</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="mongodb.setup.html">インストール/設定</a></div>
+ <div class="up"><a href="refs.database.vendors.html">ベンダー固有のモジュール</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="set.mongodb" class="set">
+ <h1 class="title">New MongoDB driver (beta)</h1>
+ 
+
+ <div class="info">
+  <div class="abstract">
+   <p class="simpara">
+    Unlike the <a href="book.mongo.html" class="link">mongo</a> extension, pecl/mongodb is
+    developed atop of <a href="http://github.com/mongodb/mongo-c-driver" class="link external">&raquo;&nbsp;libmongoc</a>
+    and <a href="http://github.com/mongodb/libbson" class="link external">&raquo;&nbsp;libbson</a> and provides a
+    minimal API for core driver functionality:
+    <a href="class.mongodb-driver-command.html" class="link">commands</a>,
+    <a href="class.mongodb-driver-query.html" class="link">queries</a>,
+    <a href="class.mongodb-driver-bulkwrite.html" class="link">writes</a>,
+    <a href="class.mongodb-driver-manager.html" class="link">connection management</a>
+    and <a href="book.bson.html" class="link">BSON serialization</a>.
+   </p>
+   <p class="simpara">
+    Userland PHP libraries that depend on mongodb may provide higher level
+    APIs, such as query builders, individual command helper methods, and
+    GridFS. This separation of concerns will allow mongodb to focus on
+    essential features for which an extension implementation is paramount for
+    performance.
+   </p>
+  </div>
+ </div>
+
+  
+
+
+
+
+
+
+  
+
+
+ 
+
+
+
+  
+
+
+ 
+
+
+  
+
+
+ 
+
+
+
+ 
+
+<ul class="chunklist chunklist_set"><li><a href="mongodb.setup.html">インストール/設定</a><ul class="chunklist chunklist_set chunklist_children"><li><a href="mongodb.requirements.html">要件</a></li><li><a href="mongodb.installation.html">インストール手順</a></li><li><a href="mongodb.configuration.html">実行時設定</a></li><li><a href="mongodb.resources.html">リソース型</a></li><li><a href="mongodb.constants.html">定義済み定数</a></li></ul></li><li><a href="mongodb.tutorial.html">Tutorial</a><ul class="chunklist chunklist_set chunklist_children"><li><a href="mongodb.tutorial.intro.html">導入</a></li><li><a href="mongodb.chapter-1.html">Chapter#1 Installing</a></li><li><a href="mongodb.tutorial.connecting.html">Chapter#2 Connecting to MongoDB</a></li></ul></li><li><a href="book.mongodb.html">MongoDB\Driver</a><ul class="chunklist chunklist_set chunklist_children"><li><a href="class.mongodb-driver-manager.html">MongoDB\Driver\Manager</a> — The MongoDB\Driver\Manager class</li><li><a href="class.mongodb-driver-command.html">MongoDB\Driver\Command</a> — The MongoDB\Driver\Command class</li><li><a href="class.mongodb-driver-query.html">MongoDB\Driver\Query</a> — The MongoDB\Driver\Query class</li><li><a href="class.mongodb-driver-bulkwrite.html">MongoDB\Driver\BulkWrite</a> — The MongoDB\Driver\BulkWrite class</li><li><a href="class.mongodb-driver-writeconcern.html">MongoDB\Driver\WriteConcern</a> — The MongoDB\Driver\WriteConcern class</li><li><a href="class.mongodb-driver-readpreference.html">MongoDB\Driver\ReadPreference</a> — The MongoDB\Driver\ReadPreference class</li><li><a href="class.mongodb-driver-cursor.html">MongoDB\Driver\Cursor</a> — The MongoDB\Driver\Cursor class</li><li><a href="class.mongodb-driver-cursorid.html">MongoDB\Driver\CursorId</a> — The MongoDB\Driver\CursorId class</li><li><a href="class.mongodb-driver-server.html">MongoDB\Driver\Server</a> — The MongoDB\Driver\Server class</li><li><a href="class.mongodb-driver-writeconcernerror.html">MongoDB\Driver\WriteConcernError</a> — The MongoDB\Driver\WriteConcernError class</li><li><a href="class.mongodb-driver-writeerror.html">MongoDB\Driver\WriteError</a> — The MongoDB\Driver\WriteError class</li><li><a href="class.mongodb-driver-writeresult.html">MongoDB\Driver\WriteResult</a> — The MongoDB\Driver\WriteResult class</li></ul></li><li><a href="book.bson.html">BSON</a><ul class="chunklist chunklist_set chunklist_children"><li><a href="ref.bson.html">関数</a></li><li><a href="class.bson-binary.html">BSON\Binary</a> — The BSON\Binary class</li><li><a href="class.bson-javascript.html">BSON\Javascript</a> — The BSON\Javascript class</li><li><a href="class.bson-maxkey.html">BSON\MaxKey</a> — The BSON\MaxKey class</li><li><a href="class.bson-minkey.html">BSON\MinKey</a> — The BSON\MinKey class</li><li><a href="class.bson-objectid.html">BSON\ObjectID</a> — The BSON\ObjectID class</li><li><a href="class.bson-regex.html">BSON\Regex</a> — The BSON\Regex class</li><li><a href="class.bson-timestamp.html">BSON\Timestamp</a> — The BSON\Timestamp class</li><li><a href="class.bson-utcdatetime.html">BSON\UTCDatetime</a> — The BSON\UTCDatetime class</li><li><a href="class.bson-type.html">BSON\Type</a> — The BSON\Type interface</li><li><a href="class.bson-persistable.html">BSON\Persistable</a> — The BSON\Persistable interface</li><li><a href="class.bson-serializable.html">BSON\Serializable</a> — The BSON\Serializable interface</li><li><a href="class.bson-unserializable.html">BSON\Unserializable</a> — The BSON\Unserializable interface</li></ul></li><li><a href="mongodb.exceptions.html">MongoDB Exceptions</a> — Exceptions<ul class="chunklist chunklist_set chunklist_children"><li><a href="class.mongodb-driver-exception.html">MongoDB\Driver\Exception</a> — The MongoDB\Driver\Exception interface</li><li><a href="class.mongodb-driver-runtimeexception.html">MongoDB\Driver\RuntimeException</a> — The MongoDB\Driver\RuntimeException class</li><li><a href="class.mongodb-driver-connectionexception.html">MongoDB\Driver\ConnectionException</a> — The MongoDB\Driver\ConnectionException class</li><li><a href="class.mongodb-driver-sslconnectionexception.html">MongoDB\Driver\SSLConnectionException</a> — The MongoDB\Driver\SSLConnectionException class</li><li><a href="class.mongodb-driver-authenticationexception.html">MongoDB\Driver\AuthenticationException</a> — The MongoDB\Driver\AuthenticationException class</li><li><a href="class.mongodb-driver-writeexception.html">MongoDB\Driver\WriteException</a> — The MongoDB\Driver\WriteException class</li><li><a href="class.mongodb-driver-bulkwriteexception.html">MongoDB\Driver\BulkWriteException</a> — The MongoDB\Driver\BulkWriteException class</li><li><a href="class.mongodb-driver-writeconcernexception.html">MongoDB\Driver\WriteConcernException</a> — The MongoDB\Driver\WriteConcernException class</li><li><a href="class.mongodb-driver-duplicatekeyexception.html">MongoDB\Driver\DuplicateKeyException</a> — The MongoDB\Driver\DuplicateKeyException class</li></ul></li></ul></div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="changelog.mongo.html">変更履歴</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="mongodb.setup.html">インストール/設定</a></div>
+ <div class="up"><a href="refs.database.vendors.html">ベンダー固有のモジュール</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

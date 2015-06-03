@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>検証フィルタ</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="filter.filters.html">フィルタの型</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="filter.filters.sanitize.html">除去フィルタ</a></div>
+ <div class="up"><a href="filter.filters.html">フィルタの型</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="filter.filters.validate" class="section">
+  <h2 class="title">検証フィルタ</h2>
+   <p class="para">
+    <table class="doctable table">
+     <caption><strong>検証用のフィルタの一覧</strong></caption>
+     
+      <thead>
+       <tr>
+        <th>ID</th>
+        <th>名前</th>
+        <th>オプション</th>
+        <th>フラグ</th>
+        <th>説明</th>
+       </tr>
+
+      </thead>
+
+      <tbody class="tbody">
+       <tr>
+        <td><strong><code>FILTER_VALIDATE_BOOLEAN</code></strong></td>
+        <td>&quot;boolean&quot;</td>
+        <td>
+         <code class="parameter">default</code>
+        </td>
+        <td>
+          <strong><code>FILTER_NULL_ON_FAILURE</code></strong>
+        </td>
+        <td>
+         <p class="para">
+          &quot;1&quot;、&quot;true&quot;、&quot;on&quot; および &quot;yes&quot; の場合に <strong><code>TRUE</code></strong>、
+          それ以外の場合に <strong><code>FALSE</code></strong> を返します。
+         </p>
+         <p class="para">
+          <strong><code>FILTER_NULL_ON_FAILURE</code></strong> が設定されている場合は、
+          <strong><code>FALSE</code></strong> が返されるのは
+          &quot;0&quot;、&quot;false&quot;、&quot;off&quot;、&quot;no&quot; および &quot;&quot; の場合のみとなります。
+          boolean 以外の値については <strong><code>NULL</code></strong> を返します。
+         </p>
+        </td>
+       </tr>
+
+       <tr>
+        <td><strong><code>FILTER_VALIDATE_EMAIL</code></strong></td>
+        <td>&quot;validate_email&quot;</td>
+        <td>
+         <code class="parameter">default</code>
+        </td>
+        <td class="empty">&nbsp;</td>
+        <td>
+         <p class="para">
+          値が妥当な e-mail アドレスであるかどうかを検証します。
+         </p>
+         <p class="para">
+          この検証は、e-mail アドレスが RFC 822 に沿った形式であるかどうかを確かめます。
+          ただし、コメントおよび空白の折り返し (whitespace folding) には対応していません。
+         </p>
+        </td>
+       </tr>
+
+       <tr>
+        <td><strong><code>FILTER_VALIDATE_FLOAT</code></strong></td>
+        <td>&quot;float&quot;</td>
+        <td>
+         <code class="parameter">default</code>,
+         <code class="parameter">decimal</code>
+        </td>
+        <td>
+         <strong><code>FILTER_FLAG_ALLOW_THOUSAND</code></strong>
+        </td>
+        <td>値が float であるかどうかを検証します。</td>
+       </tr>
+
+       <tr>
+        <td><strong><code>FILTER_VALIDATE_INT</code></strong></td>
+        <td>&quot;int&quot;</td>
+        <td>
+         <code class="parameter">default</code>,
+         <code class="parameter">min_range</code>,
+         <code class="parameter">max_range</code>
+        </td>
+        <td>
+         <strong><code>FILTER_FLAG_ALLOW_OCTAL</code></strong>,
+         <strong><code>FILTER_FLAG_ALLOW_HEX</code></strong>
+        </td>
+        <td>値が整数であるかどうか、オプションで指定した範囲内にあるかどうかを検証します。</td>
+       </tr>
+
+       <tr>
+        <td><strong><code>FILTER_VALIDATE_IP</code></strong></td>
+        <td>&quot;validate_ip&quot;</td>
+        <td>
+         <code class="parameter">default</code>
+        </td>
+        <td>
+         <strong><code>FILTER_FLAG_IPV4</code></strong>,
+         <strong><code>FILTER_FLAG_IPV6</code></strong>,
+         <strong><code>FILTER_FLAG_NO_PRIV_RANGE</code></strong>,
+         <strong><code>FILTER_FLAG_NO_RES_RANGE</code></strong>
+        </td>
+        <td>
+         値が IP アドレスであるかどうかを検証します。
+         オプションで IPv4 あるいは IPv6 のみの指定、
+         プライベートアドレスや予約済みアドレスではないことの指定もできます。
+        </td>
+       </tr>
+
+       <tr>
+        <td><strong><code>FILTER_VALIDATE_MAC</code></strong></td>
+        <td>&quot;validate_mac_address&quot;</td>
+        <td>
+         <code class="parameter">default</code>
+        </td>
+        <td class="empty">&nbsp;</td>
+        <td>値が MAC アドレスであるかどうかを検証します。</td>
+       </tr>
+
+       <tr>
+        <td><strong><code>FILTER_VALIDATE_REGEXP</code></strong></td>
+        <td>&quot;validate_regexp&quot;</td>
+        <td>
+         <code class="parameter">default</code>,
+         <code class="parameter">regexp</code>
+        </td>
+        <td class="empty">&nbsp;</td>
+        <td>
+         値が、<a href="book.pcre.html" class="link">Perl 互換の</a>
+         正規表現 <code class="parameter">regexp</code> に一致するかどうかを検証します。
+        </td>
+       </tr>
+
+       <tr>
+        <td><strong><code>FILTER_VALIDATE_URL</code></strong></td>
+        <td>&quot;validate_url&quot;</td>
+        <td>
+         <code class="parameter">default</code>
+        </td>
+        <td>
+         <strong><code>FILTER_FLAG_PATH_REQUIRED</code></strong>,
+         <strong><code>FILTER_FLAG_QUERY_REQUIRED</code></strong>
+        </td>
+        <td>
+         値が URL 形式である (<a href="http://www.faqs.org/rfcs/rfc2396" class="link external">&raquo;&nbsp;http://www.faqs.org/rfcs/rfc2396</a> に準拠している) かどうか、
+         オプションで、必須コンポーネントが含まれているかどうかを検証します。
+         妥当な URL が、HTTP プロトコル <em>http://</em> を指定しているとは限りません。
+         つまり、その URL が期待通りのプロトコル
+         (<em>ssh://</em> や <em>mailto:</em> など)
+         を使っているかどうか、さらなる検証が必要だということです。
+         この関数は、ASCII の URL のみを正しいとみなすことに注意しましょう。
+         国際化ドメイン名 (非 ASCII 文字を含むもの) は失敗します。
+         </td>
+       </tr>
+
+      </tbody>
+     
+    </table>
+
+   </p>
+   <blockquote class="note"><p><strong class="note">注意</strong>: 
+    <p class="para">
+     PHP 5.4.11 移行、数値 +0 および -0 はどちらも、整数としても float としても有効と見なされるようになりました
+     （<strong><code>FILTER_VALIDATE_FLOAT</code></strong> や
+     <strong><code>FILTER_VALIDATE_INT</code></strong> を使った場合）。
+     それより前のバージョンでは、（<strong><code>FILTER_VALIDATE_FLOAT</code></strong> を使った場合に）float としてしか有効と見なされませんでした。
+    </p>
+    <p class="para">
+     オプションに <code class="parameter">default</code> を設定すると、値が検証されなかったときに <code class="parameter">default</code> の値を使います。
+    </p>
+   </p></blockquote>
+
+  <div class="simplesect">
+   <h3 class="title">変更履歴</h3>
+   <p class="para">
+    <table class="doctable informaltable">
+     
+      <thead>
+       <tr>
+        <th>バージョン</th>
+        <th>説明</th>
+       </tr>
+
+      </thead>
+
+      <tbody class="tbody">
+       <tr>
+        <td>5.5.0</td>
+        <td>
+         <strong><code>FILTER_VALIDATE_MAC</code></strong> が追加されました。
+        </td>
+       </tr>
+
+      </tbody>
+     
+    </table>
+
+   </p>
+  </div>
+
+ </div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="filter.filters.html">フィルタの型</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="filter.filters.sanitize.html">除去フィルタ</a></div>
+ <div class="up"><a href="filter.filters.html">フィルタの型</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

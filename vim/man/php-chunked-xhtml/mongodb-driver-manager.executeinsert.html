@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Convenience method for a single insert operation</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="mongodb-driver-manager.executedelete.html">MongoDB\Driver\Manager::executeDelete</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="mongodb-driver-manager.executequery.html">MongoDB\Driver\Manager::executeQuery</a></div>
+ <div class="up"><a href="class.mongodb-driver-manager.html">MongoDB\Driver\Manager</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="mongodb-driver-manager.executeinsert" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">MongoDB\Driver\Manager::executeInsert</h1>
+  <p class="verinfo">(mongodb &gt;=0.2.0)</p><p class="refpurpose"><span class="refname">MongoDB\Driver\Manager::executeInsert</span> &mdash; <span class="dc-title">Convenience method for a single insert operation</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mongodb-driver-manager.executeinsert-description">
+  <h3 class="title">説明</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="type"><span class="type MongoDB\Driver\WriteResult">MongoDB\Driver\WriteResult</span></span> <span class="methodname"><strong>MongoDB\Driver\Manager::executeInsert</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$namespace</code></span>
+   , <span class="methodparam"><span class="type"><span class="type array|object">array|object</span></span> <code class="parameter">$document</code></span>
+   [, <span class="methodparam"><span class="type"><span class="type MongoDB\Driver\WriteConcern">MongoDB\Driver\WriteConcern</span></span> <code class="parameter">$writeConcern</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Convenience method to execute a <a href="class.mongodb-driver-bulkwrite.html" class="classname">MongoDB\Driver\BulkWrite</a> with only one insert operation.
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mongodb-driver-manager.executeinsert-parameters">
+  <h3 class="title">パラメータ</h3>
+  <dl>
+
+   
+   
+    <dt>
+<code class="parameter">namespace</code></dt>
+
+    <dd>
+
+     <p class="para">
+      完全修飾形式の名前空間 (databaseName.collectionName)。
+     </p>
+    </dd>
+
+   
+
+   
+    <dt>
+<code class="parameter">document</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The document to insert.
+     </p>
+    </dd>
+
+   
+   
+   
+    <dt>
+<code class="parameter">writeConcern</code></dt>
+
+    <dd>
+
+     <p class="para">
+      オプションで、<a href="class.mongodb-driver-writeconcern.html" class="classname">MongoDB\Driver\WriteConcern</a> を指定します。省略した場合のデフォルトは、<a href="mongodb-driver-manager.construct.html#mongodb-driver-manager.construct-uri" class="link">MongoDB Connection URI</a> で設定したものとなります。
+     </p>
+    </dd>
+
+   
+
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mongodb-driver-manager.executeinsert-returnvalues">
+  <h3 class="title">返り値</h3>
+  
+  <p class="para">
+   成功した場合に <a href="class.mongodb-driver-writeresult.html" class="classname">MongoDB\Driver\WriteResult</a> を返します。失敗した場合に例外 (<a href="class.mongodb-driver-exception.html" class="classname">MongoDB\Driver\Exception</a> のインスタンス) をスローします。
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-mongodb-driver-manager.executeinsert-errors">
+  <h3 class="title">エラー / 例外</h3>
+  <ul class="simplelist">
+   <li class="member">認証が必要な場面で認証に失敗した場合に <a href="class.mongodb-driver-authenticationexception.html" class="classname">MongoDB\Driver\AuthenticationException</a> をスローします。</li><li class="member">サーバーへの接続が認証以外の理由で失敗した場合に <a href="class.mongodb-driver-connectionexception.html" class="classname">MongoDB\Driver\ConnectionException</a> をスローします。</li>
+   <li class="member">書き込み時にキー重複エラーが発生した場合に <a href="class.mongodb-driver-duplicatekeyexception.html" class="classname">MongoDB\Driver\DuplicateKeyException</a> をスローします。</li><li class="member">書き込みが失敗した場合に <a href="class.mongodb-driver-writeexception.html" class="classname">MongoDB\Driver\WriteException</a> をスローします。</li><li class="member">書き込み確認が失敗した場合に <a href="class.mongodb-driver-writeconcernexception.html" class="classname">MongoDB\Driver\WriteConcernException</a> をスローします。</li>
+  </ul>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mongodb-driver-manager.executeinsert-examples">
+  <h3 class="title">例</h3>
+  <div class="example" id="example-1616">
+   <p><strong>例1 <span class="function"><strong>MongoDB\Driver\Manager::executeInsert()</strong></span> example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$document&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"title"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"mongodb"</span><span style="color: #007700">,<br />);<br /></span><span style="color: #0000BB">$writeConcern&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoDB</span><span style="color: #007700">\</span><span style="color: #0000BB">Driver</span><span style="color: #007700">\</span><span style="color: #0000BB">WriteConcern</span><span style="color: #007700">(</span><span style="color: #0000BB">MongoDB</span><span style="color: #007700">\</span><span style="color: #0000BB">Driver</span><span style="color: #007700">\</span><span style="color: #0000BB">WriteConcern</span><span style="color: #007700">::</span><span style="color: #0000BB">MAJORITY</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">100</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$manager&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoDB</span><span style="color: #007700">\</span><span style="color: #0000BB">Driver</span><span style="color: #007700">\</span><span style="color: #0000BB">Manager</span><span style="color: #007700">(</span><span style="color: #DD0000">"mongodb://localhost:27017"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$manager</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">executeInsert</span><span style="color: #007700">(</span><span style="color: #DD0000">"mydb.collection"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$document</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$writeConcern</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Inserted&nbsp;%d&nbsp;document(s)\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getInsertedCount</span><span style="color: #007700">());<br /><br /></span><span style="color: #FF8000">/*&nbsp;If&nbsp;the&nbsp;WriteConcern&nbsp;could&nbsp;not&nbsp;be&nbsp;fulfilled&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">$writeConcernError&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getWriteConcernError</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%s&nbsp;(%d):&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$writeConcernError</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">$writeConcernError</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getCode</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">var_export</span><span style="color: #007700">(</span><span style="color: #0000BB">$writeConcernError</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getInfo</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;If&nbsp;the&nbsp;write&nbsp;could&nbsp;not&nbsp;happen&nbsp;at&nbsp;all&nbsp;*/<br /></span><span style="color: #007700">foreach&nbsp;(</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getWriteErrors</span><span style="color: #007700">()&nbsp;as&nbsp;</span><span style="color: #0000BB">$writeError</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%s&nbsp;(%d)\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$writeError</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">$writeError</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getCode</span><span style="color: #007700">());<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>上の例の出力は、
+たとえば以下のようになります。</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Inserted 1 document(s)
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-mongodb-driver-manager.executeinsert-notes">
+  <h3 class="title">注意</h3>
+     
+  <blockquote class="note"><p><strong class="note">注意</strong>: 
+   <p class="para">
+    書き込みが失敗した場合は、
+    <span class="methodname"><a href="mongodb-driver-writeresult.getwriteerrors.html" class="methodname">MongoDB\Driver\WriteResult::getWriteErrors()</a></span> の配列内には
+    <a href="class.mongodb-driver-writeerror.html" class="classname">MongoDB\Driver\WriteError</a> がひとつだけしか含まれません。
+    また <span class="methodname"><a href="mongodb-driver-writeerror.getindex.html" class="methodname">MongoDB\Driver\WriteError::getIndex()</a></span> は常に 0
+    (バッチ内におけるこの操作のインデックス) となります。
+   </p>
+  </p></blockquote>
+
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mongodb-driver-manager.executeinsert-seealso">
+  <h3 class="title">参考</h3>
+  <ul class="simplelist">
+   <li class="member"><span class="methodname"><a href="mongodb-driver-writebulk.insert.html" class="methodname" rel="rdfs-seeAlso">MongoDB\Driver\BulkWrite::insert()</a> - Add a insert operation to the bulk</span></li>
+   <li class="member"><a href="class.mongodb-driver-writeresult.html" class="classname">MongoDB\Driver\WriteResult</a></li>
+   <li class="member"><a href="class.mongodb-driver-writeconcern.html" class="classname">MongoDB\Driver\WriteConcern</a></li>
+  </ul>
+ </div>
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="mongodb-driver-manager.executedelete.html">MongoDB\Driver\Manager::executeDelete</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="mongodb-driver-manager.executequery.html">MongoDB\Driver\Manager::executeQuery</a></div>
+ <div class="up"><a href="class.mongodb-driver-manager.html">MongoDB\Driver\Manager</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

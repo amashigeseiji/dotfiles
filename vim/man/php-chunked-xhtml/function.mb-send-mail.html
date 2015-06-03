@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>エンコード変換を行ってメールを送信する</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-regex-set-options.html">mb_regex_set_options</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-split.html">mb_split</a></div>
+ <div class="up"><a href="ref.mbstring.html">マルチバイト文字列 関数</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mb-send-mail" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mb_send_mail</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5)</p><p class="refpurpose"><span class="refname">mb_send_mail</span> &mdash; <span class="dc-title">エンコード変換を行ってメールを送信する</span></p>
+
+ </div>
+   
+ <div class="refsect1 description" id="refsect1-function.mb-send-mail-description">
+  <h3 class="title">説明</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>mb_send_mail</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$to</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$subject</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$message</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$additional_headers</code><span class="initializer"> = <strong><code>NULL</code></strong></span></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$additional_parameter</code><span class="initializer"> = <strong><code>NULL</code></strong></span></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   email を送信します。ヘッダと本文は <span class="function"><a href="function.mb-language.html" class="function">mb_language()</a></span>
+   の設定に基づき変換、エンコードされます。
+   これは <span class="function"><a href="function.mail.html" class="function">mail()</a></span> のラッパー関数です。詳細は、
+   <span class="function"><a href="function.mail.html" class="function">mail()</a></span> を参照ください。
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.mb-send-mail-parameters">
+  <h3 class="title">パラメータ</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">to</code></dt>
+
+     <dd>
+
+      <p class="para">
+       送信先のメールアドレス。
+       各アドレスをカンマで区切ると、複数の宛先を
+       <code class="parameter">to</code> に指定できます。
+       このパラメータは、自動的にはエンコードされません。
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">subject</code></dt>
+
+     <dd>
+
+      <p class="para">
+       メールの件名。
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">message</code></dt>
+
+     <dd>
+
+      <p class="para">
+       メールの本文。
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">additional_headers</code>（オプション）</dt>
+
+     <dd>
+
+      <p class="para">
+       メールヘッダの最後に挿入される文字列。
+      </p>
+      <p class="para">
+       通常、これは追加のヘッダ（From、Cc、Bcc）のために用いられます。
+       複数のヘッダを追加する場合は CRLF（\r\n）で区切ります。
+       Validate parameter not to be injected unwanted headers by attackers.
+      </p>
+      <blockquote class="note"><p><strong class="note">注意</strong>: 
+       <p class="para">
+        メールを送信する際には、<em class="emphasis">必ず</em> 
+        <em>From</em> ヘッダが含まれていなければなりません。
+        <code class="parameter">additional_headers</code> パラメータで指定するか、
+        あるいは <var class="filename">php.ini</var> にデフォルト値を指定します。
+       </p>
+       <p class="para">
+        指定しなかった場合は、以下のようなエラーメッセージが返ります
+        <em>Warning: mail(): &quot;sendmail_from&quot; not
+        set in php.ini or custom &quot;From:&quot; header missing</em> 。
+        Windows では、<em>From</em> ヘッダを設定すると
+        <em>Return-Path</em> も設定されます。
+       </p>
+      </p></blockquote>
+      <blockquote class="note"><p><strong class="note">注意</strong>: 
+       <p class="para">
+        メッセージが受信されなかった場合には、LF（\n）のみを使ってみてください。
+        Unix の MTA の中には、自動的に LF を CRLF に変換してしまう
+        もの (有名なところでは、<a href="http://www.qmail.org/" class="link external">&raquo;&nbsp;qmail</a> など)
+        があります（もし CRLF を利用していた場合、CR が重複してしまいます）。
+        ただし、これは最後の手段です。というのも、これは
+        <a href="http://www.faqs.org/rfcs/rfc2822" class="link external">&raquo;&nbsp;RFC 2822</a> に違反しているからです。
+       </p>
+      </p></blockquote>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">additional_parameter</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">additional_parameter</code> は、MTA へ渡す
+       コマンドライン引数です。sendmail を利用する際に正しい Return-Path
+       を設定するためなどに利用すると便利です。
+      </p>
+      <p class="para">
+       This parameter is escaped by <span class="function"><a href="function.escapeshellcmd.html" class="function">escapeshellcmd()</a></span> internally
+       to prevent command execution. <span class="function"><a href="function.escapeshellcmd.html" class="function">escapeshellcmd()</a></span> prevents
+       command execution, but allows to add addtional parameters. For security reason,
+       this parameter should be validated.
+      </p>
+      <p class="para">
+       Since <span class="function"><a href="function.escapeshellcmd.html" class="function">escapeshellcmd()</a></span> is applied automatically, some characters
+       that are allowed as email addresses by internet RFCs cannot be used. Programs
+       that are required to use these characters <span class="function"><a href="function.mail.html" class="function">mail()</a></span> cannot be used.
+      </p>
+      <p class="para">
+       The user that the webserver runs as should be added as a trusted user to the
+       sendmail configuration to prevent a &#039;X-Warning&#039; header from being added
+       to the message when the envelope sender (-f) is set using this method.
+       For sendmail users, this file is <var class="filename">/etc/mail/trusted-users</var>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.mb-send-mail-returnvalues">
+  <h3 class="title">返り値</h3>
+  <p class="para">
+   成功した場合に <strong><code>TRUE</code></strong> を、失敗した場合に <strong><code>FALSE</code></strong> を返します。
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.mb-send-mail-seealso">
+  <h3 class="title">参考</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.mail.html" class="function" rel="rdfs-seeAlso">mail()</a> - メールを送信する</span></li>
+    <li class="member"><span class="function"><a href="function.mb-encode-mimeheader.html" class="function" rel="rdfs-seeAlso">mb_encode_mimeheader()</a> - MIMEヘッダの文字列をエンコードする</span></li>
+    <li class="member"><span class="function"><a href="function.mb-language.html" class="function" rel="rdfs-seeAlso">mb_language()</a> - 現在の言語を設定あるいは取得する</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-regex-set-options.html">mb_regex_set_options</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-split.html">mb_split</a></div>
+ <div class="up"><a href="ref.mbstring.html">マルチバイト文字列 関数</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,378 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>出力のバッファリングを有効にする</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ob-list-handlers.html">ob_list_handlers</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.output-add-rewrite-var.html">output_add_rewrite_var</a></div>
+ <div class="up"><a href="ref.outcontrol.html">出力制御 関数</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ob-start" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ob_start</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">ob_start</span> &mdash; <span class="dc-title">出力のバッファリングを有効にする</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.ob-start-description">
+  <h3 class="title">説明</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>ob_start</strong></span>
+    ([ <span class="methodparam"><span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span> <code class="parameter">$output_callback</code><span class="initializer"> = <strong><code>NULL</code></strong></span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$chunk_size</code><span class="initializer"> = 0</span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code><span class="initializer"> = <strong><code>PHP_OUTPUT_HANDLER_STDFLAGS</code></strong></span></span>
+  ]]] )</div>
+
+  <p class="para rdfs-comment">
+   この関数は出力のバッファリングをオンにします。
+   出力のバッファリングを有効にすると、
+   (ヘッダ以外の) スクリプトからの出力は実際には行われず、
+   代わりに内部バッファに保存されます。
+  </p>
+  <p class="para">
+   この内部バッファの内容は、<span class="function"><a href="function.ob-get-contents.html" class="function">ob_get_contents()</a></span>
+   を用いて文字列変数にコピーされます。
+   内部バッファの内容を出力するには
+   <span class="function"><a href="function.ob-end-flush.html" class="function">ob_end_flush()</a></span> を使用します。
+   <span class="function"><a href="function.ob-end-clean.html" class="function">ob_end_clean()</a></span>
+   は、バッファの内容を出力せずに消去します。
+  </p>
+  <div class="warning"><strong class="warning">警告</strong>
+   <p class="para">
+    web サーバーによっては (例: Apache)、コールバック関数からコールされた際に、
+    スクリプトの実行ディレクトリを変更するものがあります。
+    コールバック関数の内部で <em>chdir(dirname($_SERVER[&#039;SCRIPT_FILENAME&#039;]))</em>
+    などと指定することで、これをもとに戻すことが可能です。
+   </p>
+  </div>
+  <p class="para">
+   出力バッファはスタッカブルであり、このため、他の
+   <span class="function"><strong>ob_start()</strong></span> がアクティブの間に
+   <span class="function"><strong>ob_start()</strong></span> をコールすることが可能です。この場合、
+   <span class="function"><a href="function.ob-end-flush.html" class="function">ob_end_flush()</a></span> を適切な回数コールするようにしてください。
+   複数の出力コールバック関数がアクティブの場合、
+   ネストした順番で逐次連続的に出力がフィルタ処理されます。
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.ob-start-parameters">
+  <h3 class="title">パラメータ</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">output_callback</code></dt>
+
+     <dd>
+
+      <p class="para">
+       オプションの引数 <code class="parameter">output_callback</code>
+       関数を指定することが可能です。この関数は、パラメータとして文字列をとり、
+       文字列を返します。このコールバック関数は、
+       出力バッファがフラッシュ (送信) あるいは消去
+       (<span class="function"><a href="function.ob-flush.html" class="function">ob_flush()</a></span>, <span class="function"><a href="function.ob-clean.html" class="function">ob_clean()</a></span>
+       あるいは同等の関数で) された場合、
+       またはリクエストの最後にブラウザに出力をフラッシュする際にコールされます。
+       <code class="parameter">output_callback</code> がコールされた際に、
+       この関数は出力バッファの内容をパラメータとして受け取ります。このコールバック関数は、
+       新規の出力バッファを実際に出力される結果として返す必要があり、
+       この結果はブラウザに送信されます。
+       <code class="parameter">output_callback</code> がコール可能な関数ではない場合は
+       <strong><code>FALSE</code></strong> を返します。
+       コールバックのシグネチャは、次のとおりです。
+      </p>
+      <p class="para">
+       <div class="methodsynopsis dc-description">
+        <span class="type">string</span> <span class="methodname"><span class="replaceable">handler</span></span>
+         ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$buffer</code></span>
+        [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$phase</code></span>
+       ] )</div>
+
+       <dl>
+
+        
+         <dt>
+<code class="parameter">buffer</code></dt>
+
+         <dd>
+
+          <span class="simpara">
+           出力バッファの内容。
+          </span>
+         </dd>
+
+        
+        
+         <dt>
+<code class="parameter">phase</code></dt>
+
+         <dd>
+
+          <span class="simpara">
+           定数 <strong><code>PHP_OUTPUT_HANDLER_*</code></strong> のビットマスク。
+          </span>
+         </dd>
+
+        
+       </dl>
+
+      </p>
+      <p class="para">
+       <code class="parameter">output_callback</code> が <strong><code>FALSE</code></strong>
+       を返すと、元の入力がそのままブラウザに送信されます。
+      </p>
+      <p class="para">
+       <code class="parameter">output_callback</code> パラメータに <strong><code>NULL</code></strong> 値を渡すと、
+       これをバイパスすることができます。
+      </p>
+      <p class="para">
+       <span class="function"><a href="function.ob-end-clean.html" class="function">ob_end_clean()</a></span>、
+       <span class="function"><a href="function.ob-end-flush.html" class="function">ob_end_flush()</a></span>、<span class="function"><a href="function.ob-clean.html" class="function">ob_clean()</a></span>、
+       <span class="function"><a href="function.ob-flush.html" class="function">ob_flush()</a></span> および <span class="function"><strong>ob_start()</strong></span>
+       をコールバック関数の内部からコールすることはできません。
+       実際にコールした際の挙動は未定義です。バッファの内容を消去したい際には、
+       コールバック関数から &quot;&quot; (空文字列) を返してください。
+       同じく、<em>print_r($expression, true)</em> や
+       <em>highlight_file($filename, true)</em> のような
+       出力バッファリング関数も、
+       コールバック関数の内部からコールすることはできません。
+      </p>
+      <blockquote class="note"><p><strong class="note">注意</strong>: 
+       <p class="para">
+        PHP 4.0.4 において、Web ページの圧縮をサポートする圧縮 gz エンコード
+        されたデータの Web ブラウザへの送信を容易にするために
+        <span class="function"><a href="function.ob-gzhandler.html" class="function">ob_gzhandler()</a></span> がサポートされています。
+        <span class="function"><a href="function.ob-gzhandler.html" class="function">ob_gzhandler()</a></span> は、ブラウザが受け入れる content
+        encoding の型を調べ、それに基づいて出力を返します。
+       </p>
+      </p></blockquote>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">chunk_size</code></dt>
+
+     <dd>
+
+      <p class="para">
+       オプションのパラメータ <code class="parameter">chunk_size</code> が渡された場合、
+       バッファの長さが <code class="parameter">chunk_size</code> バイトを超えるたびに、
+       出力の後でバッファがフラッシュされます。
+       デフォルト値は <em>0</em> で、これは出力関数がコールされるのが
+       出力バッファが閉じたときだけであることを意味します。
+      </p>
+      <p class="para">
+       PHP 5.4.0 より前のバージョンでは、<em>1</em> にも特別な意味があり、
+       これを指定するとチャンクサイズが 4096 バイトになります。
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">flags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">flags</code> はビットマスクで、出力バッファ上でどんな操作ができるのかを制御します。
+       デフォルトでは、出力バッファのクリーン、フラッシュ、削除がすべてできるようになっています。
+       これは、明示的に
+       <strong><code>PHP_OUTPUT_HANDLER_CLEANABLE</code></strong> |
+       <strong><code>PHP_OUTPUT_HANDLER_FLUSHABLE</code></strong> |
+       <strong><code>PHP_OUTPUT_HANDLER_REMOVABLE</code></strong> と設定したり、あるいは短縮形で
+       <strong><code>PHP_OUTPUT_HANDLER_STDFLAGS</code></strong> と設定したりするのと同じです。
+      </p>
+      <p class="para">
+       各フラグが、次の表のように関数へのアクセスを制御します。
+       <table class="doctable informaltable">
+        
+         <thead>
+          <tr>
+           <th>定数</th>
+           <th>関数</th>
+          </tr>
+
+         </thead>
+
+         <tbody class="tbody">
+          <tr>
+           <td><strong><code>PHP_OUTPUT_HANDLER_CLEANABLE</code></strong></td>
+           <td>
+            <span class="function"><a href="function.ob-clean.html" class="function">ob_clean()</a></span>、
+            <span class="function"><a href="function.ob-end-clean.html" class="function">ob_end_clean()</a></span> および
+            <span class="function"><a href="function.ob-get-clean.html" class="function">ob_get_clean()</a></span>
+           </td>
+          </tr>
+
+          <tr>
+           <td><strong><code>PHP_OUTPUT_HANDLER_FLUSHABLE</code></strong></td>
+           <td>
+            <span class="function"><a href="function.ob-end-flush.html" class="function">ob_end_flush()</a></span>、
+            <span class="function"><a href="function.ob-flush.html" class="function">ob_flush()</a></span> および
+            <span class="function"><a href="function.ob-get-flush.html" class="function">ob_get_flush()</a></span>
+           </td>
+          </tr>
+
+          <tr>
+           <td><strong><code>PHP_OUTPUT_HANDLER_REMOVABLE</code></strong></td>
+           <td>
+            <span class="function"><a href="function.ob-end-clean.html" class="function">ob_end_clean()</a></span>、
+            <span class="function"><a href="function.ob-end-flush.html" class="function">ob_end_flush()</a></span> および
+            <span class="function"><a href="function.ob-get-flush.html" class="function">ob_get_flush()</a></span>
+           </td>
+          </tr>
+
+         </tbody>
+        
+       </table>
+
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ob-start-returnvalues">
+  <h3 class="title">返り値</h3>
+  <p class="para">
+   成功した場合に <strong><code>TRUE</code></strong> を、失敗した場合に <strong><code>FALSE</code></strong> を返します。
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.ob-start-changelog">
+  <h3 class="title">変更履歴</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>バージョン</th>
+       <th>説明</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>7.0.0</td>
+       <td>
+        <span class="function"><strong>ob_start()</strong></span> を出力バッファコールバックの内部で使う場合、
+        この関数は <strong><code>E_ERROR</code></strong> の代わりに
+        <strong><code>E_RECOVERABLE_ERROR</code></strong> を発行して、カスタムエラーハンドラで対応できるようにします。
+       </td>
+      </tr>
+
+      <tr>
+       <td>5.4.0</td>
+       <td>
+        <span class="function"><strong>ob_start()</strong></span> の三番目のパラメータが
+        <span class="type"><a href="language.types.boolean.html" class="type boolean">boolean</a></span> <code class="parameter">erase</code>
+        (これを <strong><code>FALSE</code></strong> にすると、スクリプトの実行が終了するまで出力バッファを削除できなくなります)
+        から <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span> <code class="parameter">flags</code> に変わりました。
+        残念ながら、そのせいで API の互換性が崩れてしまい。
+        PHP 5.4.0 より前のバージョンで三番目のパラメータを使っていたコードは、
+        そのままでは期待通りに動かなくなりました。
+        <a href="function.ob-start.html#function.ob-start.flags-bc" class="link">この例</a>
+        のようにして、両方のバージョンでの互換性を保つ必要があります。
+       </td>
+      </tr>
+
+      <tr>
+       <td>5.4.0</td>
+       <td>
+        チャンクサイズに <em>1</em> を指定したときに、
+        1 バイトのチャンクを出力バッファに送るようになりました。
+       </td>
+      </tr>
+
+      <tr>
+       <td>4.3.2</td>
+       <td>
+        <code class="parameter">output_callback</code> を実行することができない場合に
+        <strong><code>FALSE</code></strong> を返すように変更されました。
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.ob-start-examples">
+  <h3 class="title">例</h3>
+  <p class="para">
+   <div class="example" id="example-495">
+    <p><strong>例1 ユーザー定義のコールバック関数の例</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">callback</span><span style="color: #007700">(</span><span style="color: #0000BB">$buffer</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;apples&nbsp;を全て&nbsp;oranges&nbsp;に置換する<br />&nbsp;&nbsp;</span><span style="color: #007700">return&nbsp;(</span><span style="color: #0000BB">str_replace</span><span style="color: #007700">(</span><span style="color: #DD0000">"apples"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"oranges"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$buffer</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #0000BB">ob_start</span><span style="color: #007700">(</span><span style="color: #DD0000">"callback"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;<br /></span>&lt;html&gt;<br />&lt;body&gt;<br />&lt;p&gt;It's&nbsp;like&nbsp;comparing&nbsp;apples&nbsp;to&nbsp;oranges.&lt;/p&gt;<br />&lt;/body&gt;<br />&lt;/html&gt;<br /><span style="color: #0000BB">&lt;?php<br /><br />ob_end_flush</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>上の例の出力は以下となります。</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+&lt;html&gt;
+&lt;body&gt;
+&lt;p&gt;It&#039;s like comparing oranges to oranges.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+    </div>
+   </div>
+  </p>
+
+  <p class="para">
+   <div class="example" id="function.ob-start.flags-bc">
+    <p><strong>例2 削除不可能な出力バッファを、PHP 5.3 と 5.4 のどちらでも動くように作る例</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">version_compare</span><span style="color: #007700">(</span><span style="color: #0000BB">PHP_VERSION</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'5.4.0'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'&gt;='</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #0000BB">ob_start</span><span style="color: #007700">(</span><span style="color: #0000BB">null</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_OUTPUT_HANDLER_STDFLAGS&nbsp;</span><span style="color: #007700">^<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">PHP_OUTPUT_HANDLER_REMOVABLE</span><span style="color: #007700">);<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #0000BB">ob_start</span><span style="color: #007700">(</span><span style="color: #0000BB">null</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.ob-start-seealso">
+  <h3 class="title">参考</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.ob-get-contents.html" class="function" rel="rdfs-seeAlso">ob_get_contents()</a> - 出力用バッファの内容を返す</span></li>
+    <li class="member"><span class="function"><a href="function.ob-end-clean.html" class="function" rel="rdfs-seeAlso">ob_end_clean()</a> - 出力用バッファをクリア(消去)し、出力のバッファリングをオフにする</span></li>
+    <li class="member"><span class="function"><a href="function.ob-end-flush.html" class="function" rel="rdfs-seeAlso">ob_end_flush()</a> - 出力用バッファをフラッシュ(送信)し、出力のバッファリングをオフにする</span></li>
+    <li class="member"><span class="function"><a href="function.ob-implicit-flush.html" class="function" rel="rdfs-seeAlso">ob_implicit_flush()</a> - 自動フラッシュをオンまたはオフにする</span></li>
+    <li class="member"><span class="function"><a href="function.ob-gzhandler.html" class="function" rel="rdfs-seeAlso">ob_gzhandler()</a> - 出力バッファを gzip 圧縮するための ob_start コールバック関数</span></li>
+    <li class="member"><span class="function"><a href="function.ob-iconv-handler.html" class="function" rel="rdfs-seeAlso">ob_iconv_handler()</a> - 出力バッファハンドラとして文字エンコーディングを変換する</span></li>
+    <li class="member"><span class="function"><a href="function.mb-output-handler.html" class="function" rel="rdfs-seeAlso">mb_output_handler()</a> - 出力バッファ内で文字エンコーディングを変換するコールバック関数</span></li>
+    <li class="member"><span class="function"><a href="function.ob-tidyhandler.html" class="function" rel="rdfs-seeAlso">ob_tidyhandler()</a> - バッファを修正するための ob_start コールバック関数</span></li>
+   </ul>
+  </p>
+ </div>
+  
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ob-list-handlers.html">ob_list_handlers</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.output-add-rewrite-var.html">output_add_rewrite_var</a></div>
+ <div class="up"><a href="ref.outcontrol.html">出力制御 関数</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

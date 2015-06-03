@@ -1,0 +1,247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Construct immutable WriteConcern</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="class.mongodb-driver-writeconcern.html">MongoDB\Driver\WriteConcern</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="class.mongodb-driver-readpreference.html">MongoDB\Driver\ReadPreference</a></div>
+ <div class="up"><a href="class.mongodb-driver-writeconcern.html">MongoDB\Driver\WriteConcern</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="mongodb-driver-writeconcern.construct" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">MongoDB\Driver\WriteConcern::__construct</h1>
+  <p class="verinfo">(mongodb &gt;=0.2.0)</p><p class="refpurpose"><span class="refname">MongoDB\Driver\WriteConcern::__construct</span> &mdash; <span class="dc-title">Construct immutable WriteConcern</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mongodb-driver-writeconcern.construct-description">
+  <h3 class="title">説明</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="methodname"><strong>MongoDB\Driver\WriteConcern::__construct</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$wstring</code></span>
+   [, <span class="methodparam"><span class="type">integer</span> <code class="parameter">$wtimeout</code></span>
+   [, <span class="methodparam"><span class="type">boolean</span> <code class="parameter">$journal</code></span>
+   [, <span class="methodparam"><span class="type">boolean</span> <code class="parameter">$fsync</code></span>
+  ]]] )</div>
+
+  <p class="para rdfs-comment">
+   Creates a new WriteConcern.
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mongodb-driver-writeconcern.construct-parameters">
+  <h3 class="title">パラメータ</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">wstring</code></dt>
+
+    <dd>
+
+     <p class="para">
+      <table class="doctable table">
+       <caption><strong>Write Concern</strong></caption>
+       
+        <thead>
+         <tr>
+          <th>Value</th>
+          <th>Description</th>
+         </tr>
+
+        </thead>
+
+        <tbody class="tbody">
+         <tr>
+          <td>1</td>
+          <td><span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span></td>
+          <td>
+           <p class="para">
+            Provides acknowledgment of write operations on a standalone mongod
+            or the primary in a Replica Set.
+           </p>
+           <p class="para">
+            This is the default value when no Write Concern is provided.
+           </p>
+          </td>
+         </tr>
+
+         <tr>
+          <td>0</td>
+          <td>
+           Disables basic acknowledgment of write operations, but returns
+           information about socket exceptions and networking errors to the
+           application.
+          </td>
+         </tr>
+
+         <tr>
+          <td>&lt;Number greater than 1&gt;</td>
+          <td>
+           Guarantees that write operations have propagated successfully to
+           the specified number of Replica Set members, including the primary.
+          </td>
+         </tr>
+
+         <tr>
+          <td>MongoDB\Driver\WriteConcern::MAJORITY</td>
+          <td>
+           Confirms that write operations have propagated to the majority of
+           configured replica set: a majority of the set’s configured members
+           must acknowledge the write operation before it succeeds.
+          </td>
+         </tr>
+
+         <tr>
+          <td>string</td>
+          <td>
+           A string value as WriteConcern is interpereted as a TagSet value.
+           At least one node in the TagSet must acknowledge the write.
+          </td>
+         </tr>
+
+        </tbody>
+       
+      </table>
+
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">wtimeout</code></dt>
+
+    <dd>
+
+     <p class="para">
+      How long to wait (in milliseconds) for secondaries before failing.
+     </p>
+     <p class="para">
+      wtimeout causes write operations to return with an error
+      (<strong class="classname">WriteConcernError</strong>) after the
+      specified limit, even if the required write concern will eventually
+      succeed. When these write operations return, MongoDB does not undo
+      successful data modifications performed before the write concern
+      exceeded the wtimeout time limit.
+      <table class="doctable table">
+       <caption><strong>Write Concern timeout</strong></caption>
+       
+        <thead>
+         <tr>
+          <th>Value</th>
+          <th>Description</th>
+         </tr>
+
+        </thead>
+
+        <tbody class="tbody">
+         <tr>
+          <td>0</td>
+          <td>Block indefinitely. This is the default.</td>
+         </tr>
+
+         <tr>
+          <td>&lt;Greater than 0&gt;</td>
+          <td>
+           Milliseconds to wait until returning.
+          </td>
+         </tr>
+
+        </tbody>
+       
+      </table>
+
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">journal</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Wait until mongod has applied the write to the journal.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">fsync</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Wait until the write has been flushed to disk.
+     </p>
+     <blockquote class="note"><p><strong class="note">注意</strong>: 
+      <p class="para">
+       Cannot be used with <code class="parameter">journal</code>.
+      </p>
+     </p></blockquote>
+     <blockquote class="note"><p><strong class="note">注意</strong>: 
+      <p class="para">
+       This option should be discouraged.
+      </p>
+     </p></blockquote>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-mongodb-driver-writeconcern.construct-errors">
+  <h3 class="title">エラー / 例外</h3>
+  <ul class="simplelist">
+   <li class="member">引数のパースに失敗した場合に <strong class="classname">MongoDB\Driver\InvalidArgumentException</strong> をスローします。</li>
+  </ul>
+ </div>
+
+
+
+ <div class="refsect1 examples" id="refsect1-mongodb-driver-writeconcern.construct-examples">
+  <h3 class="title">例</h3>
+  <div class="example" id="example-1632">
+   <p><strong>例1 <span class="function"><strong>MongoDB\Driver\WriteConcern::__construct()</strong></span> example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Request&nbsp;Write&nbsp;Confirmation&nbsp;from&nbsp;majority&nbsp;of&nbsp;the&nbsp;Replica&nbsp;Set&nbsp;nodes&nbsp;*/<br /></span><span style="color: #0000BB">$wc&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoDB</span><span style="color: #007700">\</span><span style="color: #0000BB">Driver</span><span style="color: #007700">\</span><span style="color: #0000BB">WriteConcern</span><span style="color: #007700">(</span><span style="color: #0000BB">MongoDB</span><span style="color: #007700">\</span><span style="color: #0000BB">Driver</span><span style="color: #007700">\</span><span style="color: #0000BB">WriteConcern</span><span style="color: #007700">::</span><span style="color: #0000BB">MAJORITY</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">500</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Request&nbsp;Write&nbsp;Confirmation&nbsp;configured&nbsp;by&nbsp;the&nbsp;"MultipleDC"&nbsp;tag&nbsp;*/<br /></span><span style="color: #0000BB">$wc&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoDB</span><span style="color: #007700">\</span><span style="color: #0000BB">Driver</span><span style="color: #007700">\</span><span style="color: #0000BB">WriteConcern</span><span style="color: #007700">(</span><span style="color: #DD0000">"MultipleDC"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">500</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>上の例の出力は、
+たとえば以下のようになります。</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+
+ <div class="refsect1 seealso" id="refsect1-mongodb-driver-writeconcern.construct-seealso">
+  <h3 class="title">参考</h3>
+  <ul class="simplelist">
+   <li class="member"/>
+  </ul>
+ </div>
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="class.mongodb-driver-writeconcern.html">MongoDB\Driver\WriteConcern</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="class.mongodb-driver-readpreference.html">MongoDB\Driver\ReadPreference</a></div>
+ <div class="up"><a href="class.mongodb-driver-writeconcern.html">MongoDB\Driver\WriteConcern</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

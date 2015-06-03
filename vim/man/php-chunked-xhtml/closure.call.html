@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Calls the closure with the given parameters and returns the result, with $this bound to the given object $to</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="closure.bindto.html">Closure::bindTo</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="class.generator.html">Generator</a></div>
+ <div class="up"><a href="class.closure.html">Closure</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="closure.call" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Closure::call</h1>
+  <p class="verinfo">(バージョン情報なし。おそらく SVN 版にしか存在しないでしょう)</p><p class="refpurpose"><span class="refname">Closure::call</span> &mdash; <span class="dc-title">Calls the closure with the given parameters and returns the result, with $this bound to the given object $to</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-closure.call-description">
+  <h3 class="title">説明</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type"><a href="class.closure.html" class="type Closure">Closure</a></span> <span class="methodname"><strong>Closure::call</strong></span>
+    ( <span class="methodparam"><span class="type">object</span> <code class="parameter">$to</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$parameters</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Calls the closure with the given parameters and returns the result, with $this bound to the given object
+   <code class="parameter">to</code>
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-closure.call-parameters">
+  <h3 class="title">パラメータ</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">to</code></dt>
+
+    <dd>
+
+     <p class="para">
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">parameters</code></dt>
+
+    <dd>
+
+     <p class="para">
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-closure.call-returnvalues">
+  <h3 class="title">返り値</h3>
+  <p class="para">
+  </p>
+ </div>
+
+ <div class="refsect1 changelog" id="refsect1-closure.call-changelog">
+  <h3 class="title">変更履歴</h3>
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>バージョン</th>
+      <th>説明</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>7.0.0</td>
+      <td>
+       Added Closure::call
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-closure.call-examples">
+  <h3 class="title">例</h3>
+  <div class="example" id="example-330">
+   <p><strong>例1 <span class="function"><strong>Closure::call()</strong></span> example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$foo&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">StdClass</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$foo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bar&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$foobar&nbsp;</span><span style="color: #007700">=&nbsp;function&nbsp;(</span><span style="color: #0000BB">$qux</span><span style="color: #007700">)&nbsp;{&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bar&nbsp;</span><span style="color: #007700">+&nbsp;</span><span style="color: #0000BB">$qux</span><span style="color: #007700">);&nbsp;};<br /></span><span style="color: #0000BB">$foobar</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">call</span><span style="color: #007700">(</span><span style="color: #0000BB">$foo</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;prints&nbsp;int(7)</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="closure.bindto.html">Closure::bindTo</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="class.generator.html">Generator</a></div>
+ <div class="up"><a href="class.closure.html">Closure</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

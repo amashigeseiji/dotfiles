@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Integer division</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hypot.html">hypot</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.is-finite.html">is_finite</a></div>
+ <div class="up"><a href="ref.math.html">Math 関数</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.intdiv" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">intdiv</h1>
+  <p class="verinfo">(PHP 7)</p><p class="refpurpose"><span class="refname">intdiv</span> &mdash; <span class="dc-title">Integer division</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.intdiv-description">
+  <h3 class="title">説明</h3>
+  <div class="methodsynopsis dc-description">
+    <span class="type">integer</span> <span class="methodname"><strong>intdiv</strong></span>
+     ( <span class="methodparam"><span class="type">integer</span> <code class="parameter">$numerator</code></span>
+    , <span class="methodparam"><span class="type">integer</span> <code class="parameter">$divisor</code></span>
+    )</div>
+
+  <p class="para rdfs-comment">
+   Returns the integer division of <code class="parameter">numerator</code> by <code class="parameter">divisor</code>.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.intdiv-parameters">
+  <h3 class="title">パラメータ</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">numerator</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Number to be divide.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">divisor</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Number which divides the <code class="parameter">numerator</code>
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.intdiv-returnvalues">
+  <h3 class="title">返り値</h3>
+  <p class="para">
+   The integer division of <code class="parameter">numerator</code> by <code class="parameter">divisor</code>.
+   If <code class="parameter">divisor</code> is zero, it throws an <strong><code>E_WARNING</code></strong> and returns <strong><code>FALSE</code></strong>.
+   If the <code class="parameter">numerator</code> is LONG_MIN (-<strong><code>PHP_INT_MAX</code></strong> - 1) and the 
+   <code class="parameter">divisor</code> is -1, it returns zero.
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.intdiv-examples">
+  <h3 class="title">例</h3>
+  <p class="para">
+   <div class="example" id="example-3870">
+    <p><strong>例1 <span class="function"><strong>intdiv()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">intdiv</span><span style="color: #007700">(</span><span style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">intdiv</span><span style="color: #007700">(-</span><span style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">intdiv</span><span style="color: #007700">(</span><span style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">2</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">intdiv</span><span style="color: #007700">(-</span><span style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">2</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">intdiv</span><span style="color: #007700">(</span><span style="color: #0000BB">PHP_INT_MAX</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHP_INT_MAX</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">intdiv</span><span style="color: #007700">(-</span><span style="color: #0000BB">PHP_INT_MAX&nbsp;</span><span style="color: #007700">-&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">PHP_INT_MAX&nbsp;</span><span style="color: #007700">-&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">intdiv</span><span style="color: #007700">(-</span><span style="color: #0000BB">PHP_INT_MAX&nbsp;</span><span style="color: #007700">-&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">1</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">intdiv</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+int(1)
+int(-1)
+int(-1)
+int(1)
+int(1)
+int(1)
+int(0)
+
+Warning: intdiv(): Division by zero in %s on line 9
+bool(false)
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+ 
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hypot.html">hypot</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.is-finite.html">is_finite</a></div>
+ <div class="up"><a href="ref.math.html">Math 関数</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

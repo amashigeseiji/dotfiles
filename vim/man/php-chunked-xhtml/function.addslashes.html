@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>文字列をスラッシュでクォートする</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.addcslashes.html">addcslashes</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.bin2hex.html">bin2hex</a></div>
+ <div class="up"><a href="ref.strings.html">String 関数</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.addslashes" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">addslashes</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">addslashes</span> &mdash; <span class="dc-title">文字列をスラッシュでクォートする</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.addslashes-description">
+  <h3 class="title">説明</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>addslashes</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$str</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   エスケープすべき文字の前にバックスラッシュを付けて返します。
+   エスケープすべき文字とは、シングルクォート(<em>&#039;</em>),
+   ダブルクォート(<em>&quot;</em>),バックスラッシュ
+   (<em>\</em>) ,NUL (<strong><code>NULL</code></strong> バイト) です。
+  </p>
+  <p class="para">
+   <span class="function"><strong>addslashes()</strong></span> 関数 を使う例として、PHPが評価する文字列データを入力する場合が挙げられます。たとえば、<em>O&#039;Reilly</em> というデータを $str に格納して評価する場合、$str をエスケープする(つまり eval(&quot;echo &#039;&quot;.addslashes($str).&quot;&#039;;&quot;); する) 必要があります。
+  </p>
+  <p class="para">
+   セキュリティ上の理由で、データベースパラメータをエスケープするには DBMS 固有のエスケープ関数
+   (たとえば MySQL 用の <span class="function"><a href="mysqli.real-escape-string.html" class="function">mysqli_real_escape_string()</a></span> や、
+   PostgreSQL 用の <span class="function"><a href="function.pg-escape-literal.html" class="function">pg_escape_literal()</a></span>、<span class="function"><a href="function.pg-escape-string.html" class="function">pg_escape_string()</a></span>) を使うべきです。
+   識別子(例: テーブル名やフィールド名)をエスケープするときは、データベースパラメータとは別の仕様をDBMSは使います。 
+   PostgreSQL の <span class="function"><a href="function.pg-escape-identifier.html" class="function">pg_escape_identifier()</a></span> のように、DBMS によっては識別子用のエスケープ関数を提供しているものもありますが、全ての DBMS が提供しているわけではありません。
+   提供されていない場合は、お使いのデータベースシステムのマニュアルを参照し、適切なエスケープ方法を調べるようにしてください。
+  </p>
+  <p class="para">
+   お使いの DBMS がエスケープ関数を提供しておらず、 DBMS が 
+   特別な文字をエスケープするのに <em>\</em> を使っている場合、
+   その DBMS に適切なエスケープ方法である場合に限って、
+   <span class="function"><strong>addslashes()</strong></span> 関数を使うことができます。
+   ほとんどのデータベース上では、 <span class="function"><strong>addslashes()</strong></span>関数を
+   パラメータのエスケープに使うと、セキュリティ問題が起きる原因となりうることに注意してください。
+  </p>
+  <p class="para">
+   PHP 5.4 より前のバージョンでは、<a href="info.configuration.html#ini.magic-quotes-gpc" class="link">
+   magic_quotes_gpc</a> が デフォルトで <em>on</em> だったため、
+   原則として <span class="function"><strong>addslashes()</strong></span> 関数がすべての GET, POST, COOKIE のデータに対して実行されていました。
+   <a href="info.configuration.html#ini.magic-quotes-gpc" class="link">magic_quotes_gpc</a> によって既にエスケープされた文字列に対して <span class="function"><strong>addslashes()</strong></span>関数 を絶対に実行してはいけません。2重エスケープになるからです。
+   <span class="function"><a href="function.get-magic-quotes-gpc.html" class="function">get_magic_quotes_gpc()</a></span>関数 で既にエスケープが行われているかを簡単にチェックできます。
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.addslashes-parameters">
+  <h3 class="title">パラメータ</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">str</code></dt>
+
+     <dd>
+
+      <p class="para">
+       エスケープしたい文字列。
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.addslashes-returnvalues">
+  <h3 class="title">返り値</h3>
+  <p class="para">
+   エスケープされた文字列を返します。
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.addslashes-examples">
+  <h3 class="title">例</h3>
+  <p class="para">
+   <div class="example" id="example-5272">
+    <p><strong>例1 <span class="function"><strong>addslashes()</strong></span> の例</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Is&nbsp;your&nbsp;name&nbsp;O'Reilly?"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;出力:&nbsp;Is&nbsp;your&nbsp;name&nbsp;O\'Reilly?<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">addslashes</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-function.addslashes-seealso">
+  <h3 class="title">参考</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.stripcslashes.html" class="function" rel="rdfs-seeAlso">stripcslashes()</a> - addcslashes でクォートされた文字列をアンクォートする</span></li>
+    <li class="member"><span class="function"><a href="function.stripslashes.html" class="function" rel="rdfs-seeAlso">stripslashes()</a> - クォートされた文字列のクォート部分を取り除く</span></li>
+    <li class="member"><span class="function"><a href="function.addcslashes.html" class="function" rel="rdfs-seeAlso">addcslashes()</a> - C 言語と同様にスラッシュで文字列をクォートする</span></li>
+    <li class="member"><span class="function"><a href="function.htmlspecialchars.html" class="function" rel="rdfs-seeAlso">htmlspecialchars()</a> - 特殊文字を HTML エンティティに変換する</span></li>
+    <li class="member"><span class="function"><a href="function.quotemeta.html" class="function" rel="rdfs-seeAlso">quotemeta()</a> - メタ文字をクォートする</span></li>
+    <li class="member"><span class="function"><a href="function.get-magic-quotes-gpc.html" class="function" rel="rdfs-seeAlso">get_magic_quotes_gpc()</a> - magic_quotes_gpc の現在の設定を得る</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.addcslashes.html">addcslashes</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.bin2hex.html">bin2hex</a></div>
+ <div class="up"><a href="ref.strings.html">String 関数</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

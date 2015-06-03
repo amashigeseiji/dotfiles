@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>ドメインソケットのサポート</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="mongo.connecting.mongos.html">シャーディング</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="mongo.connecting.pools.html">接続プーリング (バージョン 1.2.0-1.2.12 限定)</a></div>
+ <div class="up"><a href="mongo.connecting.html">接続</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="mongo.connecting.uds" class="section">
+  <h2 class="title">ドメインソケットのサポート</h2>
+
+  <p class="para">
+   MongoDB は Unix ドメインソケット経由での接続をサポートしており、起動時にソケットを開きます。
+   デフォルトのソケットの場所は <var class="filename">/tmp/mongodb-&lt;port&gt;.sock.</var> です。
+  </p>
+
+  <p class="para">
+   ソケットファイルに接続するには、このパスを MongoDB 接続文字列に指定します。
+  </p>
+
+  <div class="example" id="mongo.connecting.uds-example">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$m&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">(</span><span style="color: #DD0000">"mongodb:///tmp/mongo-27017.sock"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <p class="para">
+   上で示したようなソケットファイルへの接続で認証を使いたい場合は、
+   ポート番号 <em>0</em> を指定しなければなりません。
+   接続文字列のパーサは、これを接続文字列の終端と見なします。
+   あるいは、コンストラクタのオプションを使うこともできます。
+  </p>
+
+   <div class="example" id="mongo.connecting.uds-auth-example">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$m&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">(</span><span style="color: #DD0000">"mongodb://username:password@/tmp/mongo-27017.sock:0/foo"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <div class="simplesect">
+   <h3 class="title">変更履歴</h3>
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>バージョン</th>
+       <th>説明</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>1.0.9</td>
+       <td>
+        Unix ドメインソケットに対応しました。
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </div>
+
+ </div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="mongo.connecting.mongos.html">シャーディング</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="mongo.connecting.pools.html">接続プーリング (バージョン 1.2.0-1.2.12 限定)</a></div>
+ <div class="up"><a href="mongo.connecting.html">接続</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,578 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>SWFAction クラス</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ming-useswfversion.html">ming_useswfversion</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="swfaction.construct.html">SWFAction::__construct</a></div>
+ <div class="up"><a href="book.ming.html">Ming</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="class.swfaction" class="reference">
+ <h1 class="title">SWFAction クラス</h1>
+ 
+ 
+ <div class="partintro"><p class="verinfo">(PHP 5 &lt;= 5.3.0, PECL ming SVN)</p>
+ 
+
+  <div class="section" id="swfaction.intro">
+   <h2 class="title">導入</h2>
+   <p class="para">
+    SWFAction.
+   </p>
+  </div>
+
+ 
+  <div class="section" id="swfaction.synopsis">
+   <h2 class="title">クラス概要</h2>
+ 
+
+   <div class="classsynopsis">
+    <div class="ooclass"></div>
+ 
+
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <strong class="classname">SWFAction</strong>
+     </span>
+     {</div>
+
+ 
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* メソッド */</div>
+    <div class="methodsynopsis dc-description">
+   <span class="methodname"><a href="swfaction.construct.html" class="methodname">__construct</a></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$script</code></span>
+   )</div>
+
+ 
+   }</div>
+
+ 
+  </div>
+ 
+ <div class="section">
+  <h2 class="title">説明</h2>
+  <p class="para">
+   スクリプトの文法は C 言語をもとにしていますが、多くの機能が
+   省略されています - SWF バイトコードマシンは、より単純であることを
+   志向しています。例えば、相当手の込んだ細工をしなければ、関数のコールを
+   実装することもできません。なぜなら、バイトコードの jump 命令は
+   ハードコードされたオフセット値を使用しているからです。
+   呼び出し元のアドレスをスタックに格納したりはしません
+   - すべての関数は、戻ってくる場所を正確に知っている必要があるのです。
+  </p>
+  <p class="para">
+   結局、どんな機能が残っているのでしょう? コンパイラが理解できるトークンは
+   以下のとおりです。
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      break
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      for
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      continue
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      if
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      else
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      do
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      while
+     </span>
+    </li>
+   </ul>
+  </p>
+  <p class="para">
+   データ型は存在しません。SWF アクションマシンにおいては、すべての値は
+   文字列として扱われます。以下の関数が使用可能です。
+   <dl>
+
+    
+     <dt>
+time()</dt>
+
+     <dd>
+
+      <span class="simpara">
+       ムービーが開始してからの経過時間を、ミリ秒 (?) で返します。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+random(seed)</dt>
+
+     <dd>
+
+      <span class="simpara">
+       0 から seed までの範囲の擬似乱数を返します。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+length(expr)</dt>
+
+     <dd>
+
+      <span class="simpara">
+       指定した式の長さを返します。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+int(number)</dt>
+
+     <dd>
+
+      <span class="simpara">
+       指定した数値を、一番近い整数に切り下げた値を返します。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+concat(expr, expr)</dt>
+
+     <dd>
+
+      <span class="simpara">
+       指定した式を連結して返します。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+ord(expr)</dt>
+
+     <dd>
+
+      <span class="simpara">
+       指定した文字の ASCII コードを返します。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+chr(num)</dt>
+
+     <dd>
+
+      <span class="simpara">
+       指定した ASCII コードに対応する文字を返します。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+substr(string, location, length)</dt>
+
+     <dd>
+
+      <span class="simpara">
+       指定した文字列 <code class="parameter">string</code> の、
+       位置 <code class="parameter">location</code> から始まる
+       長さ <code class="parameter">length</code> の部分文字列を返します。
+      </span>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+  <p class="para">
+   さらに、以下のコマンドも使用できるでしょう。
+   <dl>
+
+    
+     <dt>
+duplicateClip(clip, name, depth)</dt>
+
+     <dd>
+
+      <span class="simpara">
+       指定したムービークリップ (またの名をスプライト)
+       <code class="parameter">clip</code> を複製します。
+       新しいムービークリップの名前は <code class="parameter">name</code> で、
+       深度は <code class="parameter">depth</code> となります。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+removeClip(expr)</dt>
+
+     <dd>
+
+      <span class="simpara">
+       指定したムービークリップを削除します。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+trace(expr)</dt>
+
+     <dd>
+
+      <span class="simpara">
+       指定した式をトレースログに書き込みます。ブラウザのプラグインが
+       これをきちんと扱ってくれるかは疑わしいものです。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+startDrag(target, lock, [left, top, right, bottom])</dt>
+
+     <dd>
+
+      <span class="simpara">
+       ムービークリップ <code class="parameter">target</code> のドラッグを開始します。
+       引数 <code class="parameter">lock</code> で、マウスをロックするかどうか (?)
+       を指定します - 0 (<strong><code>FALSE</code></strong>) あるいは 1 (<strong><code>TRUE</code></strong>) を指定します。
+       オプションのパラメータでは、ドラッグする範囲のを指定します。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+stopDrag()</dt>
+
+     <dd>
+
+      <span class="simpara">
+       つかれきった心を落ち着かせます。そしてムービークリップの
+       ドラッグも修了させます。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+callFrame(expr)</dt>
+
+     <dd>
+
+      <span class="simpara">
+       指定したフレームを関数としてコールします。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+getURL(url, target, [method])</dt>
+
+     <dd>
+
+      <span class="simpara">
+       指定した URL を読み込みます。引数 <code class="parameter">target</code> は、
+       (たとえば &quot;_top&quot; や &quot;_blank&quot; のような) HTML ドキュメントの target
+       に対応します。オプションの引数 <code class="parameter">method</code> は、
+       サーバーに変数を返したい場合に POST あるいは GET を指定します。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+loadMovie(url, target)</dt>
+
+     <dd>
+
+      <span class="simpara">
+       指定した URL を読み込みます。引数 <code class="parameter">target</code> は、
+       (おそらく) フレームの名前か
+       あるいは特別な値 &quot;_level0&quot; (現在のムービーを置き換える) 、
+       &quot;_level1&quot; (現在のムービーの前面に新しいムービーを表示する) 
+       のうちのいずれかです。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+nextFrame()</dt>
+
+     <dd>
+
+      <span class="simpara">
+       次のフレームに移動します。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+prevFrame()</dt>
+
+     <dd>
+
+      <span class="simpara">
+       直前の (あるいは一つ前の) フレームに移動します。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+play()</dt>
+
+     <dd>
+
+      <span class="simpara">
+       ムービーの再生を開始します。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+stop()</dt>
+
+     <dd>
+
+      <span class="simpara">
+       ムービーの再生を停止します。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+toggleQuality()</dt>
+
+     <dd>
+
+      <span class="simpara">
+       高品質/低品質を切り替えます。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+stopSounds()</dt>
+
+     <dd>
+
+      <span class="simpara">
+       音声の再生を停止します。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+gotoFrame(num)</dt>
+
+     <dd>
+
+      <span class="simpara">
+       フレーム番号 <code class="parameter">num</code> に移動します。
+       フレーム番号は 0 からはじまります。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+gotoFrame(name)</dt>
+
+     <dd>
+
+      <span class="simpara">
+       <code class="parameter">name</code> という名前のフレームに移動します。
+       これは便利です。というのもまだフレームのラベルを追加していないからです。
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+setTarget(expr)</dt>
+
+     <dd>
+
+      <span class="simpara">
+       アクションのコンテキストといわれるものを設定します。
+       これが何をするものなのかは実際のところよくわかりません。
+      </span>
+     </dd>
+   
+    
+   </dl>
+
+   そしてもうひとつ変なものがあります。if 文や while ループの中で、
+   指定したフレーム番号が読み込まれているかどうかを調べるために、
+   式 frameLoaded(num) が使用可能です。ええ。そのようにいわれています。
+   しかし私は実際にこれをテストしたことがなく、実際に動作するのか
+   疑問に思っています。かわりに /:framesLoaded を使用するとよいでしょう。
+  </p>
+  <p class="para">
+    ムービークリップ (さぁみなさんご一緒に - またの名をスプライト)
+    はプロパティをひじしています。すべてのプロパティが読み込み可能で、
+    そのうちのいくつかには値を設定することも可能です。プロパティの
+    一覧は以下のとおりです。
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       x
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       y 
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       xScale 
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       yScale 
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       currentFrame - (読み込み専用) 
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       totalFrames - (読み込み専用) 
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       alpha - 透明度
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       visible - 1=on, 0=off (?) 
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       width - (読み込み専用) 
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       height - (読み込み専用) 
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       rotation 
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       target - (読み込み専用) (???) 
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       framesLoaded - (読み込み専用) 
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       name 
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       dropTarget - (読み込み専用) (???) 
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       url - (読み込み専用) (???) 
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       highQuality - 1=high, 0=low (?) 
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       focusRect - (???) 
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       soundBufTime - (???) 
+      </span>
+     </li>
+    </ul>
+    ということで、スプライトの x 位置を指定するには単に <em>/box.x = 100;</em>
+    とすればよいわけです。なぜ box の前のスラッシュがあるのでしょう?
+    これは、flash がムービー内のスプライトを Unix ファイルシステム風に
+    管理しているからです - つまり、この場合 box がトップレベルに存在する
+    ことになります。box という名前のスプライトがその中に biff という名前の
+    スプライトを保持している場合、その x 位置を指定するには
+    /box/biff.x = 100; とします。すくなくとも私はそう思っています。
+    もし間違っていたら指摘してください。
+  </p>
+ </div>
+ 
+ </div>
+ 
+ 
+
+
+
+
+
+
+
+ 
+<h2>目次</h2><ul class="chunklist chunklist_reference"><li><a href="swfaction.construct.html">SWFAction::__construct</a> — 新しい SWFAction を作成する</li></ul>
+</div>
+<hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ming-useswfversion.html">ming_useswfversion</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="swfaction.construct.html">SWFAction::__construct</a></div>
+ <div class="up"><a href="book.ming.html">Ming</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

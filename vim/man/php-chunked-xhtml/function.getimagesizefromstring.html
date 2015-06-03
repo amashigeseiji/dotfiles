@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>画像の大きさを文字列から取得する</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.getimagesize.html">getimagesize</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.image-type-to-extension.html">image_type_to_extension</a></div>
+ <div class="up"><a href="ref.image.html">GD および Image 関数</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.getimagesizefromstring" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">getimagesizefromstring</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.4.0, PHP 7)</p><p class="refpurpose"><span class="refname">getimagesizefromstring</span> &mdash; <span class="dc-title">画像の大きさを文字列から取得する</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.getimagesizefromstring-description">
+  <h3 class="title">説明</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><strong>getimagesizefromstring</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$imagedata</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter reference">&$imageinfo</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><a href="function.getimagesize.html" class="function">getimagesize()</a></span> と似ていますが、
+   <span class="function"><strong>getimagesizefromstring()</strong></span> の最初のパラメータはファイル名ではなく文字列となります。
+  </p>
+  <p class="para">
+   この関数の挙動の詳細については <span class="function"><a href="function.getimagesize.html" class="function">getimagesize()</a></span>
+   のドキュメントを参照ください。
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.getimagesizefromstring-parameters">
+  <h3 class="title">パラメータ</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">imagedata</code></dt>
+
+    <dd>
+
+     <p class="para">
+      文字列で表した画像データ。
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">imageinfo</code></dt>
+
+    <dd>
+
+     <p class="para">
+      <span class="function"><a href="function.getimagesize.html" class="function">getimagesize()</a></span> を参照ください。
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.getimagesizefromstring-returnvalues">
+  <h3 class="title">返り値</h3>
+  <p class="para">
+   <span class="function"><a href="function.getimagesize.html" class="function">getimagesize()</a></span> を参照ください。
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.getimagesizefromstring-examples">
+  <h3 class="title">例</h3>
+  <p class="para">
+   <div class="example" id="example-3362">
+    <p><strong>例1 <span class="function"><strong>getimagesizefromstring()</strong></span> の例</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$img&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'/path/to/test.png'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;ファイルとして開く<br /></span><span style="color: #0000BB">$size_info1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">getimagesize</span><span style="color: #007700">(</span><span style="color: #0000BB">$img</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;あるいは、文字列として開く<br /></span><span style="color: #0000BB">$data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">file_get_contents</span><span style="color: #007700">(</span><span style="color: #0000BB">$img</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$size_info2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">getimagesizefromstring</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.getimagesizefromstring-seealso">
+  <h3 class="title">参考</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.getimagesize.html" class="function" rel="rdfs-seeAlso">getimagesize()</a> - 画像の大きさを取得する</span></li>
+   </ul>
+  </p>
+ </div>
+
+ 
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.getimagesize.html">getimagesize</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.image-type-to-extension.html">image_type_to_extension</a></div>
+ <div class="up"><a href="ref.image.html">GD および Image 関数</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

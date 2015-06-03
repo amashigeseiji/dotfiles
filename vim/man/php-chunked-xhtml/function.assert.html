@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>assertion が FALSE であるかどうかを調べる</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.assert-options.html">assert_options</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.cli-get-process-title.html">cli_get_process_title</a></div>
+ <div class="up"><a href="ref.info.html">PHP オプション/情報 関数</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.assert" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">assert</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">assert</span> &mdash; <span class="dc-title">assertion が <strong><code>FALSE</code></strong> であるかどうかを調べる</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.assert-description">
+  <h3 class="title">説明</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>assert</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$assertion</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$description</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>assert()</strong></span> は、指定した
+   <code class="parameter">assertion</code> を調べて、結果が
+   <strong><code>FALSE</code></strong> の場合に適切な動作をします。
+  </p>
+  <p class="para">
+   <code class="parameter">assertion</code> が文字列として指定された場合、
+   <span class="function"><strong>assert()</strong></span>によりPHPコードとして評価されます。
+   文字列 <code class="parameter">assertion</code>が優れているところは、
+   assertion のチェックがオフになった場合のオーバーヘッドがより少な
+   いことであり、assertionが失敗した場合のメッセージを式
+   <code class="parameter">assertion</code>に有しています。
+   つまり、もし論理型の条件を <code class="parameter">assertion</code> 
+   として渡した場合、この条件が <span class="function"><a href="function.assert-options.html" class="function">assert_options()</a></span>
+   関数で指定したハンドラ関数への引数とはならないということです。
+   条件はハンドラ関数をコールする前に文字列に変換され、論理型の
+   <strong><code>FALSE</code></strong> は空文字列に変換されます。
+  </p>
+  <p class="para">
+   assertion は、デバッグ目的にのみ使用するべきです。
+   assertion を常に<strong><code>TRUE</code></strong>となる条件を調べる不具合診断に使用し、<strong><code>TRUE</code></strong>
+   でない場合に何らかのプログラミングエラーを示したり、extension
+   関数または特定のシステム制限や機能といった、
+   特定の機能の存在をチェックするために使用することが可能です。
+  </p>
+  <p class="para">
+   assersion は、入力パラメータのチェックのような通常の実行動作に
+   使用するべきではありません。一般的には、assertion のチェックを無効にしても
+   そのコードが正常に動作しなければなりません。
+  </p>
+  <p class="para">
+   <span class="function"><strong>assert()</strong></span> の動作は、
+   <span class="function"><a href="function.assert-options.html" class="function">assert_options()</a></span> またはマニュアルの関数の部分
+   に記述された .ini の設定により設定することが可能です。
+  </p>
+  <p class="para">
+   関数 <span class="function"><a href="function.assert-options.html" class="function">assert_options()</a></span> や
+   <strong><code>ASSERT_CALLBACK</code></strong> 設定ディレクティブにより失敗した assertion
+   を処理するコールバック関数を設定することが可能です。
+  </p>
+  <p class="para">
+   <span class="function"><strong>assert()</strong></span> のコールバックは、assertion
+   が発生した場所に関する情報と共に assertion
+   に渡されたコードを容易にキャプチャーできるため、
+   特に自動テストセットを構築する際に便利です。
+   この情報は他の手法でもキャプチャー可能ですが、assertion
+   を使用することにより、より簡単かつ容易に行なうことが可能です!
+  </p>
+  <p class="para">
+   コールバック関数は、3つの引数を受ける必要があります。最初の引数は、
+   assertionが失敗したファイルが含まれます。2番目の引数には、
+   assertionが失敗した行が含まれ、3番目の引数には失敗した式が含まれます
+   (もしある場合のみ。1 または &quot;two&quot; のようなリテラルの値は、
+   この引数に渡されません)。
+   PHP 5.4.8 以降では、オプションの4番目の引数を指定できます。これを設定すると、
+   <code class="parameter">description</code> を <span class="function"><strong>assert()</strong></span>
+   に渡せるようになります。
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.assert-parameters">
+  <h3 class="title">パラメータ</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">assertion</code></dt>
+
+     <dd>
+
+      <p class="para">
+       アサーション。
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">description</code></dt>
+
+     <dd>
+
+      <p class="para">
+       オプションの説明で、
+       <code class="parameter">assertion</code> が失敗したときのメッセージにこれを含めます。
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.assert-returnvalues">
+  <h3 class="title">返り値</h3>
+  <p class="para">
+   アサーションが false となった場合に <strong><code>FALSE</code></strong>、それ以外の場合に <strong><code>TRUE</code></strong> を返します。
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.assert-changelog">
+  <h3 class="title">変更履歴</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>バージョン</th>
+       <th>説明</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>5.4.8</td>
+       <td>
+        <code class="parameter">description</code> パラメータが追加されました。
+        <code class="parameter">description</code> はまた、
+        <strong><code>ASSERT_CALLBACK</code></strong> モードのコールバック関数の4番目の引数にも指定できるようになりました。
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.assert-examples">
+  <h3 class="title">例</h3>
+  <p class="para">
+   <div class="example" id="example-500">
+    <p><strong>例1 失敗した assertion をカスタムハンドラで処理する</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;assertを有効にし、出力を抑制する<br /></span><span style="color: #0000BB">assert_options</span><span style="color: #007700">(</span><span style="color: #0000BB">ASSERT_ACTIVE</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">assert_options</span><span style="color: #007700">(</span><span style="color: #0000BB">ASSERT_WARNING</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">assert_options</span><span style="color: #007700">(</span><span style="color: #0000BB">ASSERT_QUIET_EVAL</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;ハンドラ関数を作成する<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">my_assert_handler</span><span style="color: #007700">(</span><span style="color: #0000BB">$file</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$line</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$code</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;hr&gt;Assertion&nbsp;Failed:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File&nbsp;'</span><span style="color: #0000BB">$file</span><span style="color: #DD0000">'&lt;br&nbsp;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Line&nbsp;'</span><span style="color: #0000BB">$line</span><span style="color: #DD0000">'&lt;br&nbsp;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Code&nbsp;'</span><span style="color: #0000BB">$code</span><span style="color: #DD0000">'&lt;br&nbsp;/&gt;&lt;hr&nbsp;/&gt;"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;コールバックを設定する<br /></span><span style="color: #0000BB">assert_options</span><span style="color: #007700">(</span><span style="color: #0000BB">ASSERT_CALLBACK</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'my_assert_handler'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;失敗するassertionを作成<br /></span><span style="color: #0000BB">assert</span><span style="color: #007700">(</span><span style="color: #DD0000">'mysql_query("")'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-501">
+    <p><strong>例2 カスタムハンドラを使った説明の表示</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;assertを有効にし、出力を抑制する<br /></span><span style="color: #0000BB">assert_options</span><span style="color: #007700">(</span><span style="color: #0000BB">ASSERT_ACTIVE</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">assert_options</span><span style="color: #007700">(</span><span style="color: #0000BB">ASSERT_WARNING</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">assert_options</span><span style="color: #007700">(</span><span style="color: #0000BB">ASSERT_QUIET_EVAL</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;ハンドラ関数を作成する<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">my_assert_handler</span><span style="color: #007700">(</span><span style="color: #0000BB">$file</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$line</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$code</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$desc&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Assertion&nbsp;failed&nbsp;at&nbsp;</span><span style="color: #0000BB">$file</span><span style="color: #DD0000">:</span><span style="color: #0000BB">$line</span><span style="color: #DD0000">:&nbsp;</span><span style="color: #0000BB">$code</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$desc</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">":&nbsp;</span><span style="color: #0000BB">$desc</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;コールバックを設定する<br /></span><span style="color: #0000BB">assert_options</span><span style="color: #007700">(</span><span style="color: #0000BB">ASSERT_CALLBACK</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'my_assert_handler'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;失敗するassertionを作成<br /></span><span style="color: #0000BB">assert</span><span style="color: #007700">(</span><span style="color: #DD0000">'2&nbsp;&lt;&nbsp;1'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">assert</span><span style="color: #007700">(</span><span style="color: #DD0000">'2&nbsp;&lt;&nbsp;1'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'Two&nbsp;is&nbsp;less&nbsp;than&nbsp;one'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>上の例の出力は以下となります。</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Assertion failed at test.php:21: 2 &lt; 1
+Assertion failed at test.php:22: 2 &lt; 1: Two is less than one
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.assert-seealso">
+  <h3 class="title">参考</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.assert-options.html" class="function" rel="rdfs-seeAlso">assert_options()</a> - 様々な assert フラグを設定/取得する</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.assert-options.html">assert_options</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.cli-get-process-title.html">cli_get_process_title</a></div>
+ <div class="up"><a href="ref.info.html">PHP オプション/情報 関数</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

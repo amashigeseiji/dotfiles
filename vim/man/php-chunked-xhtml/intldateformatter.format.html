@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>日付/時刻 の値を文字列としてフォーマットする</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="intldateformatter.create.html">IntlDateFormatter::create</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="intldateformatter.formatobject.html">IntlDateFormatter::formatObject</a></div>
+ <div class="up"><a href="class.intldateformatter.html">IntlDateFormatter</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="intldateformatter.format" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">IntlDateFormatter::format</h1>
+  <h1 class="refname">datefmt_format</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PECL intl &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">IntlDateFormatter::format</span> -- <span class="refname">datefmt_format</span> &mdash; <span class="dc-title">日付/時刻 の値を文字列としてフォーマットする</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-intldateformatter.format-description">
+  <h3 class="title">説明</h3>
+  <p class="para">
+   オブジェクト指向型
+  </p>
+   <div class="methodsynopsis dc-description">
+    <span class="modifier">public</span> <span class="type">string</span> <span class="methodname"><strong>IntlDateFormatter::format</strong></span>
+     ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$value</code></span>
+    )</div>
+
+  <p class="para rdfs-comment">
+   手続き型
+  </p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>datefmt_format</strong></span>
+   ( <span class="methodparam"><span class="type"><a href="class.intldateformatter.html" class="type IntlDateFormatter">IntlDateFormatter</a></span> <code class="parameter">$fmt</code></span>
+  , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$value</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   時刻の値を文字列としてフォーマットします。
+  </p> 
+  </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-intldateformatter.format-parameters">
+  <h3 class="title">パラメータ</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">fmt</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Date Formatter リソース。
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">value</code></dt>
+
+     <dd>
+
+      <p class="para">
+       フォーマットする値。<a href="class.datetime.html" class="classname">DateTime</a> オブジェクト、
+       <a href="class.intlcalendar.html" class="classname">IntlCalendar</a> オブジェクト、
+       epoch からの経過秒数を表す数値 (小数になる可能性もある)、
+       あるいは <span class="function"><a href="function.localtime.html" class="function">localtime()</a></span> が出力する形式の配列となります。
+      </p>
+      <p class="para">
+       <a href="class.datetime.html" class="classname">DateTime</a> オブジェクトあるいは
+       <a href="class.intlcalendar.html" class="classname">IntlCalendar</a> オブジェクトを渡した場合は、
+       そのタイムゾーンは考慮しません。これらをフォーマットするときに使うのは、
+       フォーマッターで設定されているタイムゾーンです。
+       渡したオブジェクトのタイムゾーンを使って欲しい場合は、
+       <span class="function"><a href="intldateformatter.settimezone.html" class="function">IntlDateFormatter::setTimeZone()</a></span>
+       を呼んでそのオブジェクトのタイムゾーンを設定しておかなければいけません。
+       あるいは、静的関数
+       <span class="function"><a href="intldateformatter.formatobject.html" class="function">IntlDateFormatter::formatObject()</a></span> をかわりに使ってもかまいません。
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+   
+ 
+ <div class="refsect1 returnvalues" id="refsect1-intldateformatter.format-returnvalues">
+  <h3 class="title">返り値</h3>
+  <p class="para">
+   フォーマットされた文字列、あるいはエラーが発生した場合は <strong><code>FALSE</code></strong> を返します。
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 changelog" id="refsect1-intldateformatter.format-changelog">
+  <h3 class="title">変更履歴</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>バージョン</th>
+       <th>説明</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>5.5.0/PECL 3.0.0</td>
+       <td>
+        <a href="class.intlcalendar.html" class="classname">IntlCalendar</a> オブジェクトを
+        <code class="parameter">value</code> に渡せるようになりました。
+       </td>
+      </tr>
+
+      <tr>
+       <td>5.3.4</td>
+       <td>
+        <a href="class.datetime.html" class="classname">DateTime</a> オブジェクトを
+        <code class="parameter">value</code> パラメータに渡せるようになりました。
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-intldateformatter.format-examples">
+  <h3 class="title">例</h3>
+   <div class="example" id="example-2815">
+    <p><strong>例1 <span class="function"><strong>datefmt_format()</strong></span> の例</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$fmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">datefmt_create</span><span style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'en_US'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">FULL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">FULL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'America/Los_Angeles'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">GREGORIAN<br /></span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">'First&nbsp;Formatted&nbsp;output&nbsp;is&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">datefmt_format</span><span style="color: #007700">(</span><span style="color: #0000BB">$fmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$fmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">datefmt_create</span><span style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'de-DE'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">FULL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">FULL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'America/Los_Angeles'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">GREGORIAN<br /></span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">'Second&nbsp;Formatted&nbsp;output&nbsp;is&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">datefmt_format</span><span style="color: #007700">(</span><span style="color: #0000BB">$fmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$fmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">datefmt_create</span><span style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'en_US'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">FULL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">FULL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'America/Los_Angeles'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">GREGORIAN</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'MM/dd/yyyy'<br /></span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">'First&nbsp;Formatted&nbsp;output&nbsp;with&nbsp;pattern&nbsp;is&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">datefmt_format</span><span style="color: #007700">(</span><span style="color: #0000BB">$fmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$fmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">datefmt_create</span><span style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'de-DE'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">FULL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">FULL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'America/Los_Angeles'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">GREGORIAN</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'MM/dd/yyyy'<br /></span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">"Second&nbsp;Formatted&nbsp;output&nbsp;with&nbsp;pattern&nbsp;is&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">datefmt_format</span><span style="color: #007700">(</span><span style="color: #0000BB">$fmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example" id="example-2816">
+    <p><strong>例2 オブジェクト指向の例</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$fmt&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'en_US'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">FULL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">FULL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'America/Los_Angeles'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">GREGORIAN<br /></span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">'First&nbsp;Formatted&nbsp;output&nbsp;is&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$fmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$fmt&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'de-DE'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">FULL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">FULL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'America/Los_Angeles'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">GREGORIAN<br /></span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">'Second&nbsp;Formatted&nbsp;output&nbsp;is&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$fmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$fmt&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'en_US'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">FULL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">FULL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'America/Los_Angeles'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">GREGORIAN</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'MM/dd/yyyy'<br /></span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">'First&nbsp;Formatted&nbsp;output&nbsp;with&nbsp;pattern&nbsp;is&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$fmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$fmt&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'de-DE'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">FULL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">FULL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'America/Los_Angeles'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">GREGORIAN</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'MM/dd/yyyy'<br /></span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">'Second&nbsp;Formatted&nbsp;output&nbsp;with&nbsp;pattern&nbsp;is&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$fmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+     <p class="para">上の例の出力は以下となります。</p>
+     <div class="example-contents screen">
+         <div class="cdata"><pre>
+First Formatted output is Wednesday, December 31, 1969 4:00:00 PM PT
+Second Formatted output is Mittwoch, 31. Dezember 1969 16:00 Uhr GMT-08:00
+First Formatted output with pattern is 12/31/1969
+Second Formatted output with pattern is 12/31/1969
+</pre></div>
+     </div>
+
+   <div class="example" id="example-2817">
+   <p><strong>例3 <a href="class.intlcalendar.html" class="classname">IntlCalendar</a> オブジェクトを使う例</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$tz&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">reset</span><span style="color: #007700">(</span><span style="color: #0000BB">iterator_to_array</span><span style="color: #007700">(</span><span style="color: #0000BB">IntlTimeZone</span><span style="color: #007700">::</span><span style="color: #0000BB">createEnumeration</span><span style="color: #007700">(</span><span style="color: #DD0000">'FR'</span><span style="color: #007700">)));<br /></span><span style="color: #0000BB">$formatter&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">create</span><span style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'fr_FR'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">FULL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">FULL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$tz</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">IntlDateFormatter</span><span style="color: #007700">::</span><span style="color: #0000BB">GREGORIAN<br /></span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$cal&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">IntlCalendar</span><span style="color: #007700">::</span><span style="color: #0000BB">createInstance</span><span style="color: #007700">(</span><span style="color: #0000BB">$tz</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'@calendar=islamic-civil'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">set</span><span style="color: #007700">(</span><span style="color: #0000BB">IntlCalendar</span><span style="color: #007700">::</span><span style="color: #0000BB">FIELD_MONTH</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">8</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//9th&nbsp;month,&nbsp;Ramadan<br /></span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">set</span><span style="color: #007700">(</span><span style="color: #0000BB">IntlCalendar</span><span style="color: #007700">::</span><span style="color: #0000BB">FIELD_DAY_OF_MONTH</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//1st&nbsp;day<br /></span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">clear</span><span style="color: #007700">(</span><span style="color: #0000BB">IntlCalendar</span><span style="color: #007700">::</span><span style="color: #0000BB">FIELD_HOUR_OF_DAY</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">clear</span><span style="color: #007700">(</span><span style="color: #0000BB">IntlCalendar</span><span style="color: #007700">::</span><span style="color: #0000BB">FIELD_MINUTE</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">clear</span><span style="color: #007700">(</span><span style="color: #0000BB">IntlCalendar</span><span style="color: #007700">::</span><span style="color: #0000BB">FIELD_SECOND</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$cal</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">clear</span><span style="color: #007700">(</span><span style="color: #0000BB">IntlCalendar</span><span style="color: #007700">::</span><span style="color: #0000BB">FIELD_MILLISECOND</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">"In&nbsp;this&nbsp;islamic&nbsp;year,&nbsp;Ramadan&nbsp;started/will&nbsp;start&nbsp;on:\n\t"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$formatter</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #0000BB">$cal</span><span style="color: #007700">),&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;フォーマッターのタイムゾーンを利用します<br /></span><span style="color: #0000BB">$formatter</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setTimeZone</span><span style="color: #007700">(</span><span style="color: #DD0000">'Asia/Tokyo'</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">"After&nbsp;changing&nbsp;timezone:\n\t"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$formatter</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #0000BB">$cal</span><span style="color: #007700">),&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>上の例の出力は以下となります。</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+In this islamic year, Ramadan started/will start on:
+    mardi 9 juillet 2013 19:00:00 heure avancée d’Europe centrale
+After changing timezone:
+    mercredi 10 juillet 2013 02:00:00 heure normale du Japon
+
+</pre></div>
+    </div>
+   </div>
+
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-intldateformatter.format-seealso">
+  <h3 class="title">参考</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="intldateformatter.create.html" class="function" rel="rdfs-seeAlso">datefmt_create()</a> - Date Formatter を作成する</span></li>
+    <li class="member"><span class="function"><a href="intldateformatter.parse.html" class="function" rel="rdfs-seeAlso">datefmt_parse()</a> - 文字列をパースしてタイムスタンプにする</span></li>
+    <li class="member"><span class="function"><a href="intldateformatter.geterrorcode.html" class="function" rel="rdfs-seeAlso">datefmt_get_error_code()</a> - 直近の操作のエラーコードを取得する</span></li>
+    <li class="member"><span class="function"><a href="intldateformatter.geterrormessage.html" class="function" rel="rdfs-seeAlso">datefmt_get_error_message()</a> - 直近の操作のエラーテキストを取得する</span></li>
+    <li class="member"><span class="function"><a href="intldateformatter.formatobject.html" class="function" rel="rdfs-seeAlso">datefmt_format_object()</a> - オブジェクトの書式を設定する</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="intldateformatter.create.html">IntlDateFormatter::create</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="intldateformatter.formatobject.html">IntlDateFormatter::formatObject</a></div>
+ <div class="up"><a href="class.intldateformatter.html">IntlDateFormatter</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

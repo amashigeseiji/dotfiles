@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>チュートリアル</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="mongo.manual.html">マニュアル</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="mongo.tutorial.connecting.html">接続の作成</a></div>
+ <div class="up"><a href="mongo.manual.html">マニュアル</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="mongo.tutorial" class="chapter">
+ <h1>チュートリアル</h1>
+<h2>目次</h2><ul class="chunklist chunklist_chapter"><li><a href="mongo.tutorial.connecting.html">接続の作成</a></li><li><a href="mongo.tutorial.selectdb.html">データベースの取得</a></li><li><a href="mongo.tutorial.collection.html">コレクションの取得</a></li><li><a href="mongo.tutorial.insert.html">ドキュメントの追加</a></li><li><a href="mongo.tutorial.findone.html">MongoCollection::findOne によるドキュメントの検索</a></li><li><a href="mongo.tutorial.insert.multiple.html">複数のドキュメントの追加</a></li><li><a href="mongo.tutorial.counting.html">コレクション内のドキュメント数</a></li><li><a href="mongo.tutorial.cursor.html">カーソルを使った全ドキュメントの取得</a></li><li><a href="mongo.tutorial.criteria.html">問い合わせの条件の設定</a></li><li><a href="mongo.tutorial.multi.query.html">クエリによる複数ドキュメントの取得</a></li><li><a href="mongo.tutorial.indexes.html">インデックスの作成</a></li></ul>
+
+ <p class="para">
+  これは、公式の MongoDB 用 PHP ドライバです。
+ </p>
+ <p class="para">
+  簡単なコード例をもとに、MongoDB への接続やドキュメントの追加、
+  ドキュメントの問い合わせ、問い合わせ結果の反復処理、
+  そして接続の切断の方法を示します。
+  各ステップの詳細については後に続くチュートリアルを参照ください。
+ </p>
+ <div class="example" id="mongo.tutorial.basics">
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;接続<br /></span><span style="color: #0000BB">$m&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;データベースの選択<br /></span><span style="color: #0000BB">$db&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$m</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">comedy</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;コレクション&nbsp;(リレーショナルデータベースのテーブルみたいなもの)&nbsp;の選択<br /></span><span style="color: #0000BB">$collection&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">cartoons</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;レコードの追加<br /></span><span style="color: #0000BB">$document&nbsp;</span><span style="color: #007700">=&nbsp;array(&nbsp;</span><span style="color: #DD0000">"title"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"Calvin&nbsp;and&nbsp;Hobbes"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"author"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"Bill&nbsp;Watterson"&nbsp;</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(</span><span style="color: #0000BB">$document</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;構造が異なる別のレコードの追加<br /></span><span style="color: #0000BB">$document&nbsp;</span><span style="color: #007700">=&nbsp;array(&nbsp;</span><span style="color: #DD0000">"title"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"XKCD"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"online"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">true&nbsp;</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(</span><span style="color: #0000BB">$document</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;コレクション内の全件の検索<br /></span><span style="color: #0000BB">$cursor&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">find</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;結果の反復処理<br /></span><span style="color: #007700">foreach&nbsp;(</span><span style="color: #0000BB">$cursor&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$document</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$document</span><span style="color: #007700">[</span><span style="color: #DD0000">"title"</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+  </div>
+
+  <div class="example-contents"><p>上の例の出力は以下となります。</p></div>
+  <div class="example-contents screen">
+<div class="cdata"><pre>
+Calvin and Hobbes
+XKCD
+</pre></div>
+  </div>
+ </div>
+
+
+ 
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</div>
+<hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="mongo.manual.html">マニュアル</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="mongo.tutorial.connecting.html">接続の作成</a></div>
+ <div class="up"><a href="mongo.manual.html">マニュアル</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

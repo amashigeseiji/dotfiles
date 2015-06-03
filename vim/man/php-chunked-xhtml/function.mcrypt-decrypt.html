@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>指定したパラメータで暗号化されたテキストを復号する</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mcrypt-create-iv.html">mcrypt_create_iv</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mcrypt-ecb.html">mcrypt_ecb</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Mcrypt 関数</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mcrypt-decrypt" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mcrypt_decrypt</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.2, PHP 5)</p><p class="refpurpose"><span class="refname">mcrypt_decrypt</span> &mdash; <span class="dc-title">指定したパラメータで暗号化されたテキストを復号する</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.mcrypt-decrypt-description">
+  <h3 class="title">説明</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>mcrypt_decrypt</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$cipher</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$data</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$mode</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$iv</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <code class="parameter">data</code> を復号し、復号されたデータを返します。
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.mcrypt-decrypt-parameters">
+  <h3 class="title">パラメータ</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">cipher</code></dt>
+
+     <dd>
+
+      <p class="para"><strong><code>MCRYPT_暗号名</code></strong> 定数のいずれか、
+あるいはアルゴリズム名をあらわす文字列。</p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">key</code></dt>
+
+     <dd>
+
+      <p class="para">
+       データを暗号化した際のキー。
+       指定した暗号化方式に対応していないサイズのキーを渡された場合は、
+       警告を発して <strong><code>FALSE</code></strong> を返します。
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">data</code></dt>
+
+     <dd>
+
+      <p class="para">
+       このデータが、指定した <code class="parameter">cipher</code> および <code class="parameter">mode</code> で復号されます。
+       データの大きさが n * blocksize でない場合、データは、
+       &#039;<em>\0</em>&#039; で埋められます。
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">mode</code></dt>
+
+     <dd>
+
+      <p class="para">定数 <strong><code>MCRYPT_MODE_モード名</code></strong>、あるいは文字列
+&quot;ecb&quot;, &quot;cbc&quot;, &quot;cfb&quot;, &quot;ofb&quot;, &quot;nofb&quot; ,&quot;stream&quot; のいずれか。</p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">iv</code></dt>
+
+     <dd>
+
+      <p class="para">CBC, CFB, OFB モードおよび
+STREAM モードのいくつかのアルゴリズムの初期化の際に使用されます。
+指定した IV のサイズがそのモードでサポートされていない場合、
+あるいは IV を必要とするモードで IV が指定されなかった場合は、
+この関数は警告を発して <strong><code>FALSE</code></strong> を返します。</p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.mcrypt-decrypt-returnvalues">
+  <h3 class="title">返り値</h3>
+  <p class="para">
+   復号されたデータを文字列で返します。失敗した場合に <strong><code>FALSE</code></strong> を返します。
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 changelog" id="refsect1-function.mcrypt-decrypt-changelog">
+  <h3 class="title">変更履歴</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>バージョン</th>
+       <th>説明</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>5.6.0</td>
+       <td>
+        無効なサイズの <code class="parameter">key</code> や <code class="parameter">iv</code>
+        は、受け付けないようになりました。無効な値を受け取った場合、
+        <span class="function"><strong>mcrypt_decrypt()</strong></span> は警告を発して <strong><code>FALSE</code></strong> を返します。
+        以前のバージョンでは、キーや IV のサイズが足りない場合は
+        &#039;<em>\0</em>&#039; で埋めて、必要なサイズに合わせていました。
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.mcrypt-decrypt-seealso">
+  <h3 class="title">参考</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.mcrypt-encrypt.html" class="function" rel="rdfs-seeAlso">mcrypt_encrypt()</a> - 指定したパラメータでプレーンテキストを暗号化する</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mcrypt-create-iv.html">mcrypt_create_iv</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mcrypt-ecb.html">mcrypt_ecb</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Mcrypt 関数</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

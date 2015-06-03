@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>画像を識別し、属性を取得する</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="imagick.identifyformat.html">Imagick::identifyFormat</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="imagick.implodeimage.html">Imagick::implodeImage</a></div>
+ <div class="up"><a href="class.imagick.html">Imagick</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="imagick.identifyimage" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Imagick::identifyImage</h1>
+  <p class="verinfo">(PECL imagick 2.0.0)</p><p class="refpurpose"><span class="refname">Imagick::identifyImage</span> &mdash; <span class="dc-title">画像を識別し、属性を取得する</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-imagick.identifyimage-description">
+  <h3 class="title">説明</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><strong>Imagick::identifyImage</strong></span>
+    ([ <span class="methodparam"><span class="type">bool</span> <code class="parameter">$appendRawOutput</code><span class="initializer"> = false</span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   画像を識別し、属性を返します。属性には画像の幅や高さ、サイズなどが含まれます。
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-imagick.identifyimage-parameters">
+  <h3 class="title">パラメータ</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">appendRawOutput</code></dt>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-imagick.identifyimage-returnvalues">
+  <h3 class="title">返り値</h3>
+  <p class="para">
+   画像を識別し、属性を返します。属性には画像の幅や高さ、サイズなどが含まれます。
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-imagick.identifyimage-examples">
+  <p class="para">
+   <div class="example" id="example-3552">
+   <p><strong>例1 結果の書式の例</strong></p>
+   <div class="example-contents screen">
+<div class="examplescode"><pre class="examplescode">Array
+(
+    [imageName] =&gt; /some/path/image.jpg
+    [format] =&gt; JPEG (Joint Photographic Experts Group JFIF format)
+    [geometry] =&gt; Array
+        (
+            [width] =&gt; 90
+            [height] =&gt; 90
+        )
+
+    [type] =&gt; TrueColor
+    [colorSpace] =&gt; RGB
+    [resolution] =&gt; Array
+        (
+            [x] =&gt; 300
+            [y] =&gt; 300
+        )
+
+    [units] =&gt; PixelsPerInch
+    [fileSize] =&gt; 1.88672kb
+    [compression] =&gt; JPEG
+    [signature] =&gt; 9a6dc8f604f97d0d691c0286176ddf992e188f0bebba98494b2146ee2d7118da
+)</pre>
+</div>
+   </div>
+   </div>
+   </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-imagick.identifyimage-errors">
+  <h3 class="title">エラー / 例外</h3>
+  <p class="para">
+   エラー時に ImagickException をスローします。
+  </p>
+ </div>
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="imagick.identifyformat.html">Imagick::identifyFormat</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="imagick.implodeimage.html">Imagick::implodeImage</a></div>
+ <div class="up"><a href="class.imagick.html">Imagick</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

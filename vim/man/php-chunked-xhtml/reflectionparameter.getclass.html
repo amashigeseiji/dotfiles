@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>タイプヒントつきのクラスを取得する</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="reflectionparameter.export.html">ReflectionParameter::export</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="reflectionparameter.getdeclaringclass.html">ReflectionParameter::getDeclaringClass</a></div>
+ <div class="up"><a href="class.reflectionparameter.html">ReflectionParameter</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="reflectionparameter.getclass" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ReflectionParameter::getClass</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">ReflectionParameter::getClass</span> &mdash; <span class="dc-title">タイプヒントつきのクラスを取得する</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-reflectionparameter.getclass-description">
+  <h3 class="title">説明</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type"><a href="class.reflectionclass.html" class="type ReflectionClass">ReflectionClass</a></span> <span class="methodname"><strong>ReflectionParameter::getClass</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   パラメータとしてタイプヒントされたクラスを、<a href="class.reflectionclass.html" class="classname">ReflectionClass</a> オブジェクトとして取得します。
+  </p>
+
+  <div class="warning"><strong class="warning">警告</strong><p class="simpara">この関数は、
+現在のところ詳細な情報はありません。引数のリストのみが
+記述されています。</p></div>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-reflectionparameter.getclass-parameters">
+  <h3 class="title">パラメータ</h3>
+  <p class="para">この関数にはパラメータはありません。</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-reflectionparameter.getclass-returnvalues">
+  <h3 class="title">返り値</h3>
+  <p class="para">
+   <a href="class.reflectionclass.html" class="classname">ReflectionClass</a> オブジェクトを返します。
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-reflectionparameter.getclass-examples">
+  <h3 class="title">例</h3>
+  <p class="para">
+   <div class="example" id="example-5692">
+    <p><strong>例1 <a href="class.reflectionparameter.html" class="classname">ReflectionParameter</a> クラスの利用法</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">Exception&nbsp;$a</span><span style="color: #007700">)&nbsp;{&nbsp;}<br /><br /></span><span style="color: #0000BB">$functionReflection&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">ReflectionFunction</span><span style="color: #007700">(</span><span style="color: #DD0000">'foo'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$parameters&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$functionReflection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getParameters</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$aParameter&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$parameters</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">];<br /><br />echo&nbsp;</span><span style="color: #0000BB">$aParameter</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getClass</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">name</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>上の例の出力は以下となります。</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Exception
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-reflectionparameter.getclass-seealso">
+  <h3 class="title">参考</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="reflectionparameter.getdeclaringclass.html" class="methodname" rel="rdfs-seeAlso">ReflectionParameter::getDeclaringClass()</a> - 宣言しているクラスを取得する</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="reflectionparameter.export.html">ReflectionParameter::export</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="reflectionparameter.getdeclaringclass.html">ReflectionParameter::getDeclaringClass</a></div>
+ <div class="up"><a href="class.reflectionparameter.html">ReflectionParameter</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

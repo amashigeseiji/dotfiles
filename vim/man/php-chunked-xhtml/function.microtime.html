@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>現在の Unix タイムスタンプをマイクロ秒まで返す</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.localtime.html">localtime</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mktime.html">mktime</a></div>
+ <div class="up"><a href="ref.datetime.html">日付・時刻 関数</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.microtime" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">microtime</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">microtime</span> &mdash; <span class="dc-title">
+   現在の Unix タイムスタンプをマイクロ秒まで返す
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.microtime-description">
+  <h3 class="title">説明</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><strong>microtime</strong></span>
+    ([ <span class="methodparam"><span class="type">bool</span> <code class="parameter">$get_as_float</code><span class="initializer"> = false</span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>microtime()</strong></span> は、現在の
+   Unix タイムスタンプをマイクロ秒単位で返します。
+   この関数は、gettimeofday() システムコールをサポートする
+   オペレーティングシステムでのみ使用できます。
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.microtime-parameters">
+  <h3 class="title">パラメータ</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">get_as_float</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <strong><code>TRUE</code></strong> を指定すると、<span class="function"><strong>microtime()</strong></span> は文字列ではなく
+       <span class="type"><a href="language.types.float.html" class="type float">float</a></span> を返すようになります。詳細は、返り値の説明を参照ください。
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.microtime-returnvalues">
+  <h3 class="title">返り値</h3>
+  <p class="para">
+   デフォルトでは、<span class="function"><strong>microtime()</strong></span> は &quot;msec sec&quot;
+   形式の文字列を返します。ただし、<em>sec</em> は Unix エポック (1970 年 1 月 1 日 0:00:00 GMT)
+   からの経過秒数、<em>msec</em> は <em>sec</em>
+   から経過したマイクロ秒数を秒単位で表したものです。
+  </p>
+  <p class="para">
+   <code class="parameter">get_as_float</code> を
+   <strong><code>TRUE</code></strong> に設定すると、<span class="function"><strong>microtime()</strong></span> は Unixエポック からの経過秒数を
+   マイクロ秒で正確になるように <span class="type"><a href="language.types.float.html" class="type float">float</a></span> で表したものを返します。
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.microtime-examples">
+  <h3 class="title">例</h3>
+  <p class="para">
+   <div class="example" id="example-2499">
+    <p><strong>例1 <span class="function"><strong>microtime()</strong></span> でタイマスクリプト実行</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/**<br />&nbsp;*&nbsp;PHP&nbsp;5の動作を模擬する簡単な関数<br />&nbsp;*/<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">microtime_float</span><span style="color: #007700">()<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;list(</span><span style="color: #0000BB">$usec</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$sec</span><span style="color: #007700">)&nbsp;=&nbsp;</span><span style="color: #0000BB">explode</span><span style="color: #007700">(</span><span style="color: #DD0000">"&nbsp;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">microtime</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;((float)</span><span style="color: #0000BB">$usec&nbsp;</span><span style="color: #007700">+&nbsp;(float)</span><span style="color: #0000BB">$sec</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">$time_start&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">microtime_float</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;しばらくスリープ<br /></span><span style="color: #0000BB">usleep</span><span style="color: #007700">(</span><span style="color: #0000BB">100</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$time_end&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">microtime_float</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$time&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$time_end&nbsp;</span><span style="color: #007700">-&nbsp;</span><span style="color: #0000BB">$time_start</span><span style="color: #007700">;<br /><br />echo&nbsp;</span><span style="color: #DD0000">"Did&nbsp;nothing&nbsp;in&nbsp;</span><span style="color: #0000BB">$time</span><span style="color: #DD0000">&nbsp;seconds\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example" id="example-2500">
+    <p><strong>例2 PHP 5 におけるタイマスクリプト実行</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$time_start&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">microtime</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;しばらくスリープ<br /></span><span style="color: #0000BB">usleep</span><span style="color: #007700">(</span><span style="color: #0000BB">100</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$time_end&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">microtime</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$time&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$time_end&nbsp;</span><span style="color: #007700">-&nbsp;</span><span style="color: #0000BB">$time_start</span><span style="color: #007700">;<br /><br />echo&nbsp;</span><span style="color: #DD0000">"Did&nbsp;nothing&nbsp;in&nbsp;</span><span style="color: #0000BB">$time</span><span style="color: #DD0000">&nbsp;seconds\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example" id="example-2501">
+    <p><strong>例3 <span class="function"><strong>microtime()</strong></span> と <em>REQUEST_TIME_FLOAT</em> の例 (PHP 5.4.0 以降)</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;ランダムな時間のスリープ<br /></span><span style="color: #0000BB">usleep</span><span style="color: #007700">(</span><span style="color: #0000BB">mt_rand</span><span style="color: #007700">(</span><span style="color: #0000BB">100</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">10000</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">//&nbsp;PHP&nbsp;5.4.0&nbsp;以降は、REQUEST_TIME_FLOAT&nbsp;をスーパーグローバル&nbsp;$_SERVER&nbsp;から取得できるようになりました。<br />//&nbsp;ここにはリクエスト開始時のタイムスタンプがマイクロ秒の精度で記録されています。<br /></span><span style="color: #0000BB">$time&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">microtime</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">)&nbsp;-&nbsp;</span><span style="color: #0000BB">$_SERVER</span><span style="color: #007700">[</span><span style="color: #DD0000">"REQUEST_TIME_FLOAT"</span><span style="color: #007700">];<br /><br />echo&nbsp;</span><span style="color: #DD0000">"Did&nbsp;nothing&nbsp;in&nbsp;</span><span style="color: #0000BB">$time</span><span style="color: #DD0000">&nbsp;seconds\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.microtime-seealso">
+  <h3 class="title">参考</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.time.html" class="function" rel="rdfs-seeAlso">time()</a> - 現在の Unix タイムスタンプを返す</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.localtime.html">localtime</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mktime.html">mktime</a></div>
+ <div class="up"><a href="ref.datetime.html">日付・時刻 関数</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>
