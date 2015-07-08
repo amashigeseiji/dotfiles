@@ -53,6 +53,9 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'mrtazz/simplenote.vim'
 Bundle 'embear/vim-localvimrc'
 Bundle 'vim-jp/vital.vim'
+Bundle 'evidens/vim-twig'
+Bundle 'haya14busa/incsearch.vim'
+Bundle 'haya14busa/incsearch-fuzzy.vim'
 
 syntax on
 filetype plugin indent on
@@ -347,7 +350,10 @@ if glob("$HOME/.vim/others/simplenote")
   endif
 endif
 
-au BufRead ~/.vim/others/* setl ft=vim
+map / <Plug>(incsearch-forward)
+map ? <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+map z/ <Plug>(incsearch-fuzzy-/)
 "}}}
 
 " ローカル設定の読み込み
