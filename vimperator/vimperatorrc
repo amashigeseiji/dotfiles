@@ -218,6 +218,7 @@ command! config open about:config
 command! evernote :js evernote_doAction( document.popupNode, 'CLIP_ACTION_SELECTION' );
 command! jsh js (function a(){commandline.input("js> ", function(inp){if(inp=="quit"){liberator.echo("bye!");return;}liberator.echo(liberator.eval(inp)); a();})})()
 
+javascript if (typeof hBookmark != 'undefined') liberator.loadScript('chrome://hatenabookmark/content/vimperator/plugin/hatenabookmark.js', {__proto__: this});
 " source files
 source ~/.vimperator/user.js
 "}}}
