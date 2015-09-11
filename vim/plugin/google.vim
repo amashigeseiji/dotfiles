@@ -9,6 +9,6 @@ function! GoogleSearch(...)
   endfor
 
   let url = 'http://google.co.jp/search?num=50&hl=ja&lr=lang_ja&q='.l:q
-  exec 'W3mVSplit '.url
+  exec 'W3mSplit '.url
 endfunction
 command! -nargs=+ Google :call GoogleSearch(<f-args>)

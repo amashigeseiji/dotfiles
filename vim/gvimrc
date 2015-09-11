@@ -21,13 +21,14 @@ set fuoptions=maxvert,maxhorz
 au GUIEnter * set fullscreen
 map ,m :set guioptions=m<CR>
 map ,n :set guioptions-=m<CR>
-"inoremap! ¥ \
-"cnoremap! ¥ \
-"inoremap <D-¥> \
-nnoremap <C-f>c :tabnew<CR>
+noremap! ¥ \
+noremap! \ ¥
+
+nnoremap b :buffer<SPACE>
+nnoremap <C-f>c :tabnew \| :VimShellCreate<CR>
 nnoremap <C-f>n :tabnext<CR>
 nnoremap <C-f>p :tabprevious<CR>
-inoremap <C-f>c <ESC>:tabnew<CR>
+inoremap <C-f>c <ESC>:tabnew \| :VimShellCreate<CR>
 inoremap <C-f>n <ESC>:tabnext<CR>
 inoremap <C-f>p <ESC>:tabprevious<CR>
 if !argc()
