@@ -1,0 +1,5 @@
+alias q="exit"
+alias ll="ls -la"
+
+let $PATH = $HOME . '/.rbenv/bin:' . $PATH
+let $PATH = $HOME . '/.rbenv/shims:' . $PATH

@@ -32,6 +32,7 @@ linkto() {
 vim_install() {
   linkto $1 'vimrc' '.'
   linkto $1 'gvimrc' '.'
+  linkto $1 'vimshrc' '.'
   if [ ! -d ~/.vim ];then
     mkdir ~/.vim
     echo 'mkdir ~/.vim'
