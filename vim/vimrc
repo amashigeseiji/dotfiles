@@ -43,6 +43,7 @@ Bundle 'superbrothers/vim-vimperator'
 "Bundle 'hallettj/jslint.vim'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-rails'
+Bundle 'vim-ruby/vim-ruby'
 "Bundle 'comeonly/php.vim-html-enhanced'
 Bundle 'soramugi/auto-ctags.vim'
 Bundle 'slim-template/vim-slim'
@@ -56,6 +57,9 @@ Bundle 'vim-jp/vital.vim'
 Bundle 'evidens/vim-twig'
 Bundle 'haya14busa/incsearch.vim'
 Bundle 'haya14busa/incsearch-fuzzy.vim'
+Bundle 'basyura/TweetVim'
+Bundle 'basyura/twibill.vim'
+Bundle 'tyru/open-browser.vim'
 
 syntax on
 filetype plugin indent on
@@ -69,10 +73,10 @@ if OSTYPE == "Darwin\n"
   endif
 endif
 " encording
+set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,utf-8,sjis,cp932
 set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
-set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,utf-8,sjis,cp932
 "set fileencodings=utf-8
 set clipboard=unnamed,autoselect
 set iminsert=0
@@ -354,6 +358,7 @@ source $HOME/.vim/others/jsread
 source $HOME/.vim/others/csv
 source $HOME/.vim/others/xml
 source $HOME/.vim/others/localvimrc
+source $HOME/.vim/others/tweetvim
 if glob("$HOME/.vim/others/simplenote")
   if filereadable(expand("$HOME/.vim/others/simplenote"))
     source $HOME/.vim/others/simplenote
