@@ -338,32 +338,8 @@ augroup END
 "}}}
 "----- other setting -----
 "others{{{
-"runtime! $HOME/.vim/others/*
-
-source $HOME/.vim/others/vimfiler
-source $HOME/.vim/others/align
-source $HOME/.vim/others/vim-ref
-source $HOME/.vim/others/taglist
-source $HOME/.vim/others/zen-coding
-source $HOME/.vim/others/unite
-source $HOME/.vim/others/vimshell
-source $HOME/.vim/others/neocomplcache
-source $HOME/.vim/others/snipet
-source $HOME/.vim/others/vimwiki
-source $HOME/.vim/others/vimproject
-source $HOME/.vim/others/w3m
-source $HOME/.vim/others/ruby
-source $HOME/.vim/others/phpread
-source $HOME/.vim/others/jsread
-source $HOME/.vim/others/csv
-source $HOME/.vim/others/xml
-source $HOME/.vim/others/localvimrc
-source $HOME/.vim/others/tweetvim
-if glob("$HOME/.vim/others/simplenote")
-  if filereadable(expand("$HOME/.vim/others/simplenote"))
-    source $HOME/.vim/others/simplenote
-  endif
-endif
+set runtimepath+=~/.vim/
+runtime! others/*
 
 map / <Plug>(incsearch-forward)
 map ? <Plug>(incsearch-backward)
