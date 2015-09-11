@@ -5,62 +5,66 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#rc()
-
-" bundle
-Bundle 'gmarik/Vundle.vim'
-Bundle 'Align'
-Bundle 'taglist.vim'
-Bundle 'sudo.vim'
-Bundle 'vimwiki'
-
-if v:version > 700
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimfiler'
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/vimshell'
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim
 endif
 
-Bundle 'thinca/vim-quickrun'
-Bundle 'thinca/vim-ref'
-Bundle 'mattn/emmet-vim'
-Bundle 'yuratomo/w3m.vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'soh335/vim-symfony'
-"Bundle 'mattn/gist-vim'
-Bundle 'mattn/webapi-vim'
-Bundle 'h1mesuke/unite-outline'
-Bundle 'tpope/vim-surround'
-Bundle 'nise-nabe/unite-openpne'
-Bundle 'tpope/vim-fugitive'
-Bundle 'Simple-Javascript-Indenter'
-"Bundle 'jelera/vim-javascript-syntax'
-Bundle 'project.tar.gz'
-Bundle 'rking/ag.vim'
-Bundle 'superbrothers/vim-vimperator'
-"Bundle 'hallettj/jslint.vim'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-rails'
-Bundle 'vim-ruby/vim-ruby'
-"Bundle 'comeonly/php.vim-html-enhanced'
-Bundle 'soramugi/auto-ctags.vim'
-Bundle 'slim-template/vim-slim'
-Bundle 'Shougo/neomru.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'mrtazz/simplenote.vim'
-Bundle 'embear/vim-localvimrc'
-Bundle 'vim-jp/vital.vim'
-Bundle 'evidens/vim-twig'
-Bundle 'haya14busa/incsearch.vim'
-Bundle 'haya14busa/incsearch-fuzzy.vim'
-Bundle 'basyura/TweetVim'
-Bundle 'basyura/twibill.vim'
-Bundle 'tyru/open-browser.vim'
+call neobundle#begin(expand('~/.vim/bundle/'))
 
+" bundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'Align'
+NeoBundle 'taglist.vim'
+NeoBundle 'sudo.vim'
+NeoBundle 'vimwiki'
+
+if v:version > 700
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimshell'
+endif
+
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'yuratomo/w3m.vim'
+NeoBundle 'scrooloose/syntastic'
+"Bundle 'mattn/gist-vim'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'tpope/vim-surround'
+NeoBundleLazy 'nise-nabe/unite-openpne'
+NeoBundleLazy 'soh335/vim-symfony'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'Simple-Javascript-Indenter'
+"Bundle 'jelera/vim-javascript-syntax'
+NeoBundle 'project.tar.gz'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'superbrothers/vim-vimperator'
+"Bundle 'hallettj/jslint.vim'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'vim-ruby/vim-ruby'
+"Bundle 'comeonly/php.vim-html-enhanced'
+NeoBundle 'soramugi/auto-ctags.vim'
+NeoBundle 'slim-template/vim-slim'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'mrtazz/simplenote.vim'
+NeoBundle 'embear/vim-localvimrc'
+NeoBundle 'vim-jp/vital.vim'
+NeoBundle 'evidens/vim-twig'
+NeoBundle 'haya14busa/incsearch.vim'
+NeoBundle 'haya14busa/incsearch-fuzzy.vim'
+NeoBundle 'basyura/TweetVim'
+NeoBundle 'basyura/twibill.vim'
+NeoBundle 'tyru/open-browser.vim'
+
+call neobundle#end()
 syntax on
 filetype plugin indent on
 "}}}
@@ -224,19 +228,12 @@ nnoremap zE <nop>
 nnoremap cs :Csvhl<space>
 "unite
 nnoremap <silent> ,y :<C-u>Unite history/yank<CR>
-"snipet
-noremap es :<C-u>NeoComplCacheEditSnippets<CR>
 "firefox
 nnoremap ,f :!open -a firefox % >/dev/null<CR>
-" alc
-nnoremap E :Ref webdict<space>
-" Gist
-nnoremap gl :Gist -l<CR>
 if OSTYPE == "Darwin\n"
   nnoremap <space>/ g/
 endif
-nnoremap pne :Unite pne/
-nnoremap <Leader>ag :Ag<space>
+nnoremap ,ag :Ag<space>
 "}}}
 "}}}
 "insert-mode{{{
@@ -309,23 +306,7 @@ function! HandleURI()
 endfunction
 map <Leader>f :call HandleURI()<CR>
 "}}}
-let g:auto_ctags_bin_path = '/usr/local/bin/ctags'
-autocmd FileType help noremap <buffer><silent> q :bd<CR>
-command! Utf :set fenc=utf8<CR>
-autocmd BufRead ~/.vimperator/conf/* setl ft=vimperator
-" for scss
-autocmd BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldmarker={,}
-" ローカル辞書をひく(for mac){{{
-if OSTYPE == "Darwin\n"
-  function! DictSearch(...)
-    let text = join(a:000, ' ')
-    exec 'silent :w !open dict://"'.text.'"'
-  endfunction
-  command! -nargs=+ Dict :call DictSearch("<args>")
-  nnoremap ,d :Dict<space>
-endif
-"}}}
-" binary mode
+" binary mode {{{
 augroup BinaryXXD
   au!
   au BufReadPre *.bin let &binary = 1
@@ -336,15 +317,16 @@ augroup BinaryXXD
   au BufWritePost * setl nomod | endif
 augroup END
 "}}}
+let g:auto_ctags_bin_path = '/usr/local/bin/ctags'
+autocmd FileType help noremap <buffer><silent> q :bd<CR>
+autocmd BufRead ~/.vimperator/conf/* setl ft=vimperator
+" for scss
+autocmd BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldmarker={,}
+"}}}
 "----- other setting -----
 "others{{{
 set runtimepath+=~/.vim/
-runtime! others/*
-
-map / <Plug>(incsearch-forward)
-map ? <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-map z/ <Plug>(incsearch-fuzzy-/)
+runtime! others/*.vim
 "}}}
 
 " ローカル設定の読み込み
