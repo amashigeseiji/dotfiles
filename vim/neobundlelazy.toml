@@ -1,14 +1,26 @@
-[[plugins]]
-repository = 'nise-nabe/unite-openpne'
+#[[plugins]]
+#repository = 'nise-nabe/unite-openpne'
 
 [[plugins]]
-repository = 'soh335/vim-symfony'
+repository = 'superbrothers/vim-vimperator'
+filetypes = 'vimperator'
 
 [[plugins]]
-repository = 'thinca/vim-quickrun'
+repository = 'Simple-Javascript-Indenter'
+filetypes = 'javascript'
 
 [[plugins]]
-repository = 'Align'
+repository = 'evidens/vim-twig'
+filetypes = 'twig'
 
 [[plugins]]
-repository = 'taglist.vim'
+repository = 'slim-template/vim-slim'
+filetypes = 'slim'
+
+[[plugins]]
+repository = 'kchmck/vim-coffee-script'
+filetypes = 'coffee'
+
+[[plugins]]
+repository = 'cespare/vim-toml'
+filetypes = 'toml'

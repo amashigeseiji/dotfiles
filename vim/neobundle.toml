@@ -16,6 +16,10 @@ repository = 'Shougo/vimfiler'
 [[plugins]]
 repository = 'Shougo/vimproc'
 
+  [plugins.build]
+    mac = 'make -f make_mac.mak'
+    unix = 'make -f make_unix.mak'
+
 [[plugins]]
 repository = 'Shougo/vimshell'
 
@@ -44,16 +48,10 @@ repository = 'tpope/vim-surround'
 repository = 'tpope/vim-fugitive'
 
 [[plugins]]
-repository = 'Simple-Javascript-Indenter'
-
-[[plugins]]
 repository = 'project.tar.gz'
 
 [[plugins]]
 repository = 'rking/ag.vim'
-
-[[plugins]]
-repository = 'superbrothers/vim-vimperator'
 
 [[plugins]]
 repository = 'tpope/vim-endwise'
@@ -62,13 +60,7 @@ repository = 'tpope/vim-endwise'
 repository = 'tpope/vim-rails'
 
 [[plugins]]
-repository = 'vim-ruby/vim-ruby'
-
-[[plugins]]
 repository = 'soramugi/auto-ctags.vim'
-
-[[plugins]]
-repository = 'slim-template/vim-slim'
 
 [[plugins]]
 repository = 'Shougo/neomru.vim'
@@ -80,9 +72,6 @@ repository = 'kien/ctrlp.vim'
 repository = 'scrooloose/nerdtree'
 
 [[plugins]]
-repository = 'kchmck/vim-coffee-script'
-
-[[plugins]]
 repository = 'mrtazz/simplenote.vim'
 
 [[plugins]]
@@ -90,9 +79,6 @@ repository = 'embear/vim-localvimrc'
 
 [[plugins]]
 repository = 'vim-jp/vital.vim'
-
-[[plugins]]
-repository = 'evidens/vim-twig'
 
 [[plugins]]
 repository = 'haya14busa/incsearch.vim'
@@ -111,3 +97,18 @@ repository = 'tyru/open-browser.vim'
 
 [[plugins]]
 repository = 'yuratomo/gmail.vim'
+
+[[plugins]]
+repository = 'Shougo/unite-outline'
+
+[[plugins]]
+repository = 'thinca/vim-quickrun'
+
+[[plugins]]
+repository = 'taglist.vim'
+
+[[plugins]]
+repository = 'rbtnn/vimconsole.vim'
+
+[[plugins]]
+repository = 'kmnk/vim-unite-giti'

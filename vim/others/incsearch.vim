@@ -1,4 +1,4 @@
-map / <Plug>(incsearch-forward)
-map ? <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-map z/ <Plug>(incsearch-fuzzy-/)
+"map / <Plug>(incsearch-forward)
+"map ? <Plug>(incsearch-backward)
+nnoremap g/ <Plug>(incsearch-stay)
+nnoremap z/ <Plug>(incsearch-fuzzy-/)
