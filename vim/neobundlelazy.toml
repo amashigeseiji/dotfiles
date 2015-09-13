@@ -3,3 +3,12 @@ repository = 'nise-nabe/unite-openpne'
 
 [[plugins]]
 repository = 'soh335/vim-symfony'
+
+[[plugins]]
+repository = 'thinca/vim-quickrun'
+
+[[plugins]]
+repository = 'Align'
+
+[[plugins]]
+repository = 'taglist.vim'

@@ -5,3 +5,4 @@ let g:tweetvim_open_buffer_cmd = 'split!'
 let g:tweetvim_align_right = 1
 
 nnoremap ,tl :<C-u>TweetVimUserStream<CR>
+au Filetype tweetvim setl nonumber

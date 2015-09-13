@@ -1,10 +1,4 @@
 [[plugins]]
-repository = 'Align'
-
-[[plugins]]
-repository = 'taglist.vim'
-
-[[plugins]]
 repository = 'sudo.vim'
 
 [[plugins]]
@@ -24,9 +18,6 @@ repository = 'Shougo/vimproc'
 
 [[plugins]]
 repository = 'Shougo/vimshell'
-
-[[plugins]]
-repository = 'thinca/vim-quickrun'
 
 [[plugins]]
 repository = 'thinca/vim-ref'
