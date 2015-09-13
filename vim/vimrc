@@ -10,7 +10,7 @@ if has('vim_starting')
   if finddir(s:neobundle_dir) == ''
     execute '!git clone https://github.com/Shougo/neobundle.vim.git ' . s:neobundle_dir
   endif
-  execute 'set runtimepath+=' . fnamemodify(s:neobundle_dir, ':p')
+  execute 'set runtimepath^=' . fnamemodify(s:neobundle_dir, ':p')
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
@@ -237,22 +237,6 @@ autocmd BufReadPost *
     \   exe "normal! g`\"" |
     \ endif
 "}}}
-" tabWrapper{{{
-function! InsertTabWrapper()
-  if pumvisible()
-      return "\<c-n>"
-  endif
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k\|<\|/'
-      return "\<tab>"
-  "elseif exists('&omnifunc') && &omnifunc == ''
-  "    return "\<c-n>"
-  else
-      return "\<c-x>\<c-o>"
-  endif
-endfunction
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-"}}}
 " 行のURLを開く{{{
 function! HandleURI()
   let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;:]*')
@@ -288,6 +272,16 @@ set runtimepath+=~/.vim/
 runtime! others/*.vim
 "}}}
 
+function! s:bundle_add(...)
+  let l:args = a:000
+  let l:output = len(l:args) == 2 && l:args[1] == 'lazy' ?
+        \ '~/.vim/neobundlelazy.toml' : '~/.vim/neobundle.toml'
+  execute "redir! >> " . fnamemodify(l:output, ':p')
+    silent! echon "\n[[plugins]]\n"
+    silent! echon "repository = \'" . l:args[0] . "\'"
+  redir END
+endfunction
+command! -nargs=* BundleAdd call s:bundle_add(<f-args>)
 " ローカル設定の読み込み
 if filereadable(expand('~/.vim/vimrc.local'))
   source ~/.vim/vimrc.local

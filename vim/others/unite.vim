@@ -12,6 +12,6 @@ if v:version > 700
   " レジスタ一覧
   noremap <C-U>y :Unite -buffer-name=register register<CR>
   " function
-  nnoremap f :Unite outline<CR>
-  nnoremap <C-u>f :Unite function<CR>
+  "nnoremap f :Unite outline<CR>
+  "nnoremap <C-u>f :Unite function<CR>
 endif

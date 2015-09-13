@@ -5,7 +5,7 @@ repository = 'sudo.vim'
 repository = 'vimwiki'
 
 [[plugins]]
-repository = 'Shougo/neocomplcache'
+repository = 'Shougo/neocomplete'
 
 [[plugins]]
 repository = 'Shougo/unite.vim'
@@ -108,3 +108,6 @@ repository = 'basyura/twibill.vim'
 
 [[plugins]]
 repository = 'tyru/open-browser.vim'
+
+[[plugins]]
+repository = 'yuratomo/gmail.vim'
