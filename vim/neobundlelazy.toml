@@ -1,0 +1,5 @@
+[[plugins]]
+repository = 'nise-nabe/unite-openpne'
+
+[[plugins]]
+repository = 'soh335/vim-symfony'

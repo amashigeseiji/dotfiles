@@ -1,0 +1,119 @@
+[[plugins]]
+repository = 'Align'
+
+[[plugins]]
+repository = 'taglist.vim'
+
+[[plugins]]
+repository = 'sudo.vim'
+
+[[plugins]]
+repository = 'vimwiki'
+
+[[plugins]]
+repository = 'Shougo/neocomplcache'
+
+[[plugins]]
+repository = 'Shougo/unite.vim'
+
+[[plugins]]
+repository = 'Shougo/vimfiler'
+
+[[plugins]]
+repository = 'Shougo/vimproc'
+
+[[plugins]]
+repository = 'Shougo/vimshell'
+
+[[plugins]]
+repository = 'thinca/vim-quickrun'
+
+[[plugins]]
+repository = 'thinca/vim-ref'
+
+[[plugins]]
+repository = 'mattn/emmet-vim'
+
+[[plugins]]
+repository = 'yuratomo/w3m.vim'
+
+[[plugins]]
+repository = 'scrooloose/syntastic'
+
+[[plugins]]
+repository = 'mattn/webapi-vim'
+
+[[plugins]]
+repository = 'h1mesuke/unite-outline'
+
+[[plugins]]
+repository = 'tpope/vim-surround'
+
+[[plugins]]
+repository = 'tpope/vim-fugitive'
+
+[[plugins]]
+repository = 'Simple-Javascript-Indenter'
+
+[[plugins]]
+repository = 'project.tar.gz'
+
+[[plugins]]
+repository = 'rking/ag.vim'
+
+[[plugins]]
+repository = 'superbrothers/vim-vimperator'
+
+[[plugins]]
+repository = 'tpope/vim-endwise'
+
+[[plugins]]
+repository = 'tpope/vim-rails'
+
+[[plugins]]
+repository = 'vim-ruby/vim-ruby'
+
+[[plugins]]
+repository = 'soramugi/auto-ctags.vim'
+
+[[plugins]]
+repository = 'slim-template/vim-slim'
+
+[[plugins]]
+repository = 'Shougo/neomru.vim'
+
+[[plugins]]
+repository = 'kien/ctrlp.vim'
+
+[[plugins]]
+repository = 'scrooloose/nerdtree'
+
+[[plugins]]
+repository = 'kchmck/vim-coffee-script'
+
+[[plugins]]
+repository = 'mrtazz/simplenote.vim'
+
+[[plugins]]
+repository = 'embear/vim-localvimrc'
+
+[[plugins]]
+repository = 'vim-jp/vital.vim'
+
+[[plugins]]
+repository = 'evidens/vim-twig'
+
+[[plugins]]
+repository = 'haya14busa/incsearch.vim'
+
+[[plugins]]
+repository = 'haya14busa/incsearch-fuzzy.vim'
+
+[[plugins]]
+repository = 'basyura/TweetVim'
+
+[[plugins]]
+repository = 'basyura/twibill.vim'
+
+[[plugins]]
+repository = 'tyru/open-browser.vim'

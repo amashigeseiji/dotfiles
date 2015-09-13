@@ -6,67 +6,26 @@ set nocompatible
 filetype off
 
 if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim
+  let s:neobundle_dir = '~/.vim/bundle/neobundle.vim'
+  if finddir(s:neobundle_dir) == ''
+    execute '!git clone https://github.com/Shougo/neobundle.vim.git ' . s:neobundle_dir
+  endif
+  execute 'set runtimepath+=' . fnamemodify(s:neobundle_dir, ':p')
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
 
-" bundle
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Align'
-NeoBundle 'taglist.vim'
-NeoBundle 'sudo.vim'
-NeoBundle 'vimwiki'
-
-if v:version > 700
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/vimproc'
-NeoBundle 'Shougo/vimshell'
+if neobundle#load_cache()
+  NeoBundleFetch 'Shougo/neobundle.vim'
+  call neobundle#load_toml('~/.vim/neobundle.toml')
+  call neobundle#load_toml('~/.vim/neobundlelazy.toml', {'lazy' :1} )
+  NeoBundleSaveCache
 endif
-
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'thinca/vim-ref'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'yuratomo/w3m.vim'
-NeoBundle 'scrooloose/syntastic'
-"Bundle 'mattn/gist-vim'
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'tpope/vim-surround'
-NeoBundleLazy 'nise-nabe/unite-openpne'
-NeoBundleLazy 'soh335/vim-symfony'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'Simple-Javascript-Indenter'
-"Bundle 'jelera/vim-javascript-syntax'
-NeoBundle 'project.tar.gz'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'superbrothers/vim-vimperator'
-"Bundle 'hallettj/jslint.vim'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'vim-ruby/vim-ruby'
-"Bundle 'comeonly/php.vim-html-enhanced'
-NeoBundle 'soramugi/auto-ctags.vim'
-NeoBundle 'slim-template/vim-slim'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'mrtazz/simplenote.vim'
-NeoBundle 'embear/vim-localvimrc'
-NeoBundle 'vim-jp/vital.vim'
-NeoBundle 'evidens/vim-twig'
-NeoBundle 'haya14busa/incsearch.vim'
-NeoBundle 'haya14busa/incsearch-fuzzy.vim'
-NeoBundle 'basyura/TweetVim'
-NeoBundle 'basyura/twibill.vim'
-NeoBundle 'tyru/open-browser.vim'
 
 call neobundle#end()
 syntax on
 filetype plugin indent on
+NeoBundleCheck
 "}}}
 "基本設定{{{
 let OSTYPE = system('uname')
