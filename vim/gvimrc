@@ -12,7 +12,7 @@ set guioptions=c
 colorscheme mycolor
 set guicursor=a:blinkon0
 set title
-"set transparency=7
+set transparency=7
 " 常にタブを表示
 set showtabline=2
 set lines=150 columns=330

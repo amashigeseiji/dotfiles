@@ -112,3 +112,6 @@ repository = 'rbtnn/vimconsole.vim'
 
 [[plugins]]
 repository = 'kmnk/vim-unite-giti'
+
+[[plugins]]
+repository = 'vim-jp/vimdoc-ja'
