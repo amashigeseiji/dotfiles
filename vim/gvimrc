@@ -31,3 +31,8 @@ nnoremap <C-f>p :tabprevious<CR>
 inoremap <C-f>c <ESC>:tabnew \| :VimShellCreate<CR>
 inoremap <C-f>n <ESC>:tabnext<CR>
 inoremap <C-f>p <ESC>:tabprevious<CR>
+
+"起動時にvimshell
+if !argc()
+    autocmd vimenter * VimShell
+endif
