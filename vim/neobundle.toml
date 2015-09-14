@@ -115,3 +115,9 @@ repository = 'kmnk/vim-unite-giti'
 
 [[plugins]]
 repository = 'vim-jp/vimdoc-ja'
+
+[[plugins]]
+repository = 'itchyny/lightline.vim'
+
+[[plugins]]
+repository = 'nanotech/jellybeans.vim'

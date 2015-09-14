@@ -87,7 +87,7 @@ set cmdheight=2    " コマンドラインの高さ
 "set title          " タイトルを表示
 " statusline
 set laststatus=2  " 常にステータス行を表示
-set statusline=path:%F%m%r%h%w%=%L[enc:%{&fileencoding}][ff:%{&ff}]
+"set statusline=path:%F%m%r%h%w%=%L%{fugitive#statusline()}[enc:%{&fileencoding}][ff:%{&ff}]
 " tabline
 set showtabline=2
 
@@ -121,7 +121,7 @@ noh
 if filereadable(expand("~/.vim/colors/mycolor.vim"))
   colorscheme mycolor
 else
-  colorscheme elflord
+  colorscheme jellybeans
 endif
 "}}}
 "}}}

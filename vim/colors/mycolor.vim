@@ -55,31 +55,31 @@ endif
 
 "cui{{{
 if &t_Co > 255
-   hi Boolean         ctermfg=135
+   hi Boolean         ctermfg=205
    hi Character       ctermfg=144
    hi Number          ctermfg=135
-   hi String          ctermfg=144
-   hi Conditional     ctermfg=161               cterm=bold
-   hi Constant        ctermfg=135               cterm=bold
+   hi String          ctermfg=101
+   hi Conditional     ctermfg=170
+   hi Constant        ctermfg=39                cterm=bold
    hi Cursor          ctermfg=16  ctermbg=253
    hi Debug           ctermfg=225               cterm=bold
-   hi Define          ctermfg=81
+   hi Define          ctermfg=79
    hi Delimiter       ctermfg=241
 
    hi DiffAdd                     ctermbg=24
    hi DiffChange      ctermfg=181 ctermbg=239
    hi DiffDelete      ctermfg=162 ctermbg=53
-   hi DiffText                    ctermbg=102 cterm=bold
+   hi DiffText                    ctermbg=102   cterm=bold
 
-   hi Directory       ctermfg=118               cterm=bold
-   hi Error           ctermfg=219 ctermbg=89
-   hi ErrorMsg        ctermfg=199 ctermbg=16    cterm=bold
+   hi Directory       ctermfg=110               cterm=bold
+   hi Error           ctermfg=199  ctermbg=53
+   hi ErrorMsg        ctermfg=125  ctermbg=none cterm=bold
    hi Exception       ctermfg=118               cterm=bold
    hi Float           ctermfg=135
    hi FoldColumn      ctermfg=67  ctermbg=16
-   hi Folded          ctermfg=67  ctermbg=16
-   hi Function        ctermfg=118
-   hi Identifier      ctermfg=208
+   hi Folded          ctermfg=67  ctermbg=236
+   hi Function        ctermfg=120
+   hi Identifier      ctermfg=137
    hi Ignore          ctermfg=244 ctermbg=232
    hi IncSearch       ctermfg=193 ctermbg=16
 
@@ -88,20 +88,20 @@ if &t_Co > 255
    hi Macro           ctermfg=193
 
    hi MatchParen      ctermfg=16  ctermbg=208 cterm=bold
-   hi ModeMsg         ctermfg=229
-   hi MoreMsg         ctermfg=229
-   hi Operator        ctermfg=161
+   hi ModeMsg         ctermfg=180
+   hi MoreMsg         ctermfg=180
+   hi Operator        ctermfg=209
 
    " complete menu{{{
-   hi Pmenu           ctermfg=81  ctermbg=16
-   hi PmenuSel                    ctermbg=244
+   hi Pmenu           ctermfg=7   ctermbg=8
+   hi PmenuSel                    ctermbg=138   cterm=bold
    hi PmenuSbar                   ctermbg=232
    hi PmenuThumb      ctermfg=81
 
-   hi PreCondit       ctermfg=118               cterm=bold
-   hi PreProc         ctermfg=118
+   hi PreCondit       ctermfg=116               cterm=bold
+   hi PreProc         ctermfg=101
    hi Question        ctermfg=81
-   hi Repeat          ctermfg=161               cterm=bold
+   hi Repeat          ctermfg=178
    hi Search          ctermfg=253 ctermbg=66
    "}}}
 
@@ -109,20 +109,20 @@ if &t_Co > 255
    hi SignColumn      ctermfg=118 ctermbg=235
    hi SpecialChar     ctermfg=161               cterm=bold
    hi SpecialComment  ctermfg=245               cterm=bold
-   hi Special         ctermfg=81  ctermbg=232
+   hi Special         ctermfg=73  ctermbg=232
 
-   hi Statement       ctermfg=001               cterm=bold
+   hi Statement       ctermfg=170           cterm=bold
    hi StatusLine      ctermfg=023 ctermbg=251
    hi StatusLineNC    ctermfg=240 ctermbg=235
    hi StorageClass    ctermfg=208
-   hi Structure       ctermfg=81
+   hi Structure       ctermfg=80
    hi Tag             ctermfg=161
    hi Title           ctermfg=166
    hi Todo            ctermfg=231 ctermbg=232   cterm=bold
 
    hi Typedef         ctermfg=81
-   hi Type            ctermfg=81                cterm=none
-   hi Underlined      ctermfg=244               cterm=underline
+   hi Type            ctermfg=69                cterm=none
+   hi Underlined      ctermfg=72                cterm=underline
 
    hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
    hi VisualNOS                   ctermbg=238
@@ -134,11 +134,11 @@ end
 "}}}
 
 " 通常の表示
-hi Normal               ctermfg=252 ctermbg=234 guifg=White guibg=grey18
+hi Normal               ctermfg=248 ctermbg=234 guifg=White guibg=grey18
 " 行番号
-hi LineNr               ctermfg=250 ctermbg=234 guifg=#777777
+hi LineNr               ctermfg=238 ctermbg=234 guifg=#777777
 " コメント
-hi Comment              ctermfg=59 guifg=#666666
+hi Comment              ctermfg=237 guifg=#666666
 " special keys
 hi SpecialKey           term=underline ctermfg=darkgray ctermbg=black guifg=grey30 guibg=grey20
 hi IdeographicSpace     term=underline ctermbg=DarkGreen guibg=DarkGreen
