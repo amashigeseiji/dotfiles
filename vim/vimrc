@@ -286,6 +286,7 @@ function! s:bundle_add(repository, ...)
     silent! echon "\n[[plugins]]"
     silent! echon "\nrepository = \'" . a:repository . "\'"
   redir END
+  call neobundle#commands#clear_cache()
 endfunction
 command! -nargs=* BundleAdd call s:bundle_add(<f-args>)
 " ローカル設定の読み込み
