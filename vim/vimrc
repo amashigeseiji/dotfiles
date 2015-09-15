@@ -50,41 +50,41 @@ set backspace=indent,eol,start
 set visualbell t_vb=
 
 set incsearch
-set ignorecase   " 検索時に大文字小文字を無視
-set smartcase    " 大文字小文字の両方が含まれている場合は大文字小文字を区別
-set wrapscan        " 検索時にファイルの最後まで行ったら最初に戻る (nowrapscan:戻らない)
+set ignorecase         " 検索時に大文字小文字を無視
+set smartcase          " 大文字小文字の両方が含まれている場合は大文字小文字を区別
+set wrapscan           " 検索時にファイルの最後まで行ったら最初に戻る (nowrapscan:戻らない)
 "set grepprg=ack\ -a
 set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
 set grepprg=grep\ -nH
 set hlsearch
 
-set tabstop=2        " タブの画面上での幅
-set expandtab      " タブをスペースに展開しない
-set shiftwidth=2    " autoindentなどの時のタブ幅
+set tabstop=2          " タブの画面上での幅
+set expandtab          " タブをスペースに展開しない
+set shiftwidth=2       " autoindentなどの時のタブ幅
 set softtabstop=2
 set smartindent
 set autoindent
-set showmatch        " 括弧入力時に対応する括弧を表示 (noshowmatch:表示しない)
+set showmatch          " 括弧入力時に対応する括弧を表示 (noshowmatch:表示しない)
 
 "viminfo // see :help 23.1
 "set viminfo='1000,f1,<500,s100
 "set viminfo+=n~/tmp/viminfo
-"set backspace=2    " バックスペースでインデントや改行を削除できるようにする
 "set showmode
+
+"set textwidth=0       "自動折り返ししない
+"set formatoptions+=mM " テキスト挿入中の自動折り返しを日本語に対応させる
+set formatoptions=q
+set list               " タブや改行を表示 (list:表示)
+set listchars=tab:>-,extends:<,trail:-,eol:$ " どの文字でタブや改行を表示するかを設定
+
+set number
+set wrap
+set noruler
+set cmdheight=2
+"set showcmd
+
 set wildmenu        " コマンドライン補完するときに強化されたものを使う(参照 :help wildmenu)
 set wildmode=list:full,full " コマンドライン補完をシェルっぽくする
-"set formatoptions+=mM   " テキスト挿入中の自動折り返しを日本語に対応させる
-"自動折り返し切りたいのだが...
-"set textwidth=0
-set formatoptions=q
-set number
-set list        " タブや改行を表示 (list:表示)
-set listchars=tab:>-,extends:<,trail:-,eol:$ " どの文字でタブや改行を表示するかを設定
-set wrap          " 長い行を折り返して表示
-set noruler
-set cmdheight=2    " コマンドラインの高さ
-"set showcmd        " コマンドをステータス行に表示
-"set title          " タイトルを表示
 " statusline
 set laststatus=2  " 常にステータス行を表示
 "set statusline=path:%F%m%r%h%w%=%L%{fugitive#statusline()}[enc:%{&fileencoding}][ff:%{&ff}]
@@ -94,15 +94,18 @@ set showtabline=2
 set autoread     "他で書き換えられた場合、自動で読みなおす
 set noswapfile
 set nobackup     " バックアップファイルを作成しない
-set ambiwidth=double
-"set formatexpr=Format_Japanese()
-set helplang=ja
+"undo file
+set noundofile
 set history=50
+
+set ambiwidth=double
+
 set splitbelow
 set splitright
 set virtualedit+=block " 矩形選択で行末を超えてブロックを選択できるようにする
-set foldmethod=marker
 
+" foldings
+set foldmethod=marker
 autocmd BufReadPost *.txt,*.memo |
   \ set foldmethod=indent |
 set foldopen=hor,search,insert,jump,tag
@@ -110,8 +113,6 @@ set foldopen=hor,search,insert,jump,tag
 set modeline
 
 set helplang=ja,en
-"undo file
-set noundofile
 "ctags
 set tags=./tags;
 "ファイル読み込み時にhighlightしない
@@ -142,16 +143,13 @@ nnoremap <C-c> gt
 "nnoremap <C-a> 0
 nnoremap <C-e> <S-$>
 " Ctrl+Nで次のバッファを表示
-nnoremap <C-N>   :bnext<CR>
+nnoremap <C-n>   :bnext<CR>
 " Ctrl+Pで前のバッファを表示
-nnoremap <C-P>   :bprevious<CR>
+nnoremap <C-p>   :bprevious<CR>
 nnoremap <C-j> <C-]>
 nnoremap g<C-j> g<C-]>
 " tmuxのプレフィックスとかぶるので
 nnoremap <C-f> <nop>
-" 数値を増やす
-nnoremap <S-a> <C-a>
-nnoremap <S-x> <C-x>
 
 nnoremap <space>w :w<CR>
 nnoremap <space>q :q<CR>
@@ -185,14 +183,6 @@ nnoremap zD <nop>
 nnoremap zE <nop>
 "}}}
 "plugin {{{
-nnoremap cs :Csvhl<space>
-"unite
-nnoremap <silent> ,y :<C-u>Unite history/yank<CR>
-"firefox
-nnoremap ,f :!open -a firefox % >/dev/null<CR>
-if OSTYPE == "Darwin\n"
-  nnoremap <space>/ g/
-endif
 nnoremap ,ag :Ag<space>
 "}}}
 "}}}
@@ -209,14 +199,9 @@ inoremap `` ``<Left>
 inoremap /* /*  */<Left><Left><Left>
 inoremap <C-l> ->
 inoremap <M-l> =>
-
-"inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
-"inoremap <C-k> <CR>
-"snipet
-"imap <C-k> <Plug>(neocomplcache_snippets_expand)
 "}}}
 "commandline-mode{{{
-cnoremap <C-A> <HOME>
+cnoremap <C-a> <HOME>
 cnoremap <C-e> <End>
 cnoremap <C-k> <CR>
 cnoremap <C-j> <ESC>
