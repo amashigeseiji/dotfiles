@@ -5,3 +5,4 @@ endif
 if filereadable(expand('~/.gmail.vim/default'))
   source ~/.gmail.vim/default
 endif
+au Filetype gmail cnoremap <buffer><silent> q :GmailExit<CR>

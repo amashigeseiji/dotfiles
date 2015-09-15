@@ -121,3 +121,8 @@ repository = 'itchyny/lightline.vim'
 
 [[plugins]]
 repository = 'nanotech/jellybeans.vim'
+
+[[plugins]]
+repository = 'Shougo/neosnippet'
+[[plugins]]
+repository = 'Shougo/neosnippet-snippets'

@@ -287,6 +287,10 @@ function! s:bundle_add(repository, ...)
     silent! echon "\nrepository = \'" . a:repository . "\'"
   redir END
   call neobundle#commands#clear_cache()
+  call neobundle#load_toml(s:bundles)
+  call neobundle#load_toml(s:bundle_lazys, {'lazy' :1} )
+  NeoBundleSaveCache
+  NeoBundleCheck
 endfunction
 command! -nargs=* BundleAdd call s:bundle_add(<f-args>)
 " ローカル設定の読み込み
