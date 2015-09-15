@@ -27,9 +27,6 @@ repository = 'Shougo/vimshell'
 repository = 'thinca/vim-ref'
 
 [[plugins]]
-repository = 'mattn/emmet-vim'
-
-[[plugins]]
 repository = 'yuratomo/w3m.vim'
 
 [[plugins]]
@@ -124,5 +121,6 @@ repository = 'nanotech/jellybeans.vim'
 
 [[plugins]]
 repository = 'Shougo/neosnippet'
+
 [[plugins]]
 repository = 'Shougo/neosnippet-snippets'

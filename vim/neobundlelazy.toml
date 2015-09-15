@@ -24,3 +24,7 @@ filetypes = 'coffee'
 [[plugins]]
 repository = 'cespare/vim-toml'
 filetypes = 'toml'
+
+[[plugins]]
+repository = 'mattn/emmet-vim'
+filetypes = ['html', 'php', 'eruby']
