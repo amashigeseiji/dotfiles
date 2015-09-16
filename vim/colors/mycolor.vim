@@ -19,12 +19,12 @@ let g:colors_name="mycolor"
 "gui{{{
 if has('gui_running')
   " highlight groups
-  hi Cursor           guibg=khaki guifg=slategrey
+  hi Cursor           guifg=slategrey    guibg=khaki
 
-  hi VertSplit        guibg=#c2bfa5 guifg=grey50 gui=none
-  hi Folded           guibg=#292929 guifg=#6666aa gui=bold
-  hi FoldColumn       guibg=grey30 guifg=tan
-  hi IncSearch        guifg=slategrey guibg=khaki
+  hi VertSplit        guifg=grey50       guibg=#c2bfa5      gui=none
+  hi Folded           guifg=#7777ff      guibg=grey30
+  hi FoldColumn       guifg=tan          guibg=grey30
+  hi IncSearch        guifg=slategrey    guibg=khaki
   hi ModeMsg          guifg=goldenrod
   hi MoreMsg          guifg=SeaGreen
   hi Question         guifg=springgreen
@@ -134,7 +134,7 @@ end
 "}}}
 
 " 通常の表示
-hi Normal             ctermfg=248  ctermbg=234 guifg=White guibg=grey18
+hi Normal             ctermfg=248  ctermbg=234 guifg=#cccccc guibg=grey18
 " 行番号
 hi LineNr             ctermfg=238  ctermbg=234 guifg=#777777
 " コメント
