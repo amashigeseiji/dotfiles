@@ -6,6 +6,12 @@ aug RubyRead
   au FileType ruby inoremap <buffer>{} {  }<Left><Left>
   au FileType ruby inoremap <buffer>// //<Left>
   au FileType ruby setl foldmethod=syntax
+  autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+  if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
+  let g:neocomplete#force_omni_input_patterns.ruby =
+    \'[^. *\t]\.\w*\|\h\w*::'
 aug END
 
 aug ErbRead
