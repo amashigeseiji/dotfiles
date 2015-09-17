@@ -11,3 +11,4 @@ augroup vimshell_loading
 augroup END
 let g:vimshell_prompt = '>> '
 let g:vimshell_right_prompt = '"[" . getcwd() . "]"'
+let g:vimshell_cat_command = 'less'

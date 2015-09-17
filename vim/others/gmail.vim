@@ -2,23 +2,23 @@ let g:gmail_nomove_after_select = 1
 let g:gmail_signature = "Amashige Seiji (sent from gmail.vim)"
 let g:gmail_mailbox_trash = '[Gmail]/ゴミ箱'
 let g:gmail_default_encoding = 'utf-8'
+let g:gmail_account_dir = '~/.gmail.vim/'
 
 augroup gmail
-  au Filetype gmail cnoremap <buffer><silent> q :GmailExit<CR>
+  au Filetype gmail cnoremap <buffer> q GmailExit
 augroup END
 
 function! s:gmail(...)
-  let s:gmail_account_dir = '~/.gmail.vim/'
-  let s:gmail_default_account = s:gmail_account_dir . 'default'
+  let s:gmail_default_account = g:gmail_account_dir . 'default'
 
-  if !isdirectory(expand(s:gmail_account_dir))
-    call mkdir(expand(s:gmail_account_dir), 'p', 0700)
+  if !isdirectory(expand(g:gmail_account_dir))
+    call mkdir(expand(g:gmail_account_dir), 'p', 0700)
   endif
 
   if len(a:000) == 0
     let account_setting = s:gmail_default_account
   else
-    let account_setting = s:gmail_account_dir . a:000[0]
+    let account_setting = g:gmail_account_dir . a:000[0]
   endif
 
   if filereadable(expand(account_setting))
@@ -34,4 +34,8 @@ function! s:gmail(...)
   call gmail#start()
 endfunction
 
-command! -nargs=* Gm :call s:gmail(<f-args>)
+function! s:gmail_account_completion(ArgLead, CmdLine, CursorPos)
+  return systemlist('ls ' . expand(g:gmail_account_dir))
+endfunction
+
+command! -nargs=* -complete=customlist,s:gmail_account_completion Gm :call s:gmail(<f-args>)
