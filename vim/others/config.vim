@@ -1,10 +1,13 @@
-let g:config_dir = '~/.vim/others/'
 function! s:config_plugin(plugin)
-  let l:file = expand(g:config_dir) . a:plugin
-  execute 'edit ' . l:file
+  let l:file = expand(g:other_settings_dir) . a:plugin
+  execute 'tabedit ' . l:file
 endfunction
 function! s:config_plugin_completion(ArgLead, CmdLine, CursorPos)
-  return systemlist('ls ' . expand(g:config_dir) . ' | grep vim$')
+  let l:cmd = 'ls ' . expand(g:other_settings_dir) . ' | grep vim$'
+  if a:ArgLead != ''
+    let l:cmd .= ' | grep ^' . a:ArgLead
+  endif
+  return systemlist(l:cmd)
 endfunction
 command! -nargs=* -complete=customlist,s:config_plugin_completion Config call s:config_plugin(<q-args>)
 nnoremap ,c :Config<space>
