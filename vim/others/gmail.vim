@@ -1,8 +1,8 @@
 let g:gmail_nomove_after_select = 1
 let g:gmail_signature = "Amashige Seiji (sent from gmail.vim)"
 let g:gmail_mailbox_trash = '[Gmail]/ゴミ箱'
-let g:gmail_default_encoding = 'utf-8'
-let g:gmail_account_dir = '~/.gmail.vim/'
+let g:gmail_account_dir = '~/.gmail.vim/account/'
+let g:gmail_cache_dir = '~/.gmail.vim/cache/'
 
 augroup gmail
   au Filetype gmail cnoremap <buffer> q GmailExit
