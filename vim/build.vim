@@ -1,7 +1,7 @@
-let s:dotfile = expand('~/dotfiles/vim/')
+let g:dotfile = expand('~/dotfiles/vim/')
 function! s:dotfile_build()
   if !isdirectory(expand('~/.vim'))
-    system('ln -s ' . s:dotfile . ' ~/.vim')
+    exec "system('/bin/ln -s '" . g:dotfile . "' ~/.vim')"
   endif
   let l:vimrc = expand('~/.vimrc')
   redir >> ~/.vimrc
