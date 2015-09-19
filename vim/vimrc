@@ -1,4 +1,3 @@
-let g:vimrc_load_rcfile = ['neobundle', 'basic', 'keymap']
 let g:other_settings_dir = '~/.vim/others/'
 "let g:vimrc_load_other_settings = ['emmet', 'lightline', 'neobundle', 'vim-ref']
 source ~/.vim/init.vim
