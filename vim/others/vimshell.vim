@@ -1,3 +1,4 @@
+let g:vimshell_vimshrc_path = expand('~/dotfiles/vim/vimshrc')
 nnoremap <silent> vs :VimShell<CR>
 nnoremap <silent> vp :VimShellPop<CR>
 augroup vimshell_loading

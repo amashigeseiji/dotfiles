@@ -4,10 +4,10 @@ let g:tweetvim_display_icon = 1
 let g:tweetvim_open_buffer_cmd = 'split!'
 
 nnoremap ,tl :<C-u>TweetVimUserStream<CR>
-au Filetype tweetvim setl nonumber
 
 augroup TweetVimSetting
   au!
+  au Filetype tweetvim setl nonumber
   au Filetype tweetvim_say nnoremap <buffer><silent>q :bd!<CR>
   au Filetype tweetvim     nnoremap <buffer><silent>s :<C-u>TweetVimSay<CR>
 augroup END

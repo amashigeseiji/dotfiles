@@ -16,5 +16,5 @@ aug PHPRead
   autocmd Filetype php nnoremap <buffer> PH :set ft=php<CR>
   autocmd Filetype php inoremap <buffer> $thi $this->
   autocmd Filetype php inoremap <buffer>?? ?php  ?<Left><Left>
+  autocmd BufRead,BufNewFile *.php.sample setl filetype=php
 aug END
-autocmd BufRead,BufNewFile *.php.sample setl filetype=php
