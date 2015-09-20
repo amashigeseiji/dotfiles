@@ -36,6 +36,6 @@ inoremap <C-f>p <ESC>:tabprevious<CR>
 if !argc()
     autocmd vimenter * VimShell
 endif
-if filereadable(expand('~/.vim/gvimlocalrc'))
-  source ~/.vim/gvimlocalrc
+if filereadable(expand('~/.vim/gvimrc.local'))
+  source ~/.vim/gvimrc.local
 endif

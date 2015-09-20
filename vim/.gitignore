@@ -1,3 +1,5 @@
 man/
 bundle/*
 vimwiki/*
+vimrc.local
+gvimrc.local

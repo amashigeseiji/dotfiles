@@ -1,8 +1,6 @@
-let g:other_settings_dir = '~/.vim/others/'
 "let g:vimrc_load_other_settings = ['emmet', 'lightline', 'neobundle', 'vim-ref']
 source ~/.vim/init.vim
 colorscheme mycolor
-if filereadable(expand('~/.vim/vimrc.local'))
-  source ~/.vim/vimrc.local
-endif
+let g:localvimrc = '~/.vim/vimrc.local'
+call vimrc.init()
 noh

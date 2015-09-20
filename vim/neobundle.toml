@@ -124,3 +124,6 @@ repository = 'Shougo/neosnippet'
 
 [[plugins]]
 repository = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repository = 'itchyny/dictionary.vim'

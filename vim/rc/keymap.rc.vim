@@ -1,3 +1,4 @@
+function! vimrc.initialize_with.keymap_rc()
 "normal-mode{{{
 "カーソルを表示行で移動する。物理行移動は<C-n>,<C-p>
 nnoremap j gj
@@ -33,6 +34,7 @@ nnoremap <silent>;n :set nonumber!<CR>
 nnoremap <silent>;a :append!<CR>
 nnoremap <silent>;l :noh<CR>
 nnoremap ,fi :set foldmethod=indent<CR>
+nnoremap ,fm :set foldmethod=marker<CR>
 nnoremap -- 78i-<esc>o<esc>
 "folding {{{
 "noremap [space] <nop>
@@ -85,3 +87,4 @@ vnoremap <S-h> 0
 vnoremap <S-a> $<S-a>
 vnoremap * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
 "}}}
+endfunction

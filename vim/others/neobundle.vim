@@ -12,10 +12,6 @@ function! s:bundle_add(repository, ...)
     silent! echon "\nrepository = \'" . a:repository . "\'"
   redir END
   call neobundle#commands#clear_cache()
-  call neobundle#load_toml(s:bundles)
-  call neobundle#load_toml(s:bundle_lazys, {'lazy' :1} )
-  NeoBundleSaveCache
-  call neobundle#load_cache()
-  NeoBundleCheck
+  call g:vimrc.neobundle_init()
 endfunction
 command! -nargs=* BundleAdd call s:bundle_add(<f-args>)

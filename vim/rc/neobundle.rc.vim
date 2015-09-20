@@ -1,22 +1,22 @@
 " Bundle
-function! s:bundle_init() dict
+function! vimrc.initialize_with.neobundle_rc()
   set nocompatible
   filetype off
 
   if has('vim_starting')
-    let s:neobundle_dir = $vimhome . '/bundle/neobundle.vim'
-    if finddir(s:neobundle_dir) == ''
-      execute '!git clone https://github.com/Shougo/neobundle.vim.git ' . s:neobundle_dir
+    let l:neobundle_dir = g:vimrc.home . '/bundle/neobundle.vim'
+    if finddir(l:neobundle_dir) == ''
+      execute '!git clone https://github.com/Shougo/neobundle.vim.git ' . l:neobundle_dir
     endif
-    execute 'set runtimepath^=' . fnamemodify(s:neobundle_dir, ':p')
+    execute 'set runtimepath^=' . fnamemodify(l:neobundle_dir, ':p')
   endif
 
-  call neobundle#begin($vimhome . '/bundle/')
+  call neobundle#begin(g:vimrc.home . '/bundle/')
 
   if neobundle#load_cache()
     NeoBundleFetch 'Shougo/neobundle.vim'
-    call neobundle#load_toml($vimhome . '/neobundle.toml')
-    call neobundle#load_toml($vimhome . '/neobundlelazy.toml', {'lazy' :1} )
+    call neobundle#load_toml(g:vimrc.home . '/neobundle.toml')
+    call neobundle#load_toml(g:vimrc.home . '/neobundlelazy.toml', {'lazy' :1} )
     NeoBundleSaveCache
   endif
 
@@ -25,5 +25,3 @@ function! s:bundle_init() dict
   filetype plugin indent on
   NeoBundleCheck
 endfunction
-
-let vimrc.neobundle_init = function('s:bundle_init')

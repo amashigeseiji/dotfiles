@@ -1,12 +1,16 @@
 "php
-let php_folding = 1
-let php_htmlInStrings = 1
+if exists('b:did_ftplugin')
+  finish
+endif
+let b:did_ftplugin = 1
+
+let g:php_folding = 1
+let g:php_htmlInStrings = 1
 "let php_sql_query = 1
 "let php_noShortTags = 1  "autoindentされなくなるので却下
 " PHP Lint
 function! PHPLint()
-  let result = system( &ft . ' -l ' . bufname(""))
-  echo result
+  echo system( &ft . ' -l ' . bufname(""))
 endfunction
 " ファイルタイプの変更()
 aug PHPRead
@@ -16,5 +20,4 @@ aug PHPRead
   autocmd Filetype php nnoremap <buffer> PH :set ft=php<CR>
   autocmd Filetype php inoremap <buffer> $thi $this->
   autocmd Filetype php inoremap <buffer>?? ?php  ?<Left><Left>
-  autocmd BufRead,BufNewFile *.php.sample setl filetype=php
 aug END
