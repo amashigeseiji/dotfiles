@@ -32,6 +32,7 @@ nnoremap <silent>;w :set nowrap!<CR>
 nnoremap <silent>;n :set nonumber!<CR>
 nnoremap <silent>;a :append!<CR>
 nnoremap <silent>;l :noh<CR>
+nnoremap ,fi :set foldmethod=indent<CR>
 nnoremap -- 78i-<esc>o<esc>
 "folding {{{
 "noremap [space] <nop>
