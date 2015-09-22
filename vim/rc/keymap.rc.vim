@@ -27,7 +27,11 @@ nnoremap <space>q :q<CR>
 " タブを開く
 "nnoremap t :tabe<space>
 " vimrcを編集・読み込み
-nnoremap .. :tabe ~/.vimrc<CR>
+if exists('g:localvimrc')
+  exec 'nnoremap .. :tabe' g:localvimrc '<CR>'
+else
+  nnoremap .. :tabe ~/.vimrc<CR>
+endif
 nnoremap ,, :source ~/.vimrc<CR>
 nnoremap <silent>;w :set nowrap!<CR>
 nnoremap <silent>;n :set nonumber!<CR>
@@ -35,6 +39,7 @@ nnoremap <silent>;a :append!<CR>
 nnoremap <silent>;l :noh<CR>
 nnoremap ,fi :set foldmethod=indent<CR>
 nnoremap ,fm :set foldmethod=marker<CR>
+nnoremap ,fs :set foldmethod=syntax<CR>
 nnoremap -- 78i-<esc>o<esc>
 "folding {{{
 "noremap [space] <nop>

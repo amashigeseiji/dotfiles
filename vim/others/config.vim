@@ -5,11 +5,11 @@ endfunction
 function! s:config_plugin_completion(ArgLead, CmdLine, CursorPos)
   let l:cmd = split(a:CmdLine)
   let l:len_cmd = len(l:cmd)
-
-  if l:len_cmd <= 1 || l:cmd[1] != g:vimrc.dir.rc && l:cmd[1] != g:vimrc.dir.others
+  let l:dir = systemlist('ls -F ' . g:vimrc.home . '/ | grep "/" | sed -e "s/\/$//g"')
+  if l:len_cmd <= 1
     let l:filter_cmd = printf('v:val =~ "^%s"', a:ArgLead)
-    return filter(values(g:vimrc.dir), l:filter_cmd)
-  else
+    return filter(l:dir, l:filter_cmd)
+  elseif filter(l:dir, printf('v:val =~ "^%s$"', l:cmd[1])) != []
     let l:syscmd = 'ls ' . g:vimrc.path(l:cmd[1])
     if a:ArgLead != ''
       let l:syscmd .= ' | grep ^' . a:ArgLead

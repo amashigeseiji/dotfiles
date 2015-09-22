@@ -45,11 +45,17 @@ function! vimrc.init()
 endfunction
 
 function! vimrc.path(dir)
-  return self.home . '/' . self.dir[a:dir]
+  let dir = a:dir
+  if exists('self.dir.' . a:dir)
+    let dir = self.dir[a:dir]
+  endif
+  return self.home . '/' . dir
+endfunction
+
+function! vimrc.initialize_with.localvimrc()
+  if exists('g:localvimrc') && filereadable(expand(g:localvimrc))
+    exec 'source ' . g:localvimrc
+  endif
 endfunction
 
 exec 'set runtimepath+=~/.vim'
-
-if exists('g:localvimrc') && filereadable(expand(g:localvimrc))
-  exec 'source ' . g:localvimrc
-endif
