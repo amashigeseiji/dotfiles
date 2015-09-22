@@ -1,6 +1,7 @@
 let g:vimshell_vimshrc_path = g:vimrc.path('rc') . '/vimshrc'
 nnoremap <silent> vs :VimShell<CR>
 nnoremap <silent> vp :VimShellPop<CR>
+vmap <buffer> <CR> y<ESC><CR>
 augroup vimshell_loading
   autocmd!
   autocmd FileType vimshell setlocal nonumber
@@ -19,5 +20,5 @@ function! MyVimshellGit(args, context)
   if exists('b:git_dir')
     unlet b:git_dir
   endif
-  call fugitive#detect(vimshell#get_status_string())
+  call fugitive#detect(b:vimshell.current_dir)
 endfunction
