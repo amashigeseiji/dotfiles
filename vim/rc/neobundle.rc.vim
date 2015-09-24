@@ -1,5 +1,5 @@
 " Bundle
-function! vimrc.initialize_with.neobundle_rc()
+function! vimrc.initialize_with.before.neobundle_rc()
   set nocompatible
   filetype off
 

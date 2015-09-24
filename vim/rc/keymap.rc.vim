@@ -33,13 +33,13 @@ else
   nnoremap .. :tabe ~/.vimrc<CR>
 endif
 nnoremap ,, :source ~/.vimrc<CR>
-nnoremap <silent>;w :set nowrap!<CR>
-nnoremap <silent>;n :set nonumber!<CR>
+nnoremap <silent>;w :setl nowrap!<CR>
+nnoremap <silent>;n :setl nonumber!<CR>
 nnoremap <silent>;a :append!<CR>
 nnoremap <silent>;l :noh<CR>
-nnoremap ,fi :set foldmethod=indent<CR>
-nnoremap ,fm :set foldmethod=marker<CR>
-nnoremap ,fs :set foldmethod=syntax<CR>
+nnoremap ,fi :setl foldmethod=indent<CR>
+nnoremap ,fm :setl foldmethod=marker<CR>
+nnoremap ,fs :setl foldmethod=syntax<CR>
 nnoremap -- 78i-<esc>o<esc>
 "folding {{{
 "noremap [space] <nop>

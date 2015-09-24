@@ -127,3 +127,5 @@ repository = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
 repository = 'itchyny/dictionary.vim'
+[[plugins]]
+repository = 'plasticboy/vim-markdown'

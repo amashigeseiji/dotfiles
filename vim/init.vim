@@ -2,7 +2,8 @@ let vimrc = {
       \ 'home': expand('~/.vim'),
       \ 'dir': { 'others': 'others', 'rc': 'rc' },
       \ 'require': ['neobundle', 'basic', 'keymap'],
-      \ 'initialize_with': {}
+      \ 'initialize_with': {
+      \   'before': {}, 'after': {}}
       \}
 
 function! s:load(method)
@@ -28,8 +29,8 @@ function! s:load(method)
     let l:load_files = exists('g:vimrc_load_other_settings') ?
       \ g:vimrc_load_other_settings :
       \ systemlist('ls ' . g:vimrc.path('others') . ' | grep vim$ | sed -e "s/.vim$//g"')
-    for i in l:load_files
-      call self.source_file(g:vimrc.dir.others . '/' . i . '.vim')
+    for file in l:load_files
+      call self.source_file(g:vimrc.dir.others . '/' . file . '.vim')
     endfor
   endfunction
 
@@ -38,8 +39,16 @@ endfunction
 
 function! vimrc.init()
   call s:load('require')
+  for key in keys(self.initialize_with.before)
+    call self.initialize_with.before[key]()
+  endfor
   for key in keys(self.initialize_with)
-    call self.initialize_with[key]()
+    if key != 'before' && key != 'after'
+      call self.initialize_with[key]()
+    endif
+  endfor
+  for key in keys(self.initialize_with.after)
+    call self.initialize_with.after[key]()
   endfor
   call s:load('other_settings')
 endfunction
