@@ -8,33 +8,78 @@
     <appname>ALFRED</appname>
     <equal>com.runningwithcrayons.Alfred-2</equal>
   </appdef>
+  <appdef>
+      <appname>SLACK</appname>
+      <equal>com.tinyspeck.slackmacgap</equal>
+  </appdef>
+
 
   <item>
     <name>original</name>
-    <list>
-      <item>
-        <name>VIM Helper</name>
-        <identifier>private.vim_helper</identifier>
-        <only>VI,TERMINAL,MacVim</only>
-        <autogen>--KeyOverlaidModifier-- KeyCode::CONTROL_L, KeyCode::CONTROL_L, KeyCode::ESCAPE, KeyCode::JIS_EISUU</autogen>
-        <autogen>--KeyToKey-- KeyCode::J, VK_CONTROL, KeyCode::J, VK_CONTROL, KeyCode::JIS_EISUU</autogen>
-        <autogen>--KeyOverlaidModifier-- KeyCode::ESCAPE, KeyCode::JIS_EISUU, KeyCode::ESCAPE</autogen>
-      </item>
-    </list>
 
-    <list>
+      <item>
+        <name>Application Specific Settings</name>
+        <item>
+          <name>VIM Helper</name>
+          <identifier>private.vim_helper</identifier>
+          <only>VI,TERMINAL,MacVim</only>
+          <autogen>--KeyOverlaidModifier-- KeyCode::CONTROL_L, KeyCode::CONTROL_L, KeyCode::ESCAPE, KeyCode::JIS_EISUU</autogen>
+          <autogen>--KeyToKey-- KeyCode::J, VK_CONTROL, KeyCode::J, VK_CONTROL, KeyCode::JIS_EISUU</autogen>
+          <autogen>--KeyOverlaidModifier-- KeyCode::ESCAPE, KeyCode::JIS_EISUU, KeyCode::ESCAPE</autogen>
+        </item>
+        <item>
+          <name>For Slack CTRL+N=move next channel, CTRL+P=move previous channel, ALT+A=move unread channel</name>
+          <identifier>private.app_slack_move_channel_with_ctrln_ctrlp</identifier>
+          <only>SLACK</only>
+          <autogen>__KeyToKey__ KeyCode::N, ModifierFlag::CONTROL_L, KeyCode::CURSOR_DOWN, ModifierFlag::OPTION_L</autogen>
+          <autogen>__KeyToKey__ KeyCode::P, ModifierFlag::CONTROL_L, KeyCode::CURSOR_UP, ModifierFlag::OPTION_L</autogen>
+          <autogen>__KeyToKey__ KeyCode::A, ModifierFlag::OPTION_L, KeyCode::CURSOR_DOWN, ModifierFlag::OPTION_L, ModifierFlag::SHIFT_L</autogen>
+        </item>
+        <item>
+          <name>Word</name>
+          <item>
+            <name>Ctrl+H to Delete</name>
+            <only>WORD</only>
+            <identifier>private.word.ctrlh_to_delete</identifier>
+            <autogen>--KeyToKey-- KeyCode::H, ModifierFlag::CONTROL_L, KeyCode::DELETE</autogen>
+          </item>
+          <item>
+            <name>Ctrl+A to LineTop, Ctrl+E to LineEnd</name>
+            <only>WORD</only>
+            <identifier>private.word.ctrla_to_linetop</identifier>
+            <autogen>--KeyToKey-- KeyCode::A, ModifierFlag::CONTROL_L, KeyCode::HOME</autogen>
+            <autogen>--KeyToKey-- KeyCode::E, ModifierFlag::CONTROL_L, KeyCode::END</autogen>
+          </item>
+        </item>
+        <item>
+          <name>Excel</name>
+          <item>
+            <name>Ctrl+H to Delete</name>
+            <only>EXCEL</only>
+            <identifier>private.excel.ctrlh_to_delete</identifier>
+            <autogen>--KeyToKey-- KeyCode::H, ModifierFlag::CONTROL_L, KeyCode::DELETE</autogen>
+          </item>
+          <item>
+            <name>Ctrl+A to LineTop, Ctrl+E to LineEnd</name>
+            <only>EXCEL</only>
+            <identifier>private.excel.ctrla_to_linetop</identifier>
+            <autogen>--KeyToKey-- KeyCode::A, ModifierFlag::CONTROL_L, KeyCode::HOME</autogen>
+            <autogen>--KeyToKey-- KeyCode::E, ModifierFlag::CONTROL_L, KeyCode::END</autogen>
+          </item>
+        </item>
+      </item>
+
+    <item>
+      <name>Other Settings</name>
       <item>
         <name>Swap JIS_Colon and Semicolon</name>
         <identifier>private.swap_jis_colon_and_semicolon</identifier>
         <autogen>--KeyToKey-- KeyCode::SEMICOLON, ModifierFlag::NONE, KeyCode::JIS_COLON</autogen>
         <autogen>--KeyToKey-- KeyCode::JIS_COLON, ModifierFlag::NONE, KeyCode::SEMICOLON</autogen>
       </item>
-    </list>
-
-    <list>
       <item>
         <name>Eisuu+hjkl to Left/Down/Up/Right</name>
-        <identifier>option.vimode_eisuu_hjkl</identifier>
+        <identifier>private.vimode_eisuu_hjkl</identifier>
         <autogen>--KeyOverlaidModifier-- KeyCode::JIS_EISUU, KeyCode::VK_MODIFIER_EXTRA1, KeyCode::JIS_EISUU</autogen>
         <autogen>--KeyToKey-- KeyCode::H, ModifierFlag::EXTRA1, KeyCode::CURSOR_LEFT</autogen>
         <autogen>--KeyToKey-- KeyCode::J, ModifierFlag::EXTRA1, KeyCode::CURSOR_DOWN</autogen>
@@ -46,57 +91,39 @@
         <autogen>--KeyToKey-- KeyCode::E, ModifierFlag::EXTRA1, KeyCode::JIS_EISUU</autogen>
         <autogen>--KeyToKey-- KeyCode::N, ModifierFlag::EXTRA1, KeyCode::MINUS, ModifierFlag::SHIFT_L, KeyCode::DOT, ModifierFlag::SHIFT_L</autogen>
       </item>
-    </list>
-
-    <list>
-      <item>
-        <name>word Ctrl+H to Delete</name>
-        <item>
-          <name>Word</name>
-          <only>WORD</only>
-          <identifier>word.ctrlh.to.delete</identifier>
-          <autogen>--KeyToKey-- KeyCode::H, ModifierFlag::CONTROL_L, KeyCode::DELETE</autogen>
-        </item>
-        <item>
-          <name>Excel</name>
-          <only>EXCEL</only>
-          <identifier>excel.ctrlh.to.delete</identifier>
-          <autogen>--KeyToKey-- KeyCode::H, ModifierFlag::CONTROL_L, KeyCode::DELETE</autogen>
-        </item>
-      </item>
-    </list>
+    </item>
 
     <item>
       <name>Ctrl to ESC</name>
       <item>
         <name>Firefox</name>
         <only>FIREFOX</only>
-        <identifier>vimperator_ctrl_to_escape</identifier>
+        <identifier>private.vimperator_ctrl_to_escape</identifier>
         <autogen>--KeyOverlaidModifier-- KeyCode::CONTROL_L, KeyCode::CONTROL_L, KeyCode::ESCAPE</autogen>
       </item>
       <item>
         <name>Chromium</name>
         <only>GOOGLE_CHROME</only>
-        <identifier>chromium_ctrl_to_escape</identifier>
+        <identifier>private.chromium_ctrl_to_escape</identifier>
         <autogen>--KeyOverlaidModifier-- KeyCode::CONTROL_L, KeyCode::CONTROL_L, KeyCode::ESCAPE</autogen>
       </item>
       <item>
         <name>Alfred</name>
         <only>ALFRED</only>
-        <identifier>alfred_ctrl_to_escape</identifier>
+        <identifier>private.alfred_ctrl_to_escape</identifier>
         <autogen>--KeyOverlaidModifier-- KeyCode::CONTROL_L, KeyCode::CONTROL_L, KeyCode::ESCAPE, KeyCode::JIS_EISUU</autogen>
         <autogen>--KeyToKey-- KeyCode::K, VK_CONTROL, KeyCode::K, VK_CONTROL, KeyCode::RETURN</autogen>
       </item>
       <item>
         <name>Microsoft</name>
         <only>POWERPOINT,EXCEL</only>
-        <identifier>excel_ctrl_to_escape</identifier>
+        <identifier>private.excel_ctrl_to_escape</identifier>
         <autogen>--KeyOverlaidModifier-- KeyCode::CONTROL_L, KeyCode::CONTROL_L, KeyCode::ESCAPE</autogen>
       </item>
     </item>
 
     <item>
-      <name>Vi Mode Custum</name>
+      <name>Vi Mode Custom</name>
       <item>
         <identifier vk_config="true">notsave.complete_vimode_custum</identifier>
         <not>TERMINAL</not>
@@ -172,7 +199,14 @@
         <name>Command_L to Command_L(for Finder)</name>
         <appendix>(+ When you type Command_L only, toggle Vi Mode)</appendix>
         <only>FINDER,PREVIEW</only>
-        <identifier>remap.vimode_toggle_commandL_finder</identifier>
+        <identifier>private.remap.vimode_toggle_commandL_finder</identifier>
+        <autogen>__KeyOverlaidModifier__ KeyCode::COMMAND_L, KeyCode::COMMAND_L, KeyCode::VK_CONFIG_TOGGLE_notsave_complete_vimode</autogen>
+      </item>
+      <item>
+        <name>Command_L to Command_L(for MicrosoftOffice)</name>
+        <appendix>(+ When you type Command_L only, toggle Vi Mode)</appendix>
+        <only>EXCEL,POWERPOINT</only>
+        <identifier>private.remap.vimode_toggle_commandL_office</identifier>
         <autogen>__KeyOverlaidModifier__ KeyCode::COMMAND_L, KeyCode::COMMAND_L, KeyCode::VK_CONFIG_TOGGLE_notsave_complete_vimode</autogen>
       </item>
       <item>
@@ -181,7 +215,7 @@
         <not>TERMINAL</not>
         <not>FIREFOX</not>
         <not>MacVim</not>
-        <identifier>remap.vimode_toggle_commandL_custum</identifier>
+        <identifier>private.remap.vimode_toggle_commandL_custum</identifier>
         <autogen>__KeyOverlaidModifier__ KeyCode::COMMAND_L, KeyCode::COMMAND_L, KeyCode::VK_CONFIG_TOGGLE_notsave_complete_vimode</autogen>
       </item>
       <item>
@@ -189,9 +223,9 @@
         <appendix>(except in Vim)</appendix>
         <not>TERMINAL</not>
         <not>FIREFOX</not>
-        <not>MacVim</not>
-        <identifier>remap.vimode_turnon_escape_custum</identifier>
         <not>VI</not>
+        <not>MacVim</not>
+        <identifier>private.remap.vimode_turnon_escape_custum</identifier>
         <config_not>notsave.complete_vimode</config_not>
         <autogen>__KeyToKey__ KeyCode::ESCAPE, KeyCode::VK_CONFIG_FORCE_ON_notsave_complete_vimode</autogen>
       </item>
@@ -201,11 +235,69 @@
         <not>TERMINAL</not>
         <not>FIREFOX</not>
         <not>MacVim</not>
-        <identifier>option.vimode_turnoff_escape_custum</identifier>
+        <identifier>private.option.vimode_turnoff_escape_custum</identifier>
         <config_only>notsave.complete_vimode</config_only>
         <autogen>__KeyToKey__ KeyCode::ESCAPE, KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_complete_vimode</autogen>
       </item>
     </item>
+
+    <item>
+      <name>For HHKB Custom</name>
+      <item>
+        <name>HHKB JP Yen key to backslash</name>
+        <appendix>(Change Japanese Yen key to backslash.)</appendix>
+        <identifier>private.remap.hhkb_jp_us_keycap_custom</identifier>
+        <autogen>__KeyToKey__ KeyCode::JIS_YEN, KeyCode::BACKSLASH</autogen>
+      </item>
+
+      <item>
+        <name>Remappings for Happy Hacking Professional</name>
+        <item>
+          <name>Ctrl_L + DEL to ~</name>
+          <identifier>private.remap.hhkbpro_swap_shirf_esc_to_tilde</identifier>
+          <autogen>
+            __KeyToKey__
+            KeyCode::DELETE, ModifierFlag::CONTROL_L,
+            KeyCode::BACKQUOTE, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_SHIFT,
+          </autogen>
+        </item>
+        <item>
+          <name>Change Shift+DEL to Pipe (|)</name>
+          <identifier>private.remap.hhkbpro_swap_shiftdelete_to_pipe</identifier>
+          <autogen>
+            __KeyToKey__
+            KeyCode::DELETE, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_SHIFT,
+            KeyCode::BACKSLASH, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_SHIFT,
+          </autogen>
+        </item>
+      </item>
+
+      <item>
+        <name>HHKB s + hjkl to Arrow Key</name>
+        <identifier>private.remap.hhkb_s_hjkl_to_arrow_key</identifier>
+        <autogen>
+          __KeyOverlaidModifier__
+          KeyCode::S, ModifierFlag::NONE,
+          @begin
+          KeyCode::VK_CONFIG_SYNC_KEYDOWNUP_notsave_custom_vi_mode,
+          @end
+          @begin
+          KeyCode::S
+          @end
+        </autogen>
+      </item>
+    </item>
+
+    <item hidden="true">
+      <identifier vk_config="true">notsave_custom_vi_mode</identifier>
+      <autogen>
+        __BlockUntilKeyUp__ KeyCode::S
+      </autogen>
+      <autogen>__KeyToKey__ KeyCode::H, KeyCode::CURSOR_LEFT</autogen>
+      <autogen>__KeyToKey__ KeyCode::J, KeyCode::CURSOR_DOWN</autogen>
+      <autogen>__KeyToKey__ KeyCode::K, KeyCode::CURSOR_UP</autogen>
+      <autogen>__KeyToKey__ KeyCode::L, KeyCode::CURSOR_RIGHT</autogen>
+    </item>
+
   </item>
 </root>
-<!-- vim: set foldmethod=marker: -->
