@@ -31,12 +31,15 @@ linkto() {
 
 vim_install() {
   dotfile=${path}'/vim';
-  cat ${dotfile}'/vimrc' >> ~/.vimrc
   if [ -L ~/.vim ];then
     ln -snf ${dotfile} ~/.vim
   elif [ ! -d ~/.vim ];then
     ln -s ${dotfile} ~/.vim
     echo 'linked ~/.vim'
+  fi
+  if [ ! -e ~/.vimrc ];then
+    cat ${dotfile}'/vimrc' >> ~/.vimrc
+    echo 'created ~/.vimrc'
   fi
   echo 'finished vim install'
 }
@@ -72,12 +75,20 @@ zsh_install() {
 
 tmux_install() {
   dotfile=${path}'/tmux';
-  ln -s $dotfile ~/.tmux.conf
+  if [ -L ~/.tmux.conf ];then
+    ln -snf ${dotfile}/tmux.conf ~/.tmux.conf
+  else
+    ln -s $dotfile ~/.tmux.conf
+  fi
   if [ ! -d ~/.tmux ];then
     mkdir ~/.tmux
     echo 'mkdir ~/.tmux'
   fi
-  ln -s $1 'bin' '.tmux/'
+  if [ -L ~/.tmux.conf ];then
+    ln -snf ${dotfile}/bin ~/.tmux/bin
+  else
+    ln -s $dotfile/bin ~/.tmux/
+  fi
   echo 'finished tmux install'
 }
 
