@@ -28,3 +28,7 @@ filetypes = 'toml'
 [[plugins]]
 repository = 'mattn/emmet-vim'
 filetypes = ['html', 'php', 'eruby']
+
+[[plugins]]
+repository = 'plasticboy/vim-markdown'
+filetypes = ['markdown']

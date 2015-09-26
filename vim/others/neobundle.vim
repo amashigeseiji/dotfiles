@@ -12,6 +12,6 @@ function! s:bundle_add(repository, ...)
     silent! echon "\nrepository = \'" . a:repository . "\'"
   redir END
   call neobundle#commands#clear_cache()
-  call g:vimrc.neobundle_init()
+  call g:vimrc.initialize_with.before.neobundle_rc()
 endfunction
 command! -nargs=* BundleAdd call s:bundle_add(<f-args>)

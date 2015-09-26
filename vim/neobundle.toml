@@ -69,9 +69,6 @@ repository = 'kien/ctrlp.vim'
 repository = 'scrooloose/nerdtree'
 
 [[plugins]]
-repository = 'mrtazz/simplenote.vim'
-
-[[plugins]]
 repository = 'embear/vim-localvimrc'
 
 [[plugins]]
@@ -127,5 +124,6 @@ repository = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
 repository = 'itchyny/dictionary.vim'
+
 [[plugins]]
-repository = 'plasticboy/vim-markdown'
+repository = 'mattn/vimplenote-vim'
