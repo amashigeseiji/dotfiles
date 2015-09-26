@@ -30,45 +30,38 @@ linkto() {
 }
 
 vim_install() {
-  linkto $1 'vimrc' '.'
-  linkto $1 'gvimrc' '.'
-  linkto $1 'vimshrc' '.'
-  if [ ! -d ~/.vim ];then
-    mkdir ~/.vim
-    echo 'mkdir ~/.vim'
-  fi
-  linkto $1 'colors' '.vim/'
-  linkto $1 'plugin' '.vim/'
-  linkto $1 'syntax' '.vim/'
-  linkto $1 'others' '.vim/'
-  linkto $1 'man' '.vim/'
-  if [ ! -d ~/.vim/bundle/Vundle.vim ];then
-    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    echo 'clone bundle ~/.vim/bundle/Vundle.vim'
+  dotfile=${path}'/vim';
+  cat ${dotfile}'/vimrc' >> ~/.vimrc
+  if [ -L ~/.vim ];then
+    ln -snf ${dotfile} ~/.vim
+  elif [ ! -d ~/.vim ];then
+    ln -s ${dotfile} ~/.vim
+    echo 'linked ~/.vim'
   fi
   echo 'finished vim install'
 }
 
 zsh_install() {
+  dotfile=${path}'/zsh';
   if [ -L ~/.zsh ];then
-    ln -snf $1 ~/.zsh
+    ln -snf $dotfile ~/.zsh
     echo 'linked ~/.zsh'
   else
     if [ -e ~/.zsh ];then
       mv ~/.zsh ~/.zsh.bak
       echo 'moved ~/.zsh.bak'
     fi
-    ln -s $1 ~/.zsh
+    ln -s $dotfile ~/.zsh
     echo 'linked ~/.zsh'
   fi
   if [ ! -e ~/.zshrc ];then
     touch ~/.zshrc
-    echo 'targetPlugins=("prompt")' >> ~/.zshrc
-    echo 'prompt_color="yellow"' >> ~/.zshrc
-    echo 'prompt_name="%m"' >> ~/.zshrc
-    echo 'prompt_git_use=1' >> ~/.zshrc
-    if [`uname` = 'Darwin'];then
-      echo 'source ~/.zsh/zshrc-mac' >> ~/.zshrc
+    echo 'targetPlugins=("prompt")'    >> ~/.zshrc
+    echo 'prompt_color="yellow"'       >> ~/.zshrc
+    echo 'prompt_name="%m"'            >> ~/.zshrc
+    echo 'prompt_git_use=1'            >> ~/.zshrc
+    if [ `uname` = 'Darwin' ];then
+      echo 'source ~/.zsh/zshrc-mac'   >> ~/.zshrc
     elif [ `uname` = 'Linux' ];then
       echo 'source ~/.zsh/zshrc-linux' >> ~/.zshrc
     fi
@@ -78,17 +71,19 @@ zsh_install() {
 }
 
 tmux_install() {
-  linkto $1 'tmux.conf' '.'
+  dotfile=${path}'/tmux';
+  ln -s $dotfile ~/.tmux.conf
   if [ ! -d ~/.tmux ];then
     mkdir ~/.tmux
     echo 'mkdir ~/.tmux'
   fi
-  linkto $1 'bin' '.tmux/'
+  ln -s $1 'bin' '.tmux/'
   echo 'finished tmux install'
 }
 
 screen_install() {
-  linkto $1 'screenrc' '.'
+  dotfile=${path}'/screen';
+  ln -s $dotfile ~/.screenrc
   echo 'finished screen install'
 }
 

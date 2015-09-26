@@ -7,14 +7,10 @@ function! s:dotfile_build()
   redir >> ~/.vimrc
     echon "\n"
     echon "\"written by build.vim\n"
-    echon "let g:vimrc_load_rcfile = ['neobundle', 'basic', 'keymap']\n"
-    echon "let g:other_settings_dir = '~/.vim/others/'\n"
-    echon "\" you can choose to be loaded setting file, name without '.vim'\n"
-    echon "\"let g:vimrc_load_other_settings = ['somefile', '']\n"
     echon "source ~/.vim/init.vim\n"
-    echon "if filereadable(expand('~/.vim/vimrc.local'))\n"
-    echon "  source ~/.vim/vimrc.local\n"
-    echon "end\n"
+    echon "let g:localvimrc = '~/.vimrc.local'\n"
+    echon "let g:localgvimrc = '~/.gvimrc.local'"
+    echon "call vimrc.init()"
   redir END
 endfunction
 call s:dotfile_build()
