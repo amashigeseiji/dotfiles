@@ -1,7 +1,9 @@
 #!/bin/zsh
 
 function cake () {
-  if [ -e 'Vendor/bin/cake' ];then
+  if [ $CAKE_BIN_PATH ];then
+    $CAKE_BIN_PATH $@
+  elif [ -e 'Vendor/bin/cake' ];then
     Vendor/bin/cake $@
   elif [ -e 'app/Console/cake' ];then
     app/Console/cake $@
