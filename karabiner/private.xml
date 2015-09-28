@@ -91,33 +91,9 @@
         <autogen>--KeyToKey-- KeyCode::E, ModifierFlag::EXTRA1, KeyCode::JIS_EISUU</autogen>
         <autogen>--KeyToKey-- KeyCode::N, ModifierFlag::EXTRA1, KeyCode::MINUS, ModifierFlag::SHIFT_L, KeyCode::DOT, ModifierFlag::SHIFT_L</autogen>
       </item>
-    </item>
-
-    <item>
-      <name>Ctrl to ESC</name>
       <item>
-        <name>Firefox</name>
-        <only>FIREFOX</only>
-        <identifier>private.vimperator_ctrl_to_escape</identifier>
-        <autogen>--KeyOverlaidModifier-- KeyCode::CONTROL_L, KeyCode::CONTROL_L, KeyCode::ESCAPE</autogen>
-      </item>
-      <item>
-        <name>Chromium</name>
-        <only>GOOGLE_CHROME</only>
-        <identifier>private.chromium_ctrl_to_escape</identifier>
-        <autogen>--KeyOverlaidModifier-- KeyCode::CONTROL_L, KeyCode::CONTROL_L, KeyCode::ESCAPE</autogen>
-      </item>
-      <item>
-        <name>Alfred</name>
-        <only>ALFRED</only>
-        <identifier>private.alfred_ctrl_to_escape</identifier>
-        <autogen>--KeyOverlaidModifier-- KeyCode::CONTROL_L, KeyCode::CONTROL_L, KeyCode::ESCAPE, KeyCode::JIS_EISUU</autogen>
-        <autogen>--KeyToKey-- KeyCode::K, VK_CONTROL, KeyCode::K, VK_CONTROL, KeyCode::RETURN</autogen>
-      </item>
-      <item>
-        <name>Microsoft</name>
-        <only>POWERPOINT,EXCEL</only>
-        <identifier>private.excel_ctrl_to_escape</identifier>
+        <name>Ctrl to ESC</name>
+        <identifier>private.ctrl_to_escape</identifier>
         <autogen>--KeyOverlaidModifier-- KeyCode::CONTROL_L, KeyCode::CONTROL_L, KeyCode::ESCAPE</autogen>
       </item>
     </item>

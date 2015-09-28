@@ -3,3 +3,7 @@ if [ ! -e $HOME/.anyenv ];then
 fi
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
+for D in `ls $HOME/.anyenv/envs`
+do
+    export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
+done
