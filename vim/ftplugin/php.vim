@@ -14,3 +14,4 @@ nnoremap <buffer> HH :set ft=html<CR>
 nnoremap <buffer> PH :set ft=php<CR>
 inoremap <buffer> $thi $this->
 inoremap <buffer>?? ?php  ?<Left><Left>
+inoremap <buffer> <C-l> ->
