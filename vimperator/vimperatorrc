@@ -49,8 +49,6 @@ colorscheme color
 ""   keymapping{{{
 """""""""""""""""""""""""""""""""""""""""""
 " normal-mode{{{
-"nnoremap j 20j
-"nnoremap k 20k
 nnoremap h [[
 nnoremap l ]]
 nnoremap <C-j> <Esc>
@@ -90,14 +88,23 @@ nnoremap <M-k> <nop>
 "nnoremap <M-h> <nop>
 
 ".vimperatorrc
-nnoremap R :source ~/.vimperatorrc<CR>
+nnoremap ,, :source ~/.vimperatorrc<CR>
 
 nnoremap <C-r> :res<CR>
 nnoremap s :open g<space>
 nnoremap ,s :open scholar<space>
 
 "選択文字列を<C-g>でGoogle検索
-nnoremap <silent> <C-g> ccvy<Esc><Esc>P
+javascript <<EOM
+mappings.addUserMap(
+    [modes.NORMAL],
+    ["<C-g>"],
+    "open selection",
+    function() {
+        liberator.open(Buffer.focusedWindow.getSelection().toString(), liberator.NEW_TAB);
+    }
+);
+EOM
 
 "guioptin-toggle
 nnoremap .. :set gui=none<CR>
@@ -125,8 +132,8 @@ nnoremap ,p :emenu ツール.Pixlr Grabber. Grab a defined area<CR>
 nnoremap ,c :emenu ツール.Pixlr Grabber. Grab entire page<CR>
 
 "localhost
-"nnoremap ,ll t<space>http://localhost/
-"nnoremap ,lo o<space>http://localhost/
+nnoremap ,ll t<space>http://localhost
+nnoremap ,lo o<space>http://localhost
 nnoremap <a-q> :q<cr>
 
 nnoremap < <C-x>
@@ -134,12 +141,10 @@ nnoremap > <C-a>
 nnoremap <S-m> :gm<CR>
 
 "英辞郎
-nnoremap e :eijiro 
+nnoremap e :eijiro<Space>
 nnoremap L :login<Space>
 nnoremap ,l :logout<CR>
 nnoremap gm :gm<Space>
-"test
-"nnoremap <S-a> y<S-esc><M-l><M-v><CR><S-ESC>
 "}}}
 " insert-mode{{{
 inoremap <C-j> <Esc>
@@ -165,7 +170,7 @@ cnoremap {} {}<Left>
 "}}}
 " visual-mode{{{
 "ビジュアルモードで選択文字列を<C-g>でGoogle検索
-vnoremap <silent> <C-g> y<Esc><Esc>P
+vnoremap <silent> <C-g> y<Esc><Esc><ESC>P
 vnoremap <C-j> <esc><esc>
 vnoremap <esc> <esc><esc>
 vnoremap c <esc><esc>c
@@ -184,8 +189,6 @@ let g:smooziee_scroll_interval = "10"
 " caret-hint.js
 let g:caret_hint_xpath = '//*' "'//img|//h1|//h2|//h3|//p|//div|//span':
 let g:caret_hint_key = ''
-
-"let g:op_profile_autoinput = 1
 
 " multi_requester.js {{{
 javascript <<EOM
