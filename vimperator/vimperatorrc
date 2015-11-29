@@ -124,6 +124,7 @@ nnoremap ad :emenu 表示.サイドバー.ダウンロード<CR>
 nnoremap at :emenu 表示.サイドバー.サイドバーでタブを開く<CR>
 nnoremap ab :emenu 表示.サイドバー.ブックマーク<CR>
 nnoremap ac :emenu 表示.サイドバー.エラーコンソール<CR>
+nnoremap af :emenu 表示.サイドバー.Facebook Messenger<CR>
 " dialog
 nnoremap ,a :addons<CR>
 "nnoremap ,p :preferences<CR>
