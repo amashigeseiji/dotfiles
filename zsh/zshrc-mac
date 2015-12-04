@@ -33,9 +33,10 @@ SAVEHIST=10000
 # zsh-completions
 # ------------------------------------------------------------------------
 fpath+=($ZSH_HOME'/fpath')
-if [ -d ${HOME}/.zsh/zsh-completions/src ] ; then
-   fpath=(${HOME}/.zsh/zsh-completions/src $fpath)
+if [ ! -d ${HOME}/.zsh/zsh-completions/src ] ; then
+   git clone git://github.com/zsh-users/zsh-completions.git ${HOME}/.zsh/zsh-completions
 fi
+fpath=(${HOME}/.zsh/zsh-completions/src $fpath)
 autoload -U compinit && compinit -u
 #}}}
 #}}}
