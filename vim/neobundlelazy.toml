@@ -36,3 +36,7 @@ filetypes = ['markdown']
 [[plugins]]
 repository = 'rhysd/vim-crystal'
 filetypes = 'crystal'
+
+[[plugins]]
+repository = 'supermomonga/neocomplete-rsense'
+filetypes = 'ruby'
