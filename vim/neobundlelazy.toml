@@ -38,5 +38,5 @@ repository = 'rhysd/vim-crystal'
 filetypes = 'crystal'
 
 [[plugins]]
-repository = 'supermomonga/neocomplete-rsense'
+repository = 'supermomonga/neocomplete-rsense.vim'
 filetypes = 'ruby'
