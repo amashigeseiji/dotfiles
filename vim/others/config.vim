@@ -8,7 +8,9 @@ function! s:config_plugin_completion(ArgLead, CmdLine, CursorPos)
   if l:len_cmd <= 1 || match(l:dir, printf('^%s$', l:cmd[1])) == -1
     return join(l:dir, "\n")
   else
-    return join(systemlist('ls ' . g:vimrc.path(l:cmd[1])), "\n")
+    if (v:version > 703)
+      return join(systemlist('ls ' . g:vimrc.path(l:cmd[1])), "\n")
+    endif
   endif
 endfunction
 command! -nargs=* -complete=custom,s:config_plugin_completion Config call s:config_rc(<f-args>)

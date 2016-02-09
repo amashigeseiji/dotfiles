@@ -22,6 +22,11 @@ if [ ${prompt_git_use} ];then
     gitdir=`git rev-parse --git-dir 2> /dev/null`
     action=`VCS_INFO_git_getaction "$gitdir"` && action="($action)"
 
+    if [[ -e "$gitdir/rprompt-nostatus" ]]; then
+      echo "$name$action "
+      return
+    fi
+
     st=`git status 2> /dev/null`
     if [[ "$st" =~ "(?m)^nothing to" ]]; then
       color=%F{green}

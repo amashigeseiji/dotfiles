@@ -4,16 +4,16 @@
 " base options{{{
 " for firefox20 over(e4x)
 "set! javascript.options.xml.chrome=true
-set defsearch=g
-set suggestengines=g
+set defsearch=google
+set suggestengines=google
 set showstatuslinks=1
 set titlestring="Firefox"
 set focuscontent
 "set noinsertmode
 set complete=Slf
 " for migemo
-set hintmatching=custom
-"set hintchars="lkjhgfdsa"
+"set hintmatching=custom
+set hintchars="lkjhgfdsa"
 "next/back
 set nextpattern=\bnext\b,\bmore\b,^next$,^next.*,^次(の)?ページ,\b次.*,^次へ$,→\b,^>$,^(>>|≫)$,^(>|≫),(>|≫)$,^次を表示$,^次.*,.*(&raquo;)+
 set previouspattern=\bprev|previous\b,^prev$,^prev.*,^back.*,^前(の)?ページ,\b前.*,^前へ$,\b←,^<$,^(<<|≪)$,^(<|≪),(<|≪)$,^前を表示$,(&laquo;).*
@@ -90,7 +90,7 @@ nnoremap <M-k> <nop>
 nnoremap ,, :source ~/.vimperatorrc<CR>
 
 nnoremap <C-r> :res<CR>
-nnoremap s :open g<space>
+nnoremap s :open google<space>
 nnoremap ,s :open scholar<space>
 
 "選択文字列を<C-g>でGoogle検索
