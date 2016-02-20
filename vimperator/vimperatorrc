@@ -18,8 +18,8 @@ set hintchars="lkjhgfdsa"
 set nextpattern=\bnext\b,\bmore\b,^next$,^next.*,^次(の)?ページ,\b次.*,^次へ$,→\b,^>$,^(>>|≫)$,^(>|≫),(>|≫)$,^次を表示$,^次.*,.*(&raquo;)+
 set previouspattern=\bprev|previous\b,^prev$,^prev.*,^back.*,^前(の)?ページ,\b前.*,^前へ$,\b←,^<$,^(<<|≪)$,^(<|≪),(<|≪)$,^前を表示$,(&laquo;).*
 set editor='/Applications/MacVim.app/Contents/MacOS/mvim'
-set gui=none
-set gui=tabs
+"set gui=none
+"set gui=tabs
 set visualbell
 "set verbose=0
 "set ignorecase
