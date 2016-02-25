@@ -1,6 +1,6 @@
 let vimrc = {
       \ 'home': expand('~/.vim'),
-      \ 'dir': { 'others': 'others', 'rc': 'rc' },
+      \ 'dir': { 'plugin_settings': 'plugin_settings', 'rc': 'rc' },
       \ 'require': ['neobundle', 'basic', 'keymap'],
       \ 'initialize_with': {
       \   'before': {}, 'after': {}}
@@ -22,15 +22,17 @@ function! s:load(method)
     endfor
   endfunction
 
-  function! self.other_settings()
-    if exists('g:other_settings_dir')
-      let g:vimrc.dir.others = g:other_settings_dir
+  function! self.plugin_settings()
+    if exists('g:plugin_settings_dir')
+      let g:vimrc.dir.plugin_settings = g:plugin_settings_dir
     endif
-    let l:load_files = exists('g:vimrc_load_other_settings') ?
-      \ g:vimrc_load_other_settings :
-      \ systemlist('ls ' . g:vimrc.path('others') . ' | grep vim$ | sed -e "s/.vim$//g"')
+    let l:load_files = exists('g:vimrc_load_plugin_settings') ?
+      \ g:vimrc_load_plugin_settings :
+      \ systemlist('ls ' . g:vimrc.path('plugin_settings') . ' | grep vim$ | sed -e "s/.vim$//g"')
     for file in l:load_files
-      call self.source_file(g:vimrc.dir.others . '/' . file . '.vim')
+      if neobundle#tap(file) || neobundle#tap(file . '.vim')
+        call self.source_file(g:vimrc.dir.plugin_settings . '/' . file . '.vim')
+      endif
     endfor
   endfunction
 
@@ -50,7 +52,7 @@ function! vimrc.init()
   for key in keys(self.initialize_with.after)
     call self.initialize_with.after[key]()
   endfor
-  call s:load('other_settings')
+  call s:load('plugin_settings')
 endfunction
 
 function! vimrc.path(dir)
