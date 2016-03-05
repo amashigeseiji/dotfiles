@@ -1,7 +1,7 @@
 let vimrc = {
       \ 'home': expand('~/.vim'),
       \ 'dir': { 'plugin_settings': 'plugin_settings', 'rc': 'rc' },
-      \ 'require': ['neobundle', 'basic', 'keymap'],
+      \ 'require': ['dein', 'basic', 'keymap'],
       \ 'initialize_with': {
       \   'before': {}, 'after': {}}
       \}
@@ -30,7 +30,7 @@ function! s:load(method)
       \ g:vimrc_load_plugin_settings :
       \ systemlist('ls ' . g:vimrc.path('plugin_settings') . ' | grep vim$ | sed -e "s/.vim$//g"')
     for file in l:load_files
-      if neobundle#tap(file) || neobundle#tap(file . '.vim')
+      if dein#tap(file) || dein#tap(file . '.vim')
         call self.source_file(g:vimrc.dir.plugin_settings . '/' . file . '.vim')
       endif
     endfor

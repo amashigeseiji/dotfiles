@@ -1,0 +1,54 @@
+#[[plugins]]
+#repo = 'nise-nabe/unite-openpne'
+
+[[plugins]]
+repo = 'superbrothers/vim-vimperator'
+filetypes = 'vimperator'
+
+[[plugins]]
+repo = 'Simple-Javascript-Indenter'
+filetypes = 'javascript'
+
+[[plugins]]
+repo = 'evidens/vim-twig'
+filetypes = 'twig'
+
+[[plugins]]
+repo = 'slim-template/vim-slim'
+filetypes = 'slim'
+
+[[plugins]]
+repo = 'kchmck/vim-coffee-script'
+filetypes = 'coffee'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+filetypes = 'toml'
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+filetypes = ['html', 'php', 'eruby']
+
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+filetypes = ['markdown']
+
+[[plugins]]
+repo = 'rhysd/vim-crystal'
+filetypes = 'crystal'
+
+#[[plugins]]
+#repo = 'Shougo/neosnippet'
+#insert = 1
+
+#[[plugins]]
+#repo = 'Shougo/neosnippet-snippets'
+
+#[[plugins]]
+#repo = 'supermomonga/neocomplete-rsense.vim'
+#filetypes = 'ruby'
+
+[[plugins]]
+repo = 'lambdalisue/vim-gista'
+on_cmd = ['Gista']
+on_func = 'gista#'
