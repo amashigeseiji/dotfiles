@@ -1,10 +1,24 @@
 let vimrc = {
       \ 'home': expand('~/.vim'),
-      \ 'dir': { 'plugin_settings': 'plugin_settings', 'rc': 'rc' },
-      \ 'require': ['dein', 'basic', 'keymap'],
+      \ 'dir': {
+      \   'plugin_settings': 'plugin_settings',
+      \   'rc': 'rc'
+      \ },
+      \ 'plugin_manager': 'dein',
+      \ 'require': ['basic', 'keymap'],
       \ 'initialize_with': {
-      \   'before': {}, 'after': {}}
+      \   'before': {},
+      \   'after': {}
+      \  }
       \}
+
+function! vimrc.path(dir)
+  let dir = a:dir
+  if exists('self.dir.' . a:dir)
+    let dir = self.dir[a:dir]
+  endif
+  return self.home . '/' . dir
+endfunction
 
 function! s:load(method)
   let self = {}
@@ -14,9 +28,11 @@ function! s:load(method)
     if filereadable(l:path)
       exec 'source ' . l:path
     endif
+    unlet l:path
   endfunction
 
   function! self.require()
+    call self.source_file(g:vimrc.dir.rc . '/' . g:vimrc.plugin_manager . '.rc.vim')
     for name in g:vimrc.require
       call self.source_file(g:vimrc.dir.rc . '/' . name . '.rc.vim')
     endfor
@@ -26,14 +42,23 @@ function! s:load(method)
     if exists('g:plugin_settings_dir')
       let g:vimrc.dir.plugin_settings = g:plugin_settings_dir
     endif
+
+    " todo fix systemlist
     let l:load_files = exists('g:vimrc_load_plugin_settings') ?
       \ g:vimrc_load_plugin_settings :
       \ systemlist('ls ' . g:vimrc.path('plugin_settings') . ' | grep vim$ | sed -e "s/.vim$//g"')
+
+    function! s:tap(file)
+      exec 'return ' . g:vimrc.plugin_manager . '#tap("' . a:file . '")'
+    endfunction
+
     for file in l:load_files
-      if dein#tap(file) || dein#tap(file . '.vim')
+      if s:tap(file) || s:tap(file . '.vim')
         call self.source_file(g:vimrc.dir.plugin_settings . '/' . file . '.vim')
       endif
     endfor
+
+    unlet l:load_files
   endfunction
 
   call self[a:method]()
@@ -53,20 +78,8 @@ function! vimrc.init()
     call self.initialize_with.after[key]()
   endfor
   call s:load('plugin_settings')
-endfunction
 
-function! vimrc.path(dir)
-  let dir = a:dir
-  if exists('self.dir.' . a:dir)
-    let dir = self.dir[a:dir]
-  endif
-  return self.home . '/' . dir
-endfunction
-
-function! vimrc.initialize_with.localvimrc()
   if exists('g:localvimrc') && filereadable(expand(g:localvimrc))
     exec 'source ' . g:localvimrc
   endif
 endfunction
-
-exec 'set runtimepath+=~/.vim'

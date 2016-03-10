@@ -18,10 +18,11 @@ repo = 'Shougo/vimfiler'
 
 [[plugins]]
 repo = 'Shougo/vimproc'
+build = 'make'
 
-  [plugins.build]
-    mac = 'make -f make_mac.mak'
-    unix = 'make -f make_unix.mak'
+#  [plugins.build]
+#    mac = 'make -f make_mac.mak'
+#    unix = 'make -f make_unix.mak'
 
 [[plugins]]
 repo = 'Shougo/vimshell'

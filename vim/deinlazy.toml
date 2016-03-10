@@ -3,39 +3,39 @@
 
 [[plugins]]
 repo = 'superbrothers/vim-vimperator'
-filetypes = 'vimperator'
+on_ft = 'vimperator'
 
 [[plugins]]
 repo = 'Simple-Javascript-Indenter'
-filetypes = 'javascript'
+on_ft = 'javascript'
 
 [[plugins]]
 repo = 'evidens/vim-twig'
-filetypes = 'twig'
+on_ft = 'twig'
 
 [[plugins]]
 repo = 'slim-template/vim-slim'
-filetypes = 'slim'
+on_ft = 'slim'
 
 [[plugins]]
 repo = 'kchmck/vim-coffee-script'
-filetypes = 'coffee'
+on_ft = 'coffee'
 
 [[plugins]]
 repo = 'cespare/vim-toml'
-filetypes = 'toml'
+on_ft = 'toml'
 
 [[plugins]]
 repo = 'mattn/emmet-vim'
-filetypes = ['html', 'php', 'eruby']
+on_ft = ['html', 'php', 'eruby']
 
 [[plugins]]
 repo = 'plasticboy/vim-markdown'
-filetypes = ['markdown']
+on_ft = ['markdown']
 
 [[plugins]]
 repo = 'rhysd/vim-crystal'
-filetypes = 'crystal'
+on_ft = 'crystal'
 
 #[[plugins]]
 #repo = 'Shougo/neosnippet'
@@ -46,7 +46,7 @@ filetypes = 'crystal'
 
 #[[plugins]]
 #repo = 'supermomonga/neocomplete-rsense.vim'
-#filetypes = 'ruby'
+#on_ft = 'ruby'
 
 [[plugins]]
 repo = 'lambdalisue/vim-gista'
