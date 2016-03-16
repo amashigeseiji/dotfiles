@@ -1,12 +1,11 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
-[[plugins]]
-repo = 'sudo.vim'
+#[[plugins]]
+#repo = 'sudo.vim'
 
 [[plugins]]
-repo = 'vimwiki'
-
+repo = 'vim-scripts/vimwiki'
 
 [[plugins]]
 repo = 'Shougo/unite.vim'
@@ -101,7 +100,7 @@ repo = 'Shougo/unite-outline'
 repo = 'thinca/vim-quickrun'
 
 [[plugins]]
-repo = 'taglist.vim'
+repo = 'vim-scripts/taglist.vim'
 
 [[plugins]]
 repo = 'rbtnn/vimconsole.vim'

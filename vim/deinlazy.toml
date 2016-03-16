@@ -49,9 +49,15 @@ on_i = 1
 repo = 'ujihisa/neco-look'
 on_i = 1
 depends = ['neocomplete']
+
+[[plugins]]
+repo = 'Shougo/neco-syntax'
+on_i = 1
+depends = ['neocomplete']
+
 #[[plugins]]
 #repo = 'Shougo/neosnippet'
-#insert = 1
+#on_i = 1
 
 #[[plugins]]
 #repo = 'Shougo/neosnippet-snippets'
