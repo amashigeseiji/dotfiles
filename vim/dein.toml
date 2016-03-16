@@ -123,3 +123,6 @@ repo = 'itchyny/dictionary.vim'
 
 [[plugins]]
 repo = 'mattn/vimplenote-vim'
+
+[[plugins]]
+repo = 'Konfekt/FastFold'
