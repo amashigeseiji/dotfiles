@@ -9,16 +9,18 @@ let g:neocomplete#max_list                          = 8
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern          = '\*ku\*'
 let g:neocomplete#sources#buffer#cache_limit_size   = 50000
-let g:neocomplete#data_directory                    = '/tmp/neocomplete.vim'
-let g:neocomplete#sources#buffer#max_keyword_width  = 30
+"let g:neocomplete#data_directory                    = '/tmp/neocomplete.vim'
+let g:neocomplete#enable_underbar_completion        = 1
+let g:neocomplete#enable_camel_case_completion      = 1
+let g:neocomplete#sources#buffer#max_keyword_width  = 80
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries   = {
     \ 'default' : '',
     \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions',
     \ 'php' : $HOME.'/.vim/dict/php.dict'
-        \ }
+    \ }
 
+"au InsertLeave * silent! pclose!
 " Define keyword.
 if !exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns = {}
@@ -40,8 +42,8 @@ endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-h>  neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>   neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 
@@ -57,9 +59,27 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
 let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.go = '\h\w\.\w*'
 
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-"let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplete#force_omni_input_patterns.go = '[^. \t]\.\%(\h\w*\)\?'
+
+" for neco-look
+if !exists('g:neocomplete#text_mode_filetypes')
+  let g:neocomplete#text_mode_filetypes = {}
+endif
+let g:neocomplete#text_mode_filetypes = {
+    \ 'rst': 1,
+    \ 'markdown': 1,
+    \ 'gitrebase': 1,
+    \ 'gitcommit': 1,
+    \ 'vcs-commit': 1,
+    \ 'hybrid': 1,
+    \ 'text': 1,
+    \ 'help': 1,
+    \ 'tex': 1,
+    \ 'vimwiki': 1
+    \}

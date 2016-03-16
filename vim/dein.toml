@@ -7,8 +7,6 @@ repo = 'sudo.vim'
 [[plugins]]
 repo = 'vimwiki'
 
-#[[plugins]]
-#repo = 'Shougo/neocomplete'
 
 [[plugins]]
 repo = 'Shougo/unite.vim'
