@@ -3,3 +3,4 @@ bundle/*
 vimwiki/*
 vimrc.local
 gvimrc.local
+dict/*
