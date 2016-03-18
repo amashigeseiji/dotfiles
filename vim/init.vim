@@ -43,10 +43,7 @@ function! s:load(method)
       let g:vimrc.dir.plugin_settings = g:plugin_settings_dir
     endif
 
-    " todo fix systemlist
-    let l:load_files = exists('g:vimrc_load_plugin_settings') ?
-      \ g:vimrc_load_plugin_settings :
-      \ systemlist('ls ' . g:vimrc.path('plugin_settings') . ' | grep vim$ | sed -e "s/.vim$//g"')
+    let l:load_files = split(system('ls ' . g:vimrc.path('plugin_settings') . ' | grep vim$ | sed -e "s/.vim$//g"'), "\n")
 
     function! s:tap(file)
       exec 'return ' . g:vimrc.plugin_manager . '#tap("' . a:file . '")'
@@ -59,6 +56,7 @@ function! s:load(method)
     endfor
 
     unlet l:load_files
+    delfunction s:tap
   endfunction
 
   call self[a:method]()
