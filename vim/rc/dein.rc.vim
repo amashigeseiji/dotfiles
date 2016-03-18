@@ -1,5 +1,5 @@
+function! vimrc.initialize_with.before.first()
 
-function! vimrc.initialize_with.before.dein_rc()
   let s:dein_dir = expand('~/.cache/dein')
   let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
@@ -15,7 +15,7 @@ function! vimrc.initialize_with.before.dein_rc()
   let l:toml      = g:vimrc.home . '/dein.toml'
   let l:toml_lazy = g:vimrc.home . '/deinlazy.toml'
 
-  if dein#load_cache([expand('<sfile>'), l:toml, l:toml_lazy])
+  if dein#load_cache([$MYVIMRC, l:toml, l:toml_lazy])
     call dein#load_toml(l:toml,      {'lazy' : 0})
     call dein#load_toml(l:toml_lazy, {'lazy' : 1})
     call dein#save_cache()

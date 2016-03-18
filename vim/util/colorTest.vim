@@ -1,4 +1,4 @@
-function! VimColorTest(outfile, fgend)
+function! s:colorTest(outfile, fgend)
   if !filereadable(a:outfile)
     let resultf = []
     let resultb = []
@@ -26,4 +26,4 @@ function! VimColorTest(outfile, fgend)
   source %
 endfunction
 " Increase numbers in next line to see more colors.
-command! VimColorTest call VimColorTest('/tmp/vim-color-define', 255)
+call s:colorTest('/tmp/vim-color-define', 255)

@@ -42,9 +42,6 @@ function! vimrc.initialize_with.basic_rc()
   "set viminfo+=n~/tmp/viminfo
   "set showmode
 
-  "set textwidth=0       "自動折り返ししない
-  "set formatoptions+=mM " テキスト挿入中の自動折り返しを日本語に対応させる
-  set formatoptions=q
   set list               " タブや改行を表示 (list:表示)
   set listchars=tab:>-,extends:<,trail:-,eol:$ " どの文字でタブや改行を表示するかを設定
 
@@ -65,7 +62,9 @@ function! vimrc.initialize_with.basic_rc()
   set noswapfile
   set nobackup     " バックアップファイルを作成しない
   "undo file
-  set noundofile
+  if has('persistent_undo')
+    set noundofile
+  endif
   set history=50
 
   set ambiwidth=double

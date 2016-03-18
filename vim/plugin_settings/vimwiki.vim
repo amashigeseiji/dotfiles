@@ -5,4 +5,6 @@ augroup VimWiki
   au!
   au FileType vimwiki nmap <buffer> <C-h> <Plug>VimwikiGoBackLink
   au FileType vimwiki nmap <buffer> <CR> <Plug>VimwikiFollowLink
+  au FileType vimwiki setl textwidth=80 "自動折り返し
+  au FileType vimwiki setl formatoptions+=mM " テキスト挿入中の自動折り返しを日本語に対応させる
 augroup END

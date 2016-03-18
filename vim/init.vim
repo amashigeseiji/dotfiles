@@ -4,7 +4,7 @@ let vimrc = {
       \   'plugin_settings': 'plugin_settings',
       \   'rc': 'rc'
       \ },
-      \ 'plugin_manager': 'dein',
+      \ 'plugin_manager': v:version > 703 ? 'dein' : 'neobundle',
       \ 'require': ['basic', 'keymap'],
       \ 'initialize_with': {
       \   'before': {},
@@ -64,17 +64,27 @@ endfunction
 
 function! vimrc.init()
   call s:load('require')
+
+  if exists('self.initialize_with.before.first')
+    call self.initialize_with.before.first()
+  endif
+
   for key in keys(self.initialize_with.before)
-    call self.initialize_with.before[key]()
+    if (key != 'first')
+      call self.initialize_with.before[key]()
+    endif
   endfor
+
   for key in keys(self.initialize_with)
     if key != 'before' && key != 'after'
       call self.initialize_with[key]()
     endif
   endfor
+
   for key in keys(self.initialize_with.after)
     call self.initialize_with.after[key]()
   endfor
+
   call s:load('plugin_settings')
 
   if exists('g:localvimrc') && filereadable(expand(g:localvimrc))
