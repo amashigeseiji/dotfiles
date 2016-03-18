@@ -5,7 +5,7 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#auto_completion_start_length      = 3
 let g:neocomplete#enable_fuzzy_completion           = 0
-let g:neocomplete#max_list                          = 8
+let g:neocomplete#max_list                          = 20
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern          = '\*ku\*'
 let g:neocomplete#sources#buffer#cache_limit_size   = 50000
@@ -58,7 +58,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
-let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplete#sources#omni#input_patterns.go = '\h\w\.\w*'
 
 if !exists('g:neocomplete#force_omni_input_patterns')

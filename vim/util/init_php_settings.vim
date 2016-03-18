@@ -17,9 +17,7 @@ function! s:create_phpdict()
   if !isdirectory(expand('~/.vim/dict'))
     call mkdir(expand('~/.vim/dict'))
   endif
-  if !filereadable(expand('~/.vim/dict/php.dict'))
-    call system('php ~/.vim/util/create_php_dict.php > ~/.vim/dict/php.dict')
-  endif
+  call system('php ~/.vim/util/create_php_dict.php > ~/.vim/dict/php.dict')
 endfunction
 
 call s:get_phpmanual()

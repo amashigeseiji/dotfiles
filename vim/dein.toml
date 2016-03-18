@@ -1,6 +1,10 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
+[[plugins]]
+repo = 'Shougo/vimproc'
+build = 'make'
+
 #[[plugins]]
 #repo = 'sudo.vim'
 
@@ -9,20 +13,6 @@ repo = 'vim-scripts/vimwiki'
 
 [[plugins]]
 repo = 'Shougo/unite.vim'
-
-[[plugins]]
-repo = 'Shougo/vimfiler'
-
-[[plugins]]
-repo = 'Shougo/vimproc'
-build = 'make'
-
-#  [plugins.build]
-#    mac = 'make -f make_mac.mak'
-#    unix = 'make -f make_unix.mak'
-
-[[plugins]]
-repo = 'Shougo/vimshell'
 
 [[plugins]]
 repo = 'thinca/vim-ref'
@@ -45,8 +35,8 @@ repo = 'tpope/vim-surround'
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
-[[plugins]]
-repo = 'project.tar.gz'
+#[[plugins]]
+#repo = 'project.tar.gz'
 
 [[plugins]]
 repo = 'rking/ag.vim'
@@ -110,12 +100,13 @@ repo = 'kmnk/vim-unite-giti'
 
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
+on_ft = 'help'
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 
-[[plugins]]
-repo = 'nanotech/jellybeans.vim'
+#[[plugins]]
+#repo = 'nanotech/jellybeans.vim'
 
 [[plugins]]
 repo = 'itchyny/dictionary.vim'

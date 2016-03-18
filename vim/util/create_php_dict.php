@@ -19,6 +19,6 @@ $arrays = array_merge(
     $interfaces,
     $classes
 );
-sort( $arrays );
+natcasesort( $arrays );
 $arrays = array_unique( $arrays );
 echo implode("\n", $arrays);
