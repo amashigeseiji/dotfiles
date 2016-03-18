@@ -1,6 +1,6 @@
-"let g:vimrc_load_other_settings = ['emmet', 'lightline', 'neobundle', 'vim-ref']
 source ~/.vim/init.vim
 colorscheme mycolor
+let g:vimrc.plugin_manager = 'dein'
 let g:localvimrc = '~/.vim/vimrc.local'
 call vimrc.init()
 noh
