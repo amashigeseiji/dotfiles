@@ -10,23 +10,22 @@ function! vimrc.initialize_with.before.first()
     execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
   endif
 
-  call dein#begin(s:dein_dir)
+  if !dein#load_state(s:dein_dir)
+    return
+  endif
 
   let l:toml      = g:vimrc.home . '/dein.toml'
   let l:toml_lazy = g:vimrc.home . '/deinlazy.toml'
 
-  if dein#load_cache([$MYVIMRC, l:toml, l:toml_lazy])
-    call dein#load_toml(l:toml,      {'lazy' : 0})
-    call dein#load_toml(l:toml_lazy, {'lazy' : 1})
-    call dein#save_cache()
-  endif
+  call dein#begin(s:dein_dir, [expand('<sfile>'), l:toml, l:toml_lazy])
+
+  call dein#load_toml(l:toml,      {'lazy' : 0})
+  call dein#load_toml(l:toml_lazy, {'lazy' : 1})
 
   call dein#end()
+  call dein#save_state()
 
-  syntax on
-  filetype plugin indent on
-
-  if dein#check_install()
+  if has('vim_starting') && dein#check_install()
     call dein#install()
   endif
 

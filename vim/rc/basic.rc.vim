@@ -95,4 +95,8 @@ function! vimrc.initialize_with.basic_rc()
     au!
     au FileType help noremap <buffer><silent> q :bd<CR>
   augroup END
+
+  syntax on
+  filetype plugin indent on
+
 endfunction

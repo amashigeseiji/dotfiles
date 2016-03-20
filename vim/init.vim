@@ -81,11 +81,11 @@ function! vimrc.init()
     endif
   endfor
 
+  call s:load('plugin_settings')
+
   for key in keys(self.initialize_with.after)
     call self.initialize_with.after[key]()
   endfor
-
-  call s:load('plugin_settings')
 
   if exists('g:localvimrc') && filereadable(expand(g:localvimrc))
     exec 'source ' . g:localvimrc
