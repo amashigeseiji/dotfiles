@@ -3,6 +3,7 @@ let g:gmail_account_dir = '~/.gmail.vim/account/'
 let g:gmail_cache_dir = '~/.gmail.vim/cache/'
 
 augroup gmail
+  au!
   au Filetype gmail cnoremap <buffer> q GmailExit
 augroup END
 
@@ -13,11 +14,7 @@ function! s:gmail(...)
     call mkdir(expand(g:gmail_account_dir), 'p', 0700)
   endif
 
-  if len(a:000) == 0
-    let account_setting = s:gmail_default_account
-  else
-    let account_setting = g:gmail_account_dir . a:000[0]
-  endif
+  let account_setting = len(a:000) == 0 ? s:gmail_default_account : g:gmail_account_dir . a:000[0]
 
   if filereadable(expand(account_setting))
     let lines = readfile(expand(account_setting))
