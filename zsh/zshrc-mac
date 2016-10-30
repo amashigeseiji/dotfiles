@@ -22,8 +22,3 @@ autoload -U compinit && compinit -u -C
 
 #aliases
 source $ZSH_HOME/alias_for_mac_osx
-
-# for phpenv
-# see http://uzulla.hateblo.jp/entry/2015/10/10/001039
-export PHP_BUILD_CONFIGURE_OPTS="--with-openssl=$(brew --prefix openssl) --with-libxml-dir=$(brew --prefix libxml2)"
-export PHP_BUILD_EXTRA_MAKE_ARGUMENTS=-j4
