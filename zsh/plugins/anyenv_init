@@ -1,0 +1,36 @@
+export ANYENV_ROOT=$HOME/.anyenv/
+
+if [ ! -e $ANYENV_ROOT ];then
+  git clone https://github.com/riywo/anyenv $ANYENV_ROOT
+fi
+
+export PATH="$ANYENV_ROOT/bin:$PATH"
+source $ANYENV_ROOT/completions/anyenv.${SHELL##*/}
+
+for i in $(/bin/ls $ANYENV_ROOT/envs/)
+do
+  export ANYENV_${i}=
+  # init on call *env
+  function ${i}() {
+    unfunction $0
+    anyenv_init $0
+    $0 $@
+  }
+  [ -e $ANYENV_ROOT/envs/${i}/completions/${i}.${SHELL##*/} ] && source $ANYENV_ROOT/envs/${i}/completions/${i}.${SHELL##*/}
+done
+
+function anyenv_init() {
+  local env
+  local export_var_prefix=ANYENV_
+  [ $# -eq 1 ] && {
+    [[ $1 =~ .*env ]] && env=$1 || return 1
+  } || return 1
+
+  local export_var=${export_var_prefix}${env}
+  [ ! "$(eval printf '${'$export_var':-UNDEF}')" = 'UNDEF' ] && return
+
+  export ${env:u}_ROOT="$ANYENV_ROOT/envs/$env"
+  export PATH="$ANYENV_ROOT/envs/$env/bin:$ANYENV_ROOT/envs/$env/shims:$PATH"
+  eval "$($env init - ${SHELL})"
+  export ${export_var}=1
+}
