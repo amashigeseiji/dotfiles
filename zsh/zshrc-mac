@@ -2,89 +2,28 @@
 #=============================
 #BaseSettings
 #=============================
-# BaseSettings{{{
-# 環境変数{{{
+# 環境変数
+source $HOME/.zsh/zshrc-base
 export LANG=ja_JP.UTF-8
-export EDITOR=vim
-export SVN_EDITOR=vi
 export LC_ALL=ja_JP.UTF-8
-# PATH
-export PATH=$PATH:$HOME/bin
-export ZSH_HOME=$HOME/.zsh
-export TERM="xterm-256color"
+export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 
-# for MacOS
-export PATH=/usr/local/sbin:$PATH # for Homebrew
-export PATH=/usr/local/bin:$PATH  # for Homebrew
-#}}}
-# colors{{{
-export LS_COLORS="no=00:fi=00:di=01;36:ln=01;34:ow=01;33"
-export LSCOLORS=gxfxcxdxbxegedabagacad
-export ZLS_COLORS=LS_COLORS
-autoload colors && colors
-#}}}
-#history{{{
+#history
 HISTFILE=$HOME/.zsh-history
 HISTSIZE=10000
 SAVEHIST=10000
-#}}}
-#補完{{{
-# ------------------------------------------------------------------------
-# zsh-completions
-# ------------------------------------------------------------------------
+
 fpath+=($ZSH_HOME'/fpath')
 if [ ! -d ${HOME}/.zsh/zsh-completions/src ] ; then
    git clone git://github.com/zsh-users/zsh-completions.git ${HOME}/.zsh/zsh-completions
 fi
-fpath=(${HOME}/.zsh/zsh-completions/src $fpath)
-autoload -U compinit && compinit -u
-#}}}
-#}}}
-# setopt{{{
-# history option
-setopt hist_ignore_dups         # ignore duplication command history list
-setopt hist_ignore_all_dups     #history listに同一のコマンドがあれば削除する
-setopt hist_expire_dups_first   #historyのイベント数が上限に達した時、重複があるものから削除
-setopt hist_save_nodups
-setopt inc_append_history       # コマンド確定後すぐに履歴ファイルに保存する(設定しないと exit 時)
-setopt share_history            # share command history data 
-setopt hist_ignore_space        # 先頭がスペースで始まるときスペースを無視
-# completion
-setopt auto_list           # 一覧表示
-setopt list_packed         # 詰めて表示
-setopt list_types          # 補完候補一覧でファイルの種別をマーク表示
-setopt print_eight_bit  #日本語ファイル名等8ビットを通す
-setopt complete_in_word      # 語の途中でもカーソル位置で補完
-#setopt auto_cd            # ディレクトリ名だけで cd
-setopt auto_pushd          # 移動したディレクトリを記録
-setopt pushd_ignore_dups
-#setopt correct             #スペルミスを表示
-setopt prompt_subst   ## PROMPT内で変数展開・コマンド置換・算術演算を実行する
-setopt re_match_pcre
-autoload zed               #zsh_editor
-#}}}
-#補完関連のstyle{{{
-zstyle ':completion:*:default' menu select=1     # カーソル選択を有効に
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z} r:|[-_.]=**'  #大文字・小文字を区別しないで補完
-#みためとか
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*:descriptions' format '%B%d%b'
-zstyle ':completion:*:messages' format '%d'
-zstyle ':completion:*:warnings' format 'No matches for: %d'
-zstyle ':completion:*' group-name ''
-#}}}
-#aliases{{{
-setopt complete_aliases
+fpath=(${HOME}/.zsh/zsh-completions/src '/usr/local/share/zsh/site-functions/' $fpath)
+autoload -U compinit && compinit -u -C
+
 #aliases
 source $ZSH_HOME/alias_for_mac_osx
-#}}}
-# KeyBind{{{
-bindkey -e
-bindkey '^P' history-beginning-search-backward
-bindkey '^N' history-beginning-search-forward
-bindkey '^K' accept-line
-bindkey '^J' kill-whole-line
-# }}}
 
-source ${ZSH_HOME}/plugin_loader && loadPlugins $targetPlugins
+# for phpenv
+# see http://uzulla.hateblo.jp/entry/2015/10/10/001039
+export PHP_BUILD_CONFIGURE_OPTS="--with-openssl=$(brew --prefix openssl) --with-libxml-dir=$(brew --prefix libxml2)"
+export PHP_BUILD_EXTRA_MAKE_ARGUMENTS=-j4
