@@ -44,17 +44,18 @@ repo = 'rking/ag.vim'
 [[plugins]]
 repo = 'tpope/vim-endwise'
 
-[[plugins]]
-repo = 'tpope/vim-rails'
 
 [[plugins]]
 repo = 'soramugi/auto-ctags.vim'
 
 [[plugins]]
-repo = 'Shougo/neomru.vim'
+repo = 'tsukkee/unite-tag'
 
 [[plugins]]
-repo = 'kien/ctrlp.vim'
+repo = 'Shougo/neomru.vim'
+
+#[[plugins]]
+#repo = 'kien/ctrlp.vim'
 
 [[plugins]]
 repo = 'scrooloose/nerdtree'
@@ -116,3 +117,6 @@ repo = 'mattn/vimplenote-vim'
 
 [[plugins]]
 repo = 'Konfekt/FastFold'
+
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'

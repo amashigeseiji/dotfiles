@@ -10,3 +10,4 @@ function! s:completion(ArgLead, CmdLine, CursorPos)
 endfunction
 
 command! -nargs=+ -complete=custom,s:completion Util call s:source(<f-args>)
+nnoremap ,u :Util<space>

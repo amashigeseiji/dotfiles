@@ -79,3 +79,18 @@ on_map = '<Plug>'
 repo = 'Shougo/vimfiler.vim'
 depends = 'unite.vim'
 
+[[plugins]]
+repo = 'tobyS/pdv'
+on_ft = ['php']
+
+[[plugins]]
+repo = 'tobyS/vmustache'
+on_ft = ['php']
+
+[[plugins]]
+repo = 'tpope/vim-rails'
+on_ft = ['ruby']
+
+#[[plugins]]
+#repo = 'joonty/vdebug'
+#on_ft = ['php']

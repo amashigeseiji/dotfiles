@@ -12,6 +12,10 @@ $constants  = function_exists( 'get_defined_constants'   ) ? get_defined_constan
 $interfaces = function_exists( 'get_declared_interfaces' ) ? get_declared_interfaces() : array();
 $classes    = function_exists( 'get_declared_classes'    ) ? get_declared_classes()    : array();
 
+array_walk_recursive($functions, function(&$func) {
+  $func = $func . '()';
+});
+
 $arrays = array_merge(
     $keywords,
     $functions['internal'],
