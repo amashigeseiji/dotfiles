@@ -142,7 +142,7 @@ nnoremap <S-m> :gm<CR>
 
 "英辞郎
 nnoremap e :eijiro<Space>
-nnoremap L :login<Space>
+nnoremap L :login<Space>-s<Space>
 nnoremap ,l :logout<CR>
 nnoremap gm :gm<Space>
 "}}}
@@ -151,10 +151,10 @@ inoremap <C-j> <Esc>
 inoremap <C-k> <CR>
 inoremap <C-h> <BS>
 inoremap <C-l> <down>
-inoremap () ()<Left>
-inoremap [] []<Left>
-inoremap '' ''<Left>
-inoremap "" ""<Left>
+"inoremap () ()<Left>
+"inoremap [] []<Left>
+"inoremap '' ''<Left>
+"inoremap "" ""<Left>
 "inoremap <M-h> gT
 "inoremap <M-l> gt
 inoremap <C-b> <Esc>:emenu 表示.サイドバー.ブックマーク<CR>

@@ -1,9 +1,9 @@
 " gmail
-"autocmd LocationChange 'mail\.google\.com/mail' :set noinsertmode
-lazy fmaps -u='mail\.google\.com/mail' c / j k n p u e l x s r a # [ ] ? gi gs gt gd ga gc *a *n ` ~ . v <S-v> > <
-"lazy fmaps -u='mail\.google\.com/mail' -events=keydown,keypress,keyup,vkeydown,vkeypress,vkeyup i gi
-lazy fmap -u='mail\.google\.com/mail' -modes=i -events=keydown,keypress,keyup,vkeydown,vkeypress,vkeyup <TAB> <down>
-lazy fmap -u='mail\.google\.com/mail' -modes=i -events=keydown,keypress,keyup,vkeydown,vkeypress,vkeyup <S-TAB> <up>
-lazy fmaps -u='mail\.google\.com/mail/mu/mp' c / j k n p o u e l x s r a # [ ] ? gi gs gt gd ga gc gl
-"inoremap -u='mail\.google\.com/mail' <C-h> <del>
-"inoremap -u='mail\.google\.com/mail/mu/mp' <C-h> <BS>
+"autocmd LocationChange '(mail|inbox)\.google\.com/' :set noinsertmode
+lazy fmaps -u='(mail|inbox)\.google\.com/' c / j k n p u e l x s r a # [ ] ? gi gs gt gd ga gc *a *n ` ~ . v <S-v> > <
+"lazy fmaps -u='(mail|inbox)\.google\.com/' -events=keydown,keypress,keyup,vkeydown,vkeypress,vkeyup i gi
+lazy fmap  -u='(mail|inbox)\.google\.com/' -modes=i -events=keydown,keypress,keyup,vkeydown,vkeypress,vkeyup <TAB> <down>
+lazy fmap  -u='(mail|inbox)\.google\.com/' -modes=i -events=keydown,keypress,keyup,vkeydown,vkeypress,vkeyup <S-TAB> <up>
+lazy fmaps -u='(mail|inbox)\.google\.com//mu/mp' c / j k n p o u e l x s r a # [ ] ? gi gs gt gd ga gc gl
+"inoremap -u='(mail|inbox)\.google\.com/' <C-h> <del>
+"inoremap -u='(mail|inbox)\.google\.com//mu/mp' <C-h> <BS>

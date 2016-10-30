@@ -1,0 +1,3 @@
+"lazy fmaps -u='github\.com/' -events=keydown,keypress,keyup,vkeydown,vkeypress,vkeyup <C-s> s
+"lazy fmaps -u='github\.com/' -events=keydown,keypress,keyup,vkeydown,vkeypress,vkeyup <C-t> t
+"lazy fmaps -u='github\.com/' -events=keydown,keypress,keyup,vkeydown,vkeypress,vkeyup <C-b> w

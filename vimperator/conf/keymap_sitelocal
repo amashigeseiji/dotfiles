@@ -4,3 +4,4 @@ source ~/.vimperator/conf/sitelocal/google_search
 source ~/.vimperator/conf/sitelocal/google_drive
 source ~/.vimperator/conf/sitelocal/twitter
 source ~/.vimperator/conf/sitelocal/google_spreadsheet
+source ~/.vimperator/conf/sitelocal/github
