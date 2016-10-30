@@ -1,4 +1,4 @@
-
+#!/usr/bin/env zsh
 if [ -z ${prompt_color} ];then
   prompt_color='yellow'
 fi

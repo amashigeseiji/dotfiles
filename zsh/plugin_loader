@@ -1,48 +1,50 @@
 #!/usr/bin/env zsh
 
-function loadPlugins() {
-  local zsh_plugin_dir=${ZSH_HOME}'/plugins/'
-  local self=${ZSH_HOME}/plugin_loader
-  local -a func_name=($(cat $self | grep -E '[f]unction _zsh_plugin_'| sed -E 's/function (_zsh_plugin_[a-zA-Z_]+)\(\){/\1/g'))
+if [ -z "${ZSH_HOME}" ]; then
+  ZSH_HOME="${HOME}/.zsh"
+else
+  ZSH_HOME="${ZSH_HOME%/}"
+fi
 
-  function _zsh_plugin_load(){
+export ZSH_HOME
+export ZSH_PLUGIN_DIR=${ZSH_HOME}/plugins
+
+function plugin() {
+
+  # register plugin as temporary function
+  # call plugin name, real path will load and execute
+  function _zsh_plugin_register() {
     local plugin_name=$1
-    if [ ! `find $zsh_plugin_dir -name "${i}"` ];then plugin_name=$(/bin/ls ${zsh_plugin_dir}|grep ${plugin_name});fi
-    #_pluginGetFuncName ${plugin_name}
-    if [ -e ${zsh_plugin_dir}${plugin_name} ];then
-      source "${zsh_plugin_dir}${plugin_name}"
-    fi
+    local file=`find $ZSH_PLUGIN_DIR -name ${plugin_name} -type f`
+    [ -n "$file" ] && {
+      function $plugin_name() {
+        unfunction $0
+        source ${ZSH_PLUGIN_DIR}/$0 $@
+        if which $0 > /dev/null ;then
+          $0 $@
+        else
+          plugin register $0
+        fi
+      }
+    } || return 1
   }
 
-  function _zsh_plugin_get_fullpath(){
-    find $zsh_plugin_dir -name "${1}"
+  function _zsh_plugin_call_onload() {
+    local plugin=$1
+    _zsh_plugin_register $plugin
+    [ ! $? = 0 ] && echo "plugin $plugin does not exist." && return 1
+    shift
+    $plugin $@
   }
 
-  function _zsh_plugin_get_names(){
-    #プラグイン名を取り出す(プラグイン名として管理)
-    /bin/ls ${zsh_plugin_dir} | sed -e 's/.zsh//g'
-    #/bin/ls ${zsh_plugin_dir}
-  }
-
-  function _zsh_plugin_get_func_name(){
-    local plugin_name=$1
-    cat ${zsh_plugin_dir}${plugin_name}|grep '( function|\(\) )' |grep -vE '^#'|awk -F'(' '{print $1}'|sed -e "s/function//g"
-  }
-
-  function _zsh_plugin_unload(){
-    unfunction `_pluginGetFuncNames | grep $1`
-  }
-
-  function _zsh_plugin_reload(){
-    unloadPlugin $1
-  }
-
-  #PLUGIN_NAMES=$(_pluginGetNames)
-  for i in $@;do _zsh_plugin_load $i;done
-  for i in ${func_name[@]};do unfunction $i;done
+  local call=_zsh_plugin_$1
+  shift
+  $call $@
+  unfunction $call
 }
 
-function _loadPlugins() {
-  compadd `/bin/ls $HOME/.zsh/plugins | sed -e 's/.zsh//g'`
+function _plugin() {
+  local -a completions=(register)
+  compadd $completions
 }
-compdef _loadPlugins loadPlugins
+compdef _plugin plugin
