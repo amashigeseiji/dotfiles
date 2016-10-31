@@ -7,19 +7,43 @@ fi
 export PATH="$ANYENV_ROOT/bin:$PATH"
 source $ANYENV_ROOT/completions/anyenv.${SHELL##*/}
 
-for i in $(/bin/ls $ANYENV_ROOT/envs/)
-do
-  export ANYENV_${i}=
+function _anyenv_init_register() {
+  typeset -A -l _anyenv_command_map=(
+    phpenv php
+    rbenv ruby
+    goenv go
+    crenv crystal
+    ndenv node
+    pyenv python
+    jenv java
+  )
+
+  export ANYENV_${1}=
+
   # init on call *env
-  function ${i}() {
+  function ${1}() {
     unfunction $0
-    anyenv_init $0
+    _anyenv_init $0
     $0 $@
   }
-  [ -e $ANYENV_ROOT/envs/${i}/completions/${i}.${SHELL##*/} ] && source $ANYENV_ROOT/envs/${i}/completions/${i}.${SHELL##*/}
-done
+  [ -e $ANYENV_ROOT/envs/${1}/completions/${1}.${SHELL##*/} ] && source $ANYENV_ROOT/envs/${1}/completions/${1}.${SHELL##*/}
 
-function anyenv_init() {
+  # create temporary command
+  if [ -n "$_anyenv_command_map[$1]" ];then
+      eval "function $_anyenv_command_map[$1]() {
+          if [ "'$ANYENV'"_${1} ]; then
+            unfunction "'$0'";
+            "'$0 $@'"
+          else
+            $1 >/dev/null 2>&1
+            unfunction "'$0'"
+            "'$0 $@'"
+          fi
+      }"
+  fi
+}
+
+function _anyenv_init() {
   local env
   local export_var_prefix=ANYENV_
   [ $# -eq 1 ] && {
@@ -34,3 +58,8 @@ function anyenv_init() {
   eval "$($env init - ${SHELL})"
   export ${export_var}=1
 }
+
+for i in $(/bin/ls $ANYENV_ROOT/envs/)
+do
+  _anyenv_init_register $i
+done
