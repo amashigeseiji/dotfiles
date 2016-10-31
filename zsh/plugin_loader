@@ -11,34 +11,80 @@ export ZSH_PLUGIN_DIR=${ZSH_HOME}/plugin
 
 function plugin() {
 
-  # register plugin as temporary function
-  # call plugin name, real path will load and execute
-  function _zsh_plugin_register() {
-    local plugin_name=$1
-    local file=`find $ZSH_PLUGIN_DIR -name ${plugin_name} -type f`
-    [ -n "$file" ] && {
-      function $plugin_name() {
-        unfunction $0
-        source ${ZSH_PLUGIN_DIR}/$0 $@
-        if which $0 > /dev/null ;then
-          $0 $@
-        else
-          plugin register $0
-        fi
-      }
-    } || return 1
-  }
+  if [ $# -eq 0 ];then
+    printf "%s" 'plugin
+Usage: plugin <command> [<args>]
 
-  function _zsh_plugin_call_onload() {
-    local plugin=$1
-    _zsh_plugin_register $plugin
-    [ ! $? = 0 ] && echo "plugin $plugin does not exist." && return 1
-    shift
-    $plugin $@
-  }
+plugin commands are:
+    register        register plugin name as temporary function
+    call            call on registeration.
+    install         install plugin from github.com.
+'
+    return
+  fi
 
-  local call=_zsh_plugin_$1
+  local prefix=_zsh_plugin
+  local call=${prefix}_${1}
   shift
+
+  if [ $call = ${prefix}_register ];then
+    # register plugin as temporary function
+    # call plugin name, real path will load and execute
+    function ${call}() {
+      local plugin_name=$1
+      [ -e ${ZSH_PLUGIN_DIR}/${plugin_name} ] && {
+        function $plugin_name() {
+          unfunction $0
+          plugin source $0 || return 1
+
+          if which $0 > /dev/null ;then
+            $0 $@
+          else
+            plugin register $0
+          fi
+        }
+      } || {
+        echo "[plugin:register] \"$plugin_name\" does not exist." && return 1
+      }
+    }
+  fi
+
+  if [ $call = ${prefix}_source ];then
+    function ${call}() {
+      [ $# -eq 0 ] && echo '[plugin:source] argument required.' && return 1
+      local plugin=$1
+      shift
+      if [ -f ${ZSH_PLUGIN_DIR}/$plugin ];then
+        source ${ZSH_PLUGIN_DIR}/$plugin $@
+      elif [ -d ${ZSH_PLUGIN_DIR}/$plugin -a -f ${ZSH_PLUGIN_DIR}/$plugin/$plugin ];then
+        source ${ZSH_PLUGIN_DIR}/$plugin/$plugin $@
+      else
+        echo "[plugin:source]: resource \"$plugin\" not found."
+        return 1
+      fi
+    }
+  fi
+
+  if [ $call = ${prefix}_call ];then
+    function ${call}() {
+      local plugin=$1
+      plugin register $plugin
+      [ ! $? = 0 ] && return 1
+      shift
+      $plugin $@
+    }
+  fi
+
+  if [ $call = ${prefix}_install ];then
+    function ${call}() {
+      local url=https://github.com
+      local repo=${1:h}
+      local package=${1:t}
+      [ -d ${ZSH_PLUGIN_DIR}/${package} ] && return
+      git clone ${url}/${repo}/${package} ${ZSH_PLUGIN_DIR}/${package}
+    }
+  fi
+
   $call $@
   unfunction $call
 }
