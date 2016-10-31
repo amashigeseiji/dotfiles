@@ -56,8 +56,14 @@ plugin commands are:
       shift
       if [ -f ${ZSH_PLUGIN_DIR}/$plugin ];then
         source ${ZSH_PLUGIN_DIR}/$plugin $@
-      elif [ -d ${ZSH_PLUGIN_DIR}/$plugin -a -f ${ZSH_PLUGIN_DIR}/$plugin/$plugin ];then
-        source ${ZSH_PLUGIN_DIR}/$plugin/$plugin $@
+      elif [ -d ${ZSH_PLUGIN_DIR}/$plugin ];then
+        if [ -f ${ZSH_PLUGIN_DIR}/$plugin/$plugin ];then
+          source ${ZSH_PLUGIN_DIR}/$plugin/$plugin $@
+        elif [ -f ${ZSH_PLUGIN_DIR}/$plugin/${plugin}.zsh ];then
+          source ${ZSH_PLUGIN_DIR}/$plugin/${plugin}.zsh $@
+        else
+          echo "[plugin:source]: resource \"$plugin\" not found."
+        fi
       else
         echo "[plugin:source]: resource \"$plugin\" not found."
         return 1
@@ -67,6 +73,7 @@ plugin commands are:
 
   if [ $call = ${prefix}_call ];then
     function ${call}() {
+      [ $# -eq 0 ] && echo '[plugin:source] argument required.' && return 1
       local plugin=$1
       plugin register $plugin
       [ ! $? = 0 ] && return 1
