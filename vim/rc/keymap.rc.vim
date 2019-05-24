@@ -17,8 +17,7 @@ nnoremap <C-e> <S-$>
 nnoremap <C-n>   :bnext<CR>
 " Ctrl+Pで前のバッファを表示
 nnoremap <C-p>   :bprevious<CR>
-nnoremap <C-j> <C-]>
-nnoremap g<C-j> g<C-]>
+nnoremap <C-j> :exe("tjump ".expand('<cword>'))<CR>
 " tmuxのプレフィックスとかぶるので
 nnoremap <C-f> <nop>
 
@@ -33,10 +32,10 @@ else
   nnoremap .. :tabe ~/.vimrc<CR>
 endif
 nnoremap ,, :source ~/.vimrc<CR>
-nnoremap <silent>;w :setl nowrap!<CR>
-nnoremap <silent>;n :setl nonumber!<CR>
-nnoremap <silent>;a :append!<CR>
-nnoremap <silent>;l :noh<CR>
+nnoremap <silent>,w :setl nowrap!<CR>
+nnoremap <silent>,n :setl nonumber!<CR>
+nnoremap <silent>,a :append!<CR>
+nnoremap <silent>,l :noh<CR>
 nnoremap ,fi :setl foldmethod=indent<CR>
 nnoremap ,fm :setl foldmethod=marker<CR>
 nnoremap ,fs :setl foldmethod=syntax<CR>
@@ -60,9 +59,6 @@ nnoremap zd <nop>
 nnoremap zD <nop>
 nnoremap zE <nop>
 "}}}
-"plugin {{{
-nnoremap ,ag :Ag<space>
-"}}}
 "}}}
 "insert-mode{{{
 inoremap <C-j> <Esc>
@@ -74,7 +70,6 @@ inoremap <> <><Left>
 inoremap "" ""<Left>
 inoremap '' ''<Left>
 inoremap `` ``<Left>
-inoremap /* /*  */<Left><Left><Left>
 inoremap <C-l> ->
 inoremap <M-l> =>
 "}}}

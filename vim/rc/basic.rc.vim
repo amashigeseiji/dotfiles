@@ -79,6 +79,13 @@ function! vimrc.initialize_with.basic_rc()
   "set foldclose=all
   set modeline
 
+  " gq でコメントをフォーマットする
+  set formatoptions=tcrqm
+  set textwidth=0
+
+  " only 200 characters are highlight
+  set synmaxcol=1000
+
   set helplang=ja,en
   "ctags
   set tags=./tags;
@@ -95,6 +102,16 @@ function! vimrc.initialize_with.basic_rc()
     au!
     au FileType help noremap <buffer><silent> q :bd<CR>
   augroup END
+
+  " matchit
+  if !exists('g:loaded_matchit')
+    runtime macros/matchit.vim
+  endif
+  let b:match_words = "if:endif,foreach:endforeach,\<begin\>:\<end\>"
+  let b:match_ignorecase = 1
+
+  " too slow default matcher
+  let g:loaded_matchparen = 1
 
   syntax on
   filetype plugin indent on

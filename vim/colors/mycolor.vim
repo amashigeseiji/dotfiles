@@ -136,9 +136,9 @@ end
 " 通常の表示
 hi Normal             ctermfg=248  ctermbg=234 guifg=#cccccc guibg=grey18
 " 行番号
-hi LineNr             ctermfg=238  ctermbg=234 guifg=#777777
+hi LineNr             ctermfg=244  ctermbg=234 guifg=#777777
 " コメント
-hi Comment            ctermfg=237 guifg=#666666
+hi Comment            ctermfg=94 guifg=#666666
 " special keys
 hi SpecialKey         term=underline ctermfg=darkgray ctermbg=black guifg=grey30 guibg=grey20
 hi IdeographicSpace   term=underline ctermbg=DarkGreen guibg=DarkGreen

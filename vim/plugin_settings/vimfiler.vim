@@ -1,4 +1,4 @@
-nnoremap <silent>F :VimFiler -buffer-name=explorer -simple -split  -winwidth=25 -toggle -no-quit -auto-cd<CR>
+nnoremap <silent>F :VimFilerExplorer -buffer-name=explorer -project -simple -split  -winwidth=25 -toggle -no-quit -auto-cd<CR>
 augroup MyVimFiler
   au!
   autocmd FileType vimfiler nmap <buffer> s <Plug>(vimfiler_toggle_mark_current_line)

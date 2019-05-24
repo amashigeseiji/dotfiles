@@ -1,4 +1,4 @@
-source ~/.vim/ftplugin/xml.vim
+"source ~/.vim/ftplugin/xml.vim
 "inoremap <buffer> </ </<C-x><C-o><C-n><ESC>bbli
 "source $VIMRUNTIME/macros/matchit.vim
 setl foldmethod=indent

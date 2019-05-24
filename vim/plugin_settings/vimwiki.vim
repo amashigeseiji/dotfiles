@@ -1,6 +1,6 @@
-let g:vimwiki_folding="syntax"
+let g:vimwiki_folding="expr"
 let g:vimwiki_hl_cb_checked=1
-let g:vimwiki_list=[{'path':'~/.vim/vimwiki/'}]
+let g:vimwiki_list=[{'path':'~/.vim/vimwiki/', 'syntax': 'markdown'}]
 augroup VimWiki
   au!
   au FileType vimwiki nmap <buffer> <C-h> <Plug>VimwikiGoBackLink

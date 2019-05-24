@@ -85,3 +85,33 @@ on_ft = ['ruby']
 #[[plugins]]
 #repo = 'joonty/vdebug'
 #on_ft = ['php']
+
+[[plugins]]
+repo = 'mustache/vim-mustache-handlebars'
+on_ft = ['mustache']
+
+[[plugins]]
+repo = 'tmhedberg/matchit'
+on_ft = ['html', 'php']
+
+[[plugins]]
+repo = 'vim-scripts/textutil.vim'
+on_ft = ['rtf']
+
+[[plugins]]
+repo = 'swekaj/php-foldexpr.vim'
+on_ft = ['php']
+
+#[[plugins]]
+#repo = 'lvht/phpcd.vim'
+#on_ft = ['php']
+#build = ['composer install']
+#
+
+#[[plugins]]
+#repo = 'chrisbra/csv.vim'
+#on_ft = ['csv']
+
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
+on_ft = ['typescript']

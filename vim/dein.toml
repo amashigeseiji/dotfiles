@@ -39,14 +39,11 @@ repo = 'tpope/vim-fugitive'
 #repo = 'project.tar.gz'
 
 [[plugins]]
-repo = 'rking/ag.vim'
-
-[[plugins]]
 repo = 'tpope/vim-endwise'
 
 
-[[plugins]]
-repo = 'soramugi/auto-ctags.vim'
+#[[plugins]]
+#repo = 'soramugi/auto-ctags.vim'
 
 [[plugins]]
 repo = 'tsukkee/unite-tag'
@@ -54,11 +51,11 @@ repo = 'tsukkee/unite-tag'
 [[plugins]]
 repo = 'Shougo/neomru.vim'
 
-#[[plugins]]
-#repo = 'kien/ctrlp.vim'
-
 [[plugins]]
-repo = 'scrooloose/nerdtree'
+repo = 'kien/ctrlp.vim'
+
+#[[plugins]]
+#repo = 'scrooloose/nerdtree'
 
 [[plugins]]
 repo = 'embear/vim-localvimrc'
@@ -120,3 +117,16 @@ repo = 'Konfekt/FastFold'
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
+
+[[plugins]]
+repo = 'itchyny/vim-parenmatch'
+
+[[plugins]]
+repo = 'vim-scripts/dbext.vim'
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+
+#[[plugins]]
+#repo = 'tomasr/molokai'
+#repo = 'altercation/vim-colors-solarized'
