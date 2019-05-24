@@ -7,59 +7,26 @@ fi
 export PATH="$ANYENV_ROOT/bin:$PATH"
 source $ANYENV_ROOT/completions/anyenv.${SHELL##*/}
 
-function _anyenv_init_register() {
-  typeset -A -l _anyenv_command_map=(
-    phpenv php
-    rbenv ruby
-    goenv go
-    crenv crystal
-    ndenv node
-    pyenv python
-    jenv java
-  )
+function anyenv() {
+  unfunction anyenv
+  eval "$(anyenv init - ${SHELL})"
+  anyenv $@
+}
 
-  export ANYENV_${1}=
+for i in $(/bin/ls ${ANYENV_ROOT}envs/)
+do
+
+  shims=${shims}$ANYENV_ROOT/envs/$i/shims:
 
   # init on call *env
-  function ${1}() {
+  function ${i}() {
     unfunction $0
-    _anyenv_init $0
+    export ${0:u}_ROOT="$ANYENV_ROOT/envs/$0"
+    export PATH="$ANYENV_ROOT/envs/$0/bin:$ANYENV_ROOT/envs/$0/shims:$PATH"
+    eval "$($0 init - ${SHELL})"
     $0 $@
   }
-  [ -e $ANYENV_ROOT/envs/${1}/completions/${1}.${SHELL##*/} ] && source $ANYENV_ROOT/envs/${1}/completions/${1}.${SHELL##*/}
+  [ -e $ANYENV_ROOT/envs/${i}/completions/${i}.${SHELL##*/} ] && source $ANYENV_ROOT/envs/${i}/completions/${i}.${SHELL##*/}
 
-  # create temporary command
-  if [ -n "$_anyenv_command_map[$1]" ];then
-      eval "function $_anyenv_command_map[$1]() {
-          if [ "'$ANYENV'"_${1} ]; then
-            unfunction "'$0'";
-            "'$0 $@'"
-          else
-            $1 >/dev/null 2>&1
-            unfunction "'$0'"
-            "'$0 $@'"
-          fi
-      }"
-  fi
-}
-
-function _anyenv_init() {
-  local env
-  local export_var_prefix=ANYENV_
-  [ $# -eq 1 ] && {
-    [[ $1 =~ .*env ]] && env=$1 || return 1
-  } || return 1
-
-  local export_var=${export_var_prefix}${env}
-  [ ! "$(eval printf '${'$export_var':-UNDEF}')" = 'UNDEF' ] && return
-
-  export ${env:u}_ROOT="$ANYENV_ROOT/envs/$env"
-  export PATH="$ANYENV_ROOT/envs/$env/bin:$ANYENV_ROOT/envs/$env/shims:$PATH"
-  eval "$($env init - ${SHELL})"
-  export ${export_var}=1
-}
-
-for i in $(/bin/ls $ANYENV_ROOT/envs/)
-do
-  _anyenv_init_register $i
 done
+export PATH=${shims}${PATH}
