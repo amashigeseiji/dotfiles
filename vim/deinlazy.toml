@@ -1,6 +1,6 @@
 [[plugins]]
-repo = 'Simple-Javascript-Indenter'
-on_ft = 'javascript'
+repo = 'prettier/vim-prettier'
+on_ft = ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'vue']
 
 [[plugins]]
 repo = 'evidens/vim-twig'
@@ -24,7 +24,7 @@ on_ft = ['html', 'php', 'eruby']
 
 [[plugins]]
 repo = 'plasticboy/vim-markdown'
-on_ft = ['markdown']
+on_ft = ['markdown', 'vimwiki']
 
 [[plugins]]
 repo = 'rhysd/vim-crystal'
@@ -48,12 +48,14 @@ repo = 'Shougo/neco-syntax'
 on_i = 1
 depends = ['neocomplete']
 
-#[[plugins]]
-#repo = 'Shougo/neosnippet'
-#on_i = 1
+[[plugins]]
+repo = 'Shougo/neosnippet'
+on_i = 1
 
-#[[plugins]]
-#repo = 'Shougo/neosnippet-snippets'
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+on_i = 1
+depends = ['neocomplete']
 
 #[[plugins]]
 #repo = 'supermomonga/neocomplete-rsense.vim'
