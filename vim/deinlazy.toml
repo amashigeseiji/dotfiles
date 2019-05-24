@@ -67,10 +67,6 @@ on_cmd = ['Gista']
 on_func = 'gista#'
 
 [[plugins]]
-repo = 'Shougo/vimshell.vim'
-on_map = '<Plug>'
-
-[[plugins]]
 repo = 'Shougo/vimfiler.vim'
 depends = 'unite.vim'
 
