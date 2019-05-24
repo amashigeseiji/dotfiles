@@ -1,7 +1,19 @@
 #!/bin/sh
-max=$(ioreg -l | grep 'MaxCapacity' | awk '{print $5}')
-current=$(ioreg -l | grep 'CurrentCapacity' | awk '{print $5}')
-if [ ! $max -o ! $current ];then
-  exit 1;
+
+battery_info=$(/usr/bin/pmset -g ps | awk '{if (NR == 2) print $3 " " $4}' | sed 's/[;%]//g')
+quantity=$(echo $battery_info | awk '{print $1}')
+isCharging=$(echo $battery_info | awk '{print $2}')
+
+if [ "$quantity" != "" ] ; then
+  if [[ ! $isCharging =~ "discharging" ]]; then
+    color="#[bg=cyan,fg=black]"
+    battery=$(printf '\xE2\x9a\xa1')" $quantity"
+  elif (( $quantity < 16 )); then
+    color="#[bg=red,fg=white]"
+    battery=$(printf '\xF0\x9F\x94\x8B')" $quantity"
+  else
+    color="#[bg=cyan,fg=black]"
+    battery=$(printf '\xF0\x9F\x94\x8B')" $quantity"
+  fi
+  echo "${color} ${battery}% #[default]"
 fi
-echo $(expr $current \* 100 / $max)%
