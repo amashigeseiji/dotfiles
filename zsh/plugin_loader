@@ -63,6 +63,7 @@ plugin commands are:
           source ${ZSH_PLUGIN_DIR}/$plugin/${plugin}.zsh $@
         else
           echo "[plugin:source]: resource \"$plugin\" not found."
+          return 1
         fi
       else
         echo "[plugin:source]: resource \"$plugin\" not found."
@@ -84,11 +85,27 @@ plugin commands are:
 
   if [ $call = ${prefix}_install ];then
     function ${call}() {
+      [ $# -eq 0 ] && echo '[plugin:install] argument required.' && return 1
       local url=https://github.com
       local repo=${1:h}
       local package=${1:t}
-      [ -d ${ZSH_PLUGIN_DIR}/${package} ] && return
-      git clone ${url}/${repo}/${package} ${ZSH_PLUGIN_DIR}/${package}
+      if [ $# -eq 2 ];then
+        if [[ $2 =~ 'as:*\s?' ]]
+          local as=${2/as://}
+      fi
+      [ -n $as ] && install=$as || install=$package
+      [ -e ${ZSH_PLUGIN_DIR}/${install} ] && echo "[plugin:install] ${ZSH_PLUGIN_DIR}/${install} is already exist." && return;
+      git clone ${url}/${repo}/${package} ${ZSH_PLUGIN_DIR}/${install}
+    }
+  fi
+
+  if [ $call = ${prefix}_search ];then
+    function ${call}() {
+      local url=https://api.github.com/repos
+      local result=$(curl -s $url/$1)
+      local clone_url=$(echo $result | jq -r .clone_url)
+      [ -z $clone_url ] && echo 'repository not found.' && return 1
+      echo $result | jq '.clone_url, .language, .default_branch'
     }
   fi
 
