@@ -34,7 +34,7 @@ alias flow='git flow'
 alias grep='grep -i --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias less='less -XRF'
+#alias less='less -XRF'
 alias who='who -Hu'
 alias vi="vim"
 alias p="popd"
