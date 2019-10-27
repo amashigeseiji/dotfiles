@@ -1,0 +1,626 @@
+snippet public_function
+	/**
+	 * $1
+	 *
+	 * @param mixed $2
+	 * @return mixed
+	 */
+	public function ${1:#:FunctionName}(${2}${3: = null})
+	{
+		${0}
+	}
+
+snippet private_function
+	
+	/**
+	 * $1
+	 *
+	 * @param mixed $2
+	 * @return mixed
+	 */
+	private function ${1:#:FunctionName}(${2}${3: = null})
+	{
+		${0}
+	}
+
+snippet protected_function
+	
+	/**
+	 * $1
+	 *
+	 * @param mixed $2
+	 * @return mixed
+	 */
+	protected function ${1:#:FunctionName}(${2}${3: = null})
+	{
+		${0}
+	}
+
+snippet function_literal
+options word
+abbr function () {}
+	function (${1})${2: use } {
+		${3:TARGET}
+	}
+
+snippet php
+	<?php
+	${1:TARGET}
+
+snippet namespace
+	<?php
+	namespace ${1:App\\\Namespace;}
+
+snippet pecho
+	<?php echo ${1} ?>${0}
+
+snippet echoh
+	<?php echo htmlentities(${1}, ENT_QUOTES, 'utf-8') ?>${0}
+
+snippet pforeach
+	<?$php foreach ($${1:#:variable} as $${2:#:key}${3: =>}): ?>
+	${0:TARGET}
+	<?php endforeach; ?>
+
+snippet pifelse
+	<?php if (${1:#:condition}): ?>
+	${2:TARGET}
+	<?php else: ?>
+	${0}
+	<?php endif; ?>
+
+snippet pif
+	<?php if (${1:#:condition}): ?>
+	${0:TARGET}
+	<?php endif; ?>
+
+snippet pelse
+	<?php else: ?>
+
+snippet this
+	$this->${0:prop};
+
+snippet pthis
+	<?php $this->${0} ?>
+
+snippet pethis
+	<?php echo $this->${0} ?>
+
+snippet doc_class_var
+	/**
+	 * ${3:#:undocumented class variable}
+	 *
+	 * @var ${4:#:string}
+	 */
+	${1:#:var} $${2};${0}
+
+snippet doc_constant
+	/**
+	 * ${3:#:undocumented constant}
+	 **/
+	define(${1} ${2});${0}
+
+snippet doc_interface_function
+	/**
+	 * ${4:#:undocumented function}
+	 *
+	 * @return ${5:void}
+	 * @author ${6}
+	 **/
+	${1}function ${2}(${3});${0}
+
+snippet doc_function
+	/**
+	 * ${4:#:undocumented function}
+	 *
+	 * @return ${5:void}
+	 **/
+	${1:public }function ${2}(${3:$arg = null})
+	{
+		${0:TARGET}
+	}
+
+
+snippet doci
+	/**
+	 * ${2:#:undocumented class}
+	 *
+	 * @package ${3:default}
+	 * @author ${4}
+	 **/
+	interface ${1}
+	{
+		${0:TARGET}
+	} // END interface $1
+
+snippet doc
+	/**
+	 * ${0}
+	 */
+
+snippet class_with_constructor
+	/**
+	 * `vim_snippets#Filename()`
+	 */
+	class `vim_snippets#Filename()`${1:#:extends}
+	{
+		/**
+		 * $3
+		 *
+		 * @param mixed $4
+		 */
+		${2:public} function ${3:__construct}(${4:#:argument})
+		{
+			${0:# code...}
+		}
+	}
+
+snippet class
+options head
+	<?php
+	namespace {$1:App;}
+	
+	/**
+	 * `vim_snippets#Filename()`
+	 */
+	class `vim_snippets#Filename()`
+	{
+		${0:TARGET}
+	}
+
+snippet def
+	${1}defined('${2}')${0}
+
+
+snippet dowhile
+options head
+	do {
+		${0:TARGET}
+	} while (${1:#:condition});
+
+snippet if?
+options head
+	$${1:#:retVal} = (${2:#:condition}) ? ${3:#:a} : ${4:#:b};
+
+snippet ifelse
+options head
+	if (${1:#:condition}) {
+		${2:TARGET}
+	} else {
+		${3:#:code...}
+	}
+	${0}
+
+snippet if
+options head
+	if (${1:#:condition}) {
+		${0:TARGET}
+	}
+
+snippet var_dump
+options head
+	echo '<pre>';var_dump($${0:TARGET});echo '</pre>';exit;
+
+snippet p
+options head
+	print_r(${1});
+
+snippet echo
+options head
+	echo '${1:#:string}';
+
+snippet println
+options head
+	printf("${1:#:string}\n"${2:, });
+
+snippet else
+	else {
+		${0:TARGET}
+	}
+
+snippet elseif
+	elseif (${1:#:condition}) {
+		${0:TARGET}
+	}
+
+snippet for
+options head
+	for ($${1:i}=${2:0}; $$1 < ${3}; $$1++) {
+		${0:TARGET}
+	}
+
+snippet foreach-hashmap
+	foreach ($${1:#:variable} as $${2:#:key}${3: =>} $${4:#:value}) {
+		${0:TARGET}
+	}
+
+snippet foreach-list
+options head
+	foreach ($${1:#:variable} as $${2:#:x}) {
+		${0:TARGET}
+	}
+
+snippet construct
+options head
+	/**
+	 * constructor
+	 */
+	public function __construct(${1})
+	{
+		${0:TARGET}
+	}
+
+snippet here
+	<<<${1:HTML}
+	${2:TARGET:#:content here}
+	$1;
+
+snippet inc
+options head
+	include '${1:#:file}';${0}
+
+snippet inco
+options head
+	include_once '${1:#:file}';${0}
+
+snippet array
+	$${1:#:arrayName} = array('${2}' => ${3} ${0});
+
+snippet req
+options head
+	require '${1:#:file}';${0}
+
+snippet reqo
+options head
+	require_once '${1:#:file}';${0}
+
+snippet ret
+options head
+	return${1};${0}
+
+snippet retf
+options head
+	return false;
+
+snippet rett
+options head
+	return true;
+
+snippet case
+options head
+	case '${1:#:variable}':
+		${0:#:code...}
+		break;
+
+snippet switch
+abbr sw
+options head
+	switch (${1:#:variable}) {
+	case '${2:#:value}':
+		${3:#:code...}
+		break;
+	${0}
+	default:
+		${4:#:code...}
+		break;
+	}
+
+snippet try
+options head
+	try {
+		${1:TARGET}
+	} catch (${2:#:Exception} $e) {
+		${3:#:code}
+	}
+
+snippet tryf
+options head
+	try {
+		${1:TARGET}
+	} catch (${2:#:Exception} $e) {
+		${3:#:code}
+	} finally {
+		${4:#:code}
+	}
+
+snippet throw
+options head
+	throw new ${1}Exception(${2:"${3:#:Error Processing Request}"}${4:});
+	${0}
+
+snippet while
+abbr wh
+options head
+	while (${1}) {
+		${0:TARGET}
+	}
+
+snippet gloabals
+	\$GLOBALS['${1:#:variable}']${2: = }${3:#:something}${4:;}${0}
+
+snippet cookie
+	\$_COOKIE['${1:#:variable}']
+
+snippet env
+	\$_ENV['${1:#:variable}']
+
+snippet files
+	\$_FILES['${1:#:variable}']
+
+snippet get
+	\$_GET['${1:#:variable}']
+
+snippet post
+	\$_POST['${1:#:variable}']
+
+snippet request
+	\$_REQUEST['${1:#:variable}']
+
+snippet server
+	\$_SERVER['${1:#:variable}']
+
+snippet session
+	\$_SESSION['${1:#:variable}']
+
+snippet var_export
+alias inspect
+	var_export(${1}, true)
+
+
+snippet array_change_key_case
+abbr 配列のすべてのキーの大文字小文字を変更する
+  array_change_key_case(${1:$array}, ${2:$case})
+
+snippet array_chunk
+abbr 配列を分割する
+  array_chunk(${1:$array}, ${2:$size}, ${3:$preserve_keys})
+
+snippet array_column
+abbr 入力配列から単一のカラムの値を返す
+  array_column(${1:$array}, ${2:$column_key}, ${3:$index_key})
+
+snippet array_combine
+abbr  一方の配列をキーとして、もう一方の配列を値として、ひとつの配列を生成する
+  array_combine(${1:$keys}, ${2:$values})
+
+snippet array_count_values
+abbr 配列の値の数を数える
+  array_count_values(${1:$array})
+
+snippet array_diff_assoc
+abbr 追加された添字の確認を含めて配列の差を計算する
+  array_diff_assoc(${1:$array1}, ${2:$array2}, ${3:$...})
+
+snippet array_diff_key
+abbr キーを基準にして配列の差を計算する
+  array_diff_key(${1:$array1}, ${2:$array2}, ${3:$...})
+
+snippet array_diff_uassoc
+abbr  ユーザーが指定したコールバック関数を利用し、 追加された添字の確認を含めて配列の差を計算する
+  array_diff_uassoc(${1:$array1}, ${2:$array2}, ${3:$...}, ${4:$key_compare_func})
+
+snippet array_diff_ukey
+abbr  キーを基準にし、コールバック関数を用いて配列の差を計算する
+  array_diff_ukey(${1:$array1}, ${2:$array2}, ${3:$...}, ${4:$key_compare_func})
+
+snippet array_diff
+abbr 配列の差を計算する
+  array_diff(${1:$array1}, ${2:$array2}, ${3:$...})
+
+snippet array_fill_keys
+abbr キーを指定して、配列を値で埋める
+  array_fill_keys(${1:$keys}, ${2:$value})
+
+snippet array_fill
+abbr 配列を指定した値で埋める
+  array_fill(${1:$start_index}, ${2:$num}, ${3:$value})
+
+snippet array_filter
+abbr  コールバック関数を使用して、配列の要素をフィルタリングする
+  array_filter(${1:$array}, ${2:$callback});
+
+snippet array_flip
+abbr 配列のキーと値を反転する
+  array_flip(${1:$array});
+
+snippet array_intersect_assoc
+abbr 追加された添字の確認も含めて配列の共通項を確認する
+  array_intersect_assoc(${1:$array1}, ${2:$array2}, ${3:$...});
+
+snippet array_intersect_key
+abbr キーを基準にして配列の共通項を計算する
+  array_intersect_key(${1:$array1}, ${2:$array2}, ${3:$...});
+
+snippet array_intersect_uassoc
+abbr 追加された添字の確認も含め、コールバック関数を用いて配列の共通項を確認する
+  array_intersect_uassoc(${1:$array1}, ${2:$array2}, ${3:$...}, ${4:$key_compare_func});
+
+snippet array_intersect_ukey
+abbr キーを基準にし、コールバック関数を用いて配列の共通項を計算する
+  array_intersect_ukey(${1:$array1}, ${2:$array2}, ${3:$...}, ${4:$key_compare_func});
+
+snippet array_intersect
+abbr 配列の共通項を計算する
+  array_intersect(${1:$array1}, ${2:$array2}, ${3:$...});
+
+snippet array_key_exists
+abbr 指定したキーまたは添字が配列にあるかどうかを調べる
+  array_key_exists(${1:$key}, ${2:$array});
+
+snippet array_keys
+abbr 配列のキーすべて、あるいはその一部を返す
+  array_keys(${1:$array}, ${2:$search_value}, ${3:$strict});
+
+snippet array_map
+alias map_a
+abbr 指定した配列の要素にコールバック関数を適用する
+	array_map(function ($val) {
+		return ${1:$val};
+	}, \$${2:varName}${3:#:, $optional});
+
+snippet array_merge_recursive
+abbr 二つ以上の配列を再帰的にマージする
+  array_merge_recursive(${1:$array1}, ${2:$...})
+
+snippet array_merge
+abbr ひとつまたは複数の配列をマージする
+  array_merge(${1:$array1}, ${2:$...})
+
+snippet array_multisort
+abbr 複数の多次元の配列をソートする
+  array_multisort(${1:&$array1}, ${2:$array1_sort_order}, ${3:$array1_sort_flags}, ${4:$...})
+
+snippet array_pad
+abbr 指定長、指定した値で配列を埋める
+  array_pad(${1:$array}, ${2:$size}, ${3:$value})
+
+snippet array_pop
+abbr 配列の末尾から要素を取り除く
+  array_pop(${1:&$array})
+
+snippet array_product
+abbr 配列の値の積を計算する
+  array_product(${1:$array})
+
+snippet array_push
+abbr 一つ以上の要素を配列の最後に追加する
+  array_push(${1:&$array}, ${2:$value1}, ${3:$...})
+
+snippet array_rand
+abbr 配列から一つ以上の要素をランダムに取得する
+  array_rand(${1:$array}, ${2:$num})
+
+snippet array_reduce
+alias reduce
+abbr コールバック関数を用いて配列を普通の値に変更することにより、配列を再帰的に減らす
+	array_reduce(\$${1:$array}, function ($carry, $item) {
+		return ${3:code...};
+	});
+
+snippet array_replace_recursive
+abbr 渡された配列の要素を再帰的に置き換える
+  array_replace_recursive(${1:$array1}, ${2:$array2}, ${3:$...})
+
+snippet array_replace
+abbr 渡された配列の要素を置き換える
+  array_replace(${1:$array1}, ${2:$array2}, ${3:$...})
+
+snippet array_reverse
+abbr 要素を逆順にした配列を返す
+  array_reverse(${1:$array}, ${2:$preserve_keys})
+
+snippet array_search
+abbr 指定した値を配列で検索し、見つかった場合に対応するキーを返す
+  array_search(${1:$needle}, ${2:$haystack}, ${3:$strict})
+
+snippet array_shift
+abbr 配列の先頭から要素を一つ取り出す
+  array_shift(${1:&$array})
+
+snippet array_slice
+abbr 配列の一部を展開する
+  array_slice(${1:$array}, ${2:$offset}, ${3:$length}, ${4:$preserve_keys})
+
+snippet array_splice
+abbr 配列の一部を削除し、他の要素で置換する
+  array_splice(${1:&$input}, ${2:$offset}, ${3:$length}, ${4:$replacement})
+
+snippet array_sum
+abbr 配列の中の値の合計を計算する
+  array_sum(${1:$array})
+
+snippet array_udiff_assoc
+abbr データの比較にコールバック関数を用い、追加された添字の確認を含めて配列の差を計算する
+  array_udiff_assoc(${1:$array1}, ${2:$array2}, ${3:$...}, ${4:$value_compare_func})
+
+snippet array_udiff_uassoc
+abbr データと添字の比較にコールバック関数を用い、追加された添字の確認を含めて配列の差を計算する
+  array_udiff_uassoc(${1:$array1}, ${2:$array2}, ${3:$...}, ${4:$value_compare_func}, ${5:$key_compare_func})
+
+snippet array_udiff
+abbr データの比較にコールバック関数を用い、配列の差を計算する
+  array_udiff(${1:$array1}, ${2:$array2}, ${3:$...}, ${4:$value_compare_func})
+
+snippet array_uintersect_assoc
+abbr データの比較にコールバック関数を用い、追加された添字の確認も含めて配列の共通項を計算する
+  array_uintersect_assoc(${1:$array1}, ${2:$array2}, ${3:$...}, ${4:$value_compare_func})
+
+snippet array_uintersect_uassoc
+abbr データと添字の比較にコールバック関数を用い、追加された添字の確認も含めて配列の共通項を計算する
+  array_uintersect_uassoc(${1:$array1}, ${2:$array2}, ${3:$...}, ${4:$value_compare_func}, ${5:$key_compare_func})
+
+snippet array_uintersect
+abbr データの比較にコールバック関数を用い、配列の共通項を計算する
+  array_uintersect(${1:$array1}, ${2:$array2}, ${3:$...}, ${4:$value_compare_func})
+
+snippet array_unique
+abbr 配列から重複した値を削除する
+  array_unique(${1:$array}, ${2:$sort_flags})
+
+snippet array_unshift
+abbr 一つ以上の要素を配列の最初に加える
+  array_unshift(${1:&$array}, ${2:$value1}, ${3:$...})
+
+snippet array_values
+abbr 配列の全ての値を返す
+  array_values(${1:$array})
+
+snippet array_walk_recursive
+abbr 配列の全ての要素に、ユーザー関数を再帰的に適用する
+  array_walk_recursive(${1:&$array}, ${2:$callback}, ${3:$userdata})
+
+snippet array_walk
+abbr 配列の全ての要素にユーザー関数を適用する
+  array_walk(${1:&$array}, ${2:$callback}, ${3:$userdata})
+
+snippet implode
+alias join
+  implode('${1:,}', \$${2:pieces});
+
+snippet explode
+alias split
+abbr explode 文字列を文字列により分割する
+  explode('${1:,}', \$${2:array});
+
+snippet setter "PHP Class Setter"
+	/**
+	 * Sets the value of ${1:foo}
+	 *
+	 * @param ${2:string} $$1 ${3:description}
+	 *
+	 * @return ${4:`vim_snippets#Filename()`}
+	 */
+	${5:public} function set${6:$1}(${7:$2 }$$1)
+	{
+		$this->${8:$1} = $$1;
+
+		return $this;
+	}
+
+snippet getter "PHP Class Getter Setter"
+	/**
+	 * Gets the value of ${1:foo}
+	 *
+	 * @return ${2:string}
+	 */
+	${3:public} function get${4:$1}()
+	{
+		return $this->${5:$1};
+	}
+
+snippet arrayaccess
+	public function offsetGet($name)
+	{
+	}
+
+	public function offsetSet($name, $value)
+	{
+	}
+
+	public function offsetIsset($name)
+	{
+	}
+
+	public function offsetUnset($name)
+	{
+	}

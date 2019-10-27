@@ -1,0 +1,91 @@
+snippet modelClass
+alias model
+	/**
+	 * $1
+	 */
+	class ${1:modelName} extends CAuthenseActiveRecord
+	{
+		/**
+		 * @inheritdoc
+		 */
+		public function rules()
+		{
+			return [];
+		}
+	}
+
+snippet CHtml::link
+alias link
+  CHtml::link('${1:linkTitle}', ['${2:route}'], [${3:#:'class' => 'someClass'}])
+
+snippet CHtml::encode
+alias escape
+  CHtml::encode($${1:$var});
+
+snippet CHtml::decode
+  CHtml::decode($${1:$var});
+
+snippet CHtml::encodeArray
+  CHtml::encodeArray(${1:$var});
+
+snippet CHtml::form($action = '',$method = 'post',$htmlOptions = array())
+  <?= CHtml::form(${1:$action}, ${2:'post'}, ['class' => '${3:classname]'}) ?>
+  <?= CHtml::endForm() ?>
+
+snippet CHtml::activeLabel($model, $attribute, $htmlOptions = array())
+  <?= CHtml::activeLabel($model, '${1:attribute}', ${2:['class' => 'some class']}) ?>
+
+snippet CHtml::activeLabelEx($model, $attribute, $htmlOptions = array()) required mark
+alias label
+  <?= CHtml::activeLabelEx($model, '${1:attribute}', ${2:['class' => 'some class']}) ?>
+
+snippet CHtml::activeTextField($model, $attribute, $htmlOptions=array())
+alias input_txt
+  <?= CHtml::activeTextField($model, '${1:attribute}', ${2:['class' => 'some class']}) ?>
+
+snippet CHtml::activeSearchField($model,$attribute, $htmlOptions=array())
+  <?= CHtml::activeTextField($model, '${1:attribute}', ${2:['class' => 'some class']}) ?>
+
+snippet CHtml::activeUrlField($model,$attribute, $htmlOptions=array())
+  <?= CHtml::activeUrlField($model, '${1:attribute}', ${2:['class' => 'some class']}) ?>
+
+snippet CHtml::activeEmailField($model,$attribute, $htmlOptions=array())
+alias input_email
+  <?= CHtml::activeEmailField($model, '${1:attribute}', ${2:['class' => 'some class']}) ?>
+
+snippet CHtml::activeNumberField($model,$attribute, $htmlOptions=array())
+alias input_number
+  <?= CHtml::activeNumberField($model, '${1:attribute}', ${2:['class' => 'some class']}) ?>
+
+snippet CHtml::activeRangeField($model,$attribute, $htmlOptions=array())
+alias input_range
+  <?= CHtml::activeRangeField($model, '${1:attribute}', ${2:['class' => 'some class']}) ?>
+
+snippet CHtml::activeDateField($model,$attribute, $htmlOptions=array())
+alias input_date
+  <?= CHtml::activeDateField($model, '${1:attribute}', ${2:['class' => 'some class']}) ?>
+
+#CHtml::activeColorField($model,$attribute,$htmlOptions=array())
+#CHtml::activeTelField($model,$attribute,$htmlOptions=array())
+#CHtml::activeHiddenField($model,$attribute,$htmlOptions=array())
+#CHtml::activePasswordField($model,$attribute,$htmlOptions=array())
+#CHtml::activeTextArea($model,$attribute,$htmlOptions=array())
+#CHtml::activeFileField($model,$attribute,$htmlOptions=array())
+#CHtml::activeRadioButton($model,$attribute,$htmlOptions=array())
+#CHtml::activeCheckBox($model,$attribute,$htmlOptions=array())
+#CHtml::activeDropDownList($model,$attribute,$data,$htmlOptions=array())
+#CHtml::activeListBox($model,$attribute,$data,$htmlOptions=array())
+#CHtml::activeCheckBoxList($model,$attribute,$data,$htmlOptions=array())
+#CHtml::activeRadioButtonList($model,$attribute,$data,$htmlOptions=array())
+#CHtml::errorSummary($model,$header=null,$footer=null,$htmlOptions=array())
+#CHtml::error($model,$attribute,$htmlOptions=array())
+#CHtml::listData($models,$valueField,$textField,$groupField='')
+#CHtml::value($model,$attribute,$defaultValue=null)
+#CHtml::modelName($model)
+#CHtml::setModelNameConverter($converter)
+#CHtml::activeName($model,$attribute)
+#CHtml::listOptions($selection,$listData,&$htmlOptions)
+#CHtml::resolveNameID($model,&$attribute,&$htmlOptions)
+#CHtml::resolveName($model,&$attribute)
+#CHtml::resolveValue($model,$attribute)
+#CHtml::renderAttributes($htmlOptions)

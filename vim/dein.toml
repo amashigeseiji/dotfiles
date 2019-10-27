@@ -5,23 +5,46 @@ repo = 'Shougo/dein.vim'
 repo = 'Shougo/vimproc'
 build = 'make'
 
-#[[plugins]]
-#repo = 'sudo.vim'
-
 [[plugins]]
 repo = 'vim-scripts/vimwiki'
+hook_source="""
+let g:vimwiki_folding="expr"
+let g:vimwiki_hl_cb_checked=1
+let g:vimwiki_list=[{'path':'~/.vim/vimwiki/', 'syntax': 'markdown'}]
+augroup VimWiki
+  au!
+  au FileType vimwiki nmap <buffer> <C-h> <Plug>VimwikiGoBackLink
+  au FileType vimwiki nmap <buffer> <CR> <Plug>VimwikiFollowLink
+  "au FileType vimwiki setl textwidth=80 "自動折り返し
+  au FileType vimwiki setl textwidth=0 "自動折り返し
+  "au FileType vimwiki setl formatoptions+=mM " テキスト挿入中の自動折り返しを日本語に対応させる
+augroup END
+"""
 
 [[plugins]]
 repo = 'Shougo/unite.vim'
+#hook_add = """
+#let g:unite_data_directory = '/tmp/.unite'
+#let g:unite_source_history_yank_enable = 1  "history/yankの有効化
+#" 入力モードで開始する
+#let g:unite_enable_start_insert = 1
+#
+#" grep
+#let g:unite_enable_ignore_case = 1
+#let g:unite_enable_smart_case = 1
+#" unite grep に ag(The Silver Searcher) を使う
+#if executable('ag')
+#  let g:unite_source_grep_command = 'ag'
+#  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+#  let g:unite_source_grep_recursive_opt = ''
+#endif
+#"""
 
 [[plugins]]
 repo = 'thinca/vim-ref'
 
 [[plugins]]
 repo = 'yuratomo/w3m.vim'
-
-[[plugins]]
-repo = 'scrooloose/syntastic'
 
 [[plugins]]
 repo = 'mattn/webapi-vim'
@@ -53,33 +76,69 @@ repo = 'Shougo/neomru.vim'
 
 [[plugins]]
 repo = 'kien/ctrlp.vim'
+hook_add = """
+let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_lazy_update = 1
+let g:ctrlp_root_markers = ['Gemfile', 'build.xml', 'Vagrantfile']
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_max_depth = 10
+let g:ctrlp_max_files = 15000
+"""
 
 #[[plugins]]
 #repo = 'scrooloose/nerdtree'
 
 [[plugins]]
 repo = 'embear/vim-localvimrc'
+hook_add = """
+let g:localvimrc_name = '.lvimrc'
+let g:localvimrc_ask = 0
+"""
 
 [[plugins]]
 repo = 'vim-jp/vital.vim'
 
-[[plugins]]
-repo = 'haya14busa/incsearch.vim'
-
-[[plugins]]
-repo = 'haya14busa/incsearch-fuzzy.vim'
+#[[plugins]]
+#repo = 'haya14busa/incsearch.vim'
+#
+#[[plugins]]
+#repo = 'haya14busa/incsearch-fuzzy.vim'
 
 [[plugins]]
 repo = 'basyura/TweetVim'
+hook_source="""
+let g:tweetvim_display_username = 0
+let g:tweetvim_tweet_per_page = 30
+let g:tweetvim_display_icon = 1
+let g:tweetvim_open_buffer_cmd = 'split!'
+let g:tweetvim_display_source = 1
+let g:tweetvim_async_post = 1
+let g:tweetvim_align_right = 1
+
+augroup TweetVimSetting
+  au!
+  au Filetype tweetvim setl nonumber
+  au Filetype tweetvim_say nnoremap <buffer><silent>q :bd!<CR>
+  au Filetype tweetvim     nnoremap <buffer><silent>s :<C-u>TweetVimSay<CR>
+augroup END
+
+if !has('gui_running')
+  hi def link tweetvim_title           Title
+  hi def link tweetvim_status_id       Special
+  hi def link tweetvim_created_at      NonText
+  hi tweetvim_screen_name              ctermfg=209
+  hi def link tweetvim_at_screen_name  StorageClass
+  hi tweetvim_link                     ctermfg=111 cterm=underline
+  hi def link tweetvim_hash_tag        Typedef
+endif
+"""
 
 [[plugins]]
 repo = 'basyura/twibill.vim'
 
 [[plugins]]
 repo = 'tyru/open-browser.vim'
-
-[[plugins]]
-repo = 'yuratomo/gmail.vim'
 
 [[plugins]]
 repo = 'Shougo/unite-outline'
@@ -89,6 +148,11 @@ repo = 'thinca/vim-quickrun'
 
 [[plugins]]
 repo = 'vim-scripts/taglist.vim'
+hook_source = """
+let Tlist_Show_One_File = 1
+let Tlist_Use_Right_Window = 1
+let Tlist_Exit_OnlyWindow = 1
+"""
 
 [[plugins]]
 repo = 'rbtnn/vimconsole.vim'
@@ -126,7 +190,3 @@ repo = 'vim-scripts/dbext.vim'
 
 [[plugins]]
 repo = 'majutsushi/tagbar'
-
-#[[plugins]]
-#repo = 'tomasr/molokai'
-#repo = 'altercation/vim-colors-solarized'
