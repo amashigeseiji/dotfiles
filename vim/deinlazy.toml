@@ -186,3 +186,15 @@ let g:vdebug_keymap = {
 \    "eval_visual" : "<Leader>e",
 \}
 """
+
+[[plugins]]
+repo = 'phpactor/phpactor'
+on_ft = 'php'
+build = 'composer install'
+hook_source="""
+autocmd FileType php setlocal omnifunc=phpactor#Complete
+function! DefinitionJumpWithPhpactor()
+    split
+    call phpactor#GotoDefinition()
+endfunction
+"""
