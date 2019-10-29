@@ -40,8 +40,8 @@ endfunction
 
 let s:count = 0
 
-" Get namespace from composer.json {{{
-function! s:GetNamespace()
+" Get composer.json {{{
+function! s:GetComposer()
   while s:count < len(split(s:current_dir, "\/"))
     let file = s:FindFile(execute("pwd"))
     if !empty(file)
@@ -55,7 +55,14 @@ function! s:GetNamespace()
   if empty(file)
     cd %:h
   endif
-  let l:composer = json_decode(join(readfile(file)))
+  return file
+endfunction
+
+let s:composer = s:GetComposer()
+
+" Get namespace from composer.json {{{
+function! s:GetNamespace()
+  let l:composer = json_decode(join(readfile(s:composer)))
   let l:items = []
   for i in values(l:composer['autoload'])
     call add(l:items, items(i))
@@ -70,7 +77,7 @@ function! s:GetNamespace()
 endfunction
 " }}}
 
-" {{{
+" new resource {{{
 function! s:BearResourceApp()
   let l:input = [
         \'<?php',
@@ -85,8 +92,27 @@ function! s:BearResourceApp()
   return setline('.', l:input)
 endfunction
 " }}}
-"
+
+" resource {{{
+function! s:BearResource(args)
+  return system('php bin/app.php ' . join(a:args, ' '))
+endfunction
+
+function! s:BearResourceCompletion(ArgLead, CmdLine, CursorPos)
+  let l:cmd = split(a:CmdLine)
+  let l:len_cmd = len(l:cmd)
+
+  if l:len_cmd <= 1
+    let l:filter_cmd = printf('v:val =~ "^%s"', a:ArgLead)
+    return filter(['options', 'get', 'post', 'put', 'patch', 'delete', 'head'], l:filter_cmd)
+  else
+  endif
+endfunction
+" }}}
+
 command! BEARResourceAppNew call s:BearResourceApp()
+command! -nargs=+ -complete=customlist,s:BearResourceCompletion BEARResource call s:BearResource(<f-args>)
+
 augroup new_file
   autocmd!
   autocmd BufNewFile */Resource/App/*.php call s:BearResourceApp()
