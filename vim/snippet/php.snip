@@ -47,10 +47,6 @@ snippet php
 	<?php
 	${1:TARGET}
 
-snippet namespace
-	<?php
-	namespace ${1:App\\\Namespace;}
-
 snippet pecho
 	<?php echo ${1} ?>${0}
 
@@ -156,17 +152,22 @@ snippet class_with_constructor
 	}
 
 snippet class
-options head
+abbr <?
 	<?php
-	namespace {$1:App;}
+	namespace ${1:App\\\Namespace};
 	
 	/**
 	 * `vim_snippets#Filename()`
 	 */
 	class `vim_snippets#Filename()`
 	{
-		${0:TARGET}
+		${1:TARGET}
 	}
+
+snippet namespace
+abbr <?
+	<?php
+	namespace ${1:App\\\Namespace};
 
 snippet def
 	${1}defined('${2}')${0}
