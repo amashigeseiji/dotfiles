@@ -1,0 +1,11 @@
+<?php
+namespace `namespace`;
+
+use BEAR\Resource\ResourceObject;
+
+class `class` extends ResourceObject
+{
+    public function onGet() : ResourceObject
+    {
+    }
+}
