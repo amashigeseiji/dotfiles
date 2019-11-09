@@ -9,8 +9,6 @@ set cpo&vim
 
 let s:scriptDir = expand('<sfile>:p:h')
 
-command! BEARNewResource call bearsunday#template#newResource()
-
 augroup new_file
   autocmd!
   autocmd BufNewFile */Resource/App/*.php,*/Resource/Page/*.php call bearsunday#template#newFile(s:scriptDir . '/../snip-resource')
