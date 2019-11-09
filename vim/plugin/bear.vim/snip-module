@@ -1,0 +1,11 @@
+<?php
+namespace `namespace`;
+
+use Ray\Di\AbstractModule;
+
+class `class` extends AbstractModule
+{
+    protected function configure()
+    {
+    }
+}

@@ -1,7 +1,5 @@
-let s:scriptDir = expand('<sfile>:p:h')
-
-function! bearsunday#template#newResource()
-  let l:input = expand(s:scriptDir . '/../../snip')
+function! bearsunday#template#newFile(snippet)
+  let l:input = expand(a:snippet)
   let l:templ = []
   for line in readfile(l:input)
     if line =~ "`namespace`"

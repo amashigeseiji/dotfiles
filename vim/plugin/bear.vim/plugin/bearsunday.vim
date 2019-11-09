@@ -7,23 +7,14 @@ let g:loaded_BEAR_plugin = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-" g:bearsundayDefaultUseTemplate
-"
-" usage:
-" ```
-" let g:bearsundayDefaultUseTemplate = [
-"   \ 'BEAR\Resource\Annotation\JsonSchema',
-"   \ 'Koriym\HttpConstants\StatusCode',
-"   \]
-" ```
-let g:bearsundayDefaultUseTemplate = []
-let g:bearsundayDefaultMethodTemplate = ['Get']
+let s:scriptDir = expand('<sfile>:p:h')
 
 command! BEARNewResource call bearsunday#template#newResource()
 
 augroup new_file
   autocmd!
-  autocmd BufNewFile */Resource/App/*.php,*/Resource/Page/*.php call bearsunday#template#newResource()
+  autocmd BufNewFile */Resource/App/*.php,*/Resource/Page/*.php call bearsunday#template#newFile(s:scriptDir . '/../snip-resource')
+  autocmd BufNewFile */Module/*.php call bearsunday#template#newFile(s:scriptDir . '/../snip-module')
 augroup END
 
 command! -nargs=+ -complete=customlist,bearsunday#resource#completion BEARResource call bearsunday#resource#call(<f-args>)
