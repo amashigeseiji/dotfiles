@@ -1,5 +1,6 @@
 let s:composer = {}
 let s:composerLoaded = 0
+let s:composerDir = ''
 
 " ファイルの探索処理 {{{
 " see https://blog.engineer.adways.net/entry/2018/07/27/150000
@@ -24,13 +25,14 @@ function! s:GetComposer()
   echo ''
   let l:count         = 0
   let l:current_dir   = expand("%:p:h")
-  let l:file_pattern  = "composer.json"
+  let l:pwd           = getcwd()
   while l:count < len(split(l:current_dir, "\/"))
     let file = s:FindFile(execute("pwd"), "composer.json")
     if !empty(file)
       break
     else
       execute "lcd ../"
+      let l:pwd = getcwd()
       let l:count += 1
     endif
   endwhile
@@ -39,6 +41,7 @@ function! s:GetComposer()
     cd %:h
   endif
   let s:composerLoaded = 1
+  let s:composerDir = l:pwd
   let s:composer = json_decode(join(readfile(l:file)))
   return s:composer
 endfunction
@@ -60,3 +63,9 @@ function! bearsunday#composer#namespace()
   return substitute(l:substitute, '/', '\\', '')
 endfunction
 " }}}
+
+" get composer directory
+function! bearsunday#composer#dir()
+  call s:GetComposer()
+  return s:composerDir
+endfunction
