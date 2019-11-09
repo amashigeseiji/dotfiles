@@ -98,10 +98,6 @@ on_ft = ['php']
 #repo = 'tpope/vim-rails'
 #on_ft = ['ruby']
 
-#[[plugins]]
-#repo = 'joonty/vdebug'
-#on_ft = ['php']
-
 [[plugins]]
 repo = 'mustache/vim-mustache-handlebars'
 on_ft = ['mustache']
@@ -133,20 +129,25 @@ repo = 'leafgarland/typescript-vim'
 on_ft = ['typescript']
 
 [[plugins]]
-repo = 'w0rp/ale'
+repo = 'dense-analysis/ale'
 on_ft = ['php', 'javascript', 'vue']
 hook_source = """
 let g:ale_sign_column_always = 1
 let g:ale_php_phpcs_standard = 'PSR1,PSR2'
 let g:ale_linters = {
   \ 'php': ['phpcs', 'php'],
-  \ 'javascript': ['eslint']
+  \ 'javascript': ['eslint'],
+  \ 'vue': ['eslint']
   \}
-
+let g:ale_php_phpcs_options = '--config=./.php_cs.dist'
 let g:ale_fixers = {
-\   'php': ['php_cs_fixer']
+\   'php': ['php_cs_fixer'],
+\   'javascript': ['eslint'],
+\   'vue': ['eslint'],
 \}
 let g:ale_fix_on_save = 1
+let g:ale_completion_enable = 1
+setl omnifunc=ale#completion#OmniFunc
 """
 
 [[plugins]]
@@ -198,3 +199,6 @@ function! DefinitionJumpWithPhpactor()
     call phpactor#GotoDefinition()
 endfunction
 """
+
+[[plugins]]
+repo = 'posva/vim-vue'
