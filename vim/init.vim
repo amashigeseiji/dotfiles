@@ -4,7 +4,6 @@ let vimrc = {
       \   'plugin_settings': 'plugin_settings',
       \   'rc': 'rc'
       \ },
-      \ 'plugin_manager': v:version > 703 ? 'dein' : 'neobundle',
       \ 'require': ['basic', 'keymap'],
       \ 'initialize_with': {
       \   'before': {},
@@ -32,7 +31,7 @@ function! s:load(method)
   endfunction
 
   function! self.require()
-    call self.source_file(g:vimrc.dir.rc . '/' . g:vimrc.plugin_manager . '.rc.vim')
+    call self.source_file(g:vimrc.dir.rc . '/dein.rc.vim')
     for name in g:vimrc.require
       call self.source_file(g:vimrc.dir.rc . '/' . name . '.rc.vim')
     endfor
@@ -45,18 +44,13 @@ function! s:load(method)
 
     let l:load_files = split(system('ls ' . g:vimrc.path('plugin_settings') . ' | grep vim$ | sed -e "s/.vim$//g"'), "\n")
 
-    function! s:tap(file)
-      exec 'return ' . g:vimrc.plugin_manager . '#tap("' . a:file . '")'
-    endfunction
-
     for file in l:load_files
-      if s:tap(file) || s:tap(file . '.vim')
+      if (dein#tap(file) || dein#tap(file . '.vim'))
         call self.source_file(g:vimrc.dir.plugin_settings . '/' . file . '.vim')
       endif
     endfor
 
     unlet l:load_files
-    delfunction s:tap
   endfunction
 
   call self[a:method]()
