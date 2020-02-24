@@ -4,3 +4,4 @@ vimwiki/*
 vimrc.local
 gvimrc.local
 dict/*
+bear.vim
