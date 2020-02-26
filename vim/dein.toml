@@ -2,6 +2,10 @@
 repo = 'Shougo/dein.vim'
 #}}}
 
+[[plugins]] #{{{ haya14busa/dein-command.vim
+repo = 'haya14busa/dein-command.vim'
+#}}}
+
 [[plugins]] #{{{ Shougo/vimproc
 repo = 'Shougo/vimproc'
 build = 'make'
@@ -377,9 +381,9 @@ repo = 'Konfekt/FastFold'
 repo = 'editorconfig/editorconfig-vim'
 #}}}
 
-[[plugins]] #{{{ itchyny/vim-parenmatch
-repo = 'itchyny/vim-parenmatch'
-#}}}
+#[[plugins]] #{{{ itchyny/vim-parenmatch
+#repo = 'itchyny/vim-parenmatch'
+##}}}
 
 [[plugins]] #{{{ vim-scripts/dbext.vim
 repo = 'vim-scripts/dbext.vim'

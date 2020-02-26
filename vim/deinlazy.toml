@@ -54,6 +54,7 @@ augroup END
 repo = 'Shougo/deoplete.nvim'
 depends = ['nvim-yarp', 'vim-hug-neovim-rpc']
 hook_source = """
+" pip3 install --user pynvim --upgrade
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -291,6 +292,7 @@ let g:ale_fixers = {
 \   'vue': ['eslint'],
 \}
 let g:ale_fix_on_save = 1
+autocmd BufEnter vendor/*.php let b:ale_fix_on_save = 0
 let g:ale_completion_enable = 1
 setl omnifunc=ale#completion#OmniFunc
 """
@@ -341,7 +343,6 @@ on_ft = 'php'
 build = 'composer install'
 hook_source="""
 let g:phpactorOmniAutoClassImport = v:true
-let g:phpactorPhpBin = '/usr/bin/php'
 autocmd FileType php setlocal omnifunc=phpactor#Complete
 function! PhpactorGotoDefinition() abort
   split
