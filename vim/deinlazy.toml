@@ -346,7 +346,7 @@ nmap <buffer><C-t>                  <C-o>
 [[plugins]] #{{{ kristijanhusak/deoplete-phpactor
 repo = 'kristijanhusak/deoplete-phpactor'
 on_ft = 'php'
-depends = ['phpactor/phpactor', 'Shougo/deoplete.nvim']
+depends = ['phpactor', 'deoplete.nvim']
 #}}}
 
 [[plugins]] #{{{ posva/vim-vue
