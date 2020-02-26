@@ -143,13 +143,11 @@ let g:neocomplete#text_mode_filetypes = {
 [[plugins]] # {{{ ujihisa/neco-look
 repo = 'ujihisa/neco-look'
 on_i = 1
-depends = ['neocomplete']
 #}}}
 
 [[plugins]] #{{{ Shougo/neco-syntax
 repo = 'Shougo/neco-syntax'
 on_i = 1
-depends = ['neocomplete']
 #}}}
 
 [[plugins]] #{{{ Shougo/neosnippet
@@ -181,7 +179,6 @@ let g:neosnippet#snippets_directory='~/.vim/snippet'
 [[plugins]] #{{{ Shougo/neosnippet-snippets
 repo = 'Shougo/neosnippet-snippets'
 on_i = 1
-depends = ['neocomplete']
 #}}}
 
 [[plugins]] #{{{ lambdalisue/vim-gista

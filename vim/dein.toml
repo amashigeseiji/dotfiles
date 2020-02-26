@@ -400,9 +400,12 @@ repo = 'majutsushi/tagbar'
 
 [[plugins]] # {{{ Shougo/deoplete.nvim
 repo = 'Shougo/deoplete.nvim'
+depends = ['roxma/neovim-yarp', 'roxma/vim-hug-neovim-rpc']
 hook_add = """
 let g:deoplete#enable_at_startup = 1
-depends = ['roxma/neovim-yarp', 'roxma/vim-hug-neovim-rpc']
+call deoplete#custom#option('sources', {
+  \ 'php' : $HOME.'/.vim/dict/php.dict'
+  \})
 """
 #}}}
 
