@@ -195,7 +195,7 @@ let g:vimfiler_data_directory = '/tmp/.vimfiler'
 #}}}
 
 [[plugins]] #{{{ tobyS/pdv
-repo = 'tobyS/pdv'
+repo = 'amashigeseiji/pdv' #forked from tobyS/pdv
 on_ft = ['php']
 hook_source = '''
 let g:pdv_template_dir = $HOME ."/.vim/pdv/templates"
