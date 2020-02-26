@@ -334,11 +334,15 @@ hook_source="""
 let g:phpactorOmniAutoClassImport = v:true
 let g:phpactorPhpBin = '/usr/bin/php'
 autocmd FileType php setlocal omnifunc=phpactor#Complete
+function! PhpactorGotoDefinition() abort
+  split
+  call phpactor#GotoDefinition()
+endfunction
 "au! InsertEnter *.php call phpactor#Hover()
 nmap <buffer><silent><Leader>hh     :<C-u>call phpactor#Hover()<CR>
 nmap <buffer><silent><Leader>u      :<C-u>call phpactor#UseAdd()<CR>
 nmap <buffer><silent><Leader>mm     :<C-u>call phpactor#ContextMenu()<CR>
-nmap <buffer><C-j>                  :call phpactor#GotoDefinition()<CR>
+nmap <buffer><C-j>                  :call PhpactorGotoDefinition()<CR>
 nmap <buffer><C-t>                  <C-o>
 """
 #}}}
