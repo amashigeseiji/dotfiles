@@ -397,3 +397,18 @@ repo = 'majutsushi/tagbar'
 #hook_source="""
 #nmap rr :BEARResource<Space>
 #"""
+
+[[plugins]] # {{{ Shougo/deoplete.nvim
+repo = 'Shougo/deoplete.nvim'
+hook_add = """
+let g:deoplete#enable_at_startup = 1
+"""
+#}}}
+
+[[plugins]] # {{{ roxma/nvim-yarp
+repo = 'roxma/nvim-yarp'
+#}}}
+
+[[plugins]] # {{{ roxma/vim-hug-neovim-rpc
+repo = 'roxma/vim-hug-neovim-rpc'
+#}}}
