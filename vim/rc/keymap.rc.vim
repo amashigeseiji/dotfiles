@@ -1,4 +1,3 @@
-function! vimrc.initialize_with.keymap_rc()
 "normal-mode{{{
 "カーソルを表示行で移動する。物理行移動は<C-n>,<C-p>
 nnoremap j gj
@@ -87,4 +86,3 @@ vnoremap <S-h> 0
 vnoremap <S-a> $<S-a>
 vnoremap * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
 "}}}
-endfunction

@@ -1,4 +1,4 @@
-[[plugins]]
+[[plugins]] #{{{ prettier/vim-prettier
 repo = 'prettier/vim-prettier'
 on_ft = ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'vue']
 hook_source = """
@@ -6,20 +6,19 @@ let g:prettier#autoformat = 0
 let g:prettier#config#single_quote = 'false'
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue PrettierAsync
 """
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ evidens/vim-twig
 repo = 'evidens/vim-twig'
 on_ft = 'twig'
+#}}}
 
-[[plugins]]
-repo = 'slim-template/vim-slim'
-on_ft = 'slim'
-
-[[plugins]]
+[[plugins]] #{{{ cespare/vim-toml
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ mattn/emmet-vim
 repo = 'mattn/emmet-vim'
 on_ft = ['html', 'php', 'eruby']
 hook_source = """
@@ -28,48 +27,170 @@ let g:user_emmet_leader_key = '<C-i>'
 let g:user_emmet_install_global = 0
 autocmd! FileType html,css,eruby,php EmmetInstall
 """
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ plasticboy/vim-markdown
 repo = 'plasticboy/vim-markdown'
 on_ft = ['markdown', 'vimwiki']
+#}}}
 
-[[plugins]]
-repo = 'rhysd/vim-crystal'
-on_ft = 'crystal'
-
-[[plugins]]
+[[plugins]] #{{{ fatih/vim-go
 repo = 'fatih/vim-go'
 on_ft = ['go']
+hook_source = """
+augroup GO_load
+  au!
+  au FileType godoc nnoremap <buffer><silent> q :bd<CR>
+  au FileType go setl noexpandtab
+  au FileType go setl tabstop=4
+  au FileType go setl shiftwidth=4
+  au FileType go setl softtabstop=4
+  au FileType go hi SpecialKey term=underline ctermfg=234 ctermbg=233 guifg=grey30 guibg=grey20
+augroup END
+"""
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ Shougo/neocomplete
 repo = 'Shougo/neocomplete'
 on_i = 1
+hook_source = """
+"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#auto_completion_start_length      = 2
+let g:neocomplete#enable_fuzzy_completion           = 0
+let g:neocomplete#max_list                          = 20
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern          = '\*ku\*'
+let g:neocomplete#sources#buffer#cache_limit_size   = 50000
+"let g:neocomplete#data_directory                    = '/tmp/neocomplete.vim'
+let g:neocomplete#enable_underbar_completion        = 1
+let g:neocomplete#enable_camel_case_completion      = 1
+let g:neocomplete#sources#buffer#max_keyword_width  = 80
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries   = {
+    \ 'default' : '',
+    \ 'php' : $HOME.'/.vim/dict/php.dict'
+    \ }
 
-[[plugins]]
+"au InsertLeave * silent! pclose!
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h>  neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>   neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.go = '\h\w\.\w*'
+
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplete#force_omni_input_patterns.go = '[^. \t]\.\%(\h\w*\)\?'
+
+" for neco-look
+if !exists('g:neocomplete#text_mode_filetypes')
+  let g:neocomplete#text_mode_filetypes = {}
+endif
+let g:neocomplete#text_mode_filetypes = {
+    \ 'rst': 1,
+    \ 'markdown': 1,
+    \ 'gitrebase': 1,
+    \ 'gitcommit': 1,
+    \ 'vcs-commit': 1,
+    \ 'hybrid': 1,
+    \ 'text': 1,
+    \ 'help': 1,
+    \ 'tex': 1,
+    \ 'vimwiki': 1
+    \}
+""" #}}}
+
+[[plugins]] # {{{ ujihisa/neco-look
 repo = 'ujihisa/neco-look'
 on_i = 1
 depends = ['neocomplete']
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ Shougo/neco-syntax
 repo = 'Shougo/neco-syntax'
 on_i = 1
 depends = ['neocomplete']
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ Shougo/neosnippet
 repo = 'Shougo/neosnippet'
 on_i = 1
+hook_source="""
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_or_jump)
 
-[[plugins]]
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+ 
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory='~/.vim/snippet'
+"""
+#}}}
+
+[[plugins]] #{{{ Shougo/neosnippet-snippets
 repo = 'Shougo/neosnippet-snippets'
 on_i = 1
 depends = ['neocomplete']
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ lambdalisue/vim-gista
 repo = 'lambdalisue/vim-gista'
 on_cmd = ['Gista']
 on_func = 'gista#'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ Shougo/vimfiler.vim
 repo = 'Shougo/vimfiler.vim'
 depends = 'unite.vim'
 hook_source="""
@@ -85,34 +206,41 @@ let g:vimfiler_min_filename_width = 10
 let g:vimfiler_data_directory = '/tmp/.vimfiler'
 "autocmd FileType vimfiler :map O <Plug>(vimfiler_double_click)
 """
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ tobyS/pdv
 repo = 'tobyS/pdv'
 on_ft = ['php']
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ tobyS/vmustache
 repo = 'tobyS/vmustache'
 on_ft = ['php']
+#}}}
 
 #[[plugins]]
 #repo = 'tpope/vim-rails'
 #on_ft = ['ruby']
 
-[[plugins]]
+[[plugins]] #{{{ mustache/vim-mustache-handlebars
 repo = 'mustache/vim-mustache-handlebars'
 on_ft = ['mustache']
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ tmhedberg/matchit
 repo = 'tmhedberg/matchit'
 on_ft = ['html', 'php']
+#}}}
 
-[[plugins]]
+[[plugins]] # {{{ vim-scripts/textutil.vim
 repo = 'vim-scripts/textutil.vim'
 on_ft = ['rtf']
+#}}}
 
-[[plugins]]
+[[plugins]] # {{{ swekaj/php-foldexpr.vim
 repo = 'swekaj/php-foldexpr.vim'
 on_ft = ['php']
+#}}}
 
 #[[plugins]]
 #repo = 'lvht/phpcd.vim'
@@ -120,15 +248,26 @@ on_ft = ['php']
 #build = ['composer install']
 #
 
-#[[plugins]]
-#repo = 'chrisbra/csv.vim'
-#on_ft = ['csv']
+[[plugins]] # {{{ chrisbra/csv.vim
+repo = 'chrisbra/csv.vim'
+on_ft = ['csv']
+hook_source = """
+function! CSVH(x)
+    execute 'match Keyword /^\([^,]*,\)\{'.a:x.'}\zs[^,]*/'
+    execute 'normal ^'.a:x
+endfunction
+command! -nargs=1 Csvhl :call CSVH(<args>)
 
-[[plugins]]
+autocmd BufNewFile,BufRead *.csv set nowrap
+"""
+#}}}
+
+[[plugins]] # {{{ leafgarland/typescript-vim
 repo = 'leafgarland/typescript-vim'
 on_ft = ['typescript']
+#}}}
 
-[[plugins]]
+[[plugins]] # {{{ dense-analysis/ale
 repo = 'dense-analysis/ale'
 on_ft = ['php', 'javascript', 'vue']
 hook_source = """
@@ -149,8 +288,9 @@ let g:ale_fix_on_save = 1
 let g:ale_completion_enable = 1
 setl omnifunc=ale#completion#OmniFunc
 """
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ vim-vdebug/vdebug
 repo = 'vim-vdebug/vdebug'
 on_ft = ['php']
 hook_add = """
@@ -187,25 +327,31 @@ let g:vdebug_keymap = {
 \    "eval_visual" : "<Leader>e",
 \}
 """
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ phpactor/phpactor
 repo = 'phpactor/phpactor'
 on_ft = 'php'
 build = 'composer install'
 hook_source="""
 let g:phpactorOmniAutoClassImport = v:true
+let g:phpactorPhpBin = '/usr/bin/php'
 autocmd FileType php setlocal omnifunc=phpactor#Complete
-au! InsertEnter *.php call phpactor#Hover()
+"au! InsertEnter *.php call phpactor#Hover()
 nmap <buffer><silent><Leader>hh     :<C-u>call phpactor#Hover()<CR>
 nmap <buffer><silent><Leader>u      :<C-u>call phpactor#UseAdd()<CR>
 nmap <buffer><silent><Leader>mm     :<C-u>call phpactor#ContextMenu()<CR>
 nmap <buffer><C-j>                  :call phpactor#GotoDefinition()<CR>
 nmap <buffer><C-t>                  <C-o>
 """
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ kristijanhusak/deoplete-phpactor
 repo = 'kristijanhusak/deoplete-phpactor'
 on_ft = 'php'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ posva/vim-vue
 repo = 'posva/vim-vue'
+on_ft = 'vue'
+#}}}

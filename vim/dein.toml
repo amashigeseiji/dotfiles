@@ -1,13 +1,15 @@
-[[plugins]]
+[[plugins]] #{{{ Shougo/dein.vim
 repo = 'Shougo/dein.vim'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ Shougo/vimproc
 repo = 'Shougo/vimproc'
 build = 'make'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ vim-scripts/vimwiki
 repo = 'vim-scripts/vimwiki'
-hook_source="""
+hook_add="""
 let g:vimwiki_folding="expr"
 let g:vimwiki_hl_cb_checked=1
 let g:vimwiki_list=[{'path':'~/.vim/vimwiki/', 'syntax': 'markdown'}]
@@ -20,61 +22,145 @@ augroup VimWiki
   "au FileType vimwiki setl formatoptions+=mM " テキスト挿入中の自動折り返しを日本語に対応させる
 augroup END
 """
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ Shougo/unite.vim
 repo = 'Shougo/unite.vim'
-#hook_add = """
-#let g:unite_data_directory = '/tmp/.unite'
-#let g:unite_source_history_yank_enable = 1  "history/yankの有効化
-#" 入力モードで開始する
-#let g:unite_enable_start_insert = 1
-#
-#" grep
-#let g:unite_enable_ignore_case = 1
-#let g:unite_enable_smart_case = 1
-#" unite grep に ag(The Silver Searcher) を使う
-#if executable('ag')
-#  let g:unite_source_grep_command = 'ag'
-#  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-#  let g:unite_source_grep_recursive_opt = ''
-#endif
-#"""
+hook_add = """
+let g:unite_data_directory = '/tmp/.unite'
+let g:unite_source_history_yank_enable = 1  "history/yankの有効化
+" 入力モードで開始する
+let g:unite_enable_start_insert = 1
+" バッファ一覧
+noremap <C-u><C-b> :Unite buffer<CR>
+noremap <C-b> :Unite buffer<CR>
+" ファイル一覧
+noremap <C-u>f :UniteWithBufferDir -buffer-name=files file<CR>
+" 最近使ったファイルの一覧
+noremap <C-u><C-R> :Unite file_mru<CR>
+" レジスタ一覧
+noremap <C-u>y :Unite -buffer-name=register register<CR>
+" function
+nnoremap f :Unite outline<CR>
+"nnoremap <C-u>f :Unite function<CR>
+nnoremap <silent> ,y :<C-u>Unite history/yank<CR>
 
-[[plugins]]
+" grep
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
+nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> ,ag :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W><CR>
+" unite grep に ag(The Silver Searcher) を使う
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+"""
+#}}}
+
+[[plugins]] #{{{ thinca/vim-ref
 repo = 'thinca/vim-ref'
+hook_add = """
+" php補完ファイル置き場
+let g:ref_phpmanual_path = $HOME.'/.cache/man/php-chunked-xhtml'
+" webdictサイトの設定
+let g:ref_source_webdict_sites = {
+\   'wiki': { 'url': 'http://ja.wikipedia.org/wiki/%s' },
+\   'alc': { 'url': 'http://eow.alc.co.jp/%s' },
+\   'oxford': { 'url': 'http://www.oxforddictionaries.com/definition/english/%s' },
+\ }
+" 一度開いたページをキャッシュ
+let g:ref_source_webdict_use_cache = 1
+let g:ref_cache_dir = '/tmp/vimref'
+let g:ref_use_vimproc = 1
+" デフォルトサイト
+let g:ref_source_webdict_sites.default = 'alc'
 
-[[plugins]]
+augroup vimref_loading
+  au!
+  au FileType ref-phpmanual nnoremap <buffer><silent> q :bd<CR>
+  au FileType ref-webdict nnoremap <buffer><silent> q :bd<CR>
+augroup END
+
+"let g:ref_phpmanual_cmd = 'w3m -dump %s'
+nnoremap ,p :Ref<space>phpmanual<space>
+nnoremap ,e :Ref webdict alc<space>
+nnoremap ,o :Ref webdict oxford<space>
+
+" 出力に対するフィルタ。最初の数行を削除
+function! g:ref_source_webdict_sites.alc.filter(output)
+  let output=a:output
+  "よみがなを削除
+  let output=substitute(output, '｛\([^｝]\)*｝', '', 'g')
+  let output=substitute(output, '◆', ' * ', 'g')
+  let output=substitute(output, '⇒', '=>', 'g')
+  ""》】）。"以外のマルチバイト文字で終わって"《【（・•"以外のマルチバイト文字で始まる文の改行コードを削除
+  let output=substitute(output, '\([^\x01-\x7E^》^】^）^。]\)\n\s\+\([^\x01-\x7E^《^【^（^・^•]\)', '\1\2', 'g')
+  let output=substitute(output, '（','(','g')
+  let output=substitute(output, '）',')','g')
+  " リストになっているタイトル文字列を==で囲む
+  let output=substitute(output, '•\(\s[a-zA-Z]\+[a-zA-Z -,.]*\)', '\n==\1 ==', 'g')
+  let output=substitute(output, '・\([a-zA-Z ]\+\)\n\s*\([a-zA-Z ]\+\.\)', '\1 \2', 'g')
+  let output=substitute(output, '\(\.\)\(\s:\)', '\1\n        \2', 'g')
+
+  return join(split(output, "\n")[30:], "\n")
+endfunction
+
+function! g:ref_source_webdict_sites.wiki.filter(output)
+  return join(split(a:output, "\n")[8 :], "\n")
+endfunction
+
+function! g:ref_source_webdict_sites.oxford.filter(output)
+  return join(split(a:output, "\n")[208 :], "\n")
+endfunction
+"""
+#}}}
+
+[[plugins]] #{{{ yuratomo/w3m.vim
 repo = 'yuratomo/w3m.vim'
+hook_add="""
+autocmd! FileType w3m setl nonumber
+autocmd! FileType w3m nnoremap <buffer> q :bdelete!<CR>
+"""
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ mattn/webapi-vim
 repo = 'mattn/webapi-vim'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ Shougo/unite-outline
+repo = 'Shougo/unite-outline'
+#}}}
+
+[[plugins]] #{{{ h1mesuke/unite-outline
 repo = 'h1mesuke/unite-outline'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ tsukkee/unite-tag
+repo = 'tsukkee/unite-tag'
+#}}}
+
+[[plugins]] #{{{ tpope/vim-surround
 repo = 'tpope/vim-surround'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ tpope/vim-fugitive
 repo = 'tpope/vim-fugitive'
+#}}}
 
-#[[plugins]]
-#repo = 'project.tar.gz'
-
-[[plugins]]
+[[plugins]] #{{{ tpope/vim-endwise
 repo = 'tpope/vim-endwise'
-
+#}}}
 
 #[[plugins]]
 #repo = 'soramugi/auto-ctags.vim'
 
-[[plugins]]
-repo = 'tsukkee/unite-tag'
-
-[[plugins]]
+[[plugins]] #{{{ Shougo/neomru.vim
 repo = 'Shougo/neomru.vim'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ kien/ctrlp.vim
 repo = 'kien/ctrlp.vim'
 hook_add = """
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
@@ -85,19 +171,22 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:ctrlp_max_depth = 10
 let g:ctrlp_max_files = 15000
 """
+#}}}
 
 #[[plugins]]
 #repo = 'scrooloose/nerdtree'
 
-[[plugins]]
+[[plugins]] #{{{ embear/vim-localvimrc
 repo = 'embear/vim-localvimrc'
 hook_add = """
 let g:localvimrc_name = '.lvimrc'
 let g:localvimrc_ask = 0
 """
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ vim-jp/vital.vim
 repo = 'vim-jp/vital.vim'
+#}}}
 
 #[[plugins]]
 #repo = 'haya14busa/incsearch.vim'
@@ -105,9 +194,9 @@ repo = 'vim-jp/vital.vim'
 #[[plugins]]
 #repo = 'haya14busa/incsearch-fuzzy.vim'
 
-[[plugins]]
+[[plugins]] #{{{ basyura/TweetVim
 repo = 'basyura/TweetVim'
-hook_source="""
+hook_add="""
 let g:tweetvim_display_username = 0
 let g:tweetvim_tweet_per_page = 30
 let g:tweetvim_display_icon = 1
@@ -133,60 +222,178 @@ if !has('gui_running')
   hi def link tweetvim_hash_tag        Typedef
 endif
 """
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ basyura/twibill.vim
 repo = 'basyura/twibill.vim'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ tyru/open-browser.vim
 repo = 'tyru/open-browser.vim'
+#}}}
 
-[[plugins]]
-repo = 'Shougo/unite-outline'
-
-[[plugins]]
+[[plugins]] #{{{ thinca/vim-quickrun
 repo = 'thinca/vim-quickrun'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ vim-scripts/taglist.vim
 repo = 'vim-scripts/taglist.vim'
-hook_source = """
+hook_add = """
 let Tlist_Show_One_File = 1
 let Tlist_Use_Right_Window = 1
 let Tlist_Exit_OnlyWindow = 1
 """
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ rbtnn/vimconsole.vim
 repo = 'rbtnn/vimconsole.vim'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ kmnk/vim-unite-giti
 repo = 'kmnk/vim-unite-giti'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ vim-jp/vimdoc-ja
 repo = 'vim-jp/vimdoc-ja'
 on_ft = 'help'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ itchyny/lightline.vim
 repo = 'itchyny/lightline.vim'
+hook_add = """
+let g:lightline = {
+      \ 'colorscheme': 'PaperColor_dark',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
+      \   'right': [ [ 'syntastic' ], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'LightLineFugitive',
+      \   'filename': 'LightLineFilename',
+      \   'fileformat': 'LightLineFileformat',
+      \   'filetype': 'LightLineFiletype',
+      \   'fileencoding': 'LightLineFileencoding',
+      \   'mode': 'LightLineMode',
+      \ },
+      \ 'component_expand': {
+      \   'syntastic': 'SyntasticStatuslineFlag',
+      \ },
+      \ 'component_type': {
+      \   'syntastic': 'error',
+      \ },
+      \ 'subseparator': { 'left': '|', 'right': '|' }
+      \ }
+
+function! LightLineModified()
+  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightLineReadonly()
+  return &ft !~? 'help' && &readonly ? 'RO' : ''
+endfunction
+
+function! LightLineFilename()
+  let fname = expand('%:t')
+  return fname == '__Tagbar__' ? g:lightline.fname :
+        \ fname =~ '__Gundo\|NERD_tree' ? '' :
+        \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \ &ft == 'unite' ? unite#get_status_string() :
+        \ &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+        \ ('' != fname ? fname : '[No Name]') .
+        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+endfunction
+
+function! LightLineFugitive()
+  try
+    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
+      let mark = ''  " edit here for cool mark
+      let _ = fugitive#head()
+      return strlen(_) ? mark._ : ''
+    endif
+  catch
+  endtry
+  return ''
+endfunction
+
+function! LightLineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightLineFiletype()
+  return 'ft: ' . (winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : '')
+endfunction
+
+function! LightLineFileencoding()
+  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+function! LightLineMode()
+  let fname = expand('%:t')
+  return fname == '__Tagbar__' ? 'Tagbar' :
+        \ fname == '__Gundo__' ? 'Gundo' :
+        \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
+        \ fname =~ 'NERD_tree' ? 'NERDTree' :
+        \ &ft == 'unite' ? 'Unite' :
+        \ &ft == 'vimfiler' ? 'VimFiler' :
+        \ &ft == 'vimshell' ? 'VimShell' :
+        \ winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+let g:tagbar_status_func = 'TagbarStatusFunc'
+
+function! TagbarStatusFunc(current, sort, fname, ...) abort
+    let g:lightline.fname = a:fname
+  return lightline#statusline(0)
+endfunction
+
+augroup AutoSyntastic
+  autocmd!
+  autocmd BufWritePost *.c,*.cpp call s:syntastic()
+augroup END
+function! s:syntastic()
+  SyntasticCheck
+  call lightline#update()
+endfunction
+
+let g:unite_force_overwrite_statusline = 0
+let g:vimfiler_force_overwrite_statusline = 0
+let g:vimshell_force_overwrite_statusline = 0
+"""
+#}}}
 
 #[[plugins]]
 #repo = 'nanotech/jellybeans.vim'
 
-[[plugins]]
+[[plugins]] #{{{ itchyny/dictionary.vim
 repo = 'itchyny/dictionary.vim'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ mattn/vimplenote-vim
 repo = 'mattn/vimplenote-vim'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ Konfekt/FastFold
 repo = 'Konfekt/FastFold'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ editorconfig/editorconfig-vim
 repo = 'editorconfig/editorconfig-vim'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ itchyny/vim-parenmatch
 repo = 'itchyny/vim-parenmatch'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ vim-scripts/dbext.vim
 repo = 'vim-scripts/dbext.vim'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{ majutsushi/tagbar
 repo = 'majutsushi/tagbar'
+
+#[[plugins]]
+#repo = 'amashigeseiji/bearsunday.vim'
+#on_ft = 'php'
+#hook_source="""
+#nmap rr :BEARResource<Space>
+#"""

@@ -1,9 +1,0 @@
-alias q="exit"
-alias ll="ls -la"
-alias tw=":TweetVimUserStream"
-alias google=":Google"
-alias alc=":Ref webdict alc $$args"
-alias gmail=':Gm $$args'
-
-let $PATH = $HOME . '/.rbenv/bin:' . $PATH
-let $PATH = $HOME . '/.rbenv/shims:' . $PATH
