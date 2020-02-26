@@ -4,6 +4,7 @@ repo = 'Shougo/dein.vim'
 
 [[plugins]] #{{{ haya14busa/dein-command.vim
 repo = 'haya14busa/dein-command.vim'
+depends = 'dein.vim'
 #}}}
 
 [[plugins]] #{{{ Shougo/vimproc
@@ -91,33 +92,6 @@ augroup END
 nnoremap ,p :Ref<space>phpmanual<space>
 nnoremap ,e :Ref webdict alc<space>
 nnoremap ,o :Ref webdict oxford<space>
-
-" 出力に対するフィルタ。最初の数行を削除
-function! g:ref_source_webdict_sites.alc.filter(output)
-  let output=a:output
-  "よみがなを削除
-  let output=substitute(output, '｛\([^｝]\)*｝', '', 'g')
-  let output=substitute(output, '◆', ' * ', 'g')
-  let output=substitute(output, '⇒', '=>', 'g')
-  ""》】）。"以外のマルチバイト文字で終わって"《【（・•"以外のマルチバイト文字で始まる文の改行コードを削除
-  let output=substitute(output, '\([^\x01-\x7E^》^】^）^。]\)\n\s\+\([^\x01-\x7E^《^【^（^・^•]\)', '\1\2', 'g')
-  let output=substitute(output, '（','(','g')
-  let output=substitute(output, '）',')','g')
-  " リストになっているタイトル文字列を==で囲む
-  let output=substitute(output, '•\(\s[a-zA-Z]\+[a-zA-Z -,.]*\)', '\n==\1 ==', 'g')
-  let output=substitute(output, '・\([a-zA-Z ]\+\)\n\s*\([a-zA-Z ]\+\.\)', '\1 \2', 'g')
-  let output=substitute(output, '\(\.\)\(\s:\)', '\1\n        \2', 'g')
-
-  return join(split(output, "\n")[30:], "\n")
-endfunction
-
-function! g:ref_source_webdict_sites.wiki.filter(output)
-  return join(split(a:output, "\n")[8 :], "\n")
-endfunction
-
-function! g:ref_source_webdict_sites.oxford.filter(output)
-  return join(split(a:output, "\n")[208 :], "\n")
-endfunction
 """
 #}}}
 
@@ -154,9 +128,6 @@ repo = 'tpope/vim-fugitive'
 repo = 'tpope/vim-endwise'
 #}}}
 
-#[[plugins]]
-#repo = 'soramugi/auto-ctags.vim'
-
 [[plugins]] #{{{ Shougo/neomru.vim
 repo = 'Shougo/neomru.vim'
 #}}}
@@ -174,9 +145,6 @@ let g:ctrlp_max_files = 15000
 """
 #}}}
 
-#[[plugins]]
-#repo = 'scrooloose/nerdtree'
-
 [[plugins]] #{{{ embear/vim-localvimrc
 repo = 'embear/vim-localvimrc'
 hook_add = """
@@ -187,46 +155,6 @@ let g:localvimrc_ask = 0
 
 [[plugins]] #{{{ vim-jp/vital.vim
 repo = 'vim-jp/vital.vim'
-#}}}
-
-#[[plugins]]
-#repo = 'haya14busa/incsearch.vim'
-#
-#[[plugins]]
-#repo = 'haya14busa/incsearch-fuzzy.vim'
-
-[[plugins]] #{{{ basyura/TweetVim
-repo = 'basyura/TweetVim'
-hook_add="""
-let g:tweetvim_display_username = 0
-let g:tweetvim_tweet_per_page = 30
-let g:tweetvim_display_icon = 1
-let g:tweetvim_open_buffer_cmd = 'split!'
-let g:tweetvim_display_source = 1
-let g:tweetvim_async_post = 1
-let g:tweetvim_align_right = 1
-
-augroup TweetVimSetting
-  au!
-  au Filetype tweetvim setl nonumber
-  au Filetype tweetvim_say nnoremap <buffer><silent>q :bd!<CR>
-  au Filetype tweetvim     nnoremap <buffer><silent>s :<C-u>TweetVimSay<CR>
-augroup END
-
-if !has('gui_running')
-  hi def link tweetvim_title           Title
-  hi def link tweetvim_status_id       Special
-  hi def link tweetvim_created_at      NonText
-  hi tweetvim_screen_name              ctermfg=209
-  hi def link tweetvim_at_screen_name  StorageClass
-  hi tweetvim_link                     ctermfg=111 cterm=underline
-  hi def link tweetvim_hash_tag        Typedef
-endif
-"""
-#}}}
-
-[[plugins]] #{{{ basyura/twibill.vim
-repo = 'basyura/twibill.vim'
 #}}}
 
 [[plugins]] #{{{ tyru/open-browser.vim
@@ -244,10 +172,6 @@ let Tlist_Show_One_File = 1
 let Tlist_Use_Right_Window = 1
 let Tlist_Exit_OnlyWindow = 1
 """
-#}}}
-
-[[plugins]] #{{{ rbtnn/vimconsole.vim
-repo = 'rbtnn/vimconsole.vim'
 #}}}
 
 [[plugins]] #{{{ kmnk/vim-unite-giti
@@ -360,17 +284,6 @@ let g:unite_force_overwrite_statusline = 0
 let g:vimfiler_force_overwrite_statusline = 0
 let g:vimshell_force_overwrite_statusline = 0
 """
-#}}}
-
-#[[plugins]]
-#repo = 'nanotech/jellybeans.vim'
-
-[[plugins]] #{{{ itchyny/dictionary.vim
-repo = 'itchyny/dictionary.vim'
-#}}}
-
-[[plugins]] #{{{ mattn/vimplenote-vim
-repo = 'mattn/vimplenote-vim'
 #}}}
 
 [[plugins]] #{{{ Konfekt/FastFold

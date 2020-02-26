@@ -8,11 +8,6 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 """
 #}}}
 
-[[plugins]] #{{{ evidens/vim-twig
-repo = 'evidens/vim-twig'
-on_ft = 'twig'
-#}}}
-
 [[plugins]] #{{{ cespare/vim-toml
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
@@ -32,22 +27,6 @@ autocmd! FileType html,css,eruby,php EmmetInstall
 [[plugins]] #{{{ plasticboy/vim-markdown
 repo = 'plasticboy/vim-markdown'
 on_ft = ['markdown', 'vimwiki']
-#}}}
-
-[[plugins]] #{{{ fatih/vim-go
-repo = 'fatih/vim-go'
-on_ft = ['go']
-hook_source = """
-augroup GO_load
-  au!
-  au FileType godoc nnoremap <buffer><silent> q :bd<CR>
-  au FileType go setl noexpandtab
-  au FileType go setl tabstop=4
-  au FileType go setl shiftwidth=4
-  au FileType go setl softtabstop=4
-  au FileType go hi SpecialKey term=underline ctermfg=234 ctermbg=233 guifg=grey30 guibg=grey20
-augroup END
-"""
 #}}}
 
 [[plugins]] # {{{ Shougo/deoplete.nvim
@@ -218,16 +197,16 @@ let g:vimfiler_data_directory = '/tmp/.vimfiler'
 [[plugins]] #{{{ tobyS/pdv
 repo = 'tobyS/pdv'
 on_ft = ['php']
+hook_source = '''
+let g:pdv_template_dir = $HOME ."/.vim/pdv/templates"
+nnoremap <buffer> <S-p> :call pdv#DocumentCurrentLine()<CR>
+'''
 #}}}
 
 [[plugins]] #{{{ tobyS/vmustache
 repo = 'tobyS/vmustache'
 on_ft = ['php']
 #}}}
-
-#[[plugins]]
-#repo = 'tpope/vim-rails'
-#on_ft = ['ruby']
 
 [[plugins]] #{{{ mustache/vim-mustache-handlebars
 repo = 'mustache/vim-mustache-handlebars'
@@ -247,6 +226,15 @@ on_ft = ['rtf']
 [[plugins]] # {{{ swekaj/php-foldexpr.vim
 repo = 'swekaj/php-foldexpr.vim'
 on_ft = ['php']
+hook_source = '''
+" folding with swekaj/php-foldexpr.vim
+" @see https://github.com/swekaj/php-foldexpr.vim
+let b:phpfold_use = 1
+let b:phpfold_group_iftry = 1
+let b:phpfold_docblocks = 0
+let b:phpfold_doc_with_funcs = 0
+let b:phpfold_group_case = 0
+'''
 #}}}
 
 #[[plugins]]
