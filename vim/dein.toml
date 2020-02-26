@@ -402,6 +402,7 @@ repo = 'majutsushi/tagbar'
 repo = 'Shougo/deoplete.nvim'
 hook_add = """
 let g:deoplete#enable_at_startup = 1
+depends = ['roxma/neovim-yarp', 'roxma/vim-hug-neovim-rpc']
 """
 #}}}
 
