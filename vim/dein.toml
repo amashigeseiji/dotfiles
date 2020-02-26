@@ -131,10 +131,7 @@ repo = 'mattn/webapi-vim'
 
 [[plugins]] #{{{ Shougo/unite-outline
 repo = 'Shougo/unite-outline'
-#}}}
-
-[[plugins]] #{{{ h1mesuke/unite-outline
-repo = 'h1mesuke/unite-outline'
+depends = ['unite.vim']
 #}}}
 
 [[plugins]] #{{{ tsukkee/unite-tag
@@ -403,9 +400,6 @@ repo = 'Shougo/deoplete.nvim'
 depends = ['roxma/neovim-yarp', 'roxma/vim-hug-neovim-rpc']
 hook_add = """
 let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('sources', {
-  \ 'php' : $HOME.'/.vim/dict/php.dict'
-  \})
 """
 #}}}
 
