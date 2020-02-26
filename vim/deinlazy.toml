@@ -50,57 +50,57 @@ augroup END
 """
 #}}}
 
-[[plugins]] #{{{ Shougo/neocomplete
-repo = 'Shougo/neocomplete'
-on_i = 1
+[[plugins]] # {{{ Shougo/deoplete.nvim
+repo = 'Shougo/deoplete.nvim'
+depends = ['nvim-yarp', 'vim-hug-neovim-rpc']
 hook_source = """
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#auto_completion_start_length      = 2
-let g:neocomplete#enable_fuzzy_completion           = 0
-let g:neocomplete#max_list                          = 20
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern          = '\*ku\*'
-let g:neocomplete#sources#buffer#cache_limit_size   = 50000
-"let g:neocomplete#data_directory                    = '/tmp/neocomplete.vim'
-let g:neocomplete#enable_underbar_completion        = 1
-let g:neocomplete#enable_camel_case_completion      = 1
-let g:neocomplete#sources#buffer#max_keyword_width  = 80
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#auto_completion_start_length      = 2
+let g:deoplete#enable_fuzzy_completion           = 0
+let g:deoplete#max_list                          = 20
+let g:deoplete#sources#syntax#min_keyword_length = 3
+let g:deoplete#lock_buffer_name_pattern          = '\*ku\*'
+let g:deoplete#sources#buffer#cache_limit_size   = 50000
+"let g:deoplete#data_directory                    = '/tmp/deoplete.vim'
+let g:deoplete#enable_underbar_completion        = 1
+let g:deoplete#enable_camel_case_completion      = 1
+let g:deoplete#sources#buffer#max_keyword_width  = 80
 " Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries   = {
+let g:deoplete#sources#dictionary#dictionaries   = {
     \ 'default' : '',
     \ 'php' : $HOME.'/.vim/dict/php.dict'
     \ }
 
 "au InsertLeave * silent! pclose!
 " Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
+if !exists('g:deoplete#keyword_patterns')
+    let g:deoplete#keyword_patterns = {}
 endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+let g:deoplete#keyword_patterns['default'] = '\h\w*'
 
 " Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
+inoremap <expr><C-g>     deoplete#undo_completion()
+inoremap <expr><C-l>     deoplete#complete_common_string()
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  return neocomplete#close_popup() . "\<CR>"
+  return deoplete#close_popup() . "\<CR>"
   " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+  "return pumvisible() ? deoplete#close_popup() : "\<CR>"
 endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h>  neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>   neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
+inoremap <expr><C-h>  deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>   deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  deoplete#close_popup()
+inoremap <expr><C-e>  deoplete#cancel_popup()
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -110,23 +110,23 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
+if !exists('g:deoplete#sources#omni#input_patterns')
+  let g:deoplete#sources#omni#input_patterns = {}
 endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.go = '\h\w\.\w*'
+"let g:deoplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:deoplete#sources#omni#input_patterns.go = '\h\w\.\w*'
 
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
+if !exists('g:deoplete#force_omni_input_patterns')
+  let g:deoplete#force_omni_input_patterns = {}
 endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplete#force_omni_input_patterns.go = '[^. \t]\.\%(\h\w*\)\?'
+"let g:deoplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:deoplete#force_omni_input_patterns.go = '[^. \t]\.\%(\h\w*\)\?'
 
 " for neco-look
-if !exists('g:neocomplete#text_mode_filetypes')
-  let g:neocomplete#text_mode_filetypes = {}
+if !exists('g:deoplete#text_mode_filetypes')
+  let g:deoplete#text_mode_filetypes = {}
 endif
-let g:neocomplete#text_mode_filetypes = {
+let g:deoplete#text_mode_filetypes = {
     \ 'rst': 1,
     \ 'markdown': 1,
     \ 'gitrebase': 1,
@@ -138,7 +138,16 @@ let g:neocomplete#text_mode_filetypes = {
     \ 'tex': 1,
     \ 'vimwiki': 1
     \}
-""" #}}}
+"""
+#}}}
+
+[[plugins]] # {{{ roxma/nvim-yarp
+repo = 'roxma/nvim-yarp'
+#}}}
+
+[[plugins]] # {{{ roxma/vim-hug-neovim-rpc
+repo = 'roxma/vim-hug-neovim-rpc'
+#}}}
 
 [[plugins]] # {{{ ujihisa/neco-look
 repo = 'ujihisa/neco-look'
