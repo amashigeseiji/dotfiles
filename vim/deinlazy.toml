@@ -254,8 +254,9 @@ on_ft = ['php', 'javascript', 'vue']
 hook_source = """
 let g:ale_sign_column_always = 1
 let g:ale_php_phpcs_standard = 'PSR1,PSR2'
+let g:ale_php_phpstan_executable = expand('~/.composer/vendor/bin/phpstan')
 let g:ale_linters = {
-  \ 'php': ['phpcs', 'php'],
+  \ 'php': ['phpcs', 'php', 'phpstan'],
   \ 'javascript': ['eslint'],
   \ 'vue': ['eslint']
   \}
@@ -336,4 +337,9 @@ depends = ['phpactor', 'deoplete.nvim']
 [[plugins]] #{{{ posva/vim-vue
 repo = 'posva/vim-vue'
 on_ft = 'vue'
+#}}}
+
+[[plugins]] #{{{ rhysd/reply.vim
+repo = 'rhysd/reply.vim'
+on_cmd = ['Repl', 'ReplAuto']
 #}}}
