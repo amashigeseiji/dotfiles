@@ -29,98 +29,6 @@ repo = 'plasticboy/vim-markdown'
 on_ft = ['markdown', 'vimwiki']
 #}}}
 
-[[plugins]] # {{{ Shougo/deoplete.nvim
-repo = 'Shougo/deoplete.nvim'
-depends = ['nvim-yarp', 'vim-hug-neovim-rpc']
-hook_source = """
-" pip3 install --user pynvim --upgrade
-"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#auto_completion_start_length      = 2
-let g:deoplete#enable_fuzzy_completion           = 0
-let g:deoplete#max_list                          = 20
-let g:deoplete#sources#syntax#min_keyword_length = 3
-let g:deoplete#lock_buffer_name_pattern          = '\*ku\*'
-let g:deoplete#sources#buffer#cache_limit_size   = 50000
-"let g:deoplete#data_directory                    = '/tmp/deoplete.vim'
-let g:deoplete#enable_underbar_completion        = 1
-let g:deoplete#enable_camel_case_completion      = 1
-let g:deoplete#sources#buffer#max_keyword_width  = 80
-" Define dictionary.
-let g:deoplete#sources#dictionary#dictionaries   = {
-    \ 'default' : '',
-    \ 'php' : $HOME.'/.vim/dict/php.dict'
-    \ }
-
-"au InsertLeave * silent! pclose!
-" Define keyword.
-if !exists('g:deoplete#keyword_patterns')
-    let g:deoplete#keyword_patterns = {}
-endif
-let g:deoplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     deoplete#undo_completion()
-inoremap <expr><C-l>     deoplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return deoplete#close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? deoplete#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h>  deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>   deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  deoplete#close_popup()
-inoremap <expr><C-e>  deoplete#cancel_popup()
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:deoplete#sources#omni#input_patterns')
-  let g:deoplete#sources#omni#input_patterns = {}
-endif
-"let g:deoplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:deoplete#sources#omni#input_patterns.go = '\h\w\.\w*'
-
-if !exists('g:deoplete#force_omni_input_patterns')
-  let g:deoplete#force_omni_input_patterns = {}
-endif
-"let g:deoplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:deoplete#force_omni_input_patterns.go = '[^. \t]\.\%(\h\w*\)\?'
-
-" for neco-look
-if !exists('g:deoplete#text_mode_filetypes')
-  let g:deoplete#text_mode_filetypes = {}
-endif
-let g:deoplete#text_mode_filetypes = {
-    \ 'rst': 1,
-    \ 'markdown': 1,
-    \ 'gitrebase': 1,
-    \ 'gitcommit': 1,
-    \ 'vcs-commit': 1,
-    \ 'hybrid': 1,
-    \ 'text': 1,
-    \ 'help': 1,
-    \ 'tex': 1,
-    \ 'vimwiki': 1
-    \}
-"""
-#}}}
-
 [[plugins]] # {{{ roxma/nvim-yarp
 repo = 'roxma/nvim-yarp'
 #}}}
@@ -223,12 +131,6 @@ repo = 'vim-scripts/textutil.vim'
 on_ft = ['rtf']
 #}}}
 
-#[[plugins]]
-#repo = 'lvht/phpcd.vim'
-#on_ft = ['php']
-#build = ['composer install']
-#
-
 [[plugins]] # {{{ chrisbra/csv.vim
 repo = 'chrisbra/csv.vim'
 on_ft = ['csv']
@@ -310,28 +212,6 @@ let g:vdebug_keymap = {
 \    "eval_visual" : "<Leader>e",
 \}
 """
-#}}}
-
-[[plugins]] #{{{ phpactor/phpactor
-repo = 'phpactor/phpactor'
-on_ft = 'php'
-build = 'composer install'
-hook_source="""
-let g:phpactorOmniAutoClassImport = v:true
-autocmd FileType php setlocal omnifunc=phpactor#Complete
-"au! InsertEnter *.php call phpactor#Hover()
-nmap <silent><Leader>hh     :<C-u>call phpactor#Hover()<CR>
-nmap <silent><Leader>u      :<C-u>call phpactor#UseAdd()<CR>
-nmap <silent><Leader>mm     :<C-u>call phpactor#ContextMenu()<CR>
-nmap <C-j>                  :call phpactor#GotoDefinition()<CR>
-nmap <C-t>                  <C-o>
-"""
-#}}}
-
-[[plugins]] #{{{ kristijanhusak/deoplete-phpactor
-repo = 'kristijanhusak/deoplete-phpactor'
-on_ft = 'php'
-depends = ['phpactor', 'deoplete.nvim']
 #}}}
 
 [[plugins]] #{{{ posva/vim-vue

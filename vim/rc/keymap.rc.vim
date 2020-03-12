@@ -16,7 +16,7 @@ nnoremap <C-e> <S-$>
 nnoremap <C-n>   :bnext<CR>
 " Ctrl+Pで前のバッファを表示
 nnoremap <C-p>   :bprevious<CR>
-nnoremap <C-j> :exe("tjump ".expand('<cword>'))<CR>
+"nnoremap <C-j> :exe("tjump ".expand('<cword>'))<CR>
 " tmuxのプレフィックスとかぶるので
 nnoremap <C-f> <nop>
 

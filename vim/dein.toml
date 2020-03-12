@@ -310,3 +310,32 @@ let g:Lf_PreviewInPopup = 1
 nnoremap <silent><leader>f :Leaderf file --popup<CR>
 '''
 #}}}
+
+[[plugins]] # {{{ prabirshrestha/async.vim
+repo = 'prabirshrestha/async.vim'
+#}}}
+[[plugins]] # {{{ prabirshrestha/vim-lsp
+repo = 'prabirshrestha/vim-lsp'
+hook_add = '''
+let g:lsp_diagnostics_enabled = 0
+nmap <C-j> :LspDefinition<CR>
+nmap <silent> <Leader>p :LspHover<CR>
+'''
+#}}}
+[[plugins]] # {{{ mattn/vim-lsp-settings
+repo = 'mattn/vim-lsp-settings'
+#}}}
+
+[[plugins]]
+repo='prabirshrestha/asyncomplete.vim'
+hook_add = '''
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+'''
+
+[[plugins]]
+repo='prabirshrestha/asyncomplete-lsp.vim'
+
+[[plugins]]
+repo='prabirshrestha/asyncomplete-neosnippet.vim'
