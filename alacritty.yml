@@ -1,0 +1,21 @@
+font:
+  normal:
+    family: Ricty Diminished
+    style: Regular
+  bold:
+    family: Ricty Diminished
+    style: Bold
+  italic:
+    family: Ricty Diminished
+    style: Italic
+  size: 15.0
+background_opcacity: 0.95
+
+selection:
+  save_to_clipboard: true
+
+key_bindings:
+  - { key: Key0,   mods: Command,         action: ResetFontSize    }
+  - { key: Equals, mods: Command,         action: IncreaseFontSize }
+  - { key: Minus,  mods: Command,         action: DecreaseFontSize }
+  - { key: F,      mods: Command|Control, action: ToggleSimpleFullscreen }
