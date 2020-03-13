@@ -18,7 +18,7 @@ selection:
   save_to_clipboard: true
 
 cursor:
-  style: Beam
+  style: Block
 
 live_config_reload: true
 

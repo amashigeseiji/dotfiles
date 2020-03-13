@@ -6,14 +6,17 @@ isCharging=$(echo $battery_info | awk '{print $2}')
 
 if [ "$quantity" != "" ] ; then
   if [[ ! $isCharging =~ "discharging" ]]; then
-    color="#[bg=cyan,fg=black]"
-    battery=$(printf '\xE2\x9a\xa1')" $quantity"
-  elif (( $quantity < 16 )); then
-    color="#[bg=red,fg=white]"
-    battery=$(printf '\xF0\x9F\x94\x8B')" $quantity"
+    bg=blue
+    fg=black
+    emoji="\xF0\x9F\x94\x8C"
+  elif (( $quantity < 25 )); then
+    bg=red
+    fg=white
+    emoji="\xF0\x9F\x94\x8B"
   else
-    color="#[bg=cyan,fg=black]"
-    battery=$(printf '\xF0\x9F\x94\x8B')" $quantity"
+    bg=green
+    fg=black
+    emoji="\xF0\x9F\x94\x8B"
   fi
-  echo "${color} ${battery}% #[default]"
+  echo "$(printf '#[bg=black] %s #[default]' ${emoji})$(printf '#[bg=%s,fg=%s]' ${bg} ${fg}) ${quantity}% #[default]"
 fi
