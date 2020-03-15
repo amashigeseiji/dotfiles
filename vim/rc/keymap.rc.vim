@@ -60,7 +60,7 @@ nnoremap zE <nop>
 "}}}
 "}}}
 "insert-mode{{{
-inoremap <C-j> <Esc>
+"inoremap <C-j> <Esc>
 inoremap <C-k> <CR>
 inoremap {} {}<Left>
 inoremap [] []<Left>

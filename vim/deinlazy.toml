@@ -1,12 +1,12 @@
-[[plugins]] #{{{ prettier/vim-prettier
-repo = 'prettier/vim-prettier'
-on_ft = ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'vue']
-hook_source = """
-let g:prettier#autoformat = 0
-let g:prettier#config#single_quote = 'false'
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue PrettierAsync
-"""
-#}}}
+#[[plugins]] #{{{ prettier/vim-prettier
+#repo = 'prettier/vim-prettier'
+#on_ft = ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'vue']
+#hook_source = """
+#let g:prettier#autoformat = 0
+#let g:prettier#config#single_quote = 'false'
+#autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue PrettierAsync
+#"""
+##}}}
 
 [[plugins]] #{{{ cespare/vim-toml
 repo = 'cespare/vim-toml'

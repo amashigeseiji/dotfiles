@@ -326,16 +326,32 @@ nmap <silent> <Leader>p :LspHover<CR>
 repo = 'mattn/vim-lsp-settings'
 #}}}
 
-[[plugins]]
+[[plugins]] #{{{ prabirshrestha/asyncomplete.vim
 repo='prabirshrestha/asyncomplete.vim'
 hook_add = '''
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 '''
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{prabirshrestha/asyncomplete-lsp.vim
 repo='prabirshrestha/asyncomplete-lsp.vim'
+#}}}
 
-[[plugins]]
+[[plugins]] #{{{prabirshrestha/asyncomplete-neosnippet.vim
 repo='prabirshrestha/asyncomplete-neosnippet.vim'
+#}}}
+
+[[plugins]] #{{{ tyru/eskk.vim
+repo = 'tyru/eskk.vim'
+hook_add = '''
+let g:eskk#dictionary = { 'path': "~/.skk-jisyo", 'sorted': 0, 'encoding': 'utf-8', }
+let g:eskk#enable_completion = 1
+let g:eskk#large_dictionary = {
+\ 'path': "~/.eskk/SKK-JISYO.L",
+\ 'sorted': 1,
+\ 'encoding': 'utf8',
+\}
+'''
+#}}}
