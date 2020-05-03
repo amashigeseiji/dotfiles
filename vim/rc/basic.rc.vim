@@ -92,17 +92,17 @@ set tags=./tags;
 " ひらいているファイルのディレクトリに自動で移動
 "set autochdir
 " ターミナル以外を開いたときだけcdする
-function! s:change_dir()
-  if &l:buftype ==# 'terminal' || &l:buftype ==# 'nowrite'
-    return
-  endif
-  lcd %:p:h
-endfunction
-" 開いたファイルをカレントディレクトリに設定
-augroup grlcd
-  autocmd!
-  autocmd BufEnter *.* call s:change_dir()
-augroup END
+"function! s:change_dir()
+"  if &l:buftype ==# 'terminal' || &l:buftype ==# 'nowrite'
+"    return
+"  endif
+"  lcd %:p:h
+"endfunction
+"" 開いたファイルをカレントディレクトリに設定
+"augroup grlcd
+"  autocmd!
+"  autocmd BufEnter *.* call s:change_dir()
+"augroup END
 
 "ファイルの閉じた場所を記憶
 augroup RememberCursorPos

@@ -150,6 +150,13 @@ repo = 'tyru/open-browser.vim'
 
 [[plugins]] #{{{ thinca/vim-quickrun
 repo = 'thinca/vim-quickrun'
+hook_add = """
+" 初期化
+let g:quickrun_config = {}
+" PHPUnit
+let g:quickrun_config['phpunit'] = {'command': 'phpunit'}
+command! PhpUnit :QuickRun phpunit
+"""
 #}}}
 
 [[plugins]] #{{{ vim-scripts/taglist.vim
@@ -306,7 +313,7 @@ on_cmd = ['Leaderf', 'LeaderfFile', 'LeaderfMru', 'LeaderfMruCwd', 'LeaderfBuffe
 on_map = '<C-g>'
 hook_add = '''
 let g:Lf_WindowPosition = 'popup'
-let g:Lf_PreviewInPopup = 1
+let g:Lf_PreviewInPopup = 0
 nnoremap <silent><leader>f :Leaderf file --popup<CR>
 '''
 #}}}
