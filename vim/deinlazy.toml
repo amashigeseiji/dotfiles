@@ -15,12 +15,12 @@ on_ft = 'toml'
 
 [[plugins]] #{{{ mattn/emmet-vim
 repo = 'mattn/emmet-vim'
-on_ft = ['html', 'php', 'eruby']
+on_ft = ['html', 'php', 'eruby', 'vue']
 hook_source = """
 let g:user_emmet_expandabbr_key = '<C-@>'
 let g:user_emmet_leader_key = '<C-i>'
 let g:user_emmet_install_global = 0
-autocmd! FileType html,css,eruby,php EmmetInstall
+autocmd! FileType html,css,eruby,php,vue EmmetInstall
 """
 #}}}
 

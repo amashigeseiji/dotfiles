@@ -89,6 +89,9 @@ set helplang=ja,en
 "ctags
 set tags=./tags;
 
+"mouse
+set mouse=a
+
 " ひらいているファイルのディレクトリに自動で移動
 "set autochdir
 " ターミナル以外を開いたときだけcdする

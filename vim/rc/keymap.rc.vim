@@ -20,8 +20,6 @@ nnoremap <C-p>   :bprevious<CR>
 " tmuxのプレフィックスとかぶるので
 nnoremap <C-f> <nop>
 
-nnoremap <space>w :w<CR>
-nnoremap <space>q :q<CR>
 " タブを開く
 "nnoremap t :tabe<space>
 " vimrcを編集・読み込み
@@ -35,10 +33,7 @@ nnoremap <silent>,w :setl nowrap!<CR>
 nnoremap <silent>,n :setl nonumber!<CR>
 nnoremap <silent>,a :append!<CR>
 nnoremap <silent>,l :noh<CR>
-nnoremap ,fi :setl foldmethod=indent<CR>
-nnoremap ,fm :setl foldmethod=marker<CR>
-nnoremap ,fs :setl foldmethod=syntax<CR>
-nnoremap -- 78i-<esc>o<esc>
+nnoremap t :tabe<space>
 "folding {{{
 "noremap [space] <nop>
 "nmap <space> [space]
