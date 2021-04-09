@@ -1,3 +1,10 @@
+shell:
+  program: /usr/local/bin/zsh
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux"
+
 font:
   normal:
     family: Ricty Diminished
@@ -9,7 +16,8 @@ font:
     family: Ricty Diminished
     style: Italic
   size: 15.0
-background_opcacity: 0.80
+
+background_opacity: 0.94
 
 window:
   startup_mode: SimpleFullscreen
