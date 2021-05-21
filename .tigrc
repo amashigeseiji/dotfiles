@@ -1,0 +1,16 @@
+
+set main-view   = id date author:email-user commit-title:graph=yes,refs=yes
+set blame-view  = date:default author:email-user id:yes,color line-number:yes,interval=1 text
+
+# F で fetch (default: :toggle file-name / :toggle commit-title-refs)
+bind generic F      !git fetch %(remote)
+bind main    F      !git fetch %(remote)
+
+# C で commit (refs での C は checkout, main での C は cherry-pick だが上書きする)
+bind generic C      !git commit
+bind refs    C      !git commit
+bind main    C      !git commit
+
+# R で git rebase -i
+bind main    R !git rebase -i %(commit)
+bind diff    R !git rebase -i %(commit)
