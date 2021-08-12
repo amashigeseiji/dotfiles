@@ -202,11 +202,11 @@ hook_add = """
 let g:lightline = {
       \ 'colorscheme': 'PaperColor_dark',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
-      \   'right': [ [ 'syntastic' ], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \   'left': [ [ 'mode', 'paste' ], [ 'filename', 'fugitive' ] ],
+      \   'right': [ [ 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
       \ 'component_function': {
-      \   'fugitive': 'LightLineFugitive',
+      \   'fugitive': 'MyFugitiveHead',
       \   'filename': 'LightLineFilename',
       \   'fileformat': 'LightLineFileformat',
       \   'filetype': 'LightLineFiletype',
@@ -230,6 +230,10 @@ function! LightLineReadonly()
   return &ft !~? 'help' && &readonly ? 'RO' : ''
 endfunction
 
+function! MyFugitiveHead()
+  return &ft != 'vimfiler' ? FugitiveHead() : ''
+endfunction
+
 function! LightLineFilename()
   let fname = expand('%:t')
   return fname == '__Tagbar__' ? g:lightline.fname :
@@ -242,24 +246,12 @@ function! LightLineFilename()
         \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 
-function! LightLineFugitive()
-  try
-    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
-      let mark = ''  " edit here for cool mark
-      let _ = fugitive#head()
-      return strlen(_) ? mark._ : ''
-    endif
-  catch
-  endtry
-  return ''
-endfunction
-
 function! LightLineFileformat()
   return winwidth(0) > 70 ? &fileformat : ''
 endfunction
 
 function! LightLineFiletype()
-  return 'ft: ' . (winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : '')
+  return (winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : '')
 endfunction
 
 function! LightLineFileencoding()
@@ -273,7 +265,7 @@ function! LightLineMode()
         \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
         \ fname =~ 'NERD_tree' ? 'NERDTree' :
         \ &ft == 'unite' ? 'Unite' :
-        \ &ft == 'vimfiler' ? 'VimFiler' :
+        \ &ft == 'vimfiler' ? 'PWD' :
         \ &ft == 'vimshell' ? 'VimShell' :
         \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
