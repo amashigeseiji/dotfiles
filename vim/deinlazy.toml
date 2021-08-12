@@ -17,7 +17,7 @@ on_ft = 'toml'
 repo = 'mattn/emmet-vim'
 on_ft = ['html', 'php', 'eruby', 'vue']
 hook_source = """
-let g:user_emmet_expandabbr_key = '<C-@>'
+let g:user_emmet_expandabbr_key = '<C-l>'
 let g:user_emmet_leader_key = '<C-i>'
 let g:user_emmet_install_global = 0
 autocmd! FileType html,css,eruby,php,vue EmmetInstall
@@ -69,7 +69,7 @@ if has('conceal')
 endif
 
 " Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/snippet'
+"let g:neosnippet#snippets_directory='~/.vim/snippet'
 """
 #}}}
 
@@ -155,8 +155,7 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 augroup ale_fix_on_save_au
   autocmd!
-  autocmd BufEnter vendor/*.php let b:ale_fix_on_save = 0
-  autocmd BufEnter node_modules/* let b:ale_fix_on_save = 0
+  autocmd BufEnter vendor/*.php,node_modules/* let b:ale_fix_on_save = 0
 augroup END
 let g:ale_completion_enable = 1
 setl omnifunc=ale#completion#OmniFunc
