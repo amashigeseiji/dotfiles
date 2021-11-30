@@ -113,23 +113,28 @@ repo = 'vim-scripts/textutil.vim'
 on_ft = ['rtf']
 #}}}
 
-[[plugins]] # {{{ chrisbra/csv.vim
-repo = 'chrisbra/csv.vim'
-on_ft = ['csv']
-hook_source = """
-function! CSVH(x)
-    execute 'match Keyword /^\([^,]*,\)\{'.a:x.'}\zs[^,]*/'
-    execute 'normal ^'.a:x
-endfunction
-command! -nargs=1 Csvhl :call CSVH(<args>)
-
-autocmd BufNewFile,BufRead *.csv set nowrap
-"""
-#}}}
+#[[plugins]] # {{{ chrisbra/csv.vim
+#repo = 'chrisbra/csv.vim'
+#on_ft = ['csv']
+#hook_source = """
+#function! CSVH(x)
+#    execute 'match Keyword /^\([^,]*,\)\{'.a:x.'}\zs[^,]*/'
+#    execute 'normal ^'.a:x
+#endfunction
+#command! -nargs=1 Csvhl :call CSVH(<args>)
+#
+#autocmd BufNewFile,BufRead *.csv set nowrap
+#"""
+##}}}
 
 [[plugins]] # {{{ leafgarland/typescript-vim
 repo = 'leafgarland/typescript-vim'
 on_ft = ['typescript']
+#}}}
+
+[[plugins]] # {{{ jparise/vim-graphql
+repo = 'jparise/vim-graphql'
+on_ft = ['graphql']
 #}}}
 
 [[plugins]] # {{{ dense-analysis/ale
@@ -210,3 +215,7 @@ on_ft = 'vue'
 repo = 'rhysd/reply.vim'
 on_cmd = ['Repl', 'ReplAuto']
 #}}}
+
+[[plugins]]
+repo = 'eliba2/vim-node-inspect'
+on_ft = ['javascript', 'typescript', 'vue']

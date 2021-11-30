@@ -64,8 +64,8 @@ inoremap <> <><Left>
 inoremap "" ""<Left>
 inoremap '' ''<Left>
 inoremap `` ``<Left>
-inoremap <C-l> ->
-inoremap <M-l> =>
+"inoremap <C-l> ->
+"inoremap <M-l> =>
 "}}}
 "commandline-mode{{{
 cnoremap <C-a> <HOME>

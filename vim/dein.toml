@@ -84,7 +84,7 @@ endfunction
 let g:vimfiler_safe_mode_by_default = 0
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_min_filename_width = 10
-let g:vimfiler_edit_action = 'tabopen'
+"let g:vimfiler_edit_action = 'tabopen'
 let g:vimfiler_data_directory = '/tmp/.vimfiler'
 let g:vimfiler_ignore_pattern = '^\%(.git\|.DS_Store\)$'
 "let g:vimfiler_restore_alternate_file = 0
@@ -166,6 +166,13 @@ repo = 'tpope/vim-surround'
 
 [[plugins]] #{{{ tpope/vim-fugitive
 repo = 'tpope/vim-fugitive'
+
+hook_add = '''
+augroup my_fugitive
+  autocmd!
+  autocmd FileType fugitiveblame nnoremap q gq
+augroup END
+'''
 #}}}
 
 [[plugins]] #{{{ tpope/vim-endwise
@@ -227,7 +234,7 @@ hook_add = """
 let g:lightline = {
       \ 'colorscheme': 'PaperColor_dark',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'filename', 'fugitive' ] ],
+      \   'left': [ [ 'mode', 'paste' ], [ 'relativepath', 'fugitive' ] ],
       \   'right': [ [ 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
       \ 'component_function': {
@@ -389,12 +396,53 @@ repo='prabirshrestha/asyncomplete-neosnippet.vim'
 [[plugins]] #{{{ tyru/eskk.vim
 repo = 'tyru/eskk.vim'
 hook_add = '''
-let g:eskk#dictionary = { 'path': "~/.skk-jisyo", 'sorted': 0, 'encoding': 'utf-8', }
+" see https://zenn.dev/kouta/articles/87947515bff4da
+
+set imdisable
 let g:eskk#enable_completion = 1
-let g:eskk#large_dictionary = {
-\ 'path': "~/.eskk/SKK-JISYO.L",
-\ 'sorted': 1,
-\ 'encoding': 'utf8',
-\}
+let g:eskk#directory = "~/.config/eskk"
+let g:eskk#dictionary = { 'path': "~/.config/eskk/my_jisyo", 'sorted': 1, 'encoding': 'utf-8',}
+let g:eskk#large_dictionary = {'path': "~/.config/eskk/SKK-JISYO.L", 'sorted': 1, 'encoding': 'euc-jp',}
+augroup vimrc_eskk
+  autocmd!
+  autocmd User eskk-enable-post lmap <buffer> l <Plug>(eskk:disable)
+augroup END
+
+imap jk <Plug>(eskk:toggle)
+cmap jk <Plug>(eskk:toggle)
+
+let g:eskk#kakutei_when_unique_candidate = 1 "漢字変換した時に候補が1つの場合、自動的に確定する
+let g:eskk#enable_completion = 0             "neocompleteを入れないと、1にすると動作しなくなるため0推奨
+let g:eskk#no_default_mappings = 1           "デフォルトのマッピングを削除
+let g:eskk#keep_state = 0                    "ノーマルモードに戻るとeskkモードを初期値にする
+let g:eskk#egg_like_newline = 1              "漢字変換を確定しても改行しない。
+
+let g:eskk#server = {
+\  'host': 'localhost',
+\  'port': '1178'
+\ }
+
+
+"表示文字を変更
+"let g:eskk#marker_henkan = "[変換]"
+"let g:eskk#marker_henkan_select = "[選択]"
+"let g:eskk#marker_okuri = "[送り]"
+"let g:eskk#marker_jisyo_touroku = "[辞書]"
+
+"Sticky Shift
+autocmd User eskk-initialize-post call s:eskk_initial_pre()
+function! s:eskk_initial_pre() abort
+  EskkUnmap -type=sticky ;
+  EskkUnmap -type=sticky Q
+  EskkMap -type=sticky :
+endfunction
+
+"let g:eskk#dictionary = { 'path': "~/.skk-jisyo", 'sorted': 0, 'encoding': 'utf-8', }
+"let g:eskk#large_dictionary = { 'path': "~/Library/Application Support/AquaSkk/SKK-JISYO.L", 'sorted': 1, 'encoding': "UTF-8" }
+"let g:eskk#large_dictionary = {
+"\ 'path': "~/.eskk/SKK-JISYO.L",
+"\ 'sorted': 1,
+"\ 'encoding': 'utf8',
+"\}
 '''
 #}}}
